@@ -73,7 +73,7 @@ module processor (
                             stage_comb_values[Decode].instr = Mvt;
                         else
                             stage_comb_values[Decode].instr = Branch;
-                        stage_comb_values[Decode].imm = 1; //the instruction uses immediate either way
+                        //stage_comb_values[Decode].imm = 1; //the instruction uses immediate either way
                     end
                     add:begin
                         stage_comb_values[Decode].instr = Add;
