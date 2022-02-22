@@ -147,7 +147,7 @@ module processor (
                 DataAddr = stage_regs[Execute].op2;
                 ReadData = stage_regs[Execute].read;
                 WriteData = stage_regs[Execute].write;
-                else if (stage_regs[Execute].write) begin
+                if (stage_regs[Execute].write) begin
                     DataOut = stage_regs[Execute].op1;
                 end
             end
@@ -170,10 +170,10 @@ module processor (
 
             /*Writeback Stage*/
             if (signals.stall <= Writeback) begin//always true
-                stage_comb_values[Writeback] = stage_regs[Memory];
-                if (stage_regs[Memory].writeback) begin
-                    signals.write_reg[stage_regs[Memory].rX] = 1;
-                    signals.write_values[stage_regs[Memory].rX] = stage_regs[Memory].out;
+                stage_comb_values[Writeback] = stage_regs[MemoryWait];
+                if (stage_regs[MemoryWait].writeback) begin
+                    signals.write_reg[stage_regs[MemoryWait].rX] = 1;
+                    signals.write_values[stage_regs[MemoryWait].rX] = stage_regs[MemoryWait].out;
                 end
             end
 
