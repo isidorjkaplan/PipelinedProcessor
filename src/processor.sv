@@ -178,10 +178,10 @@ module processor (
 
             /*Writeback Stage*/
             if (stall_stages <= Writeback) begin//always true
-                stage_comb_values[Writeback] = stage_regs[MemoryWait];
-                if (stage_regs[MemoryWait].writeback) begin
-                    signals.write_reg[stage_regs[MemoryWait].rX] = 1;
-                    signals.write_values[stage_regs[MemoryWait].rX] = stage_regs[MemoryWait].out;
+                stage_comb_values[Writeback] = stage_regs[Memory3];
+                if (stage_regs[Memory3].writeback) begin
+                    signals.write_reg[stage_regs[Memory3].rX] = 1;
+                    signals.write_values[stage_regs[Memory3].rX] = stage_regs[Memory3].out;
                 end
             end
 
