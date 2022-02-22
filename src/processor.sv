@@ -62,19 +62,26 @@ module processor (
                 stage_comb_values[Writeback] = stage_regs[Writeback];
 
             /*Memory Stages*/
-            if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
-                DataAddr = stage_regs[Execute].op2;
-                ReadData = stage_regs[Execute].read;
-                WriteData = stage_regs[Execute].write;
-                if (stage_regs[Execute].write) begin
-                    DataOut = stage_regs[Execute].op1;
-                end
-            end
-
             if (!stall) begin
-                stage_comb_values[Memory2] = stage_regs[Memory1];
-                if (stage_regs[Memory1].read) begin
-                    stage_comb_values[Memory2].out = DataIn;
+                if (DataDone) begin
+                    stage_comb_values[Memory2] = stage_regs[Memory1];
+                    if (stage_regs[Memory1].read) begin
+                        stage_comb_values[Memory2].out = DataIn;
+                    end
+                end
+                else begin
+                    //If the data is not ready, it means that the previous stage's signals need to remain
+                    //Keep the flags from the previous stage exactly what they were and insert nops
+                    stall = 1;
+                    stage_comb_values[Memory2] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                    if ((stage_regs[Memory1].read || stage_regs[Memory1].write)) begin
+                        DataAddr = stage_regs[Memory1].op2;
+                        ReadData = stage_regs[Memory1].read;
+                        WriteData = stage_regs[Memory1].write;
+                        if (stage_regs[Memory1].write) begin
+                            DataOut = stage_regs[Memory1].op1;
+                        end
+                    end
                 end
             end
             else
@@ -82,6 +89,14 @@ module processor (
 
             if (!stall) begin
                 stage_comb_values[Memory1] = stage_regs[Execute];
+                if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
+                    DataAddr = stage_regs[Execute].op2;
+                    ReadData = stage_regs[Execute].read;
+                    WriteData = stage_regs[Execute].write;
+                    if (stage_regs[Execute].write) begin
+                        DataOut = stage_regs[Execute].op1;
+                    end
+                end
             end
             else
                 stage_comb_values[Memory1] = stage_regs[Memory1];

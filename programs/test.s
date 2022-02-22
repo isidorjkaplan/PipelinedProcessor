@@ -1,9 +1,14 @@
 START:
     //Pipelined moving r0-r4
+
+
+TEST4:
+    mv r3, #TEST4_WORD
+    ld r4, [r3] //should load word properly and wait until okay with stalls
     mv r0, #0
     mv r1, #0
 
-TEST3:
+TEST3://passes test3 cases
     add r0, #1 //(1,0)
     add r1, r0 //(1,1)
     add r0, #1 //(2,1)
@@ -12,8 +17,10 @@ TEST3:
     add r1, r0 //(3,6)
     add r0, #1 //(4,6)
     add r1, r0 //(4,10)
-    b TEST3
+    b START
 
+TEST4_WORD:
+    .word 0xffff
 
 TEST2:
     add r0, #1
