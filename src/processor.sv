@@ -124,7 +124,7 @@ module processor (
             endcase
         end
         else
-            stage_comb_values[Execute] = '{default:0, nop:1};
+            stage_comb_values[Execute] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
         /*Memory Stage*/
         if (signals.stall >= Memory && (stage_regs[Execute].read || stage_regs[Execute].write)) begin
