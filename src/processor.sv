@@ -167,6 +167,18 @@ module processor (
                     stage_comb_values[Decode].write = stage_comb_values[Decode].instr == Store;
                     //Writeback for all instructions except a store
                     stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store; 
+
+                    /*Decide if we have a RAW hazard and need to stall*/
+                    for (integer i = Execute; i <= Writeback; i++) begin
+                        if ((stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rX)
+                            || (stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rY && !stage_comb_values[Decode].imm)
+                            ) begin
+                            //stall fetch
+                            stall = 1;
+                            //We will redo this again next cycle hoping that RAW has resolved
+                            stage_comb_values[Decode] = stage_regs[Decode];
+                        end
+                    end
                 end           
             end
             else
@@ -180,6 +192,8 @@ module processor (
                 stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
                 signals.InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
             end //else gets a nop by default
+            else
+                stage_comb_values[Fetch] = stage_regs[Fetch];
             //Else it just takes a nop anyways
 
             /*Stall Logic*/
