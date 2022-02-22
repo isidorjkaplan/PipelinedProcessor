@@ -175,7 +175,7 @@ module processor (
                     if (stage_comb_values[Decode].instr == Branch) begin
                         stage_comb_values[Decode].alu_op = ADD;
                         stage_comb_values[Decode].rX = PC;
-                        stage_comb_values[Decode].op1 = registers[PC] - 2;
+                        stage_comb_values[Decode].op1 = registers[PC] - 4;
                     end
 
                     //Control signals for reading and writing to memory
