@@ -49,6 +49,8 @@ module processor (
             signals.stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
             InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
         end //else gets a nop by default
+        else
+            stage_comb_values[Fetch] = '{default:0, nop:1};
 
         /*Decode Stage*/
         if (signals.stall <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
@@ -108,6 +110,8 @@ module processor (
             //Writeback for all instructions except a store
             stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store;            
         end
+        else
+            stage_comb_values[Decode] = '{default:0, nop:1};
 
         /*Execute Stage*/
         if (signals.stall >= Execute) begin
@@ -117,6 +121,8 @@ module processor (
                 SUB:stage_comb_values[Execute].out = stage_regs[Decode].op1 - stage_regs[Decode].op2;
             endcase
         end
+        else
+            stage_comb_values[Execute] = '{default:0, nop:1};
 
         /*Memory Stage*/
         if (signals.stall >= Memory && (stage_regs[Execute].read || stage_regs[Execute].write)) begin
@@ -135,6 +141,8 @@ module processor (
             if (DataWaitreq)
                 signals.stall = Memory; //stall all earlier stages, we need to wait
         end
+        else
+            stage_comb_values[Memory] = '{default:0, nop:1};
 
         /*Writeback Stage*/
         if (signals.stall >= Writeback) begin//always true
@@ -143,16 +151,11 @@ module processor (
                 signals.write_values[stage_regs[Memory].rX] = stage_regs[Memory].out;
             end
         end
+        else
+            stage_comb_values[Writeback] = '{default:0, nop:1};
 
         /*Stall Logic*/
-
-        /*Flush logic*/
-        generate
-            for (genvar i = 0; i < NUM_STAGES; i++) begin
-                if (signals.flush[i])
-                    stage_comb_values[i] <= '{default:0, nop:1};
-            end
-        endgenerate
+        
     end
 
     always_ff@(posedge Clock) begin
