@@ -59,7 +59,7 @@ module processor (
                 end
             end
             else
-                stage_comb_values[Writeback] = stage_regs[Writeback]
+                stage_comb_values[Writeback] = stage_regs[Writeback];
 
             /*Memory Stages*/
             if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
@@ -100,72 +100,74 @@ module processor (
                 stage_comb_values[Execute] = stage_regs[Execute];
 
             /*Decode Stage*/
-            if (stall_stages <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
-                //extract the opcode bits
-                //CASE1:  III M XXX DDDDDDDDD
-                //CASE2:  III M XXX 000000 YYY
-                stage_comb_values[Decode].opcode = stage_regs[Fetch].out[WORD_SIZE-1:WORD_SIZE-OPCODE_BITS];
+            if (!stall) begin //note if it is 0 then nop
+                if (stage_regs[Fetch].out != 0) begin
+                    //extract the opcode bits
+                    //CASE1:  III M XXX DDDDDDDDD
+                    //CASE2:  III M XXX 000000 YYY
+                    stage_comb_values[Decode].opcode = stage_regs[Fetch].out[WORD_SIZE-1:WORD_SIZE-OPCODE_BITS];
 
-                stage_comb_values[Decode].rX = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-2:WORD_SIZE-OPCODE_BITS-4];
-                stage_comb_values[Decode].op1 = registers[stage_comb_values[Decode].rX];
+                    stage_comb_values[Decode].rX = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-2:WORD_SIZE-OPCODE_BITS-4];
+                    stage_comb_values[Decode].op1 = registers[stage_comb_values[Decode].rX];
 
-                stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
+                    stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
 
-                /*Decode which instruction it is based on the opcode*/
-                case (stage_comb_values[Decode].opcode)
-                    mv:begin 
-                        stage_comb_values[Decode].instr = Mov;
-                        stage_comb_values[Decode].alu_op = MOV;
+                    /*Decode which instruction it is based on the opcode*/
+                    case (stage_comb_values[Decode].opcode)
+                        mv:begin 
+                            stage_comb_values[Decode].instr = Mov;
+                            stage_comb_values[Decode].alu_op = MOV;
+                        end
+                        mvt_b: begin
+                            if (stage_comb_values[Decode].imm)
+                                stage_comb_values[Decode].instr = Mvt;
+                            else
+                                stage_comb_values[Decode].instr = Branch;
+                            stage_comb_values[Decode].imm = 1; //the instruction uses immediate either way
+                        end
+                        add:begin
+                            stage_comb_values[Decode].instr = Add;
+                            stage_comb_values[Decode].alu_op = ADD;
+                        end
+                        sub:begin 
+                            stage_comb_values[Decode].instr = Sub;
+                            stage_comb_values[Decode].alu_op = SUB;
+                        end
+                        ld:begin
+                            stage_comb_values[Decode].instr = Load;
+                        end
+                        st:begin
+                            stage_comb_values[Decode].instr = Store;
+                        end
+                        and_:begin
+                            stage_comb_values[Decode].instr = Logic;//todo
+                        end
+                        other:begin
+                            stage_comb_values[Decode].instr = Other;//todo
+                        end
+                    endcase
+
+                    if (stage_comb_values[Decode].imm)
+                        //use rest of bits as the operand bits
+                        stage_comb_values[Decode].op2 = signed'(stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0]);
+                    else begin
+                        //decode which registers to grab op2 from and then fetch from that into op2
+                        stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0];
+                        stage_comb_values[Decode].op2 = registers[stage_comb_values[Decode].rY];
                     end
-                    mvt_b: begin
-                        if (stage_comb_values[Decode].imm)
-                            stage_comb_values[Decode].instr = Mvt;
-                        else
-                            stage_comb_values[Decode].instr = Branch;
-                        stage_comb_values[Decode].imm = 1; //the instruction uses immediate either way
-                    end
-                    add:begin
-                        stage_comb_values[Decode].instr = Add;
+
+                    if (stage_comb_values[Decode].instr == Branch) begin
                         stage_comb_values[Decode].alu_op = ADD;
+                        stage_comb_values[Decode].rX = PC;
+                        stage_comb_values[Decode].op1 = registers[PC] - 2;
                     end
-                    sub:begin 
-                        stage_comb_values[Decode].instr = Sub;
-                        stage_comb_values[Decode].alu_op = SUB;
-                    end
-                    ld:begin
-                        stage_comb_values[Decode].instr = Load;
-                    end
-                    st:begin
-                        stage_comb_values[Decode].instr = Store;
-                    end
-                    and_:begin
-                        stage_comb_values[Decode].instr = Logic;//todo
-                    end
-                    other:begin
-                        stage_comb_values[Decode].instr = Other;//todo
-                    end
-                endcase
 
-                if (stage_comb_values[Decode].imm)
-                    //use rest of bits as the operand bits
-                    stage_comb_values[Decode].op2 = signed'(stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0]);
-                else begin
-                    //decode which registers to grab op2 from and then fetch from that into op2
-                    stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0];
-                    stage_comb_values[Decode].op2 = registers[stage_comb_values[Decode].rY];
-                end
-
-                if (stage_comb_values[Decode].instr == Branch) begin
-                    stage_comb_values[Decode].alu_op = ADD;
-                    stage_comb_values[Decode].rX = PC;
-                    stage_comb_values[Decode].op1 = registers[PC] - 2;
-                end
-
-                //Control signals for reading and writing to memory
-                stage_comb_values[Decode].read = stage_comb_values[Decode].instr == Load;
-                stage_comb_values[Decode].write = stage_comb_values[Decode].instr == Store;
-                //Writeback for all instructions except a store
-                stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store;            
+                    //Control signals for reading and writing to memory
+                    stage_comb_values[Decode].read = stage_comb_values[Decode].instr == Load;
+                    stage_comb_values[Decode].write = stage_comb_values[Decode].instr == Store;
+                    //Writeback for all instructions except a store
+                    stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store; 
+                end           
             end
             else
                 stage_comb_values[Decode] = stage_regs[Decode];
@@ -183,7 +185,6 @@ module processor (
             /*Stall Logic*/
 
         end
-        
     end
 
     always_ff@(posedge Clock, posedge Reset) begin
