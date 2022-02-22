@@ -1,8 +1,9 @@
 vlib work
 
 vlog *.v
+vlog *.sv
 
-vsim -L tb
+vsim tb
 
 log *
 add wave *
