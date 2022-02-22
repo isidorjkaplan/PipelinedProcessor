@@ -17,9 +17,9 @@ module processor (
     input [WORD_SIZE-1:0] DataIn, InstrIn, //input ports for data and instructions
     input DataWaitreq,
     input Reset, Clock, Enable, //control signals
-    output [WORD_SIZE-1:0] DataOut, //Output Data Port for Writes
-    output [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
-    output WriteData, ReadData //Instr always assumed read=1
+    output logic [WORD_SIZE-1:0] DataOut, //Output Data Port for Writes
+    output logic [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
+    output loigic WriteData, ReadData //Instr always assumed read=1
 );
 
 
@@ -30,7 +30,7 @@ module processor (
     latched_values stage_regs[NUM_STAGES];//latched values at each gate
 
     /*Combinational Values*/
-    latched_value stage_comb_values[NUM_STAGES-1]; //combinational logic writes this based on state_regs
+    latched_values stage_comb_values[NUM_STAGES-1]; //combinational logic writes this based on state_regs
     control_signals signals; //the control values
 
     /*The logic for each stage*/
