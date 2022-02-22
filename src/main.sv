@@ -1,12 +1,8 @@
 
 `timescale 1ns/1ns
 module tb();
-    logic [3:0] KEY;
-    logic [9:0] SW;
-    logic CLOCK;
-    logic [6:0] HEX6, HEX5, HEX3, HEX2, HEX1, HEX0;
-    logic [9:0] LEDR;
 
+    logic CLOCK;
 
     /*Defining the wires to interface with the processor*/
     logic [15:0] DataIn, InstrIn; //input ports for data and instructions

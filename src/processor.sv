@@ -42,6 +42,7 @@ module processor (
         ReadData = 0;
         WriteData = 0;
         DataOut = 0;
+        InstrAddr = 0;
 
         /*Fetch stage*/
         if (signals.stall <= Fetch) begin
