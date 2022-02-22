@@ -1,12 +1,5 @@
 START:
     //Pipelined moving r0-r4
-    mv r0, #0
-TEST2://should be a raw every time but still have correct values with stalls
-    add r0, #1
-    b TEST2
-
-
-TEST1:
     mv r0, #LABEL
     //Move fully works
     mv r1, #2
