@@ -185,15 +185,17 @@ module processor (
                 stage_comb_values[Decode] = stage_regs[Decode];
 
             /*Fetch stage*/
-            InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
             if (!stall) begin
                 stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
                 signals.write_reg[PC] = 1'b1; //we will write the new pc value
                 signals.write_values[PC] = registers[PC] + 1; //by default increment one word
+                InstrAddr = registers[PC] + 1;
                 stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
             end //else gets a nop by default
-            else
+            else begin
                 stage_comb_values[Fetch] = stage_regs[Fetch];
+                InstrAddr = registers[PC];
+            end
             //Else it just takes a nop anyways
 
             /*Stall Logic*/
