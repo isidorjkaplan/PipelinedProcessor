@@ -26,7 +26,7 @@ module tb();
     processor proc(DataIn, InstrIn, DataDone, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
 
     logic [3:0] waiting_cycles;
-    always_ff@(posedge CLOCK) begin
+    always_ff@(posedge CLOCK, posedge Reset) begin
         if (Reset)
             waiting_cycles <= 0;
         else if (waiting_cycles > 0)
