@@ -175,7 +175,7 @@ module processor (
                     if (stage_comb_values[Decode].instr == Branch) begin
                         stage_comb_values[Decode].alu_op = ADD;
                         stage_comb_values[Decode].rX = PC;
-                        stage_comb_values[Decode].op1 = registers[PC] - 4;
+                        stage_comb_values[Decode].op1 = registers[PC] - 2;
                     end
 
                     //Control signals for reading and writing to memory
@@ -197,16 +197,18 @@ module processor (
                         //If a branch is in the pipeline then we stall entirely and flush the instruction in fetch
                         //We must wait until the branch writes-back a new PC value
                         //note that this is actually until the cycle AFTER it completes writeback since we look at the reg for writeback
-                        if (stage_regs[i].instr == Branch) begin
-                            stall = 1;
-                            flush = 1;
-                            stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
-                        end
                     end
                 end           
             end
             else if (!flush)
                 stage_comb_values[Decode] = stage_regs[Decode];
+            for (integer i = Decode; i <= Writeback; i++) begin
+                if (stage_regs[i].instr == Branch) begin
+                    stall = 1;
+                    flush = 1;
+                    stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                end
+            end
 
             /*Fetch stage*/
             if (!stall) begin
