@@ -47,7 +47,7 @@ module processor (
             stage_comb_values[Fetch] = '{default:0}; //new empty latched values struct
             signals.write_reg[PC] = 1'b1; //we will write the new pc value
             signals.write_values[PC] = registers[PC] + 1; //by default increment one word
-            signals.stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
+            stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
             InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
         end //else gets a nop by default
         else
@@ -58,7 +58,7 @@ module processor (
             //extract the opcode bits
             //CASE1:  III M XXX DDDDDDDDD
             //CASE2:  III M XXX 000000 YYY
-            stage_comb_values[Decode].opcode = stage_regs[Fetch].out[NBITS-1:NBITS-OPCODE_BITS];
+            stage_comb_values[Decode].opcode = stage_regs[Fetch].out[WORD_SIZE-1:WORD_SIZE-OPCODE_BITS];
 
             stage_comb_values[Decode].rX = stage_regs[Fetch].out[REG_BITS-1:0];
             stage_comb_values[Decode].op1 = registers[stage_comb_values[Decode].rX];
