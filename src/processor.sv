@@ -164,7 +164,7 @@ module processor (
     always_ff@(posedge Clock, posedge Reset) begin
         if (Reset) begin
             for (integer i = 0; i < NUM_STAGES; i++)
-                stage_regs[i] <= '{default:0, nop:1};
+                stage_regs[i] <= '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
             for (integer i = 0; i < NUM_REGS; i++)
                 registers[i] <= 0;
         end
