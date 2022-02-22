@@ -127,22 +127,24 @@ module processor (
                 stage_comb_values[Execute] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
             /*Memory Stage*/
-            if (signals.stall <= Memory && (stage_regs[Execute].read || stage_regs[Execute].write)) begin
+            if (signals.stall <= Memory) begin
                 //LDR OP1, [OP2]
                 stage_comb_values[Memory] = stage_regs[Execute];
-                signals.DataAddr = stage_regs[Execute].op2;
-                signals.ReadData = stage_regs[Execute].read;
-                signals.WriteData = stage_regs[Execute].write;
-                if (stage_regs[Execute].read) begin
-                    signals.ReadData = 1;
-                    stage_comb_values[Execute].out = DataIn;
+                if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
+                    signals.DataAddr = stage_regs[Execute].op2;
+                    signals.ReadData = stage_regs[Execute].read;
+                    signals.WriteData = stage_regs[Execute].write;
+                    if (stage_regs[Execute].read) begin
+                        signals.ReadData = 1;
+                        stage_comb_values[Execute].out = DataIn;
+                    end
+                    else if (stage_regs[Execute].write) begin
+                        signals.WriteData = 1;
+                        signals.DataOut = stage_regs[Execute].op1;
+                    end
+                    if (DataWaitreq)
+                        signals.stall = Memory; //stall all earlier stages, we need to wait
                 end
-                else if (stage_regs[Execute].write) begin
-                    signals.WriteData = 1;
-                    signals.DataOut = stage_regs[Execute].op1;
-                end
-                if (DataWaitreq)
-                    signals.stall = Memory; //stall all earlier stages, we need to wait
             end
             else
                 stage_comb_values[Memory] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
