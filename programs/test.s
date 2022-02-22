@@ -1,6 +1,6 @@
 START:
     //Pipelined moving r0-r4
-
+    b TEST1
 
 TEST4:
     mv r3, #TEST4_WORD
