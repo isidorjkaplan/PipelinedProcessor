@@ -32,7 +32,7 @@ module tb();
     
     initial begin
         Reset = 1;
-        #1
+        #15
         Reset = 0;
         #100
         $stop();
