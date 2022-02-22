@@ -7,6 +7,12 @@ parameter REG_BITS = $clog2(NUM_REGS);
 parameter STAGE_BITS = $clog2(NUM_STAGES);
 parameter OPCODE_BITS = 3;
 
+enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
+enum {LR=5, SP=6, PC=7} RegNames;
+//Will change this later
+enum {Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
+enum {NO_ALU, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
+
 module processor (
     input [WORD_SIZE-1:0] DataIn, InstrIn, //input ports for data and instructions
     input DataWaitreq,
@@ -16,11 +22,6 @@ module processor (
     output WriteData, ReadData //Instr always assumed read=1
 );
 
-    enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
-    enum {LR=5, SP=6, PC=7} RegNames;
-    //Will change this later
-    enum {Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
-    enum {NO_ALU, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
 
     parameter mv = 3'b000, mvt_b = 3'b001, add = 3'b010, sub = 3'b011, ld = 3'b100, st = 3'b101, and_ = 3'b110, other = 3'b111;
 
@@ -201,7 +202,7 @@ typedef struct packed {
 
     logic writeback; //if true then we will writeback result into rX
     
-    logic [WORD_SIZE-1:0] address, //if it interacts with memory, what address
+    logic [WORD_SIZE-1:0] address; //if it interacts with memory, what address
     
     logic read, write; //should we read and write during the memory stages
 
