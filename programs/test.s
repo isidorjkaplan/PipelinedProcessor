@@ -1,5 +1,29 @@
 START:
     //Pipelined moving r0-r4
+    mv r0, #0
+TEST2:
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    b TEST2
+
+
+TEST1:
     mv r0, #LABEL
     //Move fully works
     mv r1, #2
