@@ -29,7 +29,12 @@ module tb();
     end
 
     processor proc(DataIn, InstrIn, DataWaitreq, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
-
+    
+    initial begin
+        CLOCK=0;
+        #100
+        $stop();
+    end
 
 
 endmodule
