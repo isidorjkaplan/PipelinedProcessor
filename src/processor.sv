@@ -173,7 +173,7 @@ module processor (
                 stage_comb_values[Decode] = stage_regs[Decode];
 
              /*Fetch stage*/
-            if (stall_stages <= Fetch) begin
+            if (!stall) begin
                 stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
                 signals.write_reg[PC] = 1'b1; //we will write the new pc value
                 signals.write_values[PC] = registers[PC] + 1; //by default increment one word
