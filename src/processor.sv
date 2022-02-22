@@ -167,7 +167,7 @@ module processor (
             /*Memory Recieve Stage*/
             if (stall_stages <= MemoryWait) begin
                 stage_comb_values[MemoryWait] = stage_regs[MemoryStart];
-                if (state_regs[MemoryStart].read) begin
+                if (stage_regs[MemoryStart].read) begin
                     stage_comb_values[MemoryWait].out = DataIn;
                 end
             end
