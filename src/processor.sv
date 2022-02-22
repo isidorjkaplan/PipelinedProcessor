@@ -117,6 +117,7 @@ module processor (
             /*Execute Stage*/
             if (signals.stall >= Execute) begin
                 /*The Execute part of this stage*/
+                stage_comb_values[Execute] = stage_regs[Decode];
                 case (stage_regs[Decode].alu_op)
                     ADD:stage_comb_values[Execute].out = stage_regs[Decode].op1 + stage_regs[Decode].op2;
                     SUB:stage_comb_values[Execute].out = stage_regs[Decode].op1 - stage_regs[Decode].op2;
@@ -128,6 +129,7 @@ module processor (
             /*Memory Stage*/
             if (signals.stall >= Memory && (stage_regs[Execute].read || stage_regs[Execute].write)) begin
                 //LDR OP1, [OP2]
+                stage_comb_values[Memory] = stage_regs[Execute];
                 signals.DataAddr = stage_regs[Execute].op2;
                 signals.ReadData = stage_regs[Execute].read;
                 signals.WriteData = stage_regs[Execute].write;
@@ -147,6 +149,7 @@ module processor (
 
             /*Writeback Stage*/
             if (signals.stall >= Writeback) begin//always true
+                stage_comb_values[Writeback] = stage_regs[Memory];
                 if (stage_regs[Memory].writeback) begin
                     signals.write_reg[stage_regs[Memory].rX] = 1;
                     signals.write_values[stage_regs[Memory].rX] = stage_regs[Memory].out;
