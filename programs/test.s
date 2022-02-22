@@ -7,9 +7,9 @@ START:
     mv r4, #5
     //NOP
     mv r0, #0
-    mv r0, #0, 
+    mv r0, #0 
     mv r0, #0
-    mv r0, #0, 
+    mv r0, #0
     mv r0, #0
     //Pipelined adding
     add r0, r1 //=3
