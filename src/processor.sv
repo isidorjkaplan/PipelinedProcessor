@@ -63,7 +63,7 @@ module processor (
                 stage_comb_values[Decode].rX = stage_regs[Fetch].out[REG_BITS-1:0];
                 stage_comb_values[Decode].op1 = registers[stage_comb_values[Decode].rX];
 
-                stage_comb_values[Decode].imm = stage_regs[Fetch].out[NBITS-OPCODE_BITS-1];
+                stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
 
 
                 case (stage_comb_values[Decode].opcode)
@@ -73,7 +73,7 @@ module processor (
                             stage_comb_values[Decode].instr = Mvt;
                         else
                             stage_comb_values[Decode].instr = Branch;
-                        //stage_comb_values[Decode].imm = 1; //the instruction uses immediate either way
+                        stage_comb_values[Decode].imm = 1; //the instruction uses immediate either way
                     end
                     add:begin
                         stage_comb_values[Decode].instr = Add;
