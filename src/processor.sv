@@ -1,13 +1,13 @@
 /*Defining parameters for readability*/
 parameter NUM_REGS = 8;
-parameter NUM_STAGES = 6;
 parameter WORD_SIZE = 16;
 
 parameter REG_BITS = $clog2(NUM_REGS);
 parameter STAGE_BITS = $clog2(NUM_STAGES);
 parameter OPCODE_BITS = 3;
 
-typedef enum {Fetch=0, Decode=1, Execute=2, MemoryStart=3, MemoryWait=4, Writeback=5} Stages;
+typedef enum {Fetch=0, Decode=1, Execute=2, Memory1=3, Memory2=4, Memory3=5, Writeback=6} Stages;
+parameter NUM_STAGES = Writeback+1;
 typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
 typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
@@ -50,17 +50,13 @@ module processor (
 
         if (!Reset) begin
             /*Stall Logic*/
-            if (!DataDone) begin
+            /*if (!DataDone) begin
                 stall_stages = NUM_STAGES+1;//Stall entire processor, cant do anything when data not done
-            end
+            end*/
 
+            //If a stage is stalling, lock in values already there
             for (integer i = 0; i < NUM_STAGES; i++) begin
-                //by default everything is a nop unless otherwise specified
-                if (stall_stages <= i)
-                    //not stalling, insert a nop and it will be replaced by whatever stage decides
-                    stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
-                else
-                    //stage is stalling, make sure it's value is not lost
+                if (stall_stages > i)
                     stage_comb_values[i] = stage_regs[i]; 
             end
 
@@ -155,7 +151,7 @@ module processor (
                 endcase
             end
 
-            /*Memory Stage*/
+            /*Memory Stages*/
             if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
                 DataAddr = stage_regs[Execute].op2;
                 ReadData = stage_regs[Execute].read;
@@ -164,15 +160,19 @@ module processor (
                     DataOut = stage_regs[Execute].op1;
                 end
             end
-            if (stall_stages <= MemoryStart) begin
-                stage_comb_values[MemoryStart] = stage_regs[Execute];
+            if (stall_stages <= Memory1) begin
+                stage_comb_values[Memory1] = stage_regs[Execute];
+            end
+
+            if (stall_stages <= Memory2) begin
+                stage_comb_values[Memory2] = stage_regs[Memory1];
             end
 
             /*Memory Recieve Stage*/
-            if (stall_stages <= MemoryWait) begin
-                stage_comb_values[MemoryWait] = stage_regs[MemoryStart];
-                if (stage_regs[MemoryStart].read) begin
-                    stage_comb_values[MemoryWait].out = DataIn;
+            if (stall_stages <= Memory3) begin
+                stage_comb_values[Memory3] = stage_regs[Memory2];
+                if (stage_regs[Memory2].read) begin
+                    stage_comb_values[Memory3].out = DataIn;
                 end
             end
 
