@@ -102,7 +102,7 @@ module processor (
 
                 if (stage_comb_values[Decode].imm)
                     //use rest of bits as the operand bits
-                    stage_comb_values[Decode].op2 = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-1:0];
+                    stage_comb_values[Decode].op2 = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0];
                 else begin
                     //decode which registers to grab op2 from and then fetch from that into op2
                     stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0];
