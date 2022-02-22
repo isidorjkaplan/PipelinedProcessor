@@ -184,7 +184,7 @@ module processor (
                     stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store; 
 
                     /*Decide if we have a RAW hazard and need to stall*/
-                    for (integer i = Execute; i <= Writeback; i++) begin
+                    for (integer i = Decode; i <= Writeback; i++) begin
                         if ((stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rX)
                             || (stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rY && !stage_comb_values[Decode].imm)
                             ) begin
