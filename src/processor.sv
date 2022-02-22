@@ -10,7 +10,7 @@ parameter OPCODE_BITS = 3;
 typedef enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
 typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
-typedef enum {Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
+typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
 typedef enum {NO_ALU, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
 
 module processor (
@@ -38,21 +38,21 @@ module processor (
         /*Initilization to avoid latch inference*/
         signals = '{default:0};//set all signals to zero to avoid latch
         for (integer i = 0; i < NUM_STAGES; i++)
-            stage_comb_values[i] = '{default:0, nop:1}; //if nothing else inserted, its a nop
+            stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU}; //if nothing else inserted, its a nop
         ReadData = 0;
         WriteData = 0;
         DataOut = 0;
 
         /*Fetch stage*/
         if (signals.stall <= Fetch) begin
-            stage_comb_values[Fetch] = '{default:0}; //new empty latched values struct
+            stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
             signals.write_reg[PC] = 1'b1; //we will write the new pc value
             signals.write_values[PC] = registers[PC] + 1; //by default increment one word
             stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
             InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
         end //else gets a nop by default
         else
-            stage_comb_values[Fetch] = '{default:0, nop:1};
+            stage_comb_values[Fetch] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
         /*Decode Stage*/
         if (signals.stall <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
@@ -113,7 +113,7 @@ module processor (
             stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store;            
         end
         else
-            stage_comb_values[Decode] = '{default:0, nop:1};
+            stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
         /*Execute Stage*/
         if (signals.stall >= Execute) begin
@@ -144,7 +144,7 @@ module processor (
                 signals.stall = Memory; //stall all earlier stages, we need to wait
         end
         else
-            stage_comb_values[Memory] = '{default:0, nop:1};
+            stage_comb_values[Memory] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
         /*Writeback Stage*/
         if (signals.stall >= Writeback) begin//always true
@@ -154,7 +154,7 @@ module processor (
             end
         end
         else
-            stage_comb_values[Writeback] = '{default:0, nop:1};
+            stage_comb_values[Writeback] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
         /*Stall Logic*/
         
