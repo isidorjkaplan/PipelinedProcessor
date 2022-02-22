@@ -183,7 +183,7 @@ module processor (
 endmodule
 
 typedef struct packed {
-    logic write_reg[NUM_REGS]; //should we write to each register
+    logic [0:0] write_reg[NUM_REGS]; //should we write to each register
     logic [WORD_SIZE-1:0] write_values[NUM_REGS]; //if write_reg is true, what should we write
     logic [NUM_STAGES-1:0] stall; //if true then that stage will stall
     logic flush[NUM_STAGES];
@@ -212,6 +212,4 @@ typedef struct packed {
     Instr isntr;
 
     ALU_OP alu_op;
-
-    control_signals signals; //decoded control signals for all future levels
 } latched_values;
