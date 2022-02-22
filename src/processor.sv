@@ -168,12 +168,11 @@ module processor (
             stage_regs <= stage_comb_values;
 
             /*Writeback values to their registers*/
-            generate
-                for (genvar i = 0; i < NUM_REGS; i++) begin
-                    if (signals.write_reg[i])
-                        registers[i] <= signals.write_values[i];
-                end
-            endgenerate
+            for (integer i = 0; i < NUM_REGS; i++) begin
+                if (signals.write_reg[i])
+                    registers[i] <= signals.write_values[i];
+            end
+
         end
     end
 
