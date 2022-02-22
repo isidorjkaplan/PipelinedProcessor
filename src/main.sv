@@ -1,4 +1,5 @@
 
+`timescale 1ns/1ns
 module tb();
     logic [3:0] KEY;
     logic [9:0] SW;
