@@ -1,5 +1,5 @@
 START:
-    mv, r0, #0
+    mv r0, #0
 
 
 TEST1:
