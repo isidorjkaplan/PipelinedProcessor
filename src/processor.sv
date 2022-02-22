@@ -49,7 +49,7 @@ module processor (
         end //else gets a nop by default
 
         /*Decode Stage*/
-        if (signals.stall <= Decode) begin
+        if (signals.stall <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
             //extract the opcode bits
             //CASE1:  III M XXX DDDDDDDDD
             //CASE2:  III M XXX 000000 YYY
@@ -104,8 +104,7 @@ module processor (
             stage_comb_values[Decode].read = stage_comb_values[Decode].instr == Load;
             stage_comb_values[Decode].write = stage_comb_values[Decode].instr == Store;
             //Writeback for all instructions except a store
-            stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store;
-            
+            stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store;            
         end
 
         /*Execute Stage*/
