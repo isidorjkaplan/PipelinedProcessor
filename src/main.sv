@@ -18,7 +18,7 @@ module tb();
     logic WriteData, ReadData; //Instr always assumed read=1
 
     /*Defining the design for testing*/
-    inst_mem InstrMem (InstrAddr[11:0], CLOCK, 0, 0, InstrIn);
+    inst_mem InstrMem (InstrAddr[11:0], CLOCK, 16'b0, 1'b0, InstrIn);
     inst_mem DataMem (DataAddr[11:0], CLOCK, DataOut, WriteData, DataIn);
     //some initilizations
     always_comb begin
