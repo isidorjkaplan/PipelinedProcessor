@@ -162,8 +162,10 @@ module processor (
 
     always_ff@(posedge Clock) begin
         if (Reset) begin
-            stage_regs <= 0;
-            registers <= 0;
+            for (integer i = 0; i < NUM_STAGES; i++)
+                stage_regs[i] <= '{default:0, nop:1};
+            for (integer i = 0; i < NUM_REGS; i++)
+                registers[i] <= 0;
         end
         else begin
             /*On the clock write all the combinational output values to the state regs*/
