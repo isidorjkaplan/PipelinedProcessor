@@ -37,7 +37,8 @@ module processor (
         /*Initilization to avoid latch inference*/
         signals = '{default:0};//set all signals to zero to avoid latch
         stage_comb_values = '{default:0, nop:1}; //if nothing else inserted, its a nop
-        ReadData = WriteData = 0;
+        ReadData = 0;
+        WriteData = 0;
         DataOut = 0;
 
         /*Fetch stage*/
@@ -114,7 +115,6 @@ module processor (
             case (stage_regs[Decode].alu_op)
                 ADD:stage_comb_values[Execute].out = stage_regs[Decode].op1 + stage_regs[Decode].op2;
                 SUB:stage_comb_values[Execute].out = stage_regs[Decode].op1 - stage_regs[Decode].op2;
-                default://rest TODO
             endcase
         end
 
