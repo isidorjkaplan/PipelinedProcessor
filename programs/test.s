@@ -1,5 +1,5 @@
 START:
-    mv r1, #2
+    mv r1, #6
     //Adding a bunch of NOP's
     mv r0, r0
     mv r0, r0
@@ -8,7 +8,7 @@ START:
     mv r0, r0
     mv r0, r0
     //another instruction
-    mv r2, #4
+    mv r2, #7
     //Adding a bunch of NOP's
     mv r0, r0
     mv r0, r0

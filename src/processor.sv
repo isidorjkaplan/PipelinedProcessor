@@ -60,7 +60,7 @@ module processor (
                 //CASE2:  III M XXX 000000 YYY
                 stage_comb_values[Decode].opcode = stage_regs[Fetch].out[WORD_SIZE-1:WORD_SIZE-OPCODE_BITS];
 
-                stage_comb_values[Decode].rX = stage_regs[Fetch].out[REG_BITS-1:0];
+                stage_comb_values[Decode].rX = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1:WORD_SIZE-OPCODE_BITS-3];
                 stage_comb_values[Decode].op1 = registers[stage_comb_values[Decode].rX];
 
                 stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
