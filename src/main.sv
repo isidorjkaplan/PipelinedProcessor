@@ -6,7 +6,7 @@ module tb();
 
     /*Defining the wires to interface with the processor*/
     logic [15:0] DataIn, InstrIn; //input ports for data and instructions
-    logic DataWaitreq;
+    logic DataDone;
     logic Reset, Clock, Enable; //control signals
     logic [15:0] DataOut; //Output Data Port for Writes
     logic [15:0] DataAddr, InstrAddr; //Address ports for data and instructions
@@ -19,12 +19,22 @@ module tb();
     inst_mem DataMem (DataAddr[11:0], CLOCK, DataOut, WriteData, DataIn);
     //some initilizations
     always_comb begin
-        DataWaitreq=0;
         Clock = CLOCK;
         Enable=1;
     end
 
-    processor proc(DataIn, InstrIn, DataWaitreq, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
+    processor proc(DataIn, InstrIn, DataDone, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
+
+    logic [3:0] waiting_cycles;
+    always_ff@(posedge CLOCK) begin
+        if (Reset)
+            waiting_cycles <= 0;
+        else if (waiting_cycles > 0)
+            waiting_cycles <= waiting_cycles-1; //decrement waiting cycles
+        else if (waiting_cycles == 0 && (WriteData || ReadData))
+            waiting_cycles <= 2; //reset the waiting cycles, started a new operation
+    end
+    assign DataDone = waiting_cycles==0;
     
     initial begin
         Reset = 1;

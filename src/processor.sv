@@ -7,7 +7,7 @@ parameter REG_BITS = $clog2(NUM_REGS);
 parameter STAGE_BITS = $clog2(NUM_STAGES);
 parameter OPCODE_BITS = 3;
 
-typedef enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
+typedef enum {Fetch=0, Decode=1, Execute=2, MemoryStart=3, MemoryWait=4, Writeback=5} Stages;
 typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
 typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
@@ -15,7 +15,7 @@ typedef enum {NO_ALU, MOV, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
 
 module processor (
     input [WORD_SIZE-1:0] DataIn, InstrIn, //input ports for data and instructions
-    input DataWaitreq,
+    input DataDone,
     input Reset, Clock, Enable, //control signals
     output logic [WORD_SIZE-1:0] DataOut, //Output Data Port for Writes
     output logic [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
@@ -40,7 +40,16 @@ module processor (
         for (integer i = 0; i < NUM_STAGES; i++)
             stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU}; //if nothing else inserted, its a nop
 
+        DataAddr = 0;
+        ReadData = 0;
+        WriteData = 0;
+        DataOut = 0;
+
         if (!Reset) begin
+            for (integer i = 0; i < NUM_STAGES; i++) begin
+                //by default everything is a nop unless otherwise specified
+                stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+            end
 
             /*Fetch stage*/
             if (signals.stall <= Fetch) begin
@@ -50,8 +59,6 @@ module processor (
                 stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
                 signals.InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
             end //else gets a nop by default
-            else
-                stage_comb_values[Fetch] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
             /*Decode Stage*/
             if (signals.stall <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
@@ -134,31 +141,32 @@ module processor (
                     MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
                 endcase
             end
-            else
-                stage_comb_values[Execute] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
             /*Memory Stage*/
-            if (signals.stall <= Memory) begin
-                //LDR OP1, [OP2]
-                stage_comb_values[Memory] = stage_regs[Execute];
-                if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
-                    signals.DataAddr = stage_regs[Execute].op2;
-                    signals.ReadData = stage_regs[Execute].read;
-                    signals.WriteData = stage_regs[Execute].write;
-                    if (stage_regs[Execute].read) begin
-                        signals.ReadData = 1;
-                        stage_comb_values[Execute].out = DataIn;
-                    end
-                    else if (stage_regs[Execute].write) begin
-                        signals.WriteData = 1;
-                        signals.DataOut = stage_regs[Execute].op1;
-                    end
-                    if (DataWaitreq)
-                        signals.stall = Memory; //stall all earlier stages, we need to wait
+            if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
+                DataAddr = stage_regs[Execute].op2;
+                ReadData = stage_regs[Execute].read;
+                WriteData = stage_regs[Execute].write;
+                else if (stage_regs[Execute].write) begin
+                    DataOut = stage_regs[Execute].op1;
                 end
             end
-            else
-                stage_comb_values[Memory] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+            if (signals.stall <= MemoryStart) begin
+                stage_comb_values[MemoryStart] = stage_regs[Execute];
+            end
+
+            /*Memory Recieve Stage*/
+            if (signals.stall <= MemoryWait) begin
+                if (!DataDone) begin
+                    stall = MemoryWait; //wait here until it is done
+                end//note nops are getting latched to flow into the future stages here
+                else begin
+                    stage_comb_values[MemoryWait] = stage_regs[MemoryStart];
+                    if (state_regs[MemoryStart].read) begin
+                        stage_comb_values[MemoryWait].out = DataIn;
+                    end
+                end
+            end
 
             /*Writeback Stage*/
             if (signals.stall <= Writeback) begin//always true
@@ -168,8 +176,6 @@ module processor (
                     signals.write_values[stage_regs[Memory].rX] = stage_regs[Memory].out;
                 end
             end
-            else
-                stage_comb_values[Writeback] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
             /*Stall Logic*/
 
@@ -195,11 +201,11 @@ module processor (
                     registers[i] <= signals.write_values[i];
             end
         end
-        DataOut <= signals.DataOut;
-        DataAddr <= signals.DataAddr;
+        //DataOut <= signals.DataOut;
+        //DataAddr <= signals.DataAddr;
         InstrAddr <= signals.InstrAddr;
-        WriteData <= signals.WriteData;
-        ReadData <= signals.ReadData;
+        //WriteData <= signals.WriteData;
+        //ReadData <= signals.ReadData;
 
     end
 
@@ -215,9 +221,9 @@ typedef struct {
     logic flush[NUM_STAGES];
 
 
-    logic [WORD_SIZE-1:0] DataOut; //Output Data Port for Writes
-    logic [WORD_SIZE-1:0] DataAddr, InstrAddr; //Address ports for data and instructions
-    logic WriteData, ReadData; //Instr always assumed read=1
+    //logic [WORD_SIZE-1:0] DataOut; //Output Data Port for Writes
+    logic [WORD_SIZE-1:0] /*DataAddr, */InstrAddr; //Address ports for data and instructions
+    //logic WriteData, ReadData; //Instr always assumed read=1
 } control_signals;
 
 /*This struct is setup during the decode stage*/
