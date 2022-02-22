@@ -182,15 +182,15 @@ module processor (
     
 endmodule
 
-typedef struct packed {
-    logic [NUM_REGS-1:0] write_reg; //should we write to each register
+typedef struct {
+    logic write_reg [NUM_REGS]; //should we write to each register
     logic [WORD_SIZE-1:0] write_values[NUM_REGS]; //if write_reg is true, what should we write
     logic [NUM_STAGES-1:0] stall; //if true then that stage will stall
     logic flush[NUM_STAGES];
 } control_signals;
 
 /*This struct is setup during the decode stage*/
-typedef struct packed {
+typedef struct {
     logic [WORD_SIZE-1:0] op1, op2; //the explicit values of the operands (could get overwridden by forwarding)
 
     logic [WORD_SIZE-1:0] out; //final result, as well as temporary information in intermediate levels
