@@ -30,7 +30,7 @@ module tb();
         Reset = 1;
         #15
         Reset = 0;
-        #10000
+        #500
         $stop();
     end
 

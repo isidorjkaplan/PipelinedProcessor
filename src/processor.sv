@@ -39,10 +39,6 @@ module processor (
         signals = '{default:0};//set all signals to zero to avoid latch
         for (integer i = 0; i < NUM_STAGES; i++)
             stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU}; //if nothing else inserted, its a nop
-        ReadData = 0;
-        WriteData = 0;
-        DataOut = 0;
-        InstrAddr = 0;
 
         if (!Reset) begin
 
@@ -132,16 +128,16 @@ module processor (
             /*Memory Stage*/
             if (signals.stall >= Memory && (stage_regs[Execute].read || stage_regs[Execute].write)) begin
                 //LDR OP1, [OP2]
-                DataAddr = stage_regs[Execute].op2;
-                ReadData = stage_regs[Execute].read;
-                WriteData = stage_regs[Execute].write;
+                signals.DataAddr = stage_regs[Execute].op2;
+                signals.ReadData = stage_regs[Execute].read;
+                signals.WriteData = stage_regs[Execute].write;
                 if (stage_regs[Execute].read) begin
-                    ReadData = 1;
-                    stage_comb_values[Execute].out = DataIn;
+                    signals.ReadData = 1;
+                    stage_comb_values[Execute].out = signals.DataIn;
                 end
                 else if (stage_regs[Execute].write) begin
-                    WriteData = 1;
-                    DataOut = stage_regs[Execute].op1;
+                    signals.WriteData = 1;
+                    signals.DataOut = stage_regs[Execute].op1;
                 end
                 if (DataWaitreq)
                     signals.stall = Memory; //stall all earlier stages, we need to wait
@@ -165,7 +161,7 @@ module processor (
         
     end
 
-    always_ff@(posedge Clock) begin
+    always_ff@(posedge Clock, posedge Reset) begin
         if (Reset) begin
             for (integer i = 0; i < NUM_STAGES; i++)
                 stage_regs[i] <= '{default:0, nop:1};
@@ -182,8 +178,13 @@ module processor (
                 if (signals.write_reg[i])
                     registers[i] <= signals.write_values[i];
             end
-
         end
+        DataOut <= signals.DataOut;
+        DataAddr <= signals.DataAddr;
+        InstrAddr <= signals.InstrAddr;
+        WriteData <= signals.WriteData;
+        ReadData <= signals.ReadData;
+
     end
 
     /*The latching of the values for each stage*/
@@ -196,6 +197,11 @@ typedef struct {
     logic [WORD_SIZE-1:0] write_values[NUM_REGS]; //if write_reg is true, what should we write
     logic [NUM_STAGES-1:0] stall; //if true then that stage will stall
     logic flush[NUM_STAGES];
+
+
+    logic [WORD_SIZE-1:0] DataOut, //Output Data Port for Writes
+    logic [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
+    logic WriteData, ReadData //Instr always assumed read=1
 } control_signals;
 
 /*This struct is setup during the decode stage*/
