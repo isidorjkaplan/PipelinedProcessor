@@ -1,7 +1,7 @@
 START:
     //Pipelined moving r0-r4
     mv r0, #0
-    mov r1, #0
+    mv r1, #0
 
 TEST3:
     add r0, #1 //(1,0)
