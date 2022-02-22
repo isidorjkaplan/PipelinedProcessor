@@ -49,10 +49,6 @@ module processor (
 
 
         if (!Reset) begin
-            /*Stall Logic*/
-            /*if (!DataDone) begin
-                stall_stages = NUM_STAGES+1;//Stall entire processor, cant do anything when data not done
-            end*/
 
             //If a stage is stalling, lock in values already there
             for (integer i = 0; i < NUM_STAGES; i++) begin
@@ -60,14 +56,47 @@ module processor (
                     stage_comb_values[i] = stage_regs[i]; 
             end
 
-            /*Fetch stage*/
-            if (stall_stages <= Fetch) begin
-                stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
-                signals.write_reg[PC] = 1'b1; //we will write the new pc value
-                signals.write_values[PC] = registers[PC] + 1; //by default increment one word
-                stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
-                signals.InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
-            end //else gets a nop by default
+            /*Writeback Stage*/
+            if (stall_stages <= Writeback) begin//always true
+                stage_comb_values[Writeback] = stage_regs[Memory2];
+                if (stage_regs[Memory2].writeback) begin
+                    signals.write_reg[stage_regs[Memory2].rX] = 1;
+                    signals.write_values[stage_regs[Memory2].rX] = stage_regs[Memory2].out;
+                end
+            end
+
+
+            /*Memory Stages*/
+            if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
+                DataAddr = stage_regs[Execute].op2;
+                ReadData = stage_regs[Execute].read;
+                WriteData = stage_regs[Execute].write;
+                if (stage_regs[Execute].write) begin
+                    DataOut = stage_regs[Execute].op1;
+                end
+            end
+
+            if (stall_stages <= Memory2) begin
+                stage_comb_values[Memory2] = stage_regs[Memory1];
+                if (stage_regs[Memory1].read) begin
+                    stage_comb_values[Memory2].out = DataIn;
+                end
+            end
+
+            if (stall_stages <= Memory1) begin
+                stage_comb_values[Memory1] = stage_regs[Execute];
+            end
+
+             /*Execute Stage*/
+            if (stall_stages <= Execute) begin
+                /*The Execute part of this stage*/
+                stage_comb_values[Execute] = stage_regs[Decode];
+                case (stage_regs[Decode].alu_op)
+                    ADD:stage_comb_values[Execute].out = stage_regs[Decode].op1 + stage_regs[Decode].op2;
+                    SUB:stage_comb_values[Execute].out = stage_regs[Decode].op1 - stage_regs[Decode].op2;
+                    MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
+                endcase
+            end
 
             /*Decode Stage*/
             if (stall_stages <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
@@ -137,49 +166,15 @@ module processor (
                 //Writeback for all instructions except a store
                 stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store;            
             end
-            else
-                stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
-            /*Execute Stage*/
-            if (stall_stages <= Execute) begin
-                /*The Execute part of this stage*/
-                stage_comb_values[Execute] = stage_regs[Decode];
-                case (stage_regs[Decode].alu_op)
-                    ADD:stage_comb_values[Execute].out = stage_regs[Decode].op1 + stage_regs[Decode].op2;
-                    SUB:stage_comb_values[Execute].out = stage_regs[Decode].op1 - stage_regs[Decode].op2;
-                    MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
-                endcase
-            end
-
-            /*Memory Stages*/
-            if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
-                DataAddr = stage_regs[Execute].op2;
-                ReadData = stage_regs[Execute].read;
-                WriteData = stage_regs[Execute].write;
-                if (stage_regs[Execute].write) begin
-                    DataOut = stage_regs[Execute].op1;
-                end
-            end
-            if (stall_stages <= Memory1) begin
-                stage_comb_values[Memory1] = stage_regs[Execute];
-            end
-
-            if (stall_stages <= Memory2) begin
-                stage_comb_values[Memory2] = stage_regs[Memory1];
-                if (stage_regs[Memory1].read) begin
-                    stage_comb_values[Memory2].out = DataIn;
-                end
-            end
-
-        
-            /*Writeback Stage*/
-            if (stall_stages <= Writeback) begin//always true
-                stage_comb_values[Writeback] = stage_regs[Memory2];
-                if (stage_regs[Memory2].writeback) begin
-                    signals.write_reg[stage_regs[Memory2].rX] = 1;
-                    signals.write_values[stage_regs[Memory2].rX] = stage_regs[Memory2].out;
-                end
-            end
+             /*Fetch stage*/
+            if (stall_stages <= Fetch) begin
+                stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
+                signals.write_reg[PC] = 1'b1; //we will write the new pc value
+                signals.write_values[PC] = registers[PC] + 1; //by default increment one word
+                stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
+                signals.InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
+            end //else gets a nop by default
 
             /*Stall Logic*/
 
