@@ -224,6 +224,7 @@ module processor (
                 stage_regs[i] <= '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
             for (integer i = 0; i < NUM_REGS; i++)
                 registers[i] <= 0;
+            registers[PC] <= -1;//so that +1 is =0 for first instr
         end
         else begin
             /*On the clock write all the combinational output values to the state regs*/
