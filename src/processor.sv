@@ -11,7 +11,7 @@ typedef enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
 typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
 typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
-typedef enum {NO_ALU, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
+typedef enum {NO_ALU, MOV, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
 
 module processor (
     input [WORD_SIZE-1:0] DataIn, InstrIn, //input ports for data and instructions
@@ -30,7 +30,7 @@ module processor (
     latched_values stage_regs[NUM_STAGES];//latched values at each gate
 
     /*Combinational Values*/
-    latched_values stage_comb_values[NUM_STAGES-1]; //combinational logic writes this based on state_regs
+    latched_values stage_comb_values[NUM_STAGES]; //combinational logic writes this based on state_regs
     control_signals signals; //the control values
 
     /*The logic for each stage*/
@@ -67,7 +67,10 @@ module processor (
 
 
                 case (stage_comb_values[Decode].opcode)
-                    mv:stage_comb_values[Decode].instr = Mov;
+                    mv:begin 
+                        stage_comb_values[Decode].instr = Mov;
+                        stage_comb_values[Decode].alu_op = MOV;
+                    end
                     mvt_b: begin
                         if (stage_comb_values[Decode].imm)
                             stage_comb_values[Decode].instr = Mvt;
@@ -121,6 +124,7 @@ module processor (
                 case (stage_regs[Decode].alu_op)
                     ADD:stage_comb_values[Execute].out = stage_regs[Decode].op1 + stage_regs[Decode].op2;
                     SUB:stage_comb_values[Execute].out = stage_regs[Decode].op1 - stage_regs[Decode].op2;
+                    MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
                 endcase
             end
             else
