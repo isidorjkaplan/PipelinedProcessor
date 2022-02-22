@@ -175,8 +175,8 @@ module processor (
                             ) begin
                             //stall fetch
                             stall = 1;
-                            //We will redo this again next cycle hoping that RAW has resolved
-                            stage_comb_values[Decode] = stage_regs[Decode];
+                            //Next stage will read a NOP coming out of decode
+                            stage_comb_values[Decode] = '{default:0, instr:NOP, alu_op:NO_ALU};
                         end
                     end
                 end           
