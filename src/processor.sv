@@ -8,7 +8,7 @@ parameter STAGE_BITS = $clog2(NUM_STAGES);
 parameter OPCODE_BITS = 3;
 
 module processor (
-    input [WORD_SIZE-1:0] DataIn, InstrIn //input ports for data and instructions
+    input [WORD_SIZE-1:0] DataIn, InstrIn, //input ports for data and instructions
     input DataWaitreq,
     input Reset, Clock, Enable, //control signals
     output [WORD_SIZE-1:0] DataOut, //Output Data Port for Writes
