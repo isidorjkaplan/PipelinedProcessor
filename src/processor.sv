@@ -7,11 +7,11 @@ parameter REG_BITS = $clog2(NUM_REGS);
 parameter STAGE_BITS = $clog2(NUM_STAGES);
 parameter OPCODE_BITS = 3;
 
-enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
-enum {LR=5, SP=6, PC=7} RegNames;
+typedef enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
+typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
-enum {Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
-enum {NO_ALU, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
+typedef enum {Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
+typedef enum {NO_ALU, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
 
 module processor (
     input [WORD_SIZE-1:0] DataIn, InstrIn, //input ports for data and instructions
