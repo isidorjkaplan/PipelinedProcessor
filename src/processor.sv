@@ -33,6 +33,8 @@ module processor (
     latched_values stage_comb_values[NUM_STAGES]; //combinational logic writes this based on state_regs
     control_signals signals; //the control values
 
+    logic [NUM_STAGES-1:0] stall_stages;
+
     /*The logic for each stage*/
     always_comb begin : stage_logic
         /*Initilization to avoid latch inference*/
@@ -44,6 +46,13 @@ module processor (
         ReadData = 0;
         WriteData = 0;
         DataOut = 0;
+        stall_stages = 0; //stall nothing right now. 
+
+        /*Stall Logic*/
+        if (!DataDone) begin
+            stall_stages = Writeback;//MemoryWait and everything earlier must stall. 
+        end
+        
 
         if (!Reset) begin
             for (integer i = 0; i < NUM_STAGES; i++) begin
@@ -52,7 +61,7 @@ module processor (
             end
 
             /*Fetch stage*/
-            if (signals.stall <= Fetch) begin
+            if (stall_stages <= Fetch) begin
                 stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
                 signals.write_reg[PC] = 1'b1; //we will write the new pc value
                 signals.write_values[PC] = registers[PC] + 1; //by default increment one word
@@ -61,7 +70,7 @@ module processor (
             end //else gets a nop by default
 
             /*Decode Stage*/
-            if (signals.stall <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
+            if (stall_stages <= Decode && stage_regs[Fetch].out != 0) begin //note if it is 0 then nop
                 //extract the opcode bits
                 //CASE1:  III M XXX DDDDDDDDD
                 //CASE2:  III M XXX 000000 YYY
@@ -132,7 +141,7 @@ module processor (
                 stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
 
             /*Execute Stage*/
-            if (signals.stall <= Execute) begin
+            if (stall_stages <= Execute) begin
                 /*The Execute part of this stage*/
                 stage_comb_values[Execute] = stage_regs[Decode];
                 case (stage_regs[Decode].alu_op)
@@ -151,25 +160,20 @@ module processor (
                     DataOut = stage_regs[Execute].op1;
                 end
             end
-            if (signals.stall <= MemoryStart) begin
+            if (stall_stages <= MemoryStart) begin
                 stage_comb_values[MemoryStart] = stage_regs[Execute];
             end
 
             /*Memory Recieve Stage*/
-            if (signals.stall <= MemoryWait) begin
-                if (!DataDone) begin
-                    stall = MemoryWait; //wait here until it is done
-                end//note nops are getting latched to flow into the future stages here
-                else begin
-                    stage_comb_values[MemoryWait] = stage_regs[MemoryStart];
-                    if (state_regs[MemoryStart].read) begin
-                        stage_comb_values[MemoryWait].out = DataIn;
-                    end
+            if (stall_stages <= MemoryWait) begin
+                stage_comb_values[MemoryWait] = stage_regs[MemoryStart];
+                if (state_regs[MemoryStart].read) begin
+                    stage_comb_values[MemoryWait].out = DataIn;
                 end
             end
 
             /*Writeback Stage*/
-            if (signals.stall <= Writeback) begin//always true
+            if (stall_stages <= Writeback) begin//always true
                 stage_comb_values[Writeback] = stage_regs[MemoryWait];
                 if (stage_regs[MemoryWait].writeback) begin
                     signals.write_reg[stage_regs[MemoryWait].rX] = 1;
@@ -217,7 +221,7 @@ endmodule
 typedef struct {
     logic write_reg [NUM_REGS]; //should we write to each register
     logic [WORD_SIZE-1:0] write_values[NUM_REGS]; //if write_reg is true, what should we write
-    logic [NUM_STAGES-1:0] stall; //if true then that stage will stall
+    //logic [NUM_STAGES-1:0] stall; //if true then that stage will stall
     logic flush[NUM_STAGES];
 
 
