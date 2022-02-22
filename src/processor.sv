@@ -1,3 +1,12 @@
+/*Defining parameters for readability*/
+parameter MUM_REGS = 8;
+parameter NUM_STAGES = 5;
+parameter WORD_SIZE = 16;
+
+parameter REG_BITS = $clog2(NUM_REGS);
+parameter STAGE_BITS = $clog2(NUM_STAGES);
+parameter OPCODE_BITS = 3;
+
 module processor (
     input [WORD_SIZE-1:0] DataIn, InstrIn //input ports for data and instructions
     input DataWaitreq,
@@ -6,14 +15,6 @@ module processor (
     output [WORD_SIZE-1:0] DataAddr, InstrAddr //Address ports for data and instructions
     output WriteData, ReadData //Instr always assumed read=1
 );
-    /*Defining parameters for readability*/
-    parameter MUM_REGS = 8;
-    parameter NUM_STAGES = 5;
-    parameter WORD_SIZE = 16;
-    
-    parameter REG_BITS = $clog2(NUM_REGS);
-    parameter STAGE_BITS = $clog2(NUM_STAGES);
-    parameter OPCODE_BITS = 3;
 
     enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
     enum {LR=5, SP=6, PC=7} RegNames;

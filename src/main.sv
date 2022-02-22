@@ -8,18 +8,6 @@ module tb();
 
     assign #10 CLOCK = ~CLOCK;
 
-    main dut(KEY, SW, CLOCK, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, LEDR);
-end
-
-
-module main(KEY, SW, CLOCK, HEX5, HEX4, HEX3, HEX2, HEX1, HEX0, LEDR);
-    /*Defining the input and output signals*/
-    input wire [3:0] KEY;
-    input wire [9:0] SW;
-    input wire CLOCK;
-    output wire [6:0] HEX5, HEX4, HEX3, HEX2, HEX1, HEX0;
-    output wire [9:0] LEDR;	
-
     /*Defining the wires to interface with the processor*/
     logic [WORD_SIZE-1:0] DataIn, InstrIn //input ports for data and instructions
     logic DataWaitreq,
