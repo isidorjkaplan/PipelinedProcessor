@@ -176,7 +176,7 @@ module processor (
                             //stall fetch
                             stall = 1;
                             //Next stage will read a NOP coming out of decode
-                            stage_comb_values[Decode] = '{default:0, nop=1, instr:NOP, alu_op:NO_ALU};
+                            stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
                         end
                     end
                 end           
