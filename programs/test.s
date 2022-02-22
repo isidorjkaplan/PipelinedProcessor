@@ -1,6 +1,6 @@
 START:
     //Pipelined moving r0-r4
-    mv r0, #1
+    mv r0, #LABEL
     mv r1, #2
     mv r2, #3
     mv r3, #4
@@ -16,16 +16,17 @@ START:
     st r4,[r0] //storing 5
     
     //Pipelined adding
-    add r0, r1 //=3
+    //add r0, r1 //=3
     add r1, r2 //=5
     add r2, r3 //=7
     add r3, r4 //=9
     add r4, #5 //=10
     
     //Testing load instruction
-    ld r1, [r0] //=5
-    ld r1, [r0] //=5
-    ld r1, [r0] //=5
+    ld r1, [r0] //=abcd
+    ld r1, [r0] //=abcd
+    ld r1, [r0] //=abcd
+
     //NOP
     mv r0, r0
     mv r0, r0
@@ -40,3 +41,6 @@ START:
     mv r0, r0
     mv r0, r0
     mv r0, r0
+
+LABEL: 
+    .word 0xabcd
