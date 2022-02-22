@@ -169,7 +169,8 @@ module processor (
         end
         else begin
             /*On the clock write all the combinational output values to the state regs*/
-            stage_regs <= stage_comb_values;
+            for (integer i = 0; i < NUM_STAGES; i++)
+                stage_regs[i] <= stage_comb_values[i];
 
             /*Writeback values to their registers*/
             for (integer i = 0; i < NUM_REGS; i++) begin
