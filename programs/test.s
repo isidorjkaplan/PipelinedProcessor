@@ -23,7 +23,9 @@ START:
     add r4, #5 //=10
     
     //Testing load instruction
-    ld r0, [r0] //=5
+    ld r1, [r0] //=5
+    ld r1, [r0] //=5
+    ld r1, [r0] //=5
     //NOP
     mv r0, r0
     mv r0, r0
