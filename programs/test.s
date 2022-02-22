@@ -6,11 +6,11 @@ START:
     mv r3, #4
     mv r4, #5
     //NOP
-    mv r0, #0
-    mv r0, #0 
-    mv r0, #0
-    mv r0, #0
-    mv r0, #0
+    mv r0, r0
+    mv r0, r0
+    mv r0, r0
+    mv r0, r0
+    
     //Pipelined adding
     add r0, r1 //=3
     add r1, r2 //=5
