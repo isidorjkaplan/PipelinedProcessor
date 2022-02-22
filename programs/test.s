@@ -8,8 +8,12 @@ START:
     //NOP
     mv r0, r0
     mv r0, r0
-    mv r0, r0
-    mv r0, r0
+    //Storing calculated values to memory
+    st r0,[r0]
+    st r1,[r0]
+    st r2,[r0]
+    st r3,[r0]
+    st r4,[r0]
     
     //Pipelined adding
     add r0, r1 //=3
