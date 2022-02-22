@@ -3,7 +3,7 @@ vlib work
 vlog *.v
 vlog *.sv
 
-vsim tb
+vsim -L altera_mf_ver tb
 
 log *
 add wave *
