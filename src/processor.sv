@@ -193,6 +193,14 @@ module processor (
                             //Next stage will read a NOP coming out of decode
                             stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
                         end
+                        //If a branch is in the pipeline then we stall entirely and flush the instruction in fetch
+                        //We must wait until the branch writes-back a new PC value
+                        //note that this is actually until the cycle AFTER it completes writeback since we look at the reg for writeback
+                        if (stage[i].instr == Branch) begin
+                            stall = 1;
+                            stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                            stage_comb_values[Fetch] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                        end
                     end
                 end           
             end
