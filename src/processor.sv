@@ -184,13 +184,13 @@ module processor (
             else
                 stage_comb_values[Decode] = stage_regs[Decode];
 
-             /*Fetch stage*/
+            /*Fetch stage*/
+            InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
             if (!stall) begin
                 stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
                 signals.write_reg[PC] = 1'b1; //we will write the new pc value
                 signals.write_values[PC] = registers[PC] + 1; //by default increment one word
                 stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
-                signals.InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
             end //else gets a nop by default
             else
                 stage_comb_values[Fetch] = stage_regs[Fetch];
@@ -221,7 +221,7 @@ module processor (
         end
         //DataOut <= signals.DataOut;
         //DataAddr <= signals.DataAddr;
-        InstrAddr <= signals.InstrAddr;
+        //InstrAddr <= signals.InstrAddr;
         //WriteData <= signals.WriteData;
         //ReadData <= signals.ReadData;
 
@@ -240,7 +240,7 @@ typedef struct {
 
 
     //logic [WORD_SIZE-1:0] DataOut; //Output Data Port for Writes
-    logic [WORD_SIZE-1:0] /*DataAddr, */InstrAddr; //Address ports for data and instructions
+    //logic [WORD_SIZE-1:0] /*DataAddr, */InstrAddr; //Address ports for data and instructions
     //logic WriteData, ReadData; //Instr always assumed read=1
 } control_signals;
 
