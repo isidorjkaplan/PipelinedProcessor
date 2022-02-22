@@ -6,7 +6,7 @@ parameter REG_BITS = $clog2(NUM_REGS);
 parameter STAGE_BITS = $clog2(NUM_STAGES);
 parameter OPCODE_BITS = 3;
 
-typedef enum {Fetch=0, Decode=1, Execute=2, Memory1=3, Memory2=4, Memory3=5, Writeback=6} Stages;
+typedef enum {Fetch=0, Decode=1, Execute=2, Memory1=3, Memory2=4, Writeback=5} Stages;
 parameter NUM_STAGES = Writeback+1;
 typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
@@ -166,22 +166,18 @@ module processor (
 
             if (stall_stages <= Memory2) begin
                 stage_comb_values[Memory2] = stage_regs[Memory1];
-            end
-
-            /*Memory Recieve Stage*/
-            if (stall_stages <= Memory3) begin
-                stage_comb_values[Memory3] = stage_regs[Memory2];
-                if (stage_regs[Memory2].read) begin
-                    stage_comb_values[Memory3].out = DataIn;
+                if (stage_regs[Memory1].read) begin
+                    stage_comb_values[Memory2].out = DataIn;
                 end
             end
 
+        
             /*Writeback Stage*/
             if (stall_stages <= Writeback) begin//always true
-                stage_comb_values[Writeback] = stage_regs[Memory3];
-                if (stage_regs[Memory3].writeback) begin
-                    signals.write_reg[stage_regs[Memory3].rX] = 1;
-                    signals.write_values[stage_regs[Memory3].rX] = stage_regs[Memory3].out;
+                stage_comb_values[Writeback] = stage_regs[Memory2];
+                if (stage_regs[Memory2].writeback) begin
+                    signals.write_reg[stage_regs[Memory2].rX] = 1;
+                    signals.write_values[stage_regs[Memory2].rX] = stage_regs[Memory2].out;
                 end
             end
 
