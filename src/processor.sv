@@ -32,7 +32,7 @@ module processor (
     latched_values stage_comb_values[NUM_STAGES]; //combinational logic writes this based on state_regs
     control_signals signals; //the control values
 
-    logic stall;
+    logic stall, flush;
 
     /*The logic for each stage*/
     always_comb begin : stage_logic
@@ -46,6 +46,7 @@ module processor (
         WriteData = 0;
         DataOut = 0;
         stall = 0;
+        flush = 0;
 
 
         if (!Reset) begin
@@ -98,7 +99,7 @@ module processor (
                     end
                 end
             end
-            else
+            else if (!flush)
                 stage_comb_values[Memory1] = stage_regs[Memory1];
 
              /*Execute Stage*/
@@ -111,7 +112,7 @@ module processor (
                     MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
                 endcase
             end
-            else
+            else if (!flush)
                 stage_comb_values[Execute] = stage_regs[Execute];
 
             /*Decode Stage*/
@@ -198,13 +199,13 @@ module processor (
                         //note that this is actually until the cycle AFTER it completes writeback since we look at the reg for writeback
                         if (stage_regs[i].instr == Branch) begin
                             stall = 1;
+                            flush = 1;
                             stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
-                            stage_comb_values[Fetch] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
                         end
                     end
                 end           
             end
-            else
+            else if (!flush)
                 stage_comb_values[Decode] = stage_regs[Decode];
 
             /*Fetch stage*/
@@ -216,7 +217,8 @@ module processor (
                 stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
             end //else gets a nop by default
             else begin
-                stage_comb_values[Fetch] = stage_regs[Fetch];
+                if (!flush)
+                    stage_comb_values[Fetch] = stage_regs[Fetch];
                 InstrAddr = registers[PC];
             end
             //Else it just takes a nop anyways
