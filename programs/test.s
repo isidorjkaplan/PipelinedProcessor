@@ -17,6 +17,12 @@ START:
     add r2, r3 //=7
     add r3, r4 //=9
     add r4, #5 //=10
+
+    //NOP
+    mv r0, r0
+    mv r0, r0
+    mv r0, r0
+    mv r0, r0
     
     //Testing load instruction
     ld r1, [r0] //r1=0xabcd
