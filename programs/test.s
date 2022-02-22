@@ -1,6 +1,20 @@
 START:
     //Pipelined moving r0-r4
     mv r0, #0
+    mov r1, #0
+
+TEST3:
+    add r0, #1 //(1,0)
+    add r1, r0 //(1,1)
+    add r0, #1 //(2,1)
+    add r1, r0 //(2,3)
+    add r0, #1 //(3,3)
+    add r1, r0 //(3,6)
+    add r0, #1 //(4,6)
+    add r1, r0 //(4,10)
+    b TEST3
+
+
 TEST2:
     add r0, #1
     add r0, #1
