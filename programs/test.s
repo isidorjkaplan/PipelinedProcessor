@@ -21,3 +21,10 @@ START:
     add r2, r3 //=7
     add r3, r4 //=9
     add r4, #5 //=10
+
+    b START
+    //NOP
+    mv r0, r0
+    mv r0, r0
+    mv r0, r0
+    mv r0, r0

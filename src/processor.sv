@@ -65,7 +65,7 @@ module processor (
 
                 stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
 
-
+                /*Decode which instruction it is based on the opcode*/
                 case (stage_comb_values[Decode].opcode)
                     mv:begin 
                         stage_comb_values[Decode].instr = Mov;
@@ -102,12 +102,19 @@ module processor (
 
                 if (stage_comb_values[Decode].imm)
                     //use rest of bits as the operand bits
-                    stage_comb_values[Decode].op2 = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0];
+                    stage_comb_values[Decode].op2 = signed'(stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0]);
                 else begin
                     //decode which registers to grab op2 from and then fetch from that into op2
                     stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0];
                     stage_comb_values[Decode].op2 = registers[stage_comb_values[Decode].rY];
                 end
+
+                if (stage_comb_values[Decode].instr == Branch) begin
+                    stage_comb_values[Decode].alu_op = ADD;
+                    stage_comb_values[Decode].rX = PC;
+                    stage_comb_values[Decode].op1 = registers[PC];
+                end
+
                 //Control signals for reading and writing to memory
                 stage_comb_values[Decode].read = stage_comb_values[Decode].instr == Load;
                 stage_comb_values[Decode].write = stage_comb_values[Decode].instr == Store;
