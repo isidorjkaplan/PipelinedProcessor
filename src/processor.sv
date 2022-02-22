@@ -19,7 +19,7 @@ module processor (
     input Reset, Clock, Enable, //control signals
     output logic [WORD_SIZE-1:0] DataOut, //Output Data Port for Writes
     output logic [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
-    output loigic WriteData, ReadData //Instr always assumed read=1
+    output logic WriteData, ReadData //Instr always assumed read=1
 );
 
 
