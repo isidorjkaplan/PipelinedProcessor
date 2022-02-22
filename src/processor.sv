@@ -69,7 +69,7 @@ module processor (
             case (stage_comb_values[Decode].opcode)
                 mv:stage_comb_values[Decode].instr = Mov;
                 mvt_b: begin
-                    if (stage_comb_values[Decode].Imm)
+                    if (stage_comb_values[Decode].imm)
                         stage_comb_values[Decode].instr = Mvt;
                     else
                         stage_comb_values[Decode].instr = Branch;
@@ -99,7 +99,7 @@ module processor (
 
             if (stage_comb_values[Decode].imm)
                 //use rest of bits as the operand bits
-                stage_comb_values[Decode].op2 = stage_regs[Fetch].out[NBITS-OPCODE_BITS-REG_BITS-1:0];
+                stage_comb_values[Decode].op2 = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-1:0];
             else begin
                 //decode which registers to grab op2 from and then fetch from that into op2
                 stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0];
@@ -209,7 +209,7 @@ typedef struct {
     logic nop; //true/false value if it is a nop, if so all other stuff get ignored
 
     logic [OPCODE_BITS-1:0] opcode;
-    Instr isntr;
+    Instr instr;
 
     ALU_OP alu_op;
 } latched_values;
