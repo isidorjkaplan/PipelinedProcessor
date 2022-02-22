@@ -50,9 +50,9 @@ module processor (
 
         if (!Reset) begin
             /*Stall Logic*/
-            /*if (!DataDone) begin
-                stall_stages = Writeback;//MemoryWait and everything earlier must stall. 
-            end*/
+            if (!DataDone) begin
+                stall_stages = NUM_STAGES+1;//Stall entire processor, cant do anything when data not done
+            end
 
             for (integer i = 0; i < NUM_STAGES; i++) begin
                 //by default everything is a nop unless otherwise specified
