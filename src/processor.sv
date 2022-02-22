@@ -48,7 +48,7 @@ module processor (
                 signals.write_reg[PC] = 1'b1; //we will write the new pc value
                 signals.write_values[PC] = registers[PC] + 1; //by default increment one word
                 stage_comb_values[Fetch].out = InstrIn; //latch the instruction value
-                InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
+                signals.InstrAddr = registers[PC]; //show the PC, that is what we want to get on the next cycle. 
             end //else gets a nop by default
             else
                 stage_comb_values[Fetch] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
@@ -133,7 +133,7 @@ module processor (
                 signals.WriteData = stage_regs[Execute].write;
                 if (stage_regs[Execute].read) begin
                     signals.ReadData = 1;
-                    stage_comb_values[Execute].out = signals.DataIn;
+                    stage_comb_values[Execute].out = DataIn;
                 end
                 else if (stage_regs[Execute].write) begin
                     signals.WriteData = 1;
