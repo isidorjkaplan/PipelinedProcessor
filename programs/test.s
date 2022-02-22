@@ -1,47 +1,6 @@
 START:
-    //Pipelined moving r0-r4
-    b TEST1
+    mv, r0, #0
 
-TEST4:
-    mv r3, #TEST4_WORD
-    ld r4, [r3] //should load word properly and wait until okay with stalls
-    mv r0, #0
-    mv r1, #0
-
-TEST3://passes test3 cases
-    add r0, #1 //(1,0)
-    add r1, r0 //(1,1)
-    add r0, #1 //(2,1)
-    add r1, r0 //(2,3)
-    add r0, #1 //(3,3)
-    add r1, r0 //(3,6)
-    add r0, #1 //(4,6)
-    add r1, r0 //(4,10)
-    b START
-
-TEST4_WORD:
-    .word 0xffff
-
-TEST2:
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    add r0, #1
-    b TEST2
 
 TEST1:
     mv r0, #LABEL
@@ -93,3 +52,45 @@ TEST1:
 
 LABEL: 
     .word 0xabcd
+
+TEST4:
+    mv r3, #TEST4_WORD
+    ld r4, [r3] //should load word properly and wait until okay with stalls
+    mv r0, #0
+    mv r1, #0
+
+TEST3://passes test3 cases
+    add r0, #1 //(1,0)
+    add r1, r0 //(1,1)
+    add r0, #1 //(2,1)
+    add r1, r0 //(2,3)
+    add r0, #1 //(3,3)
+    add r1, r0 //(3,6)
+    add r0, #1 //(4,6)
+    add r1, r0 //(4,10)
+    b START
+
+TEST4_WORD:
+    .word 0xffff
+
+TEST2:
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    add r0, #1
+    b TEST2
+
