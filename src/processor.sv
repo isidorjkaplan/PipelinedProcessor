@@ -1,6 +1,6 @@
 /*Defining parameters for readability*/
 parameter NUM_REGS = 8;
-parameter NUM_STAGES = 5;
+parameter NUM_STAGES = 6;
 parameter WORD_SIZE = 16;
 
 parameter REG_BITS = $clog2(NUM_REGS);
@@ -21,7 +21,6 @@ module processor (
     output logic [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
     output logic WriteData, ReadData //Instr always assumed read=1
 );
-
 
     parameter mv = 3'b000, mvt_b = 3'b001, add = 3'b010, sub = 3'b011, ld = 3'b100, st = 3'b101, and_ = 3'b110, other = 3'b111;
 
@@ -48,16 +47,21 @@ module processor (
         DataOut = 0;
         stall_stages = 0; //stall nothing right now. 
 
-        /*Stall Logic*/
-        if (!DataDone) begin
-            stall_stages = Writeback;//MemoryWait and everything earlier must stall. 
-        end
-        
 
         if (!Reset) begin
+            /*Stall Logic*/
+            if (!DataDone) begin
+                stall_stages = Writeback;//MemoryWait and everything earlier must stall. 
+            end
+
             for (integer i = 0; i < NUM_STAGES; i++) begin
                 //by default everything is a nop unless otherwise specified
-                stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                if (stall_stages <= i)
+                    //not stalling, insert a nop and it will be replaced by whatever stage decides
+                    stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                else
+                    //stage is stalling, make sure it's value is not lost
+                    stage_comb_values[i] = stage_regs[i]; 
             end
 
             /*Fetch stage*/
