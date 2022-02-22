@@ -1,5 +1,13 @@
 START:
     mv r0, #0
+    mv r1, #0
+
+
+TEST5:
+    add r0, #1
+    add r1, #1
+    add r0, r1 
+    b TEST5
 
 
 TEST1:
