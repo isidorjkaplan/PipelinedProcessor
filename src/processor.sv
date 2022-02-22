@@ -37,7 +37,8 @@ module processor (
     always_comb begin : stage_logic
         /*Initilization to avoid latch inference*/
         signals = '{default:0};//set all signals to zero to avoid latch
-        stage_comb_values = '{default:0, nop:1}; //if nothing else inserted, its a nop
+        for (integer i = 0; i < NUM_STAGES; i++)
+            stage_comb_values[i] = '{default:0, nop:1}; //if nothing else inserted, its a nop
         ReadData = 0;
         WriteData = 0;
         DataOut = 0;
