@@ -1,5 +1,5 @@
 /*Defining parameters for readability*/
-parameter MUM_REGS = 8;
+parameter NUM_REGS = 8;
 parameter NUM_STAGES = 5;
 parameter WORD_SIZE = 16;
 
