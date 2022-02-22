@@ -9,12 +9,12 @@ module tb();
     assign #10 CLOCK = ~CLOCK;
 
     /*Defining the wires to interface with the processor*/
-    logic [15:0] DataIn, InstrIn //input ports for data and instructions
-    logic DataWaitreq,
-    logic Reset, Clock, Enable, //control signals
-    logic [15:0] DataOut, //Output Data Port for Writes
-    logic [15:0] DataAddr, InstrAddr //Address ports for data and instructions
-    logic WriteData, ReadData //Instr always assumed read=1
+    logic [15:0] DataIn, InstrIn; //input ports for data and instructions
+    logic DataWaitreq;
+    logic Reset, Clock, Enable; //control signals
+    logic [15:0] DataOut; //Output Data Port for Writes
+    logic [15:0] DataAddr, InstrAddr; //Address ports for data and instructions
+    logic WriteData, ReadData; //Instr always assumed read=1
 
     /*Defining the design for testing*/
     inst_mem InstrMem (InstrAddr[11:0], CLOCK, 0, 0, InstrIn);
