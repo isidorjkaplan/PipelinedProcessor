@@ -24,7 +24,6 @@ module tb();
     //some initilizations
     always_comb begin
         DataWaitreq=0;
-        Reset=0;
         Clock = CLOCK;
         Enable=1;
     end
