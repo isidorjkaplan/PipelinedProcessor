@@ -199,9 +199,9 @@ typedef struct {
     logic flush[NUM_STAGES];
 
 
-    logic [WORD_SIZE-1:0] DataOut, //Output Data Port for Writes
-    logic [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
-    logic WriteData, ReadData //Instr always assumed read=1
+    logic [WORD_SIZE-1:0] DataOut; //Output Data Port for Writes
+    logic [WORD_SIZE-1:0] DataAddr, InstrAddr; //Address ports for data and instructions
+    logic WriteData, ReadData; //Instr always assumed read=1
 } control_signals;
 
 /*This struct is setup during the decode stage*/
