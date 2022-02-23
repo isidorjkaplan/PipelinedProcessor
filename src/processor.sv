@@ -305,7 +305,7 @@ module processor (
     
 endmodule
 
-typedef struct {
+typedef struct packed{
     logic negative;//N
     logic zero;//Z
     logic carry;//C
