@@ -144,7 +144,7 @@ module processor (
                     next_status_value.negative = signed'(stage_comb_values[Execute].out) < 0;
                     next_status_value.overflow =  stage_regs[Decode].alu_op == SUB &&
                         (stage_regs[Decode].op1[WORD_SIZE-1] != stage_comb_values[Execute].out[WORD_SIZE-1]) &&
-                        (stage_regs[Decode].op1[WORD_SIZE-1] == stage_regs[Decode].op2[WORD_SIZE-1])
+                        (stage_regs[Decode].op1[WORD_SIZE-1] == stage_regs[Decode].op2[WORD_SIZE-1]);
                 end
             end
             else if (!flush)
