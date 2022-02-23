@@ -155,6 +155,7 @@ module processor (
                     //extract the opcode bits
                     //CASE1:  III M XXX DDDDDDDDD
                     //CASE2:  III M XXX 000000 YYY
+                    stage_comb_values[Decode].writeback = 1; 
                     stage_comb_values[Decode].opcode = stage_regs[Fetch].out[WORD_SIZE-1:WORD_SIZE-OPCODE_BITS];
 
                     stage_comb_values[Decode].rX = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-2:WORD_SIZE-OPCODE_BITS-4];
@@ -199,6 +200,7 @@ module processor (
                                 stage_comb_values[Decode].instr = Cmp; //it is a cmp instr
                                 stage_comb_values[Decode].alu_op = SUB; //subtract two operands
                                 stage_comb_values[Decode].update_flags = 1; //update flags for cmp
+                                stage_comb_values[Decode].writeback = 0;
                             end
                         end
                     endcase
@@ -233,7 +235,9 @@ module processor (
                     stage_comb_values[Decode].read = stage_comb_values[Decode].instr == Load;
                     stage_comb_values[Decode].write = stage_comb_values[Decode].instr == Store;
                     //Writeback for all instructions except a store
-                    stage_comb_values[Decode].writeback = stage_comb_values[Decode].instr != Store; 
+                    if (stage_comb_values[Decode].instr == Store) begin
+                        stage_comb_values[Decode].writeback = 0;
+                    end
 
                     /*Decide if we have a RAW hazard and need to stall*/
                     for (integer i = Decode; i <= Writeback; i++) begin
