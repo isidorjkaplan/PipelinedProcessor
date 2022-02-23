@@ -86,7 +86,7 @@ module processor (
                     //If the data is not ready, it means that the previous stage's signals need to remain
                     //Keep the flags from the previous stage exactly what they were and insert nops
                     stall = 1;
-                    stage_comb_values[Memory2] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                    stage_comb_values[Memory2] = nop_value;
                     if ((stage_regs[Memory1].read || stage_regs[Memory1].write)) begin
                         DataAddr = stage_regs[Memory1].op2;
                         ReadData = stage_regs[Memory1].read;
