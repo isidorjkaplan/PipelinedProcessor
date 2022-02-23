@@ -2,6 +2,13 @@ START:
     mv r0, #0
     mv r1, #0
 
+TEST6:
+    mv r0, #0
+TEST6_LOOP:
+    add r0, #1
+    cmp r0, #10
+    beq TEST6
+    b TEST6_LOOP
 
 TEST5:
     add r0, #1

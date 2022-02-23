@@ -125,7 +125,7 @@ module processor (
                     MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
                 endcase
                 
-                case (stage_regs[Decode].cond) begin
+                case (stage_regs[Decode].cond)
                     EQ:exec_cond_met = next_status_value.zero;
                     EQ:exec_cond_met = ~next_status_value.zero;
                     CC:exec_cond_met = ~next_status_value.carry;
@@ -133,7 +133,7 @@ module processor (
                     PL:exec_cond_met = ~next_status_value.zero & ~next_status_value.negative;
                     MI:exec_cond_met = ~next_status_value.zero & next_status_value.negative;
                     default:exec_cond_met = 1;
-                end
+                endcase
 
                 if (!exec_cond_met) begin
                     stage_comb_values[Execute] = nop_value; //flush this instruction, condition failed
@@ -196,7 +196,7 @@ module processor (
                         other:begin
                             stage_comb_values[Decode].instr = Other;//todo
                             //If it is immediate, or its not immediate but has the extra flags set to zero then it is a CMP
-                            if (stage_comb_values[Decode].imm || (!stage_comb_values[Decode].imm && stage_regs[Fetch].out[8:3]==0) begin
+                            if (stage_comb_values[Decode].imm || (!stage_comb_values[Decode].imm && stage_regs[Fetch].out[8:3]==0)) begin
                                 stage_comb_values[Decode].instr = Cmp; //it is a cmp instr
                                 stage_comb_values[Decode].ALU_OP = SUB; //subtract two operands
                                 stage_comb_values[Decode].update_flags = 1; //update flags for cmp
