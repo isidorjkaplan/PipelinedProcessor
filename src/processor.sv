@@ -10,8 +10,10 @@ typedef enum {Fetch=0, Decode=1, Execute=2, Memory1=3, Memory2=4, Writeback=5} S
 parameter NUM_STAGES = Writeback+1;
 typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
-typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Other} Instr;
+typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Cmp,  Other} Instr;
 typedef enum {NO_ALU, MOV, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
+//none = 3'b000, eq = 3'b001, ne = 3'b010, cc = 3'b011, cs = 3'b100, pl = 3'b101, mi = 3'b110, link = 3'b111
+typedef enum {NONE=0, EQ=1, NE=2, CC=3, CS=4, PL=5, MI=6} Condition;
 
 module processor (
     input [WORD_SIZE-1:0] DataIn, InstrIn, //input ports for data and instructions
@@ -21,25 +23,33 @@ module processor (
     output logic [WORD_SIZE-1:0] DataAddr, InstrAddr, //Address ports for data and instructions
     output logic WriteData, ReadData //Instr always assumed read=1
 );
-
+    //Decode related parameters
     parameter mv = 3'b000, mvt_b = 3'b001, add = 3'b010, sub = 3'b011, ld = 3'b100, st = 3'b101, and_ = 3'b110, other = 3'b111;
+    latched_values nop_value;
+    assign nop_value = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU, cond:NONE};
 
     /*Define the registers*/
     logic [WORD_SIZE-1:0] registers[NUM_REGS]; //general purpose register file
     latched_values stage_regs[NUM_STAGES];//latched values at each gate
+    cpsr status_reg; //define the status register
+
 
     /*Combinational Values*/
     latched_values stage_comb_values[NUM_STAGES]; //combinational logic writes this based on state_regs
     control_signals signals; //the control values
+    cpsr next_status_value;
+    logic alu_cout;
+    logic exec_cond_met;
 
     logic stall, flush;
+
 
     /*The logic for each stage*/
     always_comb begin : stage_logic
         /*Initilization to avoid latch inference*/
         signals = '{default:0};//set all signals to zero to avoid latch
         for (integer i = 0; i < NUM_STAGES; i++)
-            stage_comb_values[i] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU}; //if nothing else inserted, its a nop
+            stage_comb_values[i] = nop_value; //if nothing else inserted, its a nop
 
         DataAddr = 0;
         ReadData = 0;
@@ -47,10 +57,13 @@ module processor (
         DataOut = 0;
         stall = 0;
         flush = 0;
+        clu_cout = 0;
 
-
-        if (!Reset) begin
-
+        if (Reset) begin
+            next_status_value = 0;
+        end
+        else begin
+            next_status_value = status_reg; 
             /*Writeback Stage*/
             if (!stall) begin//always true
                 stage_comb_values[Writeback] = stage_regs[Memory2];
@@ -107,10 +120,32 @@ module processor (
                 /*The Execute part of this stage*/
                 stage_comb_values[Execute] = stage_regs[Decode];
                 case (stage_regs[Decode].alu_op)
-                    ADD:stage_comb_values[Execute].out = stage_regs[Decode].op1 + stage_regs[Decode].op2;
-                    SUB:stage_comb_values[Execute].out = stage_regs[Decode].op1 - stage_regs[Decode].op2;
+                    ADD:{alu_cout, stage_comb_values[Execute].out} = stage_regs[Decode].op1 + stage_regs[Decode].op2;
+                    SUB:{alu_cout, stage_comb_values[Execute].out} = stage_regs[Decode].op1 - stage_regs[Decode].op2;
                     MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
                 endcase
+                
+                case (stage_regs[Decode].cond) begin
+                    EQ:exec_cond_met = next_status_value.zero;
+                    EQ:exec_cond_met = ~next_status_value.zero;
+                    CC:exec_cond_met = ~next_status_value.carry;
+                    CS:exec_cond_met = next_status_value.carry;
+                    PL:exec_cond_met = ~next_status_value.zero & ~next_status_value.negative;
+                    MI:exec_cond_met = ~next_status_value.zero & next_status_value.negative;
+                    default:exec_cond_met = 1;
+                end
+
+                if (!exec_cond_met) begin
+                    stage_comb_values[Execute] = nop_value; //flush this instruction, condition failed
+                end
+                else if (stage_regs[Decode].update_flags) begin
+                    next_status_value.zero = stage_comb_values[Execute].out == 0;
+                    next_status_value.carry = alu_cout;
+                    next_status_value.negative = signed'(stage_comb_values[Execute].out) < 0;
+                    next_status_value.overflow =  stage_regs[Decode].alu_op == SUB &&
+                        (stage_regs[Decode].op1[WORD_SIZE-1] != stage_comb_values[Execute].out[WORD_SIZE-1]) &&
+                        (stage_regs[Decode].op1[WORD_SIZE-1] == stage_regs[Decode].op2[WORD_SIZE-1])
+                end
             end
             else if (!flush)
                 stage_comb_values[Execute] = stage_regs[Execute];
@@ -160,6 +195,12 @@ module processor (
                         end
                         other:begin
                             stage_comb_values[Decode].instr = Other;//todo
+                            //If it is immediate, or its not immediate but has the extra flags set to zero then it is a CMP
+                            if (stage_comb_values[Decode].imm || (!stage_comb_values[Decode].imm && stage_regs[Fetch].out[8:3]==0) begin
+                                stage_comb_values[Decode].instr = Cmp; //it is a cmp instr
+                                stage_comb_values[Decode].ALU_OP = SUB; //subtract two operands
+                                stage_comb_values[Decode].update_flags = 1; //update flags for cmp
+                            end
                         end
                     endcase
 
@@ -173,6 +214,7 @@ module processor (
                     end
 
                     if (stage_comb_values[Decode].instr == Branch) begin
+                        stage_comb_values[Decode].cond = stage_comb_values[Decode].rX; //previous rX field becomes cond
                         stage_comb_values[Decode].alu_op = ADD;
                         stage_comb_values[Decode].rX = PC;
                         stage_comb_values[Decode].op1 = registers[PC];
@@ -192,7 +234,7 @@ module processor (
                             //stall fetch
                             stall = 1;
                             //Next stage will read a NOP coming out of decode
-                            stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                            stage_comb_values[Decode] = nop_value;
                         end
                         //If a branch is in the pipeline then we stall entirely and flush the instruction in fetch
                         //We must wait until the branch writes-back a new PC value
@@ -206,13 +248,13 @@ module processor (
                 if (stage_regs[i].instr == Branch) begin
                     stall = 1;
                     flush = 1;
-                    stage_comb_values[Decode] = '{default:0, nop:1, instr:NOP, alu_op:NO_ALU};
+                    stage_comb_values[Decode] = nop_value;
                 end
             end
 
             /*Fetch stage*/
             if (!stall) begin
-                stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU}; //new empty latched values struct
+                stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU, cond:NONE}; //new empty latched values struct
                 signals.write_reg[PC] = 1'b1; //we will write the new pc value
                 signals.write_values[PC] = registers[PC] + 1; //by default increment one word
                 InstrAddr = registers[PC] + 1;
@@ -237,8 +279,10 @@ module processor (
             for (integer i = 0; i < NUM_REGS; i++)
                 registers[i] <= 0;
             registers[PC] <= -1;//so that +1 is =0 for first instr
+            status_reg <= 0;
         end
         else begin
+            status_reg <= next_status_value;
             /*On the clock write all the combinational output values to the state regs*/
             for (integer i = 0; i < NUM_STAGES; i++)
                 stage_regs[i] <= stage_comb_values[i];
@@ -261,6 +305,13 @@ module processor (
 
     
 endmodule
+
+typedef struct {
+    logic negative;//N
+    logic zero;//Z
+    logic carry;//C
+    logic overflow;//V
+} cpsr;
 
 typedef struct {
     logic write_reg [NUM_REGS]; //should we write to each register
@@ -292,9 +343,14 @@ typedef struct {
     logic read, write; //should we read and write during the memory stages
 
     logic nop; //true/false value if it is a nop, if so all other stuff get ignored
+    
 
     logic [OPCODE_BITS-1:0] opcode;
     Instr instr;
 
     ALU_OP alu_op;
+    logic update_flags;//should we update ALU flags on result
+
+    Condition cond;
+
 } latched_values;

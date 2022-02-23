@@ -32,7 +32,7 @@ module tb();
         else if (waiting_cycles > 0)
             waiting_cycles <= waiting_cycles-1; //decrement waiting cycles
         else if (waiting_cycles == 0 && (WriteData || ReadData))
-            waiting_cycles <= 5; //reset the waiting cycles, started a new operation
+            waiting_cycles <= 1; //reset the waiting cycles, started a new operation
     end
     assign DataDone = waiting_cycles==0;
     
