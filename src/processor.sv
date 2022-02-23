@@ -57,7 +57,6 @@ module processor (
         DataOut = 0;
         stall = 0;
         flush = 0;
-        clu_cout = 0;
 
         if (Reset) begin
             next_status_value = 0;
@@ -198,7 +197,7 @@ module processor (
                             //If it is immediate, or its not immediate but has the extra flags set to zero then it is a CMP
                             if (stage_comb_values[Decode].imm || (!stage_comb_values[Decode].imm && stage_regs[Fetch].out[8:3]==0)) begin
                                 stage_comb_values[Decode].instr = Cmp; //it is a cmp instr
-                                stage_comb_values[Decode].ALU_OP = SUB; //subtract two operands
+                                stage_comb_values[Decode].alu_op = SUB; //subtract two operands
                                 stage_comb_values[Decode].update_flags = 1; //update flags for cmp
                             end
                         end
