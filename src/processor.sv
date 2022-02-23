@@ -213,7 +213,17 @@ module processor (
                     end
 
                     if (stage_comb_values[Decode].instr == Branch) begin
-                        stage_comb_values[Decode].cond = $cast(Condition, stage_comb_values[Decode].rX); //previous rX field becomes cond
+                        ////none = 3'b000, eq = 3'b001, ne = 3'b010, cc = 3'b011, cs = 3'b100, pl = 3'b101, mi = 3'b110, link = 3'b111
+                        case (stage_comb_values[Decode].rX)
+                            0:stage_comb_values[Decode].cond = NONE;
+                            1:stage_comb_values[Decode].cond = EQ;
+                            2:stage_comb_values[Decode].cond = NE;
+                            3:stage_comb_values[Decode].cond = CC;
+                            4:stage_comb_values[Decode].cond = CS;
+                            5:stage_comb_values[Decode].cond = PL;
+                            6:stage_comb_values[Decode].cond = MI;
+                        endcase
+                        //stage_comb_values[Decode].cond = $cast(Condition, stage_comb_values[Decode].rX); //previous rX field becomes cond
                         stage_comb_values[Decode].alu_op = ADD;
                         stage_comb_values[Decode].rX = PC;
                         stage_comb_values[Decode].op1 = registers[PC];
