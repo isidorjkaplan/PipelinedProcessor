@@ -4,7 +4,7 @@ module avalon_bus(
     output logic [15:0] BusOut,
     output logic Waitreq
 );  
-    parameter DEV_MEM = 4'h0, DEV_FP;
+    parameter DEV_MEM = 4'h0, DEV_FP=4'h1;
 
     logic [3:0] device;
 
