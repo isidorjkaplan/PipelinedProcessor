@@ -22,7 +22,7 @@ module tb();
         Enable=1;
     end
 
-    avalon_bus(CLOCK, ReadData, WriteData, DataOut, DataAddr, DataIn, Waitreq);
+    avalon_bus data_bus(CLOCK, ReadData, WriteData, DataOut, DataAddr, DataIn, Waitreq);
 
     processor proc(DataIn, InstrIn, ~Waitreq, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
 

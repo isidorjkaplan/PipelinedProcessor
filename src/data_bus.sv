@@ -14,13 +14,13 @@ module avalon_bus(
 
     always_comb begin
         device = DataAddr[15:12];
-        case(device) begin
+        case(device)
             DEV_MEM:begin
                 Waitreq=0; //memory is single-cycle
                 BusOut=MemOut;
             end
             
-        end
+        endcase
     end
 
     /*
