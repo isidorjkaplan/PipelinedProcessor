@@ -8,7 +8,7 @@ module tb();
     /*Defining the wires to interface with the processor*/
     logic [15:0] DataIn, InstrIn; //input ports for data and instructions
     logic Waitreq;
-    logic Reset, Clock, Enable; //control signals
+    logic Reset, Enable; //control signals
     logic [15:0] DataOut; //Output Data Port for Writes
     logic [15:0] DataAddr, InstrAddr; //Address ports for data and instructions
     wire WriteData, ReadData; //Instr always assumed read=1
