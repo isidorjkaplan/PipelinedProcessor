@@ -126,7 +126,7 @@ module processor (
                 
                 case (stage_regs[Decode].cond)
                     EQ:exec_cond_met = next_status_value.zero;
-                    EQ:exec_cond_met = ~next_status_value.zero;
+                    NE:exec_cond_met = ~next_status_value.zero;
                     CC:exec_cond_met = ~next_status_value.carry;
                     CS:exec_cond_met = next_status_value.carry;
                     PL:exec_cond_met = ~next_status_value.zero & ~next_status_value.negative;
