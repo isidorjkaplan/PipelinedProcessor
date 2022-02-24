@@ -7,7 +7,24 @@ START:
 
 
 FP_MULT_TEST:
-    mv r0, #0x
+    mvt r0, #FP_ADDRESS
+    //write op1
+    mv r1, #5
+    st r1, [r0]
+    add r0, #4
+    //write op2
+    mv r1, #6
+    st r1, [r0]
+    add r0, #4
+    //write start
+    mv r1, #1
+    st r1, [r0]
+    add r0, #4
+
+    //read result
+    ld r1, [r0]
+    
+    
 
 //Passes test 6
 TEST6:
