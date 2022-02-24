@@ -1,5 +1,5 @@
 module avalon_bus(
-    inout logic Clock, ReadData, WriteData,
+    inout logic Clock, ReadData, WriteData, Reset
     input logic [15:0] BusIn, DataAddr,
     output logic [15:0] BusOut,
     output logic Waitreq
@@ -11,6 +11,23 @@ module avalon_bus(
     logic [15:0] MemOut;
     inst_mem DataMem (DataAddr[11:0], Clock, BusIn, WriteData & (device==DEV_MEM), MemOut);
 
+    /*module avalon_fp_mult
+(
+	input clk, //Common clock shared by the entire system.
+	input reset, //Common reset shared by the entire system.
+	input [2:0] avs_s1_address, //Address lines from the Avalon bus.
+	input avs_s1_read, //Read request signal from the CPU. Used together with readdata
+	input avs_s1_write,//Wrote request signal from the CPU. Used together with writedata
+	input [15:0] avs_s1_writedata, //Data lines for the CPU to send data to the peripheral. 
+									//Used together with write.
+	output logic [15:0] avs_s1_readdata, //Data lines for the peripheral to return data to the CPU. Used
+											//together with read.
+
+	output logic avs_s1_waitrequest //Signal to stall the Avalon bus when the peripheral is busy.
+);*/
+    logic [15:0] FpOut;    
+    logic fp_waitreq;
+    avalon_fp_mult fp_mult(Clock, Reset, DataAddr[2:0], ReadData & (device==DEV_FP), WriteData & (deivce == DEV_FP), BusIn, FpOut, fp_waitreq);
 
     always_comb begin
         device = DataAddr[15:12];
@@ -19,7 +36,10 @@ module avalon_bus(
                 Waitreq=0; //memory is single-cycle
                 BusOut=MemOut;
             end
-            
+            DEV_FP:begin
+                Waitreq=fp_waitreq;
+                BusOut=FpOut;
+            end
         endcase
     end
 
