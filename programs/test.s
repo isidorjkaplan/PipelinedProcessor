@@ -2,6 +2,7 @@ START:
     mv r0, #0
     mv r1, #0
 
+//Passes test 6
 TEST6:
     mv r0, #0
     mv r3, #1
