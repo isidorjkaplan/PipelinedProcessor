@@ -64,7 +64,7 @@ module processor (
         else begin
             next_status_value = status_reg; 
             /*Writeback Stage*/
-            if (!stall) begin//always true
+            if (!stall  && !flush) begin//always true
                 stage_comb_values[Writeback] = stage_regs[Memory2];
                 if (stage_regs[Memory2].writeback) begin
                     signals.write_reg[stage_regs[Memory2].rX] = 1;
@@ -75,7 +75,7 @@ module processor (
                 stage_comb_values[Writeback] = stage_regs[Writeback];
 
             /*Memory Stages*/
-            if (!stall) begin
+            if (!stall  && !flush) begin
                 if (DataDone) begin
                     stage_comb_values[Memory2] = stage_regs[Memory1];
                     if (stage_regs[Memory1].read) begin
@@ -100,7 +100,7 @@ module processor (
             else
                 stage_comb_values[Memory2] = stage_regs[Memory2];
 
-            if (!stall) begin
+            if (!stall  && !flush) begin
                 stage_comb_values[Memory1] = stage_regs[Execute];
                 if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
                     DataAddr = stage_regs[Execute].op2;
@@ -115,7 +115,7 @@ module processor (
                 stage_comb_values[Memory1] = stage_regs[Memory1];
 
              /*Execute Stage*/
-            if (!stall) begin
+            if (!stall  && !flush) begin
                 /*The Execute part of this stage*/
                 stage_comb_values[Execute] = stage_regs[Decode];
                 case (stage_regs[Decode].alu_op)
@@ -153,7 +153,7 @@ module processor (
                 stage_comb_values[Execute] = stage_regs[Execute];
 
             /*Decode Stage*/
-            if (!stall) begin //note if it is 0 then nop
+            if (!stall && !flush) begin //note if it is 0 then nop
                 if (stage_regs[Fetch].out != 0) begin
                     //extract the opcode bits
                     //CASE1:  III M XXX DDDDDDDDD
@@ -268,7 +268,7 @@ module processor (
             end
 
             /*Fetch stage*/
-            if (!stall) begin
+            if (!stall && !flush) begin
                 stage_comb_values[Fetch] = '{default:0, instr:NOP, alu_op:NO_ALU, cond:NONE}; //new empty latched values struct
                 signals.write_reg[PC] = 1'b1; //we will write the new pc value
                 signals.write_values[PC] = registers[PC] + 1; //by default increment one word
