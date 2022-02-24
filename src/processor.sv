@@ -137,6 +137,9 @@ module processor (
                 if (!exec_cond_met) begin
                     stage_comb_values[Execute] = nop_value; //flush this instruction, condition failed
                 end
+                else if (exec_cond_met && stage_regs[Decode].instr == Branch) begin
+                    flush = 1; //if we are branching, flush all earlier instructions
+                end
                 else if (stage_regs[Decode].update_flags) begin
                     next_status_value.zero = stage_comb_values[Execute].out == 0;
                     next_status_value.carry = alu_cout;
@@ -260,7 +263,6 @@ module processor (
             for (integer i = Decode; i <= Writeback; i++) begin
                 if (stage_regs[i].instr == Branch) begin
                     stall = 1;
-                    flush = 1;
                     stage_comb_values[Decode] = nop_value;
                 end
             end
