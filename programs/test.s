@@ -6,15 +6,22 @@ TEST6:
     mv r0, #0
 TEST6_LOOP:
     add r0, #1
+    mv r1, #TEST6_DATA
+    ld r2, [r1]
+    st r0, [r1]
     cmp r0, #10
     beq TEST6
     b TEST6_LOOP
+
+TEST6_DATA:
+    .word 0x12
 
 TEST5:
     add r0, #1
     add r1, #1
     add r0, r1 
     b TEST5
+
 
 
 TEST1:
