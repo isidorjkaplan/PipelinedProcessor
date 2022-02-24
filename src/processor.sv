@@ -252,19 +252,22 @@ module processor (
                             //Next stage will read a NOP coming out of decode
                             stage_comb_values[Decode] = nop_value;
                         end
-                        if (stage_regs[i].instr == Branch) begin
-                            stall = 1;
-                            stage_comb_values[Decode] = nop_value;
-                        end
                         //If a branch is in the pipeline then we stall entirely and flush the instruction in fetch
                         //We must wait until the branch writes-back a new PC value
                         //note that this is actually until the cycle AFTER it completes writeback since we look at the reg for writeback
                     end
-                    
                 end           
             end
             else if (!flush)
                 stage_comb_values[Decode] = stage_regs[Decode];
+            if (!stall) begin
+                for (integer i = Decode; i <= Writeback; i++) begin
+                    if (stage_regs[i].instr == Branch) begin
+                        stall = 1;
+                        stage_comb_values[Decode] = nop_value;
+                    end
+                end
+            end
 
             /*Fetch stage*/
             if (!stall && !flush) begin
