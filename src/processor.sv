@@ -125,12 +125,12 @@ module processor (
                 endcase
                 
                 case (stage_regs[Decode].cond)
-                    EQ:exec_cond_met = next_status_value.zero;
-                    NE:exec_cond_met = ~next_status_value.zero;
-                    CC:exec_cond_met = ~next_status_value.carry;
-                    CS:exec_cond_met = next_status_value.carry;
-                    PL:exec_cond_met = ~next_status_value.zero & ~next_status_value.negative;
-                    MI:exec_cond_met = ~next_status_value.zero & next_status_value.negative;
+                    EQ:exec_cond_met = status_reg.zero;
+                    NE:exec_cond_met = ~status_reg.zero;
+                    CC:exec_cond_met = ~status_reg.carry;
+                    CS:exec_cond_met = status_reg.carry;
+                    PL:exec_cond_met = ~status_reg.zero & ~status_reg.negative;
+                    MI:exec_cond_met = ~status_reg.zero & status_reg.negative;
                     default:exec_cond_met = 1;
                 endcase
 
