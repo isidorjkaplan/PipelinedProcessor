@@ -4,9 +4,17 @@ START:
 
 TEST6:
     mv r0, #0
+    mv r3, #1
+    mv r4, #2
+    mv r5, #3
+    mv r6, #4
 TEST6_LOOP:
     add r0, #1
     mv r1, #TEST6_DATA
+    add r3, #2
+    add r4, #3
+    add r5, #4
+    add r6, #5
     ld r2, [r1]
     st r0, [r1]
     cmp r0, #10
