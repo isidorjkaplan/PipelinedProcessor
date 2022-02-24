@@ -1,6 +1,13 @@
+.define FP_ADDRESS 0x1000
+
+
 START:
     mv r0, #0
     mv r1, #0
+
+
+FP_MULT_TEST:
+    mv r0, #0x
 
 //Passes test 6
 TEST6:

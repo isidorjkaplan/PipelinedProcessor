@@ -233,6 +233,10 @@ module processor (
                         stage_comb_values[Decode].rX = PC;
                         stage_comb_values[Decode].op1 = registers[PC];
                     end
+                    else if (stage_comb_values[Decode].instr == Mvt) begin
+                        stage_comb_values[Decode].alu_op = MOV;
+                        stage_comb_values[Decode].op2 = stage_comb_values[Decode].op2 << 8;//this comes for free, reindexing
+                    end
 
                     //Control signals for reading and writing to memory
                     stage_comb_values[Decode].read = stage_comb_values[Decode].instr == Load;
