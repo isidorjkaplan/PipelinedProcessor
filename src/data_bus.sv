@@ -1,5 +1,5 @@
 module avalon_bus(
-    inout logic Clock, ReadData, WriteData,
+    inout Clock, ReadData, WriteData,
     input logic [15:0] BusIn, DataAddr,
     output logic [15:0] BusOut,
     output logic Waitreq
