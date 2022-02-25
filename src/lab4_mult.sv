@@ -87,7 +87,6 @@ module avalon_fp_mult
 			// Make sure to reset all your signals.// Make sure to reset all your signals.
 			op1 <= 0;
 			op2 <= 0;
-			result <= 0;
 			waiting_cycles = 0;
 		end
 		else if (waiting_cycles > 0) begin
