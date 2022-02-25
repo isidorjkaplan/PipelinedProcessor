@@ -34,7 +34,7 @@ FP_MULT_OP:
     .word 0x4118
 
 KILL:
-    mvt, r0, #0xff00
+    mvt r0, #0xff00
     add r0, #0xff
     st r0, [r0] //this signifies to kill processor
     
