@@ -62,7 +62,7 @@ module avalon_fp_mult
 	end
 	
 	parameter FP_LAT = 3;
-	fp_mult_lab4 #(.E(7), .M(8)) fpm
+	fp_mult_lab4 #(.E(8), .M(7)) fpm
 	(
 		//.clk_en(fp_en) ,		
 		//.clock(clk) ,				
