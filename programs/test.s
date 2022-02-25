@@ -27,11 +27,16 @@ FP_MULT_TEST:
     //read result
     mv r4, #0
     ld r4, [r0]
-    b FP_MULT_TEST
+    b KILL
 
 FP_MULT_OP:
     .word 0xc190
     .word 0x4118
+
+KILL:
+    mvt, r0, #0xff00
+    add r0, #0xff
+    st r0, [r0] //this signifies to kill processor
     
     
 

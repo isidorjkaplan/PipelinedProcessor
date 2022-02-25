@@ -32,7 +32,13 @@ module tb();
         Reset = 1;
         #15
         Reset = 0;
-        #100000
+        for (integer i = 0; i < 10000; i++) begin
+            @(posedge Clock);
+            if (WriteData && (DataAddr == 16'hffff)) begin
+                $display("Processor sent kill command");
+                $stop();
+            end
+        end
         $stop();
     end
 
