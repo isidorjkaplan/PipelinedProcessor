@@ -32,6 +32,9 @@ FP_MULT_TEST:
 FP_MULT_OP:
     .word 0xc190
     .word 0x4118
+    //EXPECTED RESULT
+    //16'b 1100 0011 0010 1011
+    //= c32b
 
 KILL:
     mvt r0, #0xff00
