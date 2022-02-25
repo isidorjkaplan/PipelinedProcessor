@@ -40,6 +40,7 @@ module processor (
     cpsr next_status_value;
     logic alu_cout;
     logic exec_cond_met;
+    stall_types debug_stall_type;//for debugging only in modelsim
 
     logic stall, flush;
 
@@ -57,6 +58,8 @@ module processor (
         DataOut = 0;
         stall = 0;
         flush = 0;
+        debug_stall_type = '{default:0};
+
 
         if (Reset) begin
             next_status_value = 0;
@@ -86,6 +89,7 @@ module processor (
                     //If the data is not ready, it means that the previous stage's signals need to remain
                     //Keep the flags from the previous stage exactly what they were and insert nops
                     stall = 1;
+                    debug_stall_type.memory = 1;//mempory stall
                     stage_comb_values[Memory2] = nop_value;
                     if ((stage_regs[Memory1].read || stage_regs[Memory1].write)) begin
                         DataAddr = stage_regs[Memory1].op2;
@@ -247,7 +251,7 @@ module processor (
                     end
 
                     /*Decide if we have a RAW hazard and need to stall*/
-                    for (integer i = Decode; i <= Writeback; i++) begin
+                    for (integer i = Decode; i < Writeback; i++) begin
                         if ((stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rX)
                             || (stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rY && !stage_comb_values[Decode].imm)
                             ) begin
@@ -255,6 +259,7 @@ module processor (
                             stall = 1;
                             //Next stage will read a NOP coming out of decode
                             stage_comb_values[Decode] = nop_value;
+                            debug_stall_type.raw = 1;
                         end
                         //If a branch is in the pipeline then we stall entirely and flush the instruction in fetch
                         //We must wait until the branch writes-back a new PC value
@@ -269,6 +274,7 @@ module processor (
                     if (stage_regs[i].instr == Branch) begin
                         stall = 1;
                         stage_comb_values[Decode] = nop_value;
+                        debug_stall_type.control = 1;
                     end
                 end
             end
@@ -326,6 +332,12 @@ module processor (
 
     
 endmodule
+
+typedef struct packed {
+    logic raw;
+    logic memory;
+    logic control;
+} stall_types;
 
 typedef struct packed{
     logic negative;//N
