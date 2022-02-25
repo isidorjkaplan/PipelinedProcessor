@@ -11,9 +11,10 @@ module tb();
     logic Reset, Enable; //control signals
     logic [15:0] DataOut; //Output Data Port for Writes
     logic [15:0] DataAddr, InstrAddr; //Address ports for data and instructions
-    wire WriteData, ReadData; //Instr always assumed read=1
+    wire WriteData, ReadData, ResetWire; //Instr always assumed read=1
 
     assign #10 CLOCK = (~CLOCK & ~Reset);
+    assign ResetWire=Reset;
 
     /*Defining the design for testing*/
     inst_mem InstrMem (InstrAddr[11:0], Clock, 16'b0, 1'b0, InstrIn);
@@ -22,7 +23,7 @@ module tb();
         Enable=1;
     end
 
-    avalon_bus data_bus(Clock, ReadData, WriteData, Reset, DataOut, DataAddr, DataIn, Waitreq);
+    avalon_bus data_bus(Clock, ReadData, WriteData, ResetWire, DataOut, DataAddr, DataIn, Waitreq);
 
     processor proc(DataIn, InstrIn, ~Waitreq, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
 
