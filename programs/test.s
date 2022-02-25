@@ -7,22 +7,31 @@ START:
 
 
 FP_MULT_TEST:
+    mv r3, #FP_MULT_OP
     mvt r0, #FP_ADDRESS
     //write op1
-    mv r1, #5
+    ld r1, [r3]
     st r1, [r0]
-    add r0, #4
+    add r0, #1
+    add r3, #1
     //write op2
-    mv r1, #6
+    ld r1, [r3]
     st r1, [r0]
-    add r0, #4
+    add r0, #1
+    add r3, #1
     //write start
     mv r1, #1
     st r1, [r0]
-    add r0, #4
+    add r0, #1
 
     //read result
-    ld r1, [r0]
+    mv r4, #0
+    ld r4, [r0]
+    b FP_MULT_TEST
+
+FP_MULT_OP:
+    .word 0xc190
+    .word 0x4118
     
     
 
