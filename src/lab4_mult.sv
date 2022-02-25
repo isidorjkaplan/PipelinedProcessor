@@ -99,11 +99,12 @@ module avalon_fp_mult
 			case (avs_s1_address)
 				addr_op1: op1 <= avs_s1_writedata;
 				addr_op2: op2 <= avs_s1_writedata;
-				addr_s: 
+				addr_s: begin
 					if (avs_s1_writedata) //if it is 1 then we start
 						waiting_cycles <= FP_LAT;
                     op1_reg <= op1;//put the input at the fp unit
                     op2_reg <= op2;//put the input at the fp unit
+				end
 			endcase
 		end
 	end
