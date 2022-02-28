@@ -2,9 +2,7 @@
 
 
 START:
-    mv r0, #0
-    mv r1, #0
-
+    
 
 FP_MULT_TEST:
     mv r3, #FP_MULT_OP
@@ -30,10 +28,12 @@ FP_MULT_TEST:
     b KILL
 
 FP_MULT_OP:
+    //1100 0001 1001 0000
     .word 0xc190
+    //0100 0001 0001 1000
     .word 0x4118
     //EXPECTED RESULT
-    //16'b 1100 0011 0010 1011
+    //1100 0011 0010 1011
     //= c32b
 
 KILL:
