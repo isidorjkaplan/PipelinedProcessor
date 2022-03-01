@@ -88,6 +88,8 @@ module avalon_fp_mult
 			op1 <= 0;
 			op2 <= 0;
 			waiting_cycles <= 0;
+			op1_reg <= 0;
+			op2_reg <= 0;
 		end
 		else if (waiting_cycles > 0) begin
 			//decrement one more waiting cycle

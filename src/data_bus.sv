@@ -4,6 +4,8 @@ module avalon_bus(
     output logic [15:0] BusOut,
     output logic Waitreq
 );  
+
+
     parameter DEV_MEM = 4'h0, DEV_FP=4'h1;
 
     logic [3:0] device;
@@ -27,7 +29,7 @@ module avalon_bus(
 );*/
     logic [15:0] FpOut;    
     logic fp_waitreq;
-    avalon_fp_mult fp_mult(Clock, Reset, DataAddr[2:0], ReadData & (device==DEV_FP), WriteData & (deivce == DEV_FP), BusIn, FpOut, fp_waitreq);
+    avalon_fp_mult fp_mult(Clock, Reset, DataAddr[2:0], ReadData & (device==DEV_FP), WriteData & (device == DEV_FP), BusIn, FpOut, fp_waitreq);
 
     always_comb begin
         device = DataAddr[15:12];
