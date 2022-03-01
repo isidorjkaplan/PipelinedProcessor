@@ -10,15 +10,15 @@ cModel Technology
 Z0 dC:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src
 vavalon_bus
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1646094091
+Z2 !s110 1646165348
 !i10b 1
-!s100 dkSPcIHI[jh@G[fabEbVO2
-I]??G?ZdzhaoeZYBG<Hl2J0
+!s100 H]GMDC6mZoVC]:blWm6]>3
+IIW^Z=]P5F9ban3aSf858`2
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 !s105 data_bus_sv_unit
 S1
 R0
-w1646094089
+w1646165114
 8data_bus.sv
 Fdata_bus.sv
 L0 1
@@ -26,7 +26,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1646094091.000000
+Z5 !s108 1646165348.000000
 Z6 !s107 processor.sv|main.sv|lab4_mult.sv|data_bus.sv|
 Z7 !s90 -reportprogress|300|data_bus.sv|lab4_mult.sv|main.sv|processor.sv|
 !i113 1
@@ -35,13 +35,13 @@ vavalon_fp_mult
 R1
 R2
 !i10b 1
-!s100 :`>nF1[IOA4cnQ[U9gYH53
-Ie4ZK<@;4`Vi^0oeS;97jV1
+!s100 7MA]jDD_:eb6cMJ_T8Q`R0
+INFOLQkICnOJ?mkUT1ecgj3
 R3
 Z9 !s105 lab4_mult_sv_unit
 S1
 R0
-Z10 w1646093943
+Z10 w1646094161
 Z11 8lab4_mult.sv
 Z12 Flab4_mult.sv
 L0 2
@@ -58,8 +58,8 @@ vfp_mult_lab4
 R1
 R2
 !i10b 1
-!s100 ^D2DY3WLKidQ?M?2oV91L0
-IP>HUl@?UBz:XRVfY<:70k0
+!s100 SJkB`YdU39]X3jcgfKbXb1
+IzN3HLNYJo[KNzWISIY5g]0
 R3
 R9
 S1
@@ -67,7 +67,7 @@ R0
 R10
 R11
 R12
-L0 139
+L0 141
 R4
 r1
 !s85 0
@@ -78,7 +78,7 @@ R7
 !i113 1
 R8
 vinst_mem
-!s110 1646094090
+R2
 !i10b 1
 !s100 WdbW0YeGa1OC`UM?_3:?X3
 IB04Rnoo`mB_K9og?DkgI_2
@@ -92,25 +92,25 @@ R4
 r1
 !s85 0
 31
-!s108 1646094090.000000
+R5
 !s107 inst_mem.v|
 !s90 -reportprogress|300|inst_mem.v|
 !i113 1
 R8
 vprocessor
 R1
-DXx4 work 17 processor_sv_unit 0 22 `@M1IT3=n5ZOi4G=_@n1L1
+DXx4 work 17 processor_sv_unit 0 22 N`3HOM7J;oYGXnaPJA^=I0
 R3
 r1
 !s85 0
 31
 !i10b 1
-!s100 0JnSZhG@?NYElU`B][Ko@3
-I;;9MVL62iZbB0nV<>24NN0
+!s100 oYdF6IQ0_2ZacVKgKPT6M2
+I:2Fm<i[ImJoYMBbeZ2L_=0
 !s105 processor_sv_unit
 S1
 R0
-Z13 w1646093940
+Z13 w1646165345
 Z14 8processor.sv
 Z15 Fprocessor.sv
 L0 18
@@ -122,13 +122,13 @@ R7
 R8
 Xprocessor_sv_unit
 R1
-V`@M1IT3=n5ZOi4G=_@n1L1
+VN`3HOM7J;oYGXnaPJA^=I0
 r1
 !s85 0
 31
 !i10b 1
-!s100 j6bmmdVQj9H5c6>IkFdTm1
-I`@M1IT3=n5ZOi4G=_@n1L1
+!s100 Gzi^YW7mk?ibAZmA?0_I43
+IN`3HOM7J;oYGXnaPJA^=I0
 !i103 1
 S1
 R0
@@ -146,13 +146,13 @@ vtb
 R1
 R2
 !i10b 1
-!s100 QH_H3izOVQd:o;[oK4F]_0
-I3R6kPF?O^=`bSaE0;P]Ob3
+!s100 =eGD?ZIYoY[C[=]h1W4jk2
+Imhb5FXbE5=i6nS2c^4Ac]3
 R3
 !s105 main_sv_unit
 S1
 R0
-w1645758404
+w1646164703
 8main.sv
 Fmain.sv
 L0 3

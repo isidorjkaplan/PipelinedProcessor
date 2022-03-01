@@ -7,7 +7,7 @@ module tb();
 
     /*Defining the wires to interface with the processor*/
     logic [15:0] DataIn, InstrIn; //input ports for data and instructions
-    logic Waitreq;
+    logic DataDone;
     logic Reset, Enable; //control signals
     logic [15:0] DataOut; //Output Data Port for Writes
     logic [15:0] DataAddr, InstrAddr; //Address ports for data and instructions
@@ -23,9 +23,9 @@ module tb();
         Enable=1;
     end
 
-    avalon_bus data_bus(Clock, ReadData, WriteData, ResetWire, DataOut, DataAddr, DataIn, Waitreq);
+    avalon_bus data_bus(Clock, ReadData, WriteData, ResetWire, DataOut, DataAddr, DataIn, DataDone);
 
-    processor proc(DataIn, InstrIn, ~Waitreq, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
+    processor proc(DataIn, InstrIn, DataDone, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
 
     
     initial begin

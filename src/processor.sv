@@ -6,7 +6,7 @@ parameter REG_BITS = $clog2(NUM_REGS);
 parameter STAGE_BITS = $clog2(NUM_STAGES);
 parameter OPCODE_BITS = 3;
 
-typedef enum {Fetch=0, Decode=1, Execute=2, Memory1=3, Memory2=4, Writeback=5} Stages;
+typedef enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
 parameter NUM_STAGES = Writeback+1;
 typedef enum {LR=5, SP=6, PC=7} RegNames;
 //Will change this later
@@ -68,10 +68,10 @@ module processor (
             next_status_value = status_reg; 
             /*Writeback Stage*/
             if (!stall  && !flush) begin//always true
-                stage_comb_values[Writeback] = stage_regs[Memory2];
-                if (stage_regs[Memory2].writeback) begin
-                    signals.write_reg[stage_regs[Memory2].rX] = 1;
-                    signals.write_values[stage_regs[Memory2].rX] = stage_regs[Memory2].out;
+                stage_comb_values[Writeback] = stage_regs[Memory];
+                if (stage_regs[Memory].writeback) begin
+                    signals.write_reg[stage_regs[Memory].rX] = 1;
+                    signals.write_values[stage_regs[Memory].rX] = stage_regs[Memory].out;
                 end
             end
             else
@@ -79,33 +79,7 @@ module processor (
 
             /*Memory Stages*/
             if (!stall  && !flush) begin
-                if (DataDone) begin
-                    stage_comb_values[Memory2] = stage_regs[Memory1];
-                    if (stage_regs[Memory1].read) begin
-                        stage_comb_values[Memory2].out = DataIn;
-                    end
-                end
-                else begin
-                    //If the data is not ready, it means that the previous stage's signals need to remain
-                    //Keep the flags from the previous stage exactly what they were and insert nops
-                    stall = 1;
-                    debug_stall_type.memory = 1;//mempory stall
-                    stage_comb_values[Memory2] = nop_value;
-                    if ((stage_regs[Memory1].read || stage_regs[Memory1].write)) begin
-                        DataAddr = stage_regs[Memory1].op2;
-                        ReadData = stage_regs[Memory1].read;
-                        WriteData = stage_regs[Memory1].write;
-                        if (stage_regs[Memory1].write) begin
-                            DataOut = stage_regs[Memory1].op1;
-                        end
-                    end
-                end
-            end
-            else
-                stage_comb_values[Memory2] = stage_regs[Memory2];
-
-            if (!stall  && !flush) begin
-                stage_comb_values[Memory1] = stage_regs[Execute];
+                stage_comb_values[Memory] = stage_regs[Execute];
                 if ((stage_regs[Execute].read || stage_regs[Execute].write)) begin
                     DataAddr = stage_regs[Execute].op2;
                     ReadData = stage_regs[Execute].read;
@@ -113,10 +87,21 @@ module processor (
                     if (stage_regs[Execute].write) begin
                         DataOut = stage_regs[Execute].op1;
                     end
+                    /*Checking if the data is done and handling it*/
+                    if (DataDone) begin
+                        if (stage_regs[Execute].read) begin
+                            stage_comb_values[Memory].out = DataIn;
+                        end
+                    end
+                    else begin
+                        stall = 1;
+                        debug_stall_type.memory = 1;//mempory stall
+                        stage_comb_values[Memory] = nop_value;
+                    end
                 end
             end
             else if (!flush)
-                stage_comb_values[Memory1] = stage_regs[Memory1];
+                stage_comb_values[Memory] = stage_regs[Memory];
 
              /*Execute Stage*/
             if (!stall  && !flush) begin
