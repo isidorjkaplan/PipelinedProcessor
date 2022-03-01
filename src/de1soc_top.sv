@@ -29,12 +29,12 @@ module de1soc_top (
     inst_mem InstrMem (InstrAddr[11:0], Clock, 16'b0, 1'b0, InstrIn);
     /*This is the bus that handles all I/O and data memory*/
     logic [6:0] HEX[6];
-    assign HEX0 = HEX[0];
-    assign HEX1 = HEX[1];
-    assign HEX2 = HEX[2];
-    assign HEX3 = HEX[3];
-    assign HEX4 = HEX[4];
-    assign HEX5 = HEX[5];
+    assign HEX0 = ~HEX[0];
+    assign HEX1 = ~HEX[1];
+    assign HEX2 = ~HEX[2];
+    assign HEX3 = ~HEX[3];
+    assign HEX4 = ~HEX[4];
+    assign HEX5 = ~HEX[5];
     
     avalon_bus data_bus(Clock, ReadData, WriteData, Reset, DataOut, DataAddr, DataIn, DataDone, HEX, SW, LEDR, KEY);
     /*The actual processor itself*/

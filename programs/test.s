@@ -1,8 +1,21 @@
 .define FP_ADDRESS 0x1000
+.define HEX_ADDRESS 0x2000
+.define SW_ADDRESS 0x3000
+.define LEDR_ADDRESS 0x4000
+.define KEY_ADDRESS 0x5000
 
 
 START:
     
+
+LED_TEST:
+    mvt r4, #LEDR_ADDRESS
+    mvt r3, #SW_ADDRESS
+
+    ld r0, [r3]
+    st r0, [r4]
+    b LED_TEST
+
 
 FP_MULT_TEST:
     mv r3, #FP_MULT_OP
