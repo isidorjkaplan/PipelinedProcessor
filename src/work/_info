@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src
 vavalon_bus
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1646165348
+Z2 !s110 1646166875
 !i10b 1
 !s100 H]GMDC6mZoVC]:blWm6]>3
 IIW^Z=]P5F9ban3aSf858`2
@@ -26,9 +26,9 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1646165348.000000
-Z6 !s107 processor.sv|main.sv|lab4_mult.sv|data_bus.sv|
-Z7 !s90 -reportprogress|300|data_bus.sv|lab4_mult.sv|main.sv|processor.sv|
+Z5 !s108 1646166875.000000
+Z6 !s107 testbench.sv|processor.sv|lab4_mult.sv|de1soc_top.sv|data_bus.sv|
+Z7 !s90 -reportprogress|300|data_bus.sv|de1soc_top.sv|lab4_mult.sv|processor.sv|testbench.sv|
 !i113 1
 Z8 tCvgOpt 0
 vavalon_fp_mult
@@ -44,6 +44,29 @@ R0
 Z10 w1646094161
 Z11 8lab4_mult.sv
 Z12 Flab4_mult.sv
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+vde1soc_top
+R1
+R2
+!i10b 1
+!s100 G1LeBi?VG=niloPOidIh61
+IagRSRhm4ZgcX<GIDjKjc30
+R3
+!s105 de1soc_top_sv_unit
+S1
+R0
+w1646166818
+8de1soc_top.sv
+Fde1soc_top.sv
 L0 2
 R4
 r1
@@ -146,15 +169,15 @@ vtb
 R1
 R2
 !i10b 1
-!s100 =eGD?ZIYoY[C[=]h1W4jk2
-Imhb5FXbE5=i6nS2c^4Ac]3
+!s100 1hg_]bdTc0H^2aL<nYQcK3
+Iz=UAS9?iI1[M7:Xm30Dco2
 R3
-!s105 main_sv_unit
+!s105 testbench_sv_unit
 S1
 R0
-w1646164703
-8main.sv
-Fmain.sv
+w1646166791
+8testbench.sv
+Ftestbench.sv
 L0 3
 R4
 r1
