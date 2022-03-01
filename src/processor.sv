@@ -126,7 +126,7 @@ module processor (
                 if (!exec_cond_met) begin
                     stage_comb_values[Execute] = nop_value; //flush this instruction, condition failed
                 end
-                else if (exec_cond_met && stage_regs[Decode].instr == Branch) begin
+                else if (exec_cond_met && stage_regs[Decode].modifies_reg[PC]) begin
                     flush = 1; //if we are branching, flush all earlier instructions
                 end
                 else if (stage_regs[Decode].update_flags) begin
@@ -235,10 +235,15 @@ module processor (
                         stage_comb_values[Decode].writeback = 0;
                     end
 
+                    //if we writeback we modify the output value
+                    if (stage_comb_values[Decode].writeback) begin
+                        stage_comb_values[Decode].modifies_reg[stage_comb_values[Decode].rX] = 1;
+                    end
+
                     /*Decide if we have a RAW hazard and need to stall*/
                     for (integer i = Decode; i < Writeback; i++) begin
-                        if ((stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rX)
-                            || (stage_regs[i].writeback && stage_regs[i].rX == stage_comb_values[Decode].rY && !stage_comb_values[Decode].imm)
+                        if (stage_regs[i].modifies_reg[stage_comb_values[Decode].rX]
+                            || (stage_regs[i].modifies_reg[stage_comb_values[Decode].rY] && !stage_comb_values[Decode].imm)
                             ) begin
                             //stall fetch
                             stall = 1;
@@ -254,9 +259,11 @@ module processor (
             end
             else if (!flush)
                 stage_comb_values[Decode] = stage_regs[Decode];
+            
+            /*Check if an instruction in the pipeline modifies PC, if so stop fetching*/
             if (!stall) begin
                 for (integer i = Decode; i <= Writeback; i++) begin
-                    if (stage_regs[i].instr == Branch) begin
+                    if (stage_regs[i].modifies_reg[PC]) begin
                         stall = 1;
                         stage_comb_values[Decode] = nop_value;
                         debug_stall_type.control = 1;
@@ -362,6 +369,7 @@ typedef struct {
 
     logic nop; //true/false value if it is a nop, if so all other stuff get ignored
     
+    logic [NUM_REGS-1:0] modifies_reg; //a bitwise mask for if this instruction modifies a reg
 
     logic [OPCODE_BITS-1:0] opcode;
     Instr instr;
