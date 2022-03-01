@@ -15,8 +15,8 @@ module de1soc_top (
     /*Defining the wires to interface with the processor*/
     logic [15:0] DataIn, InstrIn; //input ports for data and instructions
     logic DataDone;
-    wire Clock;
-    logic Reset, Enable; //control signals
+    wire Clock, Reset;
+    logic Enable; //control signals
     logic [15:0] DataOut; //Output Data Port for Writes
     logic [15:0] DataAddr, InstrAddr; //Address ports for data and instructions
     wire WriteData, ReadData;
@@ -28,7 +28,15 @@ module de1soc_top (
     /*This defines the instruction memory. It is single-cycle and does not exist on the normal bus*/
     inst_mem InstrMem (InstrAddr[11:0], Clock, 16'b0, 1'b0, InstrIn);
     /*This is the bus that handles all I/O and data memory*/
-    avalon_bus data_bus(Clock, ReadData, WriteData, ResetWire, DataOut, DataAddr, DataIn, DataDone, {HEX0, HEX1, HEX2, HEX3, HEX4, HEX5}, SW, LEDR, KEY);
+    logic [7:0] HEX[6];
+    assign HEX0 = HEX[0];
+    assign HEX1 = HEX[1];
+    assign HEX2 = HEX[2];
+    assign HEX3 = HEX[3];
+    assign HEX4 = HEX[4];
+    assign HEX5 = HEX[5];
+    
+    avalon_bus data_bus(Clock, ReadData, WriteData, Reset, DataOut, DataAddr, DataIn, DataDone, HEX, SW, LEDR, KEY);
     /*The actual processor itself*/
     processor proc(DataIn, InstrIn, DataDone, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
 endmodule

@@ -6,12 +6,12 @@ module avalon_bus
     output logic [15:0] BusOut,
     output logic DataDone,
 
-    input logic [7:0] HEX[6], 
+    output logic [7:0] HEX[6], 
     input logic [9:0] SW,
     output logic [9:0] LEDR,
-    output logic [3:0] KEY
+    input logic [3:0] KEY
 );  
-    parameter DEV_MEM = 4'h0, DEV_FP=4'h1;
+    parameter DEV_MEM = 4'h0, DEV_FP=4'h1, DEV_HEX=4'h2, DEV_SW=4'h3, DEV_LEDR=4'h4, DEV_KEY=4'h5;
 
     logic [3:0] device;
 
@@ -29,6 +29,25 @@ module avalon_bus
             mem_done <= 0;//if not attempting to write then not done
         end
     end
+
+    /*Controllers for HEX/SW/LEDR/KEY*/
+    logic [7:0] hex_reg[6];
+    logic [9:0] ledr_reg;
+ 
+    always_ff@(posedge Clock) begin
+        if (Reset) begin
+            hex_reg <= {0,0,0,0,0,0};
+            ledr_reg <= 0;
+        end
+        else if (device == DEV_HEX && DataAddr[2:0] < 6) begin
+            hex_reg[DataAddr[2:0]] <= BusIn[7:0];
+        end
+        else if (device == DEV_LEDR) begin
+            ledr_reg <= BusIn[9:0];
+        end
+    end
+    assign HEX = hex_reg;
+    assign LEDR = ledr_reg;
     
 
     /*Floating Point Unit*/
@@ -47,6 +66,18 @@ module avalon_bus
             DEV_FP:begin
                 DataDone=~fp_waitreq;
                 BusOut=FpOut;
+            end
+            DEV_SW:begin
+                DataDone=1;//data is done immediately
+                BusOut={5'h0, SW};
+            end
+            DEV_KEY:begin
+                DataDone=1;//data is done immediately
+                BusOut={11'h0, KEY};
+            end
+            default:begin
+                DataDone=1;
+                BusOut=0;
             end
         endcase
     end

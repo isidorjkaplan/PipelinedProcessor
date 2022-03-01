@@ -5,9 +5,13 @@ module tb();
     //Initilize the DUT
     logic [6:0] HEX[6];
     logic [9:0] LEDR;
-    de1soc_top dut(Clock, HEX[0], HEX[1], HEX[2], HEX[3], HEX[4], HEX[5], {ResetN, 3'h0}, LEDR, 10'h0);
+    logic [3:0] KEY;
+    de1soc_top dut(.CLOCK_50(Clock), .HEX0(HEX[0]), .HEX1(HEX[1]), .HEX2(HEX[2]), .HEX3(HEX[3]), .HEX4(HEX[4]), .HEX5(HEX[5]), .KEY(KEY), .LEDR(LEDR), .SW(10'h0));
     
     assign #10 Clock = (~Clock & ResetN);
+    assign KEY[3] = ResetN;
+    assign KEY[2:0] = 3'h0;
+
 
     initial begin
         ResetN = 0;
