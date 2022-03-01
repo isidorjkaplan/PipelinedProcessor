@@ -1,4 +1,5 @@
 
+
 module de1soc_top (
     input CLOCK_50,
     output [6:0] HEX0,
@@ -27,7 +28,7 @@ module de1soc_top (
     /*This defines the instruction memory. It is single-cycle and does not exist on the normal bus*/
     inst_mem InstrMem (InstrAddr[11:0], Clock, 16'b0, 1'b0, InstrIn);
     /*This is the bus that handles all I/O and data memory*/
-    avalon_bus data_bus(Clock, ReadData, WriteData, ResetWire, DataOut, DataAddr, DataIn, DataDone);
+    avalon_bus data_bus(Clock, ReadData, WriteData, ResetWire, DataOut, DataAddr, DataIn, DataDone, {HEX0, HEX1, HEX2, HEX3, HEX4, HEX5}, SW, LEDR, KEY);
     /*The actual processor itself*/
     processor proc(DataIn, InstrIn, DataDone, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
 endmodule

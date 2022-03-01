@@ -1,8 +1,15 @@
-module avalon_bus(
+module avalon_bus
+(
     inout logic Clock, ReadData, WriteData, Reset,
     input logic [15:0] BusIn, DataAddr,
+
     output logic [15:0] BusOut,
-    output logic DataDone
+    output logic DataDone,
+
+    input logic [7:0] HEX[6], 
+    input logic [9:0] SW,
+    output logic [9:0] LEDR,
+    output logic [3:0] KEY
 );  
     parameter DEV_MEM = 4'h0, DEV_FP=4'h1;
 
