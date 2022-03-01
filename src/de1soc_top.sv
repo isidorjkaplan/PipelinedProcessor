@@ -28,7 +28,7 @@ module de1soc_top (
     /*This defines the instruction memory. It is single-cycle and does not exist on the normal bus*/
     inst_mem InstrMem (InstrAddr[11:0], Clock, 16'b0, 1'b0, InstrIn);
     /*This is the bus that handles all I/O and data memory*/
-    logic [7:0] HEX[6];
+    logic [6:0] HEX[6];
     assign HEX0 = HEX[0];
     assign HEX1 = HEX[1];
     assign HEX2 = HEX[2];

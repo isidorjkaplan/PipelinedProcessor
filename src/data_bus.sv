@@ -6,7 +6,7 @@ module avalon_bus
     output logic [15:0] BusOut,
     output logic DataDone,
 
-    output logic [7:0] HEX[6], 
+    output logic [6:0] HEX[6], 
     input logic [9:0] SW,
     output logic [9:0] LEDR,
     input logic [3:0] KEY
@@ -31,12 +31,13 @@ module avalon_bus
     end
 
     /*Controllers for HEX/SW/LEDR/KEY*/
-    logic [7:0] hex_reg[6];
+    logic [6:0] hex_reg[6];
     logic [9:0] ledr_reg;
  
-    always_ff@(posedge Clock) begin
+    always_ff@(posedge Clock, posedge Reset) begin
         if (Reset) begin
-            hex_reg <= {0,0,0,0,0,0};
+            for (integer i = 0; i < 6; i++)
+                hex_reg[i] <= 0;
             ledr_reg <= 0;
         end
         else if (device == DEV_HEX && DataAddr[2:0] < 6) begin

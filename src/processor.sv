@@ -59,12 +59,12 @@ module processor (
         stall = 0;
         flush = 0;
         debug_stall_type = '{default:0};
+        next_status_value = 0;
+        alu_cout = 0;
+        exec_cond_met = 0;
+        InstrAddr = 0;
 
-
-        if (Reset) begin
-            next_status_value = 0;
-        end
-        else begin
+        if (!Reset) begin
             next_status_value = status_reg; 
             /*Writeback Stage*/
             if (!stall  && !flush) begin//always true
