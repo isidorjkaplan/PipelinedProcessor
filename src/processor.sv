@@ -44,6 +44,10 @@ module processor (
 
     logic stall, flush;
 
+    //Entirely for debugging information to print the CPI
+    longint num_instr;
+    longint num_cycles;
+
 
     /*The logic for each stage*/
     always_comb begin : stage_logic
@@ -337,8 +341,14 @@ module processor (
                 registers[i] <= 0;
             registers[PC] <= -1;//so that +1 is =0 for first instr
             status_reg <= 0;
+            num_cycles <= 0;
+            num_instr <= 0;
         end
         else begin
+            //keep track of number of cycles and number of instructions for debugging
+            num_cycles <= num_cycles+1;
+            num_instr <= num_instr + (stage_regs[Writeback].instr != NOP);
+
             status_reg <= next_status_value;
             /*On the clock write all the combinational output values to the state regs*/
             for (integer i = 0; i < NUM_STAGES; i++)

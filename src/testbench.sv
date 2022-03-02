@@ -21,6 +21,7 @@ module tb();
             @(posedge Clock);
             if (dut.WriteData && (dut.DataAddr == 16'hffff)) begin
                 $display("Processor sent kill command");
+                $display("CPI: %g\n", real'(dut.proc.num_cycles) / dut.proc.num_instr);
                 $stop();
             end
         end
