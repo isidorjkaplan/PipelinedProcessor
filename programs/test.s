@@ -18,6 +18,7 @@ START:
 MAIN:
     bl COUNT_TEST
     bl NO_RAW_TEST
+    bl COUNT_TEST2
     b KILL
 
 //A subroutine that performs the count test
@@ -34,6 +35,30 @@ COUNT_LOOP:
     //while ~= 100, note jumps by 5 so hits 100
     cmp r0, #20
     bne COUNT_LOOP
+    pop r0
+    mv pc, lr
+
+//A subroutine that performs the count test, no RAW stalls required
+COUNT_TEST2:
+    push r0
+    push r1
+    mv r0, #0
+    mv r1, #0
+COUNT_LOOP2:
+    add r0, #1
+    add r1, #1
+    add r0, #1
+    add r1, #1
+    add r0, #1
+    add r1, #1
+    add r0, #1
+    add r1, #1
+    add r0, #1
+    add r1, #1
+    //while ~= 100, note jumps by 5 so hits 100
+    cmp r0, #20
+    bne COUNT_LOOP2
+    pop r1
     pop r0
     mv pc, lr
 
