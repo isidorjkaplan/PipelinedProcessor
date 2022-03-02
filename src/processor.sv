@@ -41,6 +41,8 @@ module processor (
     logic alu_cout;
     logic exec_cond_met;
     stall_types debug_stall_type;//for debugging only in modelsim
+    logic [WORD_SIZE-1:0] read_registers[NUM_REGS]; //general purpose register file
+    logic [NUM_REGS-1:0] read_registers_valid;
 
     logic stall, flush;
 
@@ -67,6 +69,10 @@ module processor (
         alu_cout = 0;
         exec_cond_met = 0;
         InstrAddr = 0;
+        read_registers_valid = -1;//all ones
+        for (integer i = 0; i < NUM_REGS; i++) begin
+            read_registers[i] = registers[i];
+        end
 
         if (!Reset) begin
             next_status_value = status_reg; 
@@ -107,6 +113,7 @@ module processor (
                     if (DataDone) begin
                         if (stage_regs[Execute].read) begin
                             stage_comb_values[Memory].out = DataIn;
+                            stage_comb_values[Memory].out_ready = 1;
                         end
                     end
                     else begin
@@ -128,6 +135,8 @@ module processor (
                     SUB:{alu_cout, stage_comb_values[Execute].out} = stage_regs[Decode].op1 - stage_regs[Decode].op2;
                     MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
                 endcase
+                if (!stage_comb_values[Execute].read && !stage_comb_values[Execute].write)
+                    stage_comb_values[Execute].out_ready = 1;//output is ready, wont be modified further
                 
                 case (stage_regs[Decode].cond)
                     EQ:exec_cond_met = status_reg.zero;
@@ -157,6 +166,23 @@ module processor (
             else if (!flush)
                 stage_comb_values[Execute] = stage_regs[Execute];
 
+            /*Forwarding logic*/
+            for (integer i = Memory; i >= Decode; i--) begin
+                read_registers_valid = read_registers_valid & ~stage_regs[i].modifies_reg; 
+                if (stage_regs[i].out_ready && stage_regs[i].writeback) begin
+                    read_registers_valid[stage_regs[i].rX] = 1;//can forward it
+                    read_registers[stage_regs[i].rX] = stage_regs[i].out;
+                end
+                    
+                /*for (integer r = 0; i < NUM_REGS; r++) begin
+                    if (stage_regs[i].modifies_reg[r]) begin
+                        //if rX is output reg and its ready then we can forward it
+                        read_registers_valid[i] = stage_regs[i].out_ready && stage_regs[i].rX == r;
+                        read_registers[i] = stage_regs[i].out;
+                    end
+                end*/
+            end
+
             /*Decode Stage*/
             if (!stall && !flush) begin //note if it is 0 then nop
                 if (stage_regs[Fetch].out != 0) begin
@@ -167,7 +193,7 @@ module processor (
                     stage_comb_values[Decode].opcode = stage_regs[Fetch].out[WORD_SIZE-1:WORD_SIZE-OPCODE_BITS];
 
                     stage_comb_values[Decode].rX = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-2:WORD_SIZE-OPCODE_BITS-4];
-                    stage_comb_values[Decode].op1 = registers[stage_comb_values[Decode].rX];
+                    stage_comb_values[Decode].op1 = read_registers[stage_comb_values[Decode].rX];
 
                     stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
                     stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0]; //not always used
@@ -232,11 +258,11 @@ module processor (
                         //use rest of bits as the operand bits
                         stage_comb_values[Decode].op2 = signed'(stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0]);
                     else if (stage_comb_values[Decode].sp_decr) begin //this is a pre decrement
-                        stage_comb_values[Decode].op2 = registers[SP] - 1; //load from the predecremented address
+                        stage_comb_values[Decode].op2 = read_registers[SP] - 1; //load from the predecremented address
                     end
                     else begin
                         //decode which registers to grab op2 from and then fetch from that into op2
-                        stage_comb_values[Decode].op2 = registers[stage_comb_values[Decode].rY];
+                        stage_comb_values[Decode].op2 = read_registers[stage_comb_values[Decode].rY];
                     end
 
                     if (stage_comb_values[Decode].instr == Branch) begin
@@ -283,7 +309,7 @@ module processor (
                     if (!stage_comb_values[Decode].imm)
                         stage_comb_values[Decode].reads_reg[stage_comb_values[Decode].rY] = 1;
 
-                    /*Decide if we have a RAW hazard and need to stall*/
+                    /*Decide if we have a RAW hazard and need to stall
                     for (integer i = Decode; i < Writeback; i++) begin
                         //if a future stage modifies a register that is currently being consumed then stall
                         if ((stage_regs[i].modifies_reg & stage_comb_values[Decode].reads_reg) != 0) begin
@@ -296,6 +322,11 @@ module processor (
                         //If a branch is in the pipeline then we stall entirely and flush the instruction in fetch
                         //We must wait until the branch writes-back a new PC value
                         //note that this is actually until the cycle AFTER it completes writeback since we look at the reg for writeback
+                    end*/
+                    if (((~read_registers_valid) & stage_comb_values[Decode].reads_reg) != 0) begin
+                            stall = 1;
+                            stage_comb_values[Decode] = nop_value;
+                            debug_stall_type.raw = 1;
                     end
                 end           
             end
@@ -403,7 +434,7 @@ typedef struct {
     logic [WORD_SIZE-1:0] op1, op2; //the explicit values of the operands (could get overwridden by forwarding)
 
     logic [WORD_SIZE-1:0] out; //final result, as well as temporary information in intermediate levels
-
+    logic out_ready; //is the output ready (even if not yet written back)
     
     logic [OPCODE_BITS-1:0] rX, rY; //the registers sourcing x and y (if applicable)
 
