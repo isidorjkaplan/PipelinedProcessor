@@ -178,11 +178,11 @@ module processor (
                 stage_comb_values[Execute] = stage_regs[Execute];
 
             /*Forwarding logic*/
-            for (integer i = Memory; i >= Decode; i--) begin
-                read_registers_valid = read_registers_valid & ~stage_regs[i].modifies_reg; 
-                if (stage_regs[i].out_ready && stage_regs[i].writeback) begin
-                    read_registers_valid[stage_regs[i].rX] = 1;//can forward it
-                    read_registers[stage_regs[i].rX] = stage_regs[i].out;
+            for (integer i = Writeback; i > Decode; i--) begin
+                read_registers_valid = read_registers_valid & ~stage_comb_values[i].modifies_reg; 
+                if (stage_comb_values[i].out_ready && stage_comb_values[i].writeback) begin
+                    read_registers_valid[stage_comb_values[i].rX] = 1;//can forward it
+                    read_registers[stage_comb_values[i].rX] = stage_comb_values[i].out;
                 end
                     
                 /*for (integer r = 0; i < NUM_REGS; r++) begin
