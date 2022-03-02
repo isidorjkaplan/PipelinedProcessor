@@ -10,8 +10,8 @@ typedef enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
 parameter NUM_STAGES = Writeback+1;
 typedef enum {SP=5, LR=6, PC=7} RegNames;
 //Will change this later
-typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Cmp,  Other} Instr;
-typedef enum {NO_ALU, MOV, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
+typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, And, Cmp, Lsl, Lsr, Asr, Ror, Or, Not, Eor, Bic, Other} Instr;
+typedef enum {NO_ALU, MOV, ADD, SUB, AND, OR, NOT, EOR, MULT, DIV, LSL, ASL, LSR, ASR, ROR, BIC} ALU_OP;
 //none = 3'b000, eq = 3'b001, ne = 3'b010, cc = 3'b011, cs = 3'b100, pl = 3'b101, mi = 3'b110, link = 3'b111
 typedef enum {NONE=0, EQ=1, NE=2, CC=3, CS=4, PL=5, MI=6} Condition;
 
@@ -134,6 +134,15 @@ module processor (
                     ADD:{alu_cout, stage_comb_values[Execute].out} = stage_regs[Decode].op1 + stage_regs[Decode].op2;
                     SUB:{alu_cout, stage_comb_values[Execute].out} = stage_regs[Decode].op1 - stage_regs[Decode].op2;
                     MOV:stage_comb_values[Execute].out = stage_regs[Decode].op2; //move r2 into r1
+                    AND:stage_comb_values[Execute].out = stage_regs[Decode].op1 & stage_regs[Decode].op2;
+                    OR:stage_comb_values[Execute].out = stage_regs[Decode].op1 | stage_regs[Decode].op2;
+                    NOT:stage_comb_values[Execute].out = ~stage_regs[Decode].op2;
+                    EOR:stage_comb_values[Execute].out = stage_regs[Decode].op1 ^ stage_regs[Decode].op2;
+                    LSL:stage_comb_values[Execute].out = stage_regs[Decode].op1 << stage_regs[Decode].op2;
+                    LSR:stage_comb_values[Execute].out = stage_regs[Decode].op1 >> stage_regs[Decode].op2;
+                    ASR:stage_comb_values[Execute].out = stage_regs[Decode].op1 >>> stage_regs[Decode].op2;
+                    //ROR:stage_comb_values[Execute].out = stage_regs[Decode].op1 <<>> stage_regs[Decode].op2;
+                    BIC:stage_comb_values[Execute].out = stage_regs[Decode].op1 & ~stage_regs[Decode].op2;
                 endcase
                 if (!stage_comb_values[Execute].read && !stage_comb_values[Execute].write)
                     stage_comb_values[Execute].out_ready = 1;//output is ready, wont be modified further
@@ -240,7 +249,8 @@ module processor (
                             end
                         end
                         and_:begin
-                            stage_comb_values[Decode].instr = Logic;//todo
+                            stage_comb_values[Decode].instr = And;//todo
+                            stage_comb_values[Decode].alu_op = AND;
                         end
                         other:begin
                             stage_comb_values[Decode].instr = Other;//todo
@@ -250,6 +260,46 @@ module processor (
                                 stage_comb_values[Decode].alu_op = SUB; //subtract two operands
                                 stage_comb_values[Decode].update_flags = 1; //update flags for cmp
                                 stage_comb_values[Decode].writeback = 0;
+                            end
+                            else if (!stage_regs[Fetch].out[4]) begin
+                                if (stage_regs[Fetch].out[8:5] == 6'b1000) begin
+                                    stage_comb_values[Decode].instr = Lsl;//todo
+                                    stage_comb_values[Decode].alu_op = LSL;
+                                end
+                                else if (stage_regs[Fetch].out[8:5] == 6'b1001) begin
+                                    stage_comb_values[Decode].instr = Lsr;//todo
+                                    stage_comb_values[Decode].alu_op = LSR;
+                                end
+                                else if (stage_regs[Fetch].out[8:5] == 6'b1010) begin
+                                    stage_comb_values[Decode].instr = Asr;//todo
+                                    stage_comb_values[Decode].alu_op = ASR;
+                                end
+                                else if (stage_regs[Fetch].out[8:5] == 6'b1011) begin
+                                    stage_comb_values[Decode].instr = Ror;//todo
+                                    stage_comb_values[Decode].alu_op = ROR;
+                                end
+                            end
+                            else begin
+                                if (stage_regs[Fetch].out[8:5] == 6'b1000) begin
+                                    stage_comb_values[Decode].instr = Or;//todo
+                                    stage_comb_values[Decode].alu_op = OR;
+                                end
+                                else if (stage_regs[Fetch].out[8:5] == 6'b1001) begin
+                                    stage_comb_values[Decode].instr = Eor;//todo
+                                    stage_comb_values[Decode].alu_op = EOR;
+                                end
+                                else if (stage_regs[Fetch].out[8:5] == 6'b1010) begin
+                                    stage_comb_values[Decode].instr = Bic;//todo
+                                    stage_comb_values[Decode].alu_op = BIC;
+                                end
+                                else if (stage_regs[Fetch].out[8:5] == 6'b1011) begin
+                                    stage_comb_values[Decode].instr = Not;//todo
+                                    stage_comb_values[Decode].alu_op = NOT;
+                                end 
+                            end
+                            if (stage_comb_values[Decode].instr == Other) begin
+                                $display("UNIMPL: %b", stage_regs[Fetch].out[8:3]);
+                                $stop();
                             end
                         end
                     endcase
