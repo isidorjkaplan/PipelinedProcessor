@@ -335,7 +335,7 @@ module processor (
             
             /*Check if an instruction in the pipeline modifies PC, if so stop fetching*/
             if (!stall) begin
-                for (integer i = Decode; i <= Writeback; i++) begin
+                for (integer i = Execute; i <= Writeback; i++) begin
                     if (stage_regs[i].modifies_reg[PC]) begin
                         stall = 1;
                         stage_comb_values[Decode] = nop_value;
