@@ -77,6 +77,14 @@ module processor (
                     signals.write_reg[LR] = 1; //write link register
                     signals.write_values[LR] = stage_regs[Memory].next_pc;
                 end
+                if (stage_regs[Memory].sp_incr) begin
+                    signals.write_reg[SP] = 1;
+                    signals.write_values[SP] = registers[SP] + 1;
+                end
+                else if (stage_regs[Memory].sp_decr) begin
+                    signals.write_reg[SP] = 1;
+                    signals.write_values[SP] = registers[SP] - 1;
+                end
             end
             else
                 stage_comb_values[Writeback] = stage_regs[Writeback];
@@ -158,6 +166,7 @@ module processor (
                     stage_comb_values[Decode].op1 = registers[stage_comb_values[Decode].rX];
 
                     stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
+                    stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0]; //not always used
 
                     /*Decode which instruction it is based on the opcode*/
                     case (stage_comb_values[Decode].opcode)
@@ -182,9 +191,23 @@ module processor (
                         end
                         ld:begin
                             stage_comb_values[Decode].instr = Load;
+                            stage_comb_values[Decode].read = 1;
+                            if (stage_comb_values[Decode].imm && stage_comb_values[Decode].rY == SP) begin
+                                stage_comb_values[Decode].sp_incr = 1;//increment stackpointer
+                                stage_comb_values[Decode].imm = 0;//not actually immediate, just for encoding
+                                stage_comb_values[Decode].modifies_reg[SP] = 1;
+                                stage_comb_values[Decode].reads_reg[SP] = 1;
+                            end
                         end
                         st:begin
                             stage_comb_values[Decode].instr = Store;
+                            stage_comb_values[Decode].write = 1;
+                            if (stage_comb_values[Decode].imm && stage_comb_values[Decode].rY == SP) begin
+                                stage_comb_values[Decode].sp_decr = 1;//increment stackpointer
+                                stage_comb_values[Decode].imm = 0;//not actually immediate, just for encoding
+                                stage_comb_values[Decode].modifies_reg[SP] = 1;
+                                stage_comb_values[Decode].reads_reg[SP] = 1;
+                            end
                         end
                         and_:begin
                             stage_comb_values[Decode].instr = Logic;//todo
@@ -204,9 +227,11 @@ module processor (
                     if (stage_comb_values[Decode].imm)
                         //use rest of bits as the operand bits
                         stage_comb_values[Decode].op2 = signed'(stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0]);
+                    else if (stage_comb_values[Decode].sp_decr) begin //this is a pre decrement
+                        stage_comb_values[Decode].op2 = registers[SP] - 1; //load from the predecremented address
+                    end
                     else begin
                         //decode which registers to grab op2 from and then fetch from that into op2
-                        stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0];
                         stage_comb_values[Decode].op2 = registers[stage_comb_values[Decode].rY];
                     end
 
@@ -233,9 +258,7 @@ module processor (
                         stage_comb_values[Decode].op2 = stage_comb_values[Decode].op2 << 8;//this comes for free, reindexing
                     end
 
-                    //Control signals for reading and writing to memory
-                    stage_comb_values[Decode].read = stage_comb_values[Decode].instr == Load;
-                    stage_comb_values[Decode].write = stage_comb_values[Decode].instr == Store;
+          
                     //Writeback for all instructions except a store
                     if (stage_comb_values[Decode].instr == Store) begin
                         stage_comb_values[Decode].writeback = 0;
@@ -248,14 +271,18 @@ module processor (
                     if (stage_comb_values[Decode].link) begin//if it is a branch and link we modify the link register
                         stage_comb_values[Decode].modifies_reg[LR] = 1;
                     end
+            
                     //The PC of the next instruction to execute. Used for LR
                     stage_comb_values[Decode].next_pc = registers[PC];
 
+                    stage_comb_values[Decode].reads_reg[stage_comb_values[Decode].rX] = 1;
+                    if (!stage_comb_values[Decode].imm)
+                        stage_comb_values[Decode].reads_reg[stage_comb_values[Decode].rY] = 1;
+
                     /*Decide if we have a RAW hazard and need to stall*/
                     for (integer i = Decode; i < Writeback; i++) begin
-                        if (stage_regs[i].modifies_reg[stage_comb_values[Decode].rX]
-                            || (stage_regs[i].modifies_reg[stage_comb_values[Decode].rY] && !stage_comb_values[Decode].imm)
-                            ) begin
+                        //if a future stage modifies a register that is currently being consumed then stall
+                        if ((stage_regs[i].modifies_reg & stage_comb_values[Decode].reads_reg) != 0) begin
                             //stall fetch
                             stall = 1;
                             //Next stage will read a NOP coming out of decode
@@ -381,10 +408,12 @@ typedef struct {
     logic nop; //true/false value if it is a nop, if so all other stuff get ignored
     
     logic [NUM_REGS-1:0] modifies_reg; //a bitwise mask for if this instruction modifies a reg
+    logic [NUM_REGS-1:0] reads_reg; //used for deciding if there is a RAW hazard
 
     logic [WORD_SIZE-1:0] next_pc;//the PC of this instruction. For debugging and also for link register
 
     logic link;//if true then we link the next PC into LR
+    logic sp_incr, sp_decr; //increment and decrement the stack pointer
 
     logic [OPCODE_BITS-1:0] opcode;
     Instr instr;
