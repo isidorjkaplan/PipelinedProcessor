@@ -16,10 +16,57 @@ START:
     mv r4, #16
 
 MAIN:
+    bl LOGIC_TEST
     bl COUNT_TEST
     bl NO_RAW_TEST
     bl COUNT_TEST2
     b KILL
+
+//A test that tests various logical instructions
+LOGIC_TEST:
+    push r0
+    push r1
+    push r2
+    push r3
+    push r4
+
+    //tests for shifting, passes all
+    mv r0, #1
+    mv r1, #2
+    lsl r0, r1 //=4
+    lsl r0, r1 //=16
+    lsr r0, r1 //=4
+    lsr r0, r1 //=1
+
+    //tests for logic instr, pases all
+    mv r0, #0x55
+    mv r1, #0xAA
+    xor r0, r1 //=0xFF
+    xor r0, r1 //=0x55
+    or r1, r0 //=0xFF
+    and r1, r0 //=0x55
+
+    mv r0, #0
+    mvn r0, r0 //=0xFF
+
+    //tests for immediate, passes all
+    mv r2, #0x1 //=1
+    lsl r2, #2//=4
+    lsl r2, #1//=8
+    lsr r2, #3//=1
+    xor r2, #1 //=0
+    xor r2, #1//=1
+    or r2, #2//=3
+    and r2, #2//=2
+
+
+    pop r4
+    pop r3
+    pop r2
+    pop r1
+    pop r0
+    mv pc, lr //done, return from test
+
 
 //A subroutine that performs the count test
 COUNT_TEST:

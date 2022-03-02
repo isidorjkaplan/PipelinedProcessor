@@ -39,6 +39,7 @@ module processor (
     control_signals signals; //the control values
     cpsr next_status_value;
     logic alu_cout;
+    logic [WORD_SIZE-1:0] immediate;
     logic exec_cond_met;
     stall_types debug_stall_type;//for debugging only in modelsim
     logic [WORD_SIZE-1:0] read_registers[NUM_REGS]; //general purpose register file
@@ -69,6 +70,7 @@ module processor (
         alu_cout = 0;
         exec_cond_met = 0;
         InstrAddr = 0;
+        immediate = 0;
         read_registers_valid = -1;//all ones
         for (integer i = 0; i < NUM_REGS; i++) begin
             read_registers[i] = registers[i];
@@ -205,6 +207,7 @@ module processor (
                     stage_comb_values[Decode].op1 = read_registers[stage_comb_values[Decode].rX];
 
                     stage_comb_values[Decode].imm = stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-1];
+                    immediate = signed'(stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0]);
                     stage_comb_values[Decode].rY = stage_regs[Fetch].out[REG_BITS-1:0]; //not always used
 
                     /*Decode which instruction it is based on the opcode*/
@@ -261,41 +264,47 @@ module processor (
                                 stage_comb_values[Decode].update_flags = 1; //update flags for cmp
                                 stage_comb_values[Decode].writeback = 0;
                             end
-                            else if (!stage_regs[Fetch].out[4]) begin
-                                if (stage_regs[Fetch].out[8:5] == 6'b1000) begin
-                                    stage_comb_values[Decode].instr = Lsl;//todo
-                                    stage_comb_values[Decode].alu_op = LSL;
-                                end
-                                else if (stage_regs[Fetch].out[8:5] == 6'b1001) begin
-                                    stage_comb_values[Decode].instr = Lsr;//todo
-                                    stage_comb_values[Decode].alu_op = LSR;
-                                end
-                                else if (stage_regs[Fetch].out[8:5] == 6'b1010) begin
-                                    stage_comb_values[Decode].instr = Asr;//todo
-                                    stage_comb_values[Decode].alu_op = ASR;
-                                end
-                                else if (stage_regs[Fetch].out[8:5] == 6'b1011) begin
-                                    stage_comb_values[Decode].instr = Ror;//todo
-                                    stage_comb_values[Decode].alu_op = ROR;
-                                end
-                            end
                             else begin
-                                if (stage_regs[Fetch].out[8:5] == 6'b1000) begin
-                                    stage_comb_values[Decode].instr = Or;//todo
-                                    stage_comb_values[Decode].alu_op = OR;
+                                stage_comb_values[Decode].imm = stage_regs[Fetch].out[7];
+            
+                                if (!stage_regs[Fetch].out[4]) begin
+                                    immediate = stage_regs[Fetch].out[3:0];//trunicated immediate for other
+                                    if (stage_regs[Fetch].out[6:5] == 6'b00) begin
+                                        stage_comb_values[Decode].instr = Lsl;//todo
+                                        stage_comb_values[Decode].alu_op = LSL;
+                                    end
+                                    else if (stage_regs[Fetch].out[6:5] == 6'b01) begin
+                                        stage_comb_values[Decode].instr = Lsr;//todo
+                                        stage_comb_values[Decode].alu_op = LSR;
+                                    end
+                                    else if (stage_regs[Fetch].out[6:5] == 6'b10) begin
+                                        stage_comb_values[Decode].instr = Asr;//todo
+                                        stage_comb_values[Decode].alu_op = ASR;
+                                    end
+                                    else if (stage_regs[Fetch].out[6:5] == 6'b11) begin
+                                        stage_comb_values[Decode].instr = Ror;//todo
+                                        stage_comb_values[Decode].alu_op = ROR;
+                                    end
                                 end
-                                else if (stage_regs[Fetch].out[8:5] == 6'b1001) begin
-                                    stage_comb_values[Decode].instr = Eor;//todo
-                                    stage_comb_values[Decode].alu_op = EOR;
+                                else begin
+                                    immediate = 1<<stage_regs[Fetch].out[3:0];//trunicated immediate for other
+                                    if (stage_regs[Fetch].out[6:5] == 6'b00) begin
+                                        stage_comb_values[Decode].instr = Or;//todo
+                                        stage_comb_values[Decode].alu_op = OR;
+                                    end
+                                    else if (stage_regs[Fetch].out[6:5] == 6'b01) begin
+                                        stage_comb_values[Decode].instr = Eor;//todo
+                                        stage_comb_values[Decode].alu_op = EOR;
+                                    end
+                                    else if (stage_regs[Fetch].out[6:5] == 6'b10) begin
+                                        stage_comb_values[Decode].instr = Bic;//todo
+                                        stage_comb_values[Decode].alu_op = BIC;
+                                    end
+                                    else if (stage_regs[Fetch].out[6:5] == 6'b11) begin
+                                        stage_comb_values[Decode].instr = Not;//todo
+                                        stage_comb_values[Decode].alu_op = NOT;
+                                    end 
                                 end
-                                else if (stage_regs[Fetch].out[8:5] == 6'b1010) begin
-                                    stage_comb_values[Decode].instr = Bic;//todo
-                                    stage_comb_values[Decode].alu_op = BIC;
-                                end
-                                else if (stage_regs[Fetch].out[8:5] == 6'b1011) begin
-                                    stage_comb_values[Decode].instr = Not;//todo
-                                    stage_comb_values[Decode].alu_op = NOT;
-                                end 
                             end
                             if (stage_comb_values[Decode].instr == Other) begin
                                 $display("UNIMPL: %b", stage_regs[Fetch].out[8:3]);
@@ -306,7 +315,7 @@ module processor (
 
                     if (stage_comb_values[Decode].imm)
                         //use rest of bits as the operand bits
-                        stage_comb_values[Decode].op2 = signed'(stage_regs[Fetch].out[WORD_SIZE-OPCODE_BITS-REG_BITS-2:0]);
+                        stage_comb_values[Decode].op2 = immediate;
                     else if (stage_comb_values[Decode].sp_decr) begin //this is a pre decrement
                         stage_comb_values[Decode].op2 = read_registers[SP] - 1; //load from the predecremented address
                     end
