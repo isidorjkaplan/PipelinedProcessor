@@ -8,7 +8,7 @@ parameter OPCODE_BITS = 3;
 
 typedef enum {Fetch=0, Decode=1, Execute=2, Memory=3, Writeback=4} Stages;
 parameter NUM_STAGES = Writeback+1;
-typedef enum {LR=5, SP=6, PC=7} RegNames;
+typedef enum {SP=5, LR=6, PC=7} RegNames;
 //Will change this later
 typedef enum {NOP, Mov, Mvt, Branch, Add, Sub, Load, Store, Logic, Cmp,  Other} Instr;
 typedef enum {NO_ALU, MOV, ADD, SUB, MULT, DIV, LSL, ASL, LSR, ASR, ROR} ALU_OP;
@@ -72,6 +72,10 @@ module processor (
                 if (stage_regs[Memory].writeback) begin
                     signals.write_reg[stage_regs[Memory].rX] = 1;
                     signals.write_values[stage_regs[Memory].rX] = stage_regs[Memory].out;
+                end
+                if (stage_regs[Memory].link) begin
+                    signals.write_reg[LR] = 1; //write link register
+                    signals.write_values[LR] = stage_regs[Memory].next_pc;
                 end
             end
             else
@@ -216,11 +220,13 @@ module processor (
                             4:stage_comb_values[Decode].cond = CS;
                             5:stage_comb_values[Decode].cond = PL;
                             6:stage_comb_values[Decode].cond = MI;
+                            7:stage_comb_values[Decode].link = 1;//not conditional, instead branch and link
                         endcase
                         //stage_comb_values[Decode].cond = $cast(Condition, stage_comb_values[Decode].rX); //previous rX field becomes cond
                         stage_comb_values[Decode].alu_op = ADD;
                         stage_comb_values[Decode].rX = PC;
                         stage_comb_values[Decode].op1 = registers[PC];
+                        
                     end
                     else if (stage_comb_values[Decode].instr == Mvt) begin
                         stage_comb_values[Decode].alu_op = MOV;
@@ -239,6 +245,11 @@ module processor (
                     if (stage_comb_values[Decode].writeback) begin
                         stage_comb_values[Decode].modifies_reg[stage_comb_values[Decode].rX] = 1;
                     end
+                    if (stage_comb_values[Decode].link) begin//if it is a branch and link we modify the link register
+                        stage_comb_values[Decode].modifies_reg[LR] = 1;
+                    end
+                    //The PC of the next instruction to execute. Used for LR
+                    stage_comb_values[Decode].next_pc = registers[PC];
 
                     /*Decide if we have a RAW hazard and need to stall*/
                     for (integer i = Decode; i < Writeback; i++) begin
@@ -370,6 +381,10 @@ typedef struct {
     logic nop; //true/false value if it is a nop, if so all other stuff get ignored
     
     logic [NUM_REGS-1:0] modifies_reg; //a bitwise mask for if this instruction modifies a reg
+
+    logic [WORD_SIZE-1:0] next_pc;//the PC of this instruction. For debugging and also for link register
+
+    logic link;//if true then we link the next PC into LR
 
     logic [OPCODE_BITS-1:0] opcode;
     Instr instr;

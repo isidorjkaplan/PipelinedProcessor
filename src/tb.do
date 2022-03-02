@@ -17,8 +17,6 @@ log *
 add wave dut/proc/registers
 add wave dut/proc/stage_regs
 add wave dut/proc/stage_comb_values
-add wave dut/data_bus/*
-add wave dut/*
-add wave *
+add wave dut/proc/*
 
 run -all
