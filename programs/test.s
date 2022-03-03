@@ -1,9 +1,10 @@
 .define STACK_TOP 0x1000
 .define FP_ADDRESS 0x1000
 .define HEX_ADDRESS 0x2000
-.define SW_ADDRESS 0x3000
-.define LEDR_ADDRESS 0x4000
-.define KEY_ADDRESS 0x5000
+.define SW_ADDRESS 0x2100
+.define LEDR_ADDRESS 0x2200
+.define KEY_ADDRESS 0x2300
+.define IR_ADDRESS 0x2400
 
 
 START:
@@ -16,11 +17,38 @@ START:
     mv r4, #16
 
 MAIN:
+    bl IO_TEST
     bl LOGIC_TEST
     bl COUNT_TEST
     bl NO_RAW_TEST
     bl COUNT_TEST2
     b KILL
+
+IO_TEST:
+    push r0
+    push r1
+    push r2
+    push r3
+    push r4
+    
+    mvt r4, #SW_ADDRESS
+    ld r0, [r4]
+
+    mvt r4, #LEDR_ADDRESS
+    st r0, [r4]
+
+    mvt r4, #KEY_ADDRESS
+    ld r0, [r4]
+
+    mvt r4, #HEX_ADDRESS
+    st r0, [r4]
+
+    pop r4
+    pop r3
+    pop r2
+    pop r1
+    pop r0
+    mv pc, lr //done, return from test
 
 //A test that tests various logical instructions
 LOGIC_TEST:
