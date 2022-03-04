@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at lab4_mult.sv(85): always construct contains both blocking and non-blocking assignments File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 85

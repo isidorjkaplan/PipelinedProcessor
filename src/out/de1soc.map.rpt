@@ -1,0 +1,804 @@
+Analysis & Synthesis report for de1soc
+Thu Mar 03 19:07:25 2022
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis DSP Block Usage Summary
+ 10. Registers Removed During Synthesis
+ 11. General Register Statistics
+ 12. Inverted Register Statistics
+ 13. Multiplexer Restructuring Statistics (No Restructuring Performed)
+ 14. Source assignments for inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated
+ 15. Source assignments for avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated
+ 16. Parameter Settings for User Entity Instance: inst_mem:InstrMem|altsyncram:altsyncram_component
+ 17. Parameter Settings for User Entity Instance: avalon_bus:data_bus
+ 18. Parameter Settings for User Entity Instance: avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component
+ 19. Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult
+ 20. Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm
+ 21. Parameter Settings for User Entity Instance: processor:proc
+ 22. altsyncram Parameter Settings by Entity Instance
+ 23. Port Connectivity Checks: "processor:proc"
+ 24. Port Connectivity Checks: "avalon_bus:data_bus"
+ 25. Port Connectivity Checks: "inst_mem:InstrMem"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
+ 29. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Thu Mar 03 19:07:25 2022       ;
+; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                   ; de1soc                                      ;
+; Top-level Entity Name           ; de1soc_top                                  ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 473                                         ;
+; Total pins                      ; 69                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 131,072                                     ;
+; Total DSP Blocks                ; 1                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; de1soc_top         ; de1soc             ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Restructure Multiplexers                                                        ; Off                ; Auto               ;
+; Optimization Technique                                                          ; Speed              ; Balanced           ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
++----------------------------+-------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                         ;
++----------------------------------+-----------------+----------------------------------+--------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                        ; File Name with Absolute Path                                                                                 ; Library ;
++----------------------------------+-----------------+----------------------------------+--------------------------------------------------------------------------------------------------------------+---------+
+; inst_mem.mif                     ; yes             ; User Memory Initialization File  ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.mif           ;         ;
+; processor.sv                     ; yes             ; User SystemVerilog HDL File      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv           ;         ;
+; lab4_mult.sv                     ; yes             ; User SystemVerilog HDL File      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv           ;         ;
+; inst_mem.v                       ; yes             ; User Wizard-Generated File       ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v             ;         ;
+; data_bus.sv                      ; yes             ; User SystemVerilog HDL File      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv            ;         ;
+; de1soc_top.sv                    ; yes             ; User SystemVerilog HDL File      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv          ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf                                        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                 ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_decode.inc                                        ;         ;
+; aglobal181.inc                   ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/aglobal181.inc                                        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/a_rdenreg.inc                                         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altrom.inc                                            ;         ;
+; altram.inc                       ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altram.inc                                            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altdpram.inc                                          ;         ;
+; db/altsyncram_1po1.tdf           ; yes             ; Auto-Generated Megafunction      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/db/altsyncram_1po1.tdf ;         ;
++----------------------------------+-----------------+----------------------------------+--------------------------------------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimate of Logic utilization (ALMs needed) ; 872          ;
+;                                             ;              ;
+; Combinational ALUT usage for logic          ; 1305         ;
+;     -- 7 input functions                    ; 79           ;
+;     -- 6 input functions                    ; 347          ;
+;     -- 5 input functions                    ; 181          ;
+;     -- 4 input functions                    ; 250          ;
+;     -- <=3 input functions                  ; 448          ;
+;                                             ;              ;
+; Dedicated logic registers                   ; 473          ;
+;                                             ;              ;
+; I/O pins                                    ; 69           ;
+; Total MLAB memory bits                      ; 0            ;
+; Total block memory bits                     ; 131072       ;
+;                                             ;              ;
+; Total DSP Blocks                            ; 1            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; KEY[3]~input ;
+; Maximum fan-out                             ; 537          ;
+; Total fan-out                               ; 8239         ;
+; Average fan-out                             ; 4.23         ;
++---------------------------------------------+--------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                      ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                             ; Entity Name     ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+; |de1soc_top                                  ; 1305 (1)            ; 473 (0)                   ; 131072            ; 1          ; 69   ; 0            ; |de1soc_top                                                                                                     ; de1soc_top      ; work         ;
+;    |avalon_bus:data_bus|                     ; 138 (49)            ; 122 (54)                  ; 65536             ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus                                                                                 ; avalon_bus      ; work         ;
+;       |avalon_fp_mult:fp_mult|               ; 89 (45)             ; 68 (68)                   ; 0                 ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult                                                          ; avalon_fp_mult  ; work         ;
+;          |fp_mult_lab4:fpm|                  ; 44 (44)             ; 0 (0)                     ; 0                 ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm                                         ; fp_mult_lab4    ; work         ;
+;       |inst_mem:DataMem|                     ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem                                                                ; inst_mem        ; work         ;
+;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
+;             |altsyncram_1po1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated ; altsyncram_1po1 ; work         ;
+;    |inst_mem:InstrMem|                       ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem                                                                                   ; inst_mem        ; work         ;
+;       |altsyncram:altsyncram_component|      ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem|altsyncram:altsyncram_component                                                   ; altsyncram      ; work         ;
+;          |altsyncram_1po1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated                    ; altsyncram_1po1 ; work         ;
+;    |processor:proc|                          ; 1166 (1166)         ; 351 (351)                 ; 0                 ; 0          ; 0    ; 0            ; |de1soc_top|processor:proc                                                                                      ; processor       ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                       ;
++----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+-------+--------------+
+; Name                                                                                                           ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF          ;
++----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+-------+--------------+
+; avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 4096         ; 16           ; --           ; --           ; 65536 ; inst_mem.mif ;
+; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ALTSYNCRAM                    ; AUTO ; Single Port ; 4096         ; 16           ; --           ; --           ; 65536 ; inst_mem.mif ;
++----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+-------+--------------+
+
+
++-----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary  ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Independent 9x9                 ; 1           ;
+; Total number of DSP blocks      ; 1           ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 1           ;
++---------------------------------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                     ;
++--------------------------------------------------+-----------------------------------------------------+
+; Register name                                    ; Reason for Removal                                  ;
++--------------------------------------------------+-----------------------------------------------------+
+; processor:proc|stage_regs[1].alu_op[4..9,11..31] ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].cond[3..31]         ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].out[0..15]          ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].out_ready           ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].alu_op[10]          ; Stuck at GND due to stuck port data_in              ;
+; Total Number of Removed Registers = 74           ;                                                     ;
++--------------------------------------------------+-----------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 473   ;
+; Number of registers using Synchronous Clear  ; 1     ;
+; Number of registers using Synchronous Load   ; 96    ;
+; Number of registers using Asynchronous Clear ; 472   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 388   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; processor:proc|registers[7][0]          ; 5       ;
+; processor:proc|registers[7][1]          ; 5       ;
+; processor:proc|registers[7][2]          ; 5       ;
+; processor:proc|registers[7][3]          ; 5       ;
+; processor:proc|registers[7][4]          ; 5       ;
+; processor:proc|registers[7][5]          ; 5       ;
+; processor:proc|registers[7][6]          ; 5       ;
+; processor:proc|registers[7][7]          ; 5       ;
+; processor:proc|registers[7][8]          ; 5       ;
+; processor:proc|registers[7][9]          ; 5       ;
+; processor:proc|registers[7][15]         ; 4       ;
+; processor:proc|registers[7][14]         ; 4       ;
+; processor:proc|registers[7][13]         ; 4       ;
+; processor:proc|registers[7][12]         ; 4       ;
+; processor:proc|registers[7][11]         ; 5       ;
+; processor:proc|registers[7][10]         ; 5       ;
+; Total number of inverted registers = 16 ;         ;
++-----------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (No Restructuring Performed)                                                                                                                      ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+; 3:1                ; 19 bits   ; 38 LEs        ; 0 LEs                ; 38 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[3].sp_incr                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |de1soc_top|processor:proc|status_reg.zero                               ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[3] ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[4][3]                               ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[3][1]                               ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[2][3]                               ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[1][15]                              ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[0][15]                              ;
+; 4:1                ; 53 bits   ; 106 LEs       ; 0 LEs                ; 106 LEs                ; Yes        ; |de1soc_top|processor:proc|stage_regs[2].op2[7]                          ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[0].out[15]                         ;
+; 5:1                ; 16 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[6][0]                               ;
+; 6:1                ; 16 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[5][13]                              ;
+; 9:1                ; 24 bits   ; 144 LEs       ; 0 LEs                ; 144 LEs                ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].write                           ;
+; 10:1               ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].modifies_reg[2]                 ;
+; 11:1               ; 8 bits    ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[1]                          ;
+; 17:1               ; 3 bits    ; 33 LEs        ; 30 LEs               ; 3 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].cond[1]                         ;
+; 17:1               ; 16 bits   ; 176 LEs       ; 96 LEs               ; 80 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op1[7]                          ;
+; 20:1               ; 2 bits    ; 26 LEs        ; 20 LEs               ; 6 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].alu_op[2]                       ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 56 LEs               ; 4 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[11]                         ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 56 LEs               ; 4 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[15]                         ;
+; 5:1                ; 16 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|processor:proc|registers[7][7]                               ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|DataAddr[5]                                   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftRight0                                   ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftLeft0                                    ;
+; 4:1                ; 18 bits   ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftLeft0                                    ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|signals.write_reg[3]                          ;
+; 3:1                ; 28 bits   ; 56 LEs        ; 56 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|immediate                                     ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|InstrAddr[4]                                  ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|DataOut[6]                                    ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|immediate                                     ;
+; 9:1                ; 8 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
+; 32:1               ; 5 bits    ; 105 LEs       ; 55 LEs               ; 50 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
+; 33:1               ; 3 bits    ; 66 LEs        ; 36 LEs               ; 30 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector6                                     ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector10                                    ;
+; 20:1               ; 3 bits    ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector13                                    ;
+; 20:1               ; 4 bits    ; 52 LEs        ; 52 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector4                                     ;
+; 55:1               ; 3 bits    ; 108 LEs       ; 57 LEs               ; 51 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; Source assignments for inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                        ;
++---------------------------------+--------------------+------+-------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                         ;
++---------------------------------+--------------------+------+-------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                           ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                            ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: inst_mem:InstrMem|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+------------------------------------+
+; Parameter Name                     ; Value                ; Type                               ;
++------------------------------------+----------------------+------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                            ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                         ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                       ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                       ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                     ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                            ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                            ;
+; WIDTH_A                            ; 16                   ; Signed Integer                     ;
+; WIDTHAD_A                          ; 12                   ; Signed Integer                     ;
+; NUMWORDS_A                         ; 4096                 ; Signed Integer                     ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                            ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                            ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                            ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                            ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                            ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                            ;
+; WIDTH_B                            ; 1                    ; Untyped                            ;
+; WIDTHAD_B                          ; 1                    ; Untyped                            ;
+; NUMWORDS_B                         ; 1                    ; Untyped                            ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                            ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                            ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                            ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                            ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                            ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                            ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                            ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                            ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                            ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                            ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                            ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                            ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                     ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                            ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                            ;
+; BYTE_SIZE                          ; 8                    ; Untyped                            ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                            ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                            ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                            ;
+; INIT_FILE                          ; inst_mem.mif         ; Untyped                            ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                            ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                            ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                            ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                            ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                            ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                            ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                            ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                            ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                            ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                            ;
+; CBXI_PARAMETER                     ; altsyncram_1po1      ; Untyped                            ;
++------------------------------------+----------------------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: avalon_bus:data_bus ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; DEV_MEM        ; 0000  ; Unsigned Binary                         ;
+; DEV_ONCHIP     ; 0001  ; Unsigned Binary                         ;
+; DEV_IO         ; 0010  ; Unsigned Binary                         ;
+; S_DEV_HEX      ; 0000  ; Unsigned Binary                         ;
+; S_DEV_SW       ; 0001  ; Unsigned Binary                         ;
+; S_DEV_LEDR     ; 0010  ; Unsigned Binary                         ;
+; S_DEV_KEY      ; 0011  ; Unsigned Binary                         ;
+; S_DEV_IR       ; 0100  ; Unsigned Binary                         ;
+; S_DEV_FP       ; 0000  ; Unsigned Binary                         ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                  ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                               ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                            ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                          ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                          ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                        ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                               ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                                               ;
+; WIDTH_A                            ; 16                   ; Signed Integer                                        ;
+; WIDTHAD_A                          ; 12                   ; Signed Integer                                        ;
+; NUMWORDS_A                         ; 4096                 ; Signed Integer                                        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                               ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                               ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WIDTH_B                            ; 1                    ; Untyped                                               ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                               ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                               ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                               ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                               ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                               ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                               ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                               ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                               ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; INIT_FILE                          ; inst_mem.mif         ; Untyped                                               ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                               ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                               ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                               ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                               ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                               ;
+; CBXI_PARAMETER                     ; altsyncram_1po1      ; Untyped                                               ;
++------------------------------------+----------------------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult ;
++----------------+-------+----------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                           ;
++----------------+-------+----------------------------------------------------------------+
+; addr_op1       ; 000   ; Unsigned Binary                                                ;
+; addr_op2       ; 001   ; Unsigned Binary                                                ;
+; addr_s         ; 010   ; Unsigned Binary                                                ;
+; addr_res       ; 011   ; Unsigned Binary                                                ;
+; addr_status    ; 100   ; Unsigned Binary                                                ;
+; FP_LAT         ; 3     ; Signed Integer                                                 ;
++----------------+-------+----------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm ;
++----------------+-------+---------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                            ;
++----------------+-------+---------------------------------------------------------------------------------+
+; E              ; 8     ; Signed Integer                                                                  ;
+; M              ; 7     ; Signed Integer                                                                  ;
+; BITS           ; 16    ; Signed Integer                                                                  ;
+; EB             ; 127   ; Signed Integer                                                                  ;
+; MAXEXP         ; 255   ; Signed Integer                                                                  ;
++----------------+-------+---------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: processor:proc ;
++----------------+-------+------------------------------------+
+; Parameter Name ; Value ; Type                               ;
++----------------+-------+------------------------------------+
+; mv             ; 000   ; Unsigned Binary                    ;
+; mvt_b          ; 001   ; Unsigned Binary                    ;
+; add            ; 010   ; Unsigned Binary                    ;
+; sub            ; 011   ; Unsigned Binary                    ;
+; ld             ; 100   ; Unsigned Binary                    ;
+; st             ; 101   ; Unsigned Binary                    ;
+; and_           ; 110   ; Unsigned Binary                    ;
+; other          ; 111   ; Unsigned Binary                    ;
++----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                 ;
++-------------------------------------------+----------------------------------------------------------------------+
+; Name                                      ; Value                                                                ;
++-------------------------------------------+----------------------------------------------------------------------+
+; Number of entity instances                ; 2                                                                    ;
+; Entity Instance                           ; inst_mem:InstrMem|altsyncram:altsyncram_component                    ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                                          ;
+;     -- WIDTH_A                            ; 16                                                                   ;
+;     -- NUMWORDS_A                         ; 4096                                                                 ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                         ;
+;     -- WIDTH_B                            ; 1                                                                    ;
+;     -- NUMWORDS_B                         ; 1                                                                    ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                               ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                         ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                 ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                            ;
+; Entity Instance                           ; avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                                          ;
+;     -- WIDTH_A                            ; 16                                                                   ;
+;     -- NUMWORDS_A                         ; 4096                                                                 ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                         ;
+;     -- WIDTH_B                            ; 1                                                                    ;
+;     -- NUMWORDS_B                         ; 1                                                                    ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                               ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                         ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                 ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                            ;
++-------------------------------------------+----------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "processor:proc"                                                                                  ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port              ; Type   ; Severity ; Details                                                                             ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Enable            ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; InstrAddr[15..12] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "avalon_bus:data_bus"                                                                    ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type  ; Severity ; Details                                                                             ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+; ReadData  ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; WriteData ; Bidir ; Warning  ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; IRDA_RXD  ; Input ; Info     ; Stuck at GND                                                                        ;
++-----------+-------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------+
+; Port Connectivity Checks: "inst_mem:InstrMem" ;
++------+-------+----------+---------------------+
+; Port ; Type  ; Severity ; Details             ;
++------+-------+----------+---------------------+
+; data ; Input ; Info     ; Stuck at GND        ;
+; wren ; Input ; Info     ; Stuck at GND        ;
++------+-------+----------+---------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 473                         ;
+;     CLR               ; 84                          ;
+;     ENA CLR           ; 292                         ;
+;     ENA CLR SLD       ; 96                          ;
+;     SCLR              ; 1                           ;
+; arriav_lcell_comb     ; 1347                        ;
+;     arith             ; 102                         ;
+;         0 data inputs ; 4                           ;
+;         1 data inputs ; 58                          ;
+;         2 data inputs ; 24                          ;
+;         3 data inputs ; 16                          ;
+;     extend            ; 79                          ;
+;         7 data inputs ; 79                          ;
+;     normal            ; 1149                        ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 42                          ;
+;         2 data inputs ; 167                         ;
+;         3 data inputs ; 161                         ;
+;         4 data inputs ; 250                         ;
+;         5 data inputs ; 181                         ;
+;         6 data inputs ; 347                         ;
+;     shared            ; 17                          ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 16                          ;
+; arriav_mac            ; 1                           ;
+; boundary_port         ; 69                          ;
+; stratixv_ram_block    ; 32                          ;
+;                       ;                             ;
+; Max LUT depth         ; 12.00                       ;
+; Average LUT depth     ; 6.95                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:06     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Thu Mar 03 19:07:05 2022
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de1soc -c de1soc
+Info (16303): Aggressive Performance optimization mode selected -- timing performance will be prioritized at the potential cost of increased logic area and compilation time
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file processor.sv
+    Info (12023): Found entity 1: processor File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 18
+Info (12021): Found 2 design units, including 2 entities, in source file lab4_mult.sv
+    Info (12023): Found entity 1: avalon_fp_mult File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 2
+    Info (12023): Found entity 2: fp_mult_lab4 File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 141
+Info (12021): Found 1 design units, including 1 entities, in source file inst_mem.v
+    Info (12023): Found entity 1: inst_mem File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file data_bus.sv
+    Info (12023): Found entity 1: avalon_bus File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file de1soc_top.sv
+    Info (12023): Found entity 1: de1soc_top File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 3
+Warning (10236): Verilog HDL Implicit Net warning at lab4_mult.sv(20): created implicit net for "fp_en" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 20
+Warning (10236): Verilog HDL Implicit Net warning at de1soc_top.sv(42): created implicit net for "IDRA_RXD" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 42
+Info (12127): Elaborating entity "de1soc_top" for the top level hierarchy
+Warning (10030): Net "IDRA_RXD" at de1soc_top.sv(42) has no driver or initial value, using a default initial value '0' File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 42
+Info (12128): Elaborating entity "inst_mem" for hierarchy "inst_mem:InstrMem" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 32
+Info (12128): Elaborating entity "altsyncram" for hierarchy "inst_mem:InstrMem|altsyncram:altsyncram_component" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v Line: 86
+Info (12130): Elaborated megafunction instantiation "inst_mem:InstrMem|altsyncram:altsyncram_component" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v Line: 86
+Info (12133): Instantiated megafunction "inst_mem:InstrMem|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v Line: 86
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "inst_mem.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "4096"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "12"
+    Info (12134): Parameter "width_a" = "16"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_1po1.tdf
+    Info (12023): Found entity 1: altsyncram_1po1 File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/db/altsyncram_1po1.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_1po1" for hierarchy "inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
+Info (12128): Elaborating entity "avalon_bus" for hierarchy "avalon_bus:data_bus" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 42
+Warning (10230): Verilog HDL assignment warning at data_bus.sv(57): truncated value with size 8 to match size of target (7) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 57
+Critical Warning (10237): Verilog HDL warning at data_bus.sv(66): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 66
+Info (12128): Elaborating entity "avalon_fp_mult" for hierarchy "avalon_bus:data_bus|avalon_fp_mult:fp_mult" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 106
+Warning (10270): Verilog HDL Case Statement warning at lab4_mult.sv(51): incomplete case statement has no default case item File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 51
+Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(96): truncated value with size 32 to match size of target (4) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 96
+Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(105): truncated value with size 32 to match size of target (4) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 105
+Warning (10270): Verilog HDL Case Statement warning at lab4_mult.sv(122): incomplete case statement has no default case item File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 122
+Info (12128): Elaborating entity "fp_mult_lab4" for hierarchy "avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 76
+Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(207): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 207
+Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(218): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 218
+Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(248): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 248
+Info (12128): Elaborating entity "processor" for hierarchy "processor:proc" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 44
+Warning (10036): Verilog HDL or VHDL warning at processor.sv(44): object "debug_stall_type" assigned a value but never read File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 44
+Warning (10230): Verilog HDL assignment warning at processor.sv(74): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 74
+Warning (10230): Verilog HDL assignment warning at processor.sv(94): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 94
+Warning (10230): Verilog HDL assignment warning at processor.sv(98): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 98
+Warning (10270): Verilog HDL Case Statement warning at processor.sv(135): incomplete case statement has no default case item File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 135
+Warning (10230): Verilog HDL assignment warning at processor.sv(290): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 290
+Warning (10175): Verilog HDL warning at processor.sv(311): ignoring unsupported system task File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 311
+Warning (10230): Verilog HDL assignment warning at processor.sv(320): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 320
+Warning (10230): Verilog HDL assignment warning at processor.sv(341): truncated value with size 32 to match size of target (3) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 341
+Warning (10230): Verilog HDL assignment warning at processor.sv(410): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 410
+Warning (10230): Verilog HDL assignment warning at processor.sv(411): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 411
+Warning (10230): Verilog HDL assignment warning at processor.sv(432): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 432
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (286030): Timing-Driven Synthesis is running
+Info (144001): Generated suppressed messages file C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/out/de1soc.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "IRDA_RXD" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 14
+Info (21057): Implemented 1561 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 16 input pins
+    Info (21059): Implemented 53 output pins
+    Info (21061): Implemented 1459 logic cells
+    Info (21064): Implemented 32 RAM segments
+    Info (21062): Implemented 1 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 28 warnings
+    Info: Peak virtual memory: 4851 megabytes
+    Info: Processing ended: Thu Mar 03 19:07:25 2022
+    Info: Elapsed time: 00:00:20
+    Info: Total CPU time (on all processors): 00:00:35
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/out/de1soc.map.smsg.
+
+
