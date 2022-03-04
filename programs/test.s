@@ -24,6 +24,9 @@ MAIN:
     bl COUNT_TEST2
     b KILL
 
+MAX_IR_VAL:
+    .word 0x0
+
 IO_TEST:
     push r0
     push r1
@@ -42,6 +45,27 @@ IO_TEST:
 
     mvt r4, #HEX_ADDRESS
     st r0, [r4]
+
+    mvt r3, #IR_ADDRESS
+    ld r0, [r3] //read the IR sesnor
+    //if we have seen bigger, update r0 to 1
+    //store max back into the place
+    mv r3, #MAX_IR_VAL
+    ld r1, [r3]
+    add r0, r1
+    st r0, [r3]
+
+    add r4, #1 //move to second hex
+    add r0, #2 //there should be two lit up to show that we wrote properly
+    st r0, [r4] //write to the HEX1 display
+
+    mvt r3, #SW_ADDRESS
+    ld r0, [r3]
+    and r0, #1
+    mvt r3, #IR_ADDRESS
+    st r0, [r3] //send SW[0] to IR
+    add r4, #1
+    st r0, [r4] //show on next hex the sam evalue as we are sending to IR
 
     pop r4
     pop r3
@@ -181,7 +205,7 @@ KILL:
     st r0, [r0] //this signifies to kill processor if in simulator mode
     //if not in simulator then we must spin
 END: 
-    b END
+    b START
 
 
 
