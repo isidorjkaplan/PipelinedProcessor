@@ -11,7 +11,9 @@ module avalon_bus
     output logic [9:0] LEDR,
     input logic [3:0] KEY,
 	 input wire IRDA_RXD, //IR reciever wire
-	 output wire IRDA_TXD //IR emitter wire
+	 output wire IRDA_TXD, //IR emitter wire
+	 input wire PS2_CLK,
+	 input wire PS2_DATA
 );  
     parameter DEV_MEM = 4'h0, DEV_ONCHIP=4'h1, DEV_IO=4'h2;
 
@@ -20,7 +22,7 @@ module avalon_bus
 	 assign secondary_device = DataAddr[11:8];//some devices have a secondary device, like DEV_IO has all the different IO units
 	 
 
-    /*Memory Controller*/
+    /*Memory Controller*///data_bus.sv
     logic [15:0] MemOut;
     inst_mem DataMem (DataAddr[11:0], Clock, BusIn, WriteData & (device==DEV_MEM), MemOut);
     logic mem_done;
@@ -35,14 +37,19 @@ module avalon_bus
         end
     end
 
-    /*Controllers for HEX/SW/LEDR/KEY/IR*/
-	 parameter S_DEV_HEX=4'h0, S_DEV_SW=4'h1, S_DEV_LEDR=4'h2, S_DEV_KEY=4'h3, S_DEV_IR=4'h4;
+    /*Controllers for HEX/SW/LEDR/KEY/IR/PS2*/
+	 parameter S_DEV_HEX=4'h0, S_DEV_SW=4'h1, S_DEV_LEDR=4'h2, S_DEV_KEY=4'h3, S_DEV_IR=4'h4, S_DEV_PS2=4'h5;
     logic [6:0] hex_reg[6];
     logic [9:0] ledr_reg;
 	 logic IR_recv_reg; //IR reciever register
 	 logic IR_emit_reg; //IR emitter register
 	 logic [15:0] out_io;
 	 logic done_io;
+	 
+	 logic [15:0] ps2_out;
+	 logic ps2_done;
+	 avalon_ps2 ps2_cont(Clock, Reset, DataAddr[3:0], ReadData & (device==DEV_IO && secondary_device==S_DEV_PS2), WriteData & (device==DEV_IO && secondary_device==S_DEV_PS2), BusIn, ps2_out, ps2_done, PS2_CLK, PS2_DATA);
+
  
     always_ff@(posedge Clock, posedge Reset) begin
         if (Reset) begin
@@ -88,6 +95,10 @@ module avalon_bus
 					 if (DataAddr[2:0] < 6) begin
 							out_io = {9'h0, hex_reg[DataAddr[2:0]]};
 					 end
+				end
+				S_DEV_PS2:begin
+					out_io = ps2_out;
+					done_io = ps2_done;
 				end
 				default:begin
 					 done_io=1;

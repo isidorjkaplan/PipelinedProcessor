@@ -12,7 +12,9 @@ module de1soc_top (
     output [9:0] LEDR,
     input [9:0] SW,
 	 input IRDA_RXD, //IR reciever wire
-	 output IRDA_TXD //IR emitter wire
+	 output IRDA_TXD, //IR emitter wire
+	 input PS2_CLK,
+	 input PS2_DAT
 	 );
     
     /*Defining the wires to interface with the processor*/
@@ -39,7 +41,7 @@ module de1soc_top (
     assign HEX4 = ~HEX[4];
     assign HEX5 = ~HEX[5];
     
-    avalon_bus data_bus(Clock, ReadData, WriteData, Reset, DataOut, DataAddr, DataIn, DataDone, HEX, SW, LEDR, ~KEY, IDRA_RXD, IRDA_TXD);
+    avalon_bus data_bus(Clock, ReadData, WriteData, Reset, DataOut, DataAddr, DataIn, DataDone, HEX, SW, LEDR, ~KEY, IDRA_RXD, IRDA_TXD, PS2_CLK, PS2_DAT);
     /*The actual processor itself*/
     processor proc(DataIn, InstrIn, DataDone, Reset, Clock, Enable, DataOut, DataAddr, InstrAddr, WriteData, ReadData);
 endmodule
