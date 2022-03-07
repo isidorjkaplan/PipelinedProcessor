@@ -1,5 +1,5 @@
 Fitter report for de1soc
-Thu Mar 03 19:08:36 2022
+Sun Mar 06 19:18:08 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -20,27 +20,28 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
  12. Fitter Partition Statistics
  13. Input Pins
  14. Output Pins
- 15. I/O Bank Usage
- 16. All Package Pins
- 17. I/O Assignment Warnings
- 18. Fitter Resource Utilization by Entity
- 19. Delay Chain Summary
- 20. Pad To Core Delay Chain Fanout
- 21. Control Signals
- 22. Global & Other Fast Signals
- 23. Fitter RAM Summary
- 24. Fitter DSP Block Usage Summary
- 25. DSP Block Details
- 26. Routing Usage Summary
- 27. I/O Rules Summary
- 28. I/O Rules Details
- 29. I/O Rules Matrix
- 30. Fitter Device Options
- 31. Operating Settings and Conditions
- 32. Estimated Delay Added for Hold Timing Summary
- 33. Estimated Delay Added for Hold Timing Details
- 34. Fitter Messages
- 35. Fitter Suppressed Messages
+ 15. Bidir Pins
+ 16. I/O Bank Usage
+ 17. All Package Pins
+ 18. I/O Assignment Warnings
+ 19. Fitter Resource Utilization by Entity
+ 20. Delay Chain Summary
+ 21. Pad To Core Delay Chain Fanout
+ 22. Control Signals
+ 23. Global & Other Fast Signals
+ 24. Fitter RAM Summary
+ 25. Fitter DSP Block Usage Summary
+ 26. DSP Block Details
+ 27. Routing Usage Summary
+ 28. I/O Rules Summary
+ 29. I/O Rules Details
+ 30. I/O Rules Matrix
+ 31. Fitter Device Options
+ 32. Operating Settings and Conditions
+ 33. Estimated Delay Added for Hold Timing Summary
+ 34. Estimated Delay Added for Hold Timing Details
+ 35. Fitter Messages
+ 36. Fitter Suppressed Messages
 
 
 
@@ -66,16 +67,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Thu Mar 03 19:08:36 2022       ;
+; Fitter Status                   ; Successful - Sun Mar 06 19:18:08 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; de1soc                                      ;
 ; Top-level Entity Name           ; de1soc_top                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 838 / 32,070 ( 3 % )                        ;
-; Total registers                 ; 473                                         ;
-; Total pins                      ; 69 / 457 ( 15 % )                           ;
+; Logic utilization (in ALMs)     ; 925 / 32,070 ( 3 % )                        ;
+; Total registers                 ; 615                                         ;
+; Total pins                      ; 71 / 457 ( 16 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 131,072 / 4,065,280 ( 3 % )                 ;
 ; Total RAM Blocks                ; 16 / 397 ( 4 % )                            ;
@@ -161,20 +162,30 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   4.2%      ;
-;     Processor 3            ;   4.0%      ;
-;     Processor 4            ;   3.9%      ;
+;     Processor 2            ;   4.9%      ;
+;     Processor 3            ;   3.8%      ;
+;     Processor 4            ;   3.7%      ;
 +----------------------------+-------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Netlist Optimizations                                                                                                                                        ;
-+-----------------------+---------+-----------+----------------------------+-----------+----------------+------------------+------------------+-----------------------+
-; Node                  ; Action  ; Operation ; Reason                     ; Node Port ; Node Port Name ; Destination Node ; Destination Port ; Destination Port Name ;
-+-----------------------+---------+-----------+----------------------------+-----------+----------------+------------------+------------------+-----------------------+
-; CLOCK_50~inputCLKENA0 ; Created ; Placement ; Fitter Periphery Placement ;           ;                ;                  ;                  ;                       ;
-; KEY[3]~inputCLKENA0   ; Created ; Placement ; Fitter Periphery Placement ;           ;                ;                  ;                  ;                       ;
-+-----------------------+---------+-----------+----------------------------+-----------+----------------+------------------+------------------+-----------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Netlist Optimizations                                                                                                                                                                                                                                                                                      ;
++-----------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+---------------------------------------------------------------------------+------------------+-----------------------+
+; Node                                                            ; Action     ; Operation                                         ; Reason                     ; Node Port ; Node Port Name ; Destination Node                                                          ; Destination Port ; Destination Port Name ;
++-----------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+---------------------------------------------------------------------------+------------------+-----------------------+
+; CLOCK_50~inputCLKENA0                                           ; Created    ; Placement                                         ; Fitter Periphery Placement ;           ;                ;                                                                           ;                  ;                       ;
+; KEY[3]~inputCLKENA0                                             ; Created    ; Placement                                         ; Fitter Periphery Placement ;           ;                ;                                                                           ;                  ;                       ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[2]    ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[2]~DUPLICATE    ;                  ;                       ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[3]    ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[3]~DUPLICATE    ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cnt[1]     ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cnt[1]~DUPLICATE     ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cnt[5]     ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cnt[5]~DUPLICATE     ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[1]  ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[1]~DUPLICATE  ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[2] ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[2]~DUPLICATE ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[6] ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[6]~DUPLICATE ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[8] ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[8]~DUPLICATE ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[9] ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[9]~DUPLICATE ;                  ;                       ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|y_latch[6] ; Duplicated ; Router Logic Cell Insertion and Logic Duplication ; Routability optimization   ;           ;                ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|y_latch[6]~DUPLICATE ;                  ;                       ;
++-----------------------------------------------------------------+------------+---------------------------------------------------+----------------------------+-----------+----------------+---------------------------------------------------------------------------+------------------+-----------------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------+
@@ -309,9 +320,7 @@ refer to the applicable agreement for further details.
 ; Location                    ;                ;              ; GPIO_1[7]      ; PIN_AF25        ; QSF Assignment ;
 ; Location                    ;                ;              ; GPIO_1[8]      ; PIN_AF26        ; QSF Assignment ;
 ; Location                    ;                ;              ; GPIO_1[9]      ; PIN_AG25        ; QSF Assignment ;
-; Location                    ;                ;              ; PS2_CLK        ; PIN_AD7         ; QSF Assignment ;
 ; Location                    ;                ;              ; PS2_CLK2       ; PIN_AD9         ; QSF Assignment ;
-; Location                    ;                ;              ; PS2_DAT        ; PIN_AE7         ; QSF Assignment ;
 ; Location                    ;                ;              ; PS2_DAT2       ; PIN_AE9         ; QSF Assignment ;
 ; Location                    ;                ;              ; TD_CLK27       ; PIN_H15         ; QSF Assignment ;
 ; Location                    ;                ;              ; TD_DATA[0]     ; PIN_D2          ; QSF Assignment ;
@@ -412,8 +421,8 @@ refer to the applicable agreement for further details.
 ; Type                ; Total [A + B]       ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+---------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                     ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 1951 ) ; 0.00 % ( 0 / 1951 )        ; 0.00 % ( 0 / 1951 )      ;
-;     -- Achieved     ; 0.00 % ( 0 / 1951 ) ; 0.00 % ( 0 / 1951 )        ; 0.00 % ( 0 / 1951 )      ;
+;     -- Requested    ; 0.00 % ( 0 / 2234 ) ; 0.00 % ( 0 / 2234 )        ; 0.00 % ( 0 / 2234 )      ;
+;     -- Achieved     ; 0.00 % ( 0 / 2234 ) ; 0.00 % ( 0 / 2234 )        ; 0.00 % ( 0 / 2234 )      ;
 ;                     ;                     ;                            ;                          ;
 ; Routing (by net)    ;                     ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )    ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -436,7 +445,7 @@ refer to the applicable agreement for further details.
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 1951 )   ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 2234 )   ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 0 )      ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -452,18 +461,18 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 +-------------------------------------------------------------+-----------------------+-------+
 ; Resource                                                    ; Usage                 ; %     ;
 +-------------------------------------------------------------+-----------------------+-------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 838 / 32,070          ; 3 %   ;
-; ALMs needed [=A-B+C]                                        ; 838                   ;       ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 884 / 32,070          ; 3 %   ;
-;         [a] ALMs used for LUT logic and registers           ; 194                   ;       ;
-;         [b] ALMs used for LUT logic                         ; 647                   ;       ;
-;         [c] ALMs used for registers                         ; 43                    ;       ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 925 / 32,070          ; 3 %   ;
+; ALMs needed [=A-B+C]                                        ; 925                   ;       ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 973 / 32,070          ; 3 %   ;
+;         [a] ALMs used for LUT logic and registers           ; 243                   ;       ;
+;         [b] ALMs used for LUT logic                         ; 673                   ;       ;
+;         [c] ALMs used for registers                         ; 57                    ;       ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                     ;       ;
 ;     [B] Estimate of ALMs recoverable by dense packing       ; 50 / 32,070           ; < 1 % ;
-;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 4 / 32,070            ; < 1 % ;
+;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 2 / 32,070            ; < 1 % ;
 ;         [a] Due to location constrained logic               ; 0                     ;       ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                     ;       ;
-;         [c] Due to LAB input limits                         ; 4                     ;       ;
+;         [c] Due to LAB input limits                         ; 2                     ;       ;
 ;         [d] Due to virtual I/Os                             ; 0                     ;       ;
 ;                                                             ;                       ;       ;
 ; Difficulty packing design                                   ; Low                   ;       ;
@@ -472,24 +481,24 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 ;     -- Logic LABs                                           ; 121                   ;       ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                     ;       ;
 ;                                                             ;                       ;       ;
-; Combinational ALUT usage for logic                          ; 1,305                 ;       ;
-;     -- 7 input functions                                    ; 79                    ;       ;
-;     -- 6 input functions                                    ; 347                   ;       ;
-;     -- 5 input functions                                    ; 181                   ;       ;
-;     -- 4 input functions                                    ; 250                   ;       ;
-;     -- <=3 input functions                                  ; 448                   ;       ;
-; Combinational ALUT usage for route-throughs                 ; 31                    ;       ;
+; Combinational ALUT usage for logic                          ; 1,450                 ;       ;
+;     -- 7 input functions                                    ; 75                    ;       ;
+;     -- 6 input functions                                    ; 369                   ;       ;
+;     -- 5 input functions                                    ; 199                   ;       ;
+;     -- 4 input functions                                    ; 261                   ;       ;
+;     -- <=3 input functions                                  ; 546                   ;       ;
+; Combinational ALUT usage for route-throughs                 ; 41                    ;       ;
 ;                                                             ;                       ;       ;
-; Dedicated logic registers                                   ; 473                   ;       ;
+; Dedicated logic registers                                   ; 615                   ;       ;
 ;     -- By type:                                             ;                       ;       ;
-;         -- Primary logic registers                          ; 473 / 64,140          ; < 1 % ;
-;         -- Secondary logic registers                        ; 0 / 64,140            ; 0 %   ;
+;         -- Primary logic registers                          ; 599 / 64,140          ; < 1 % ;
+;         -- Secondary logic registers                        ; 16 / 64,140           ; < 1 % ;
 ;     -- By function:                                         ;                       ;       ;
-;         -- Design implementation registers                  ; 473                   ;       ;
-;         -- Routing optimization registers                   ; 0                     ;       ;
+;         -- Design implementation registers                  ; 605                   ;       ;
+;         -- Routing optimization registers                   ; 10                    ;       ;
 ;                                                             ;                       ;       ;
 ; Virtual pins                                                ; 0                     ;       ;
-; I/O pins                                                    ; 69 / 457              ; 15 %  ;
+; I/O pins                                                    ; 71 / 457              ; 16 %  ;
 ;     -- Clock pins                                           ; 4 / 8                 ; 50 %  ;
 ;     -- Dedicated input pins                                 ; 0 / 21                ; 0 %   ;
 ;                                                             ;                       ;       ;
@@ -541,12 +550,12 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 ; Oscillator blocks                                           ; 0 / 1                 ; 0 %   ;
 ; Impedance control blocks                                    ; 0 / 4                 ; 0 %   ;
 ; Hard Memory Controllers                                     ; 0 / 2                 ; 0 %   ;
-; Average interconnect usage (total/H/V)                      ; 0.8% / 0.8% / 0.7%    ;       ;
-; Peak interconnect usage (total/H/V)                         ; 13.0% / 13.9% / 10.4% ;       ;
-; Maximum fan-out                                             ; 489                   ;       ;
+; Average interconnect usage (total/H/V)                      ; 0.9% / 0.9% / 0.7%    ;       ;
+; Peak interconnect usage (total/H/V)                         ; 19.3% / 21.0% / 14.1% ;       ;
+; Maximum fan-out                                             ; 520                   ;       ;
 ; Highest non-global fan-out                                  ; 208                   ;       ;
-; Total fan-out                                               ; 8048                  ;       ;
-; Average fan-out                                             ; 4.09                  ;       ;
+; Total fan-out                                               ; 8998                  ;       ;
+; Average fan-out                                             ; 3.97                  ;       ;
 +-------------------------------------------------------------+-----------------------+-------+
 
 
@@ -555,18 +564,18 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 +-------------------------------------------------------------+-----------------------+--------------------------------+
 ; Statistic                                                   ; Top                   ; hard_block:auto_generated_inst ;
 +-------------------------------------------------------------+-----------------------+--------------------------------+
-; Logic utilization (ALMs needed / total ALMs on device)      ; 838 / 32070 ( 3 % )   ; 0 / 32070 ( 0 % )              ;
-; ALMs needed [=A-B+C]                                        ; 838                   ; 0                              ;
-;     [A] ALMs used in final placement [=a+b+c+d]             ; 884 / 32070 ( 3 % )   ; 0 / 32070 ( 0 % )              ;
-;         [a] ALMs used for LUT logic and registers           ; 194                   ; 0                              ;
-;         [b] ALMs used for LUT logic                         ; 647                   ; 0                              ;
-;         [c] ALMs used for registers                         ; 43                    ; 0                              ;
+; Logic utilization (ALMs needed / total ALMs on device)      ; 925 / 32070 ( 3 % )   ; 0 / 32070 ( 0 % )              ;
+; ALMs needed [=A-B+C]                                        ; 925                   ; 0                              ;
+;     [A] ALMs used in final placement [=a+b+c+d]             ; 973 / 32070 ( 3 % )   ; 0 / 32070 ( 0 % )              ;
+;         [a] ALMs used for LUT logic and registers           ; 243                   ; 0                              ;
+;         [b] ALMs used for LUT logic                         ; 673                   ; 0                              ;
+;         [c] ALMs used for registers                         ; 57                    ; 0                              ;
 ;         [d] ALMs used for memory (up to half of total ALMs) ; 0                     ; 0                              ;
 ;     [B] Estimate of ALMs recoverable by dense packing       ; 50 / 32070 ( < 1 % )  ; 0 / 32070 ( 0 % )              ;
-;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 4 / 32070 ( < 1 % )   ; 0 / 32070 ( 0 % )              ;
+;     [C] Estimate of ALMs unavailable [=a+b+c+d]             ; 2 / 32070 ( < 1 % )   ; 0 / 32070 ( 0 % )              ;
 ;         [a] Due to location constrained logic               ; 0                     ; 0                              ;
 ;         [b] Due to LAB-wide signal conflicts                ; 0                     ; 0                              ;
-;         [c] Due to LAB input limits                         ; 4                     ; 0                              ;
+;         [c] Due to LAB input limits                         ; 2                     ; 0                              ;
 ;         [d] Due to virtual I/Os                             ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Difficulty packing design                                   ; Low                   ; Low                            ;
@@ -575,28 +584,28 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 ;     -- Logic LABs                                           ; 121                   ; 0                              ;
 ;     -- Memory LABs (up to half of total LABs)               ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
-; Combinational ALUT usage for logic                          ; 1305                  ; 0                              ;
-;     -- 7 input functions                                    ; 79                    ; 0                              ;
-;     -- 6 input functions                                    ; 347                   ; 0                              ;
-;     -- 5 input functions                                    ; 181                   ; 0                              ;
-;     -- 4 input functions                                    ; 250                   ; 0                              ;
-;     -- <=3 input functions                                  ; 448                   ; 0                              ;
-; Combinational ALUT usage for route-throughs                 ; 31                    ; 0                              ;
+; Combinational ALUT usage for logic                          ; 1450                  ; 0                              ;
+;     -- 7 input functions                                    ; 75                    ; 0                              ;
+;     -- 6 input functions                                    ; 369                   ; 0                              ;
+;     -- 5 input functions                                    ; 199                   ; 0                              ;
+;     -- 4 input functions                                    ; 261                   ; 0                              ;
+;     -- <=3 input functions                                  ; 546                   ; 0                              ;
+; Combinational ALUT usage for route-throughs                 ; 41                    ; 0                              ;
 ; Memory ALUT usage                                           ; 0                     ; 0                              ;
 ;     -- 64-address deep                                      ; 0                     ; 0                              ;
 ;     -- 32-address deep                                      ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Dedicated logic registers                                   ; 0                     ; 0                              ;
 ;     -- By type:                                             ;                       ;                                ;
-;         -- Primary logic registers                          ; 473 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
-;         -- Secondary logic registers                        ; 0 / 64140 ( 0 % )     ; 0 / 64140 ( 0 % )              ;
+;         -- Primary logic registers                          ; 599 / 64140 ( < 1 % ) ; 0 / 64140 ( 0 % )              ;
+;         -- Secondary logic registers                        ; 16 / 64140 ( < 1 % )  ; 0 / 64140 ( 0 % )              ;
 ;     -- By function:                                         ;                       ;                                ;
-;         -- Design implementation registers                  ; 473                   ; 0                              ;
-;         -- Routing optimization registers                   ; 0                     ; 0                              ;
+;         -- Design implementation registers                  ; 605                   ; 0                              ;
+;         -- Routing optimization registers                   ; 10                    ; 0                              ;
 ;                                                             ;                       ;                                ;
 ;                                                             ;                       ;                                ;
 ; Virtual pins                                                ; 0                     ; 0                              ;
-; I/O pins                                                    ; 69                    ; 0                              ;
+; I/O pins                                                    ; 71                    ; 0                              ;
 ; I/O registers                                               ; 0                     ; 0                              ;
 ; Total block memory bits                                     ; 131072                ; 0                              ;
 ; Total block memory implementation bits                      ; 163840                ; 0                              ;
@@ -605,23 +614,23 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 ; Clock enable block                                          ; 2 / 116 ( 1 % )       ; 0 / 116 ( 0 % )                ;
 ;                                                             ;                       ;                                ;
 ; Connections                                                 ;                       ;                                ;
-;     -- Input Connections                                    ; 0                     ; 0                              ;
+;     -- Input Connections                                    ; 2                     ; 0                              ;
 ;     -- Registered Input Connections                         ; 0                     ; 0                              ;
-;     -- Output Connections                                   ; 0                     ; 0                              ;
+;     -- Output Connections                                   ; 2                     ; 0                              ;
 ;     -- Registered Output Connections                        ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Internal Connections                                        ;                       ;                                ;
-;     -- Total Connections                                    ; 8310                  ; 0                              ;
-;     -- Registered Connections                               ; 2266                  ; 0                              ;
+;     -- Total Connections                                    ; 9260                  ; 0                              ;
+;     -- Registered Connections                               ; 2819                  ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; External Connections                                        ;                       ;                                ;
-;     -- Top                                                  ; 0                     ; 0                              ;
+;     -- Top                                                  ; 4                     ; 0                              ;
 ;     -- hard_block:auto_generated_inst                       ; 0                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Partition Interface                                         ;                       ;                                ;
 ;     -- Input Ports                                          ; 16                    ; 0                              ;
 ;     -- Output Ports                                         ; 53                    ; 0                              ;
-;     -- Bidir Ports                                          ; 0                     ; 0                              ;
+;     -- Bidir Ports                                          ; 2                     ; 0                              ;
 ;                                                             ;                       ;                                ;
 ; Registered Ports                                            ;                       ;                                ;
 ;     -- Registered Input Ports                               ; 0                     ; 0                              ;
@@ -644,12 +653,12 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 +----------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
 ; Name     ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination ; Termination Control Block ; Location assigned by ; Slew Rate ;
 +----------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+----------+--------------+--------------+-------------+---------------------------+----------------------+-----------+
-; CLOCK_50 ; AF14  ; 3B       ; 32           ; 0            ; 0            ; 489                   ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
+; CLOCK_50 ; AF14  ; 3B       ; 32           ; 0            ; 0            ; 521                   ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
 ; IRDA_RXD ; AA30  ; 5B       ; 89           ; 21           ; 20           ; 0                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
 ; KEY[0]   ; AA14  ; 3B       ; 36           ; 0            ; 0            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
 ; KEY[1]   ; AA15  ; 3B       ; 36           ; 0            ; 17           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
 ; KEY[2]   ; W15   ; 3B       ; 40           ; 0            ; 0            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
-; KEY[3]   ; Y16   ; 3B       ; 40           ; 0            ; 17           ; 537                   ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
+; KEY[3]   ; Y16   ; 3B       ; 40           ; 0            ; 17           ; 592                   ; 0                  ; yes    ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
 ; SW[0]    ; AB12  ; 3A       ; 12           ; 0            ; 17           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
 ; SW[1]    ; AC12  ; 3A       ; 16           ; 0            ; 0            ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
 ; SW[2]    ; AF9   ; 3A       ; 8            ; 0            ; 34           ; 1                     ; 0                  ; no     ; no             ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Off         ; --                        ; User                 ; no        ;
@@ -724,6 +733,16 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 +----------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-------------+---------------------------+----------------------------+-----------------------------+---------------------+-----------------------------+----------------------+----------------------+---------------------+
 
 
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Bidir Pins                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ;
++---------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+------------------------+-----------+-----------------+------------+----------+--------------+--------------+------------------+-------------------+--------------------+---------------------------+----------------------------+---------------------+-----------------------------+----------------------+----------------------+----------------------------------------------------------------------+
+; Name    ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Output Register ; Output Enable Register ; Slew Rate ; PCI I/O Enabled ; Open Drain ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Input Termination ; Output Termination ; Termination Control Block ; Output Buffer Pre-emphasis ; Output Buffer Delay ; Output Buffer Delay Control ; Location assigned by ; Output Enable Source ; Output Enable Group                                                  ;
++---------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+------------------------+-----------+-----------------+------------+----------+--------------+--------------+------------------+-------------------+--------------------+---------------------------+----------------------------+---------------------+-----------------------------+----------------------+----------------------+----------------------------------------------------------------------+
+; PS2_CLK ; AD7   ; 3A       ; 6            ; 0            ; 0            ; 1                     ; 0                  ; no     ; no             ; no              ; no                     ; 1         ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; Off               ; Off                ; --                        ; no                         ; 0                   ; Off                         ; User                 ; 0 pF                 ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ce~0 (inverted) ;
+; PS2_DAT ; AE7   ; 3A       ; 6            ; 0            ; 17           ; 1                     ; 0                  ; no     ; no             ; no              ; no                     ; 1         ; no              ; no         ; no       ; Off          ; 3.3-V LVTTL  ; 16mA             ; Off               ; Off                ; --                        ; no                         ; 0                   ; Off                         ; User                 ; 0 pF                 ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|de~0 (inverted) ;
++---------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+-----------------+------------------------+-----------+-----------------+------------+----------+--------------+--------------+------------------+-------------------+--------------------+---------------------------+----------------------------+---------------------+-----------------------------+----------------------+----------------------+----------------------------------------------------------------------+
+
+
 +-----------------------------------------------------------------------------+
 ; I/O Bank Usage                                                              ;
 +----------+-------------------+---------------+--------------+---------------+
@@ -731,7 +750,7 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 +----------+-------------------+---------------+--------------+---------------+
 ; B2L      ; 0 / 0 ( -- )      ; --            ; --           ; --            ;
 ; B1L      ; 0 / 0 ( -- )      ; --            ; --           ; --            ;
-; 3A       ; 10 / 32 ( 31 % )  ; 3.3V          ; --           ; 3.3V          ;
+; 3A       ; 12 / 32 ( 38 % )  ; 3.3V          ; --           ; 3.3V          ;
 ; 3B       ; 5 / 48 ( 10 % )   ; 3.3V          ; --           ; 3.3V          ;
 ; 4A       ; 7 / 80 ( 9 % )    ; 3.3V          ; --           ; 3.3V          ;
 ; 5A       ; 32 / 32 ( 100 % ) ; 3.3V          ; --           ; 3.3V          ;
@@ -875,7 +894,7 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 ; AD4      ;            ;                ; DNU                             ;        ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AD5      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AD6      ;            ; 3A             ; VREFB3AN0                       ; power  ;              ;                     ; --           ;                 ; --       ; --           ;
-; AD7      ; 62         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
+; AD7      ; 62         ; 3A             ; PS2_CLK                         ; bidir  ; 3.3-V LVTTL  ;                     ; Column I/O   ; Y               ; no       ; Off          ;
 ; AD8      ;            ; 3A             ; VCCIO3A                         ; power  ;              ; 3.3V                ; --           ;                 ; --       ; --           ;
 ; AD9      ; 55         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AD10     ; 56         ; 3A             ; SW[8]                           ; input  ; 3.3-V LVTTL  ;                     ; Column I/O   ; Y               ; no       ; Off          ;
@@ -905,7 +924,7 @@ The pin-out file can be found in C:/Users/isido/OneDrive/Files/School/Year 3/Win
 ; AE4      ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
 ; AE5      ; 49         ; 3A             ; ^AS_DATA1, DATA1                ;        ;              ;                     ; Weak Pull Up ;                 ; --       ; On           ;
 ; AE6      ; 51         ; 3A             ; ^AS_DATA0, ASDO, DATA0          ;        ;              ;                     ; Weak Pull Up ;                 ; --       ; On           ;
-; AE7      ; 60         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
+; AE7      ; 60         ; 3A             ; PS2_DAT                         ; bidir  ; 3.3-V LVTTL  ;                     ; Column I/O   ; Y               ; no       ; Off          ;
 ; AE8      ; 47         ; 3A             ; ^AS_DATA2, DATA2                ;        ;              ;                     ; Weak Pull Up ;                 ; --       ; On           ;
 ; AE9      ; 53         ; 3A             ; RESERVED_INPUT_WITH_WEAK_PULLUP ;        ;              ;                     ; Column I/O   ;                 ; no       ; On           ;
 ; AE10     ;            ;                ; GND                             ; gnd    ;              ;                     ; --           ;                 ; --       ; --           ;
@@ -1709,6 +1728,8 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 ; LEDR[8]  ; Missing drive strength and slew rate ;
 ; LEDR[9]  ; Missing drive strength and slew rate ;
 ; IRDA_TXD ; Missing drive strength and slew rate ;
+; PS2_CLK  ; Missing drive strength and slew rate ;
+; PS2_DAT  ; Missing drive strength and slew rate ;
 +----------+--------------------------------------+
 
 
@@ -1717,17 +1738,19 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node                   ; ALMs needed [=A-B+C] ; [A] ALMs used in final placement ; [B] Estimate of ALMs recoverable by dense packing ; [C] Estimate of ALMs unavailable ; ALMs used for memory ; Combinational ALUTs ; Dedicated Logic Registers ; I/O Registers ; Block Memory Bits ; M10Ks ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                             ; Entity Name     ; Library Name ;
 +----------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |de1soc_top                                  ; 838.0 (0.5)          ; 883.0 (0.5)                      ; 49.0 (0.0)                                        ; 4.0 (0.0)                        ; 0.0 (0.0)            ; 1305 (1)            ; 473 (0)                   ; 0 (0)         ; 131072            ; 16    ; 1          ; 69   ; 0            ; |de1soc_top                                                                                                     ; de1soc_top      ; work         ;
-;    |avalon_bus:data_bus|                     ; 100.9 (43.5)         ; 118.4 (52.2)                     ; 19.5 (8.9)                                        ; 2.0 (0.2)                        ; 0.0 (0.0)            ; 138 (49)            ; 122 (54)                  ; 0 (0)         ; 65536             ; 8     ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus                                                                                 ; avalon_bus      ; work         ;
-;       |avalon_fp_mult:fp_mult|               ; 57.4 (38.4)          ; 66.2 (46.2)                      ; 10.6 (8.7)                                        ; 1.8 (0.8)                        ; 0.0 (0.0)            ; 89 (45)             ; 68 (68)                   ; 0 (0)         ; 0                 ; 0     ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult                                                          ; avalon_fp_mult  ; work         ;
-;          |fp_mult_lab4:fpm|                  ; 19.0 (19.0)          ; 19.9 (19.9)                      ; 1.9 (1.9)                                         ; 1.0 (1.0)                        ; 0.0 (0.0)            ; 44 (44)             ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm                                         ; fp_mult_lab4    ; work         ;
+; |de1soc_top                                  ; 925.0 (0.5)          ; 972.5 (0.5)                      ; 49.0 (0.0)                                        ; 1.5 (0.0)                        ; 0.0 (0.0)            ; 1450 (1)            ; 615 (0)                   ; 0 (0)         ; 131072            ; 16    ; 1          ; 71   ; 0            ; |de1soc_top                                                                                                     ; de1soc_top      ; work         ;
+;    |avalon_bus:data_bus|                     ; 183.4 (37.8)         ; 212.8 (48.9)                     ; 29.3 (11.1)                                       ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 280 (44)            ; 264 (54)                  ; 0 (0)         ; 65536             ; 8     ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus                                                                                 ; avalon_bus      ; work         ;
+;       |avalon_fp_mult:fp_mult|               ; 56.1 (36.8)          ; 63.3 (42.6)                      ; 7.2 (5.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 89 (43)             ; 70 (70)                   ; 0 (0)         ; 0                 ; 0     ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult                                                          ; avalon_fp_mult  ; work         ;
+;          |fp_mult_lab4:fpm|                  ; 19.3 (19.3)          ; 20.8 (20.8)                      ; 1.4 (1.4)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 46 (46)             ; 0 (0)                     ; 0 (0)         ; 0                 ; 0     ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm                                         ; fp_mult_lab4    ; work         ;
+;       |avalon_ps2:ps2_cont|                  ; 89.5 (3.2)           ; 100.5 (4.3)                      ; 11.0 (1.2)                                        ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 147 (12)            ; 140 (0)                   ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont                                                             ; avalon_ps2      ; work         ;
+;          |ps2_mouse:U1|                      ; 86.3 (86.3)          ; 96.2 (96.2)                      ; 9.8 (9.8)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 135 (135)           ; 140 (140)                 ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1                                                ; ps2_mouse       ; work         ;
 ;       |inst_mem:DataMem|                     ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 65536             ; 8     ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem                                                                ; inst_mem        ; work         ;
 ;          |altsyncram:altsyncram_component|   ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 65536             ; 8     ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
 ;             |altsyncram_1po1:auto_generated| ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 65536             ; 8     ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated ; altsyncram_1po1 ; work         ;
 ;    |inst_mem:InstrMem|                       ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 65536             ; 8     ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem                                                                                   ; inst_mem        ; work         ;
 ;       |altsyncram:altsyncram_component|      ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 65536             ; 8     ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem|altsyncram:altsyncram_component                                                   ; altsyncram      ; work         ;
 ;          |altsyncram_1po1:auto_generated|    ; 0.0 (0.0)            ; 0.0 (0.0)                        ; 0.0 (0.0)                                         ; 0.0 (0.0)                        ; 0.0 (0.0)            ; 0 (0)               ; 0 (0)                     ; 0 (0)         ; 65536             ; 8     ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated                    ; altsyncram_1po1 ; work         ;
-;    |processor:proc|                          ; 736.6 (736.6)        ; 764.1 (764.1)                    ; 29.5 (29.5)                                       ; 2.0 (2.0)                        ; 0.0 (0.0)            ; 1166 (1166)         ; 351 (351)                 ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |de1soc_top|processor:proc                                                                                      ; processor       ; work         ;
+;    |processor:proc|                          ; 741.1 (741.1)        ; 759.2 (759.2)                    ; 19.7 (19.7)                                       ; 1.5 (1.5)                        ; 0.0 (0.0)            ; 1169 (1169)         ; 351 (351)                 ; 0 (0)         ; 0                 ; 0     ; 0          ; 0    ; 0            ; |de1soc_top|processor:proc                                                                                      ; processor       ; work         ;
 +----------------------------------------------+----------------------+----------------------------------+---------------------------------------------------+----------------------------------+----------------------+---------------------+---------------------------+---------------+-------------------+-------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -1791,160 +1814,190 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; LEDR[9]  ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; IRDA_RXD ; Input    ; -- ; --   ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; IRDA_TXD ; Output   ; -- ; --   ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; PS2_CLK  ; Bidir    ; -- ; --   ; (0)  ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
+; PS2_DAT  ; Bidir    ; -- ; (0)  ; --   ; -- ; (0)  ; (31)  ; --     ; --                     ; --                       ;
 ; KEY[3]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; CLOCK_50 ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[0]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[0]    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; KEY[0]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[9]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[1]    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; KEY[1]   ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[2]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[1]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; KEY[1]   ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[2]    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; KEY[2]   ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[3]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[8]    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[5]    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[4]    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[5]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[4]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 ; SW[7]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
-; SW[6]    ; Input    ; -- ; --   ; (0)  ; -- ; --   ; --    ; --     ; --                     ; --                       ;
+; SW[6]    ; Input    ; -- ; (0)  ; --   ; -- ; --   ; --    ; --     ; --                     ; --                       ;
 +----------+----------+----+------+------+----+------+-------+--------+------------------------+--------------------------+
 
 
-+-----------------------------------------------------------------------------------------+
-; Pad To Core Delay Chain Fanout                                                          ;
-+-----------------------------------------------------------+-------------------+---------+
-; Source Pin / Fanout                                       ; Pad To Core Index ; Setting ;
-+-----------------------------------------------------------+-------------------+---------+
-; IRDA_RXD                                                  ;                   ;         ;
-; KEY[3]                                                    ;                   ;         ;
-;      - avalon_bus:data_bus|mem_done                       ; 0                 ; 0       ;
-;      - processor:proc|DataOut[15]~0                       ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[0]~0                       ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Equal3~0                       ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[1]~1                       ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[13]~2                      ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[12]~3                      ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Equal2~0                       ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|hex_reg[0][0]~2                ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[2]~4                       ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|hex_reg[3][0]~6                ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[9]~5                       ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Equal3~1                       ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[11]~6                      ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[8]~7                       ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[10]~8                      ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|comb~0                         ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux14~0                        ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|comb~2                         ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux14~2                        ; 0                 ; 0       ;
-;      - processor:proc|stage_comb_values[2].op1[15]~1      ; 0                 ; 0       ;
-;      - processor:proc|next_status_value.negative~0        ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|mem_done~0                     ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[7]~1              ; 0                 ; 0       ;
-;      - processor:proc|stage_comb_values[0].out[15]~1      ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux11~0                        ; 0                 ; 0       ;
-;      - processor:proc|stage_comb_values~72                ; 0                 ; 0       ;
-;      - processor:proc|stage_comb_values~73                ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|avalon_fp_mult:fp_mult|Mux14~0 ; 0                 ; 0       ;
-;      - processor:proc|stage_comb_values~126               ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|avalon_fp_mult:fp_mult|Mux14~2 ; 0                 ; 0       ;
-;      - processor:proc|stage_comb_values~133               ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux12~1                        ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|avalon_fp_mult:fp_mult|Mux13~0 ; 0                 ; 0       ;
-;      - processor:proc|stage_comb_values~141               ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux11~2                        ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux11~3                        ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux10~0                        ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux9~0                         ; 0                 ; 0       ;
-;      - avalon_bus:data_bus|Mux15~0                        ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[0]~0                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[1]~1                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[2]~2                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[3]~3                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[4]~4                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[5]~5                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[6]~6                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[7]~7                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[8]~8                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[9]~9                      ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[10]~10                    ; 0                 ; 0       ;
-;      - processor:proc|InstrAddr[11]~11                    ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[3]~9                       ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[4]~10                      ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[5]~11                      ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[6]~12                      ; 0                 ; 0       ;
-;      - processor:proc|DataAddr[7]~13                      ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[5]~3              ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[4]~4              ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[6]~5              ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[1]~6              ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[3]~7              ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[0]~8              ; 0                 ; 0       ;
-;      - processor:proc|signals.write_reg[2]~9              ; 0                 ; 0       ;
-;      - processor:proc|read_registers~254                  ; 0                 ; 0       ;
-; CLOCK_50                                                  ;                   ;         ;
-; SW[0]                                                     ;                   ;         ;
-;      - processor:proc|stage_comb_values~72                ; 0                 ; 0       ;
-; KEY[0]                                                    ;                   ;         ;
-;      - processor:proc|stage_comb_values~72                ; 0                 ; 0       ;
-; SW[9]                                                     ;                   ;         ;
-;      - processor:proc|stage_comb_values~127               ; 0                 ; 0       ;
-; SW[1]                                                     ;                   ;         ;
-;      - avalon_bus:data_bus|Mux12~1                        ; 1                 ; 0       ;
-; KEY[1]                                                    ;                   ;         ;
-;      - avalon_bus:data_bus|Mux12~1                        ; 1                 ; 0       ;
-; SW[2]                                                     ;                   ;         ;
-;      - avalon_bus:data_bus|Mux11~2                        ; 0                 ; 0       ;
-; KEY[2]                                                    ;                   ;         ;
-;      - avalon_bus:data_bus|Mux11~2                        ; 1                 ; 0       ;
-; SW[3]                                                     ;                   ;         ;
-;      - avalon_bus:data_bus|Mux10~0                        ; 0                 ; 0       ;
-; SW[8]                                                     ;                   ;         ;
-;      - processor:proc|stage_comb_values~153               ; 1                 ; 0       ;
-; SW[5]                                                     ;                   ;         ;
-;      - processor:proc|stage_comb_values~161               ; 1                 ; 0       ;
-; SW[4]                                                     ;                   ;         ;
-;      - avalon_bus:data_bus|Mux9~0                         ; 1                 ; 0       ;
-; SW[7]                                                     ;                   ;         ;
-;      - processor:proc|stage_comb_values~182               ; 0                 ; 0       ;
-; SW[6]                                                     ;                   ;         ;
-;      - processor:proc|stage_comb_values~193               ; 1                 ; 0       ;
-+-----------------------------------------------------------+-------------------+---------+
++----------------------------------------------------------------------------------------------------------+
+; Pad To Core Delay Chain Fanout                                                                           ;
++----------------------------------------------------------------------------+-------------------+---------+
+; Source Pin / Fanout                                                        ; Pad To Core Index ; Setting ;
++----------------------------------------------------------------------------+-------------------+---------+
+; IRDA_RXD                                                                   ;                   ;         ;
+; PS2_CLK                                                                    ;                   ;         ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_syn0~0 ; 1                 ; 0       ;
+; PS2_DAT                                                                    ;                   ;         ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_dat_syn0~0 ; 0                 ; 0       ;
+; KEY[3]                                                                     ;                   ;         ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[0]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[1]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[2]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[3]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[4]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[5]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[6]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[7]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[8]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[9]  ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|mem_done                                        ; 0                 ; 0       ;
+;      - processor:proc|DataOut[15]~0                                        ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[0]~0                                        ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Equal7~0                                        ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[1]~1                                        ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[13]~2                                       ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[12]~3                                       ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Equal6~0                                        ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|hex_reg[0][0]~2                                 ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[2]~4                                        ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|hex_reg[3][0]~6                                 ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[9]~5                                        ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Equal7~1                                        ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[11]~6                                       ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[8]~7                                        ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[10]~8                                       ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|comb~0                                          ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Mux17~0                                         ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|comb~2                                          ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Mux17~2                                         ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values[2].op1[15]~1                       ; 0                 ; 0       ;
+;      - processor:proc|next_status_value.negative~0                         ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|mem_done~0                                      ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[7]~1                               ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values[0].out[15]~1                       ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~71                                 ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~72                                 ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~73                                 ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Mux13~0                                         ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~76                                 ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~77                                 ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_fp_mult:fp_mult|Mux14~0                  ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~129                                ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_fp_mult:fp_mult|Mux14~2                  ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~139                                ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Mux13~1                                         ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|avalon_fp_mult:fp_mult|Mux13~0                  ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~161                                ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Mux13~3                                         ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~173                                ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Mux12~1                                         ; 0                 ; 0       ;
+;      - avalon_bus:data_bus|Mux18~0                                         ; 0                 ; 0       ;
+;      - processor:proc|stage_comb_values~204                                ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[0]~0                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[1]~1                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[2]~2                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[3]~3                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[4]~4                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[5]~5                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[6]~6                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[7]~7                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[8]~8                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[9]~9                                       ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[10]~10                                     ; 0                 ; 0       ;
+;      - processor:proc|InstrAddr[11]~11                                     ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[3]~9                                        ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[4]~10                                       ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[5]~11                                       ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[6]~12                                       ; 0                 ; 0       ;
+;      - processor:proc|DataAddr[7]~13                                       ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[5]~3                               ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[4]~4                               ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[6]~5                               ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[1]~6                               ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[3]~7                               ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[0]~8                               ; 0                 ; 0       ;
+;      - processor:proc|signals.write_reg[2]~9                               ; 0                 ; 0       ;
+; CLOCK_50                                                                   ;                   ;         ;
+;      - avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]     ; 0                 ; 0       ;
+; SW[0]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~73                                 ; 1                 ; 0       ;
+; KEY[0]                                                                     ;                   ;         ;
+;      - processor:proc|stage_comb_values~76                                 ; 0                 ; 0       ;
+; SW[9]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~130                                ; 0                 ; 0       ;
+; SW[1]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~138                                ; 0                 ; 0       ;
+; KEY[1]                                                                     ;                   ;         ;
+;      - processor:proc|stage_comb_values~138                                ; 0                 ; 0       ;
+; SW[2]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~152                                ; 1                 ; 0       ;
+; KEY[2]                                                                     ;                   ;         ;
+;      - processor:proc|stage_comb_values~152                                ; 1                 ; 0       ;
+; SW[3]                                                                      ;                   ;         ;
+;      - avalon_bus:data_bus|Mux13~3                                         ; 0                 ; 0       ;
+; SW[8]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~166                                ; 1                 ; 0       ;
+; SW[5]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~173                                ; 0                 ; 0       ;
+; SW[4]                                                                      ;                   ;         ;
+;      - avalon_bus:data_bus|Mux12~1                                         ; 0                 ; 0       ;
+; SW[7]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~194                                ; 0                 ; 0       ;
+; SW[6]                                                                      ;                   ;         ;
+;      - processor:proc|stage_comb_values~204                                ; 0                 ; 0       ;
++----------------------------------------------------------------------------+-------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                                                                                         ;
-+----------------------------------------------------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; Name                                                     ; Location             ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+----------------------------------------------------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; CLOCK_50                                                 ; PIN_AF14             ; 489     ; Clock        ; yes    ; Global Clock         ; GCLK6            ; --                        ;
-; KEY[3]                                                   ; PIN_Y16              ; 66      ; Sync. clear  ; no     ; --                   ; --               ; --                        ;
-; KEY[3]                                                   ; PIN_Y16              ; 472     ; Async. clear ; yes    ; Global Clock         ; GCLK7            ; --                        ;
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|op1[0]~0      ; MLABCELL_X87_Y11_N6  ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|op1_reg[14]~0 ; MLABCELL_X87_Y11_N51 ; 33      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|op2[0]~0      ; MLABCELL_X87_Y11_N3  ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|comb~3                               ; LABCELL_X81_Y11_N51  ; 8       ; Write enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|hex_reg[0][0]~3                      ; LABCELL_X83_Y11_N15  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|hex_reg[1][0]~4                      ; LABCELL_X85_Y12_N45  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|hex_reg[2][0]~5                      ; LABCELL_X83_Y11_N57  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|hex_reg[3][0]~7                      ; LABCELL_X83_Y11_N18  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|hex_reg[4][0]~8                      ; LABCELL_X85_Y11_N24  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|hex_reg[5][0]~9                      ; LABCELL_X83_Y11_N36  ; 7       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; avalon_bus:data_bus|ledr_reg[0]~0                        ; LABCELL_X79_Y13_N54  ; 10      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|next_status_value.negative~0              ; LABCELL_X77_Y7_N39   ; 3       ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[0]~8                    ; LABCELL_X74_Y5_N9    ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[1]~6                    ; LABCELL_X71_Y7_N15   ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[2]~9                    ; MLABCELL_X78_Y6_N45  ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[3]~7                    ; LABCELL_X73_Y6_N36   ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[4]~4                    ; LABCELL_X75_Y6_N33   ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[5]~3                    ; LABCELL_X80_Y5_N51   ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[6]~5                    ; LABCELL_X71_Y6_N18   ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|signals.write_reg[7]~1                    ; LABCELL_X77_Y7_N57   ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|stage_comb_values[0].out[15]~2            ; MLABCELL_X72_Y7_N0   ; 16      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|stage_comb_values[2].op1[15]~0            ; MLABCELL_X82_Y8_N12  ; 135     ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|stage_comb_values[2].op1[15]~1            ; LABCELL_X71_Y9_N0    ; 53      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; processor:proc|stage_regs[3].link                        ; FF_X70_Y8_N26        ; 17      ; Sync. load   ; no     ; --                   ; --               ; --                        ;
-; processor:proc|stage_regs[3].writeback                   ; FF_X77_Y8_N11        ; 96      ; Sync. load   ; no     ; --                   ; --               ; --                        ;
-+----------------------------------------------------------+----------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                                                                                                 ;
++-----------------------------------------------------------------------+---------------------+---------+--------------------------+--------+----------------------+------------------+---------------------------+
+; Name                                                                  ; Location            ; Fan-Out ; Usage                    ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++-----------------------------------------------------------------------+---------------------+---------+--------------------------+--------+----------------------+------------------+---------------------------+
+; CLOCK_50                                                              ; PIN_AF14            ; 520     ; Clock                    ; yes    ; Global Clock         ; GCLK6            ; --                        ;
+; CLOCK_50                                                              ; PIN_AF14            ; 2       ; Clock                    ; no     ; --                   ; --               ; --                        ;
+; KEY[3]                                                                ; PIN_Y16             ; 78      ; Sync. clear, Sync. load  ; no     ; --                   ; --               ; --                        ;
+; KEY[3]                                                                ; PIN_Y16             ; 515     ; Async. clear             ; yes    ; Global Clock         ; GCLK7            ; --                        ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|op1[0]~0                   ; LABCELL_X85_Y9_N3   ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|op1_reg[14]~0              ; LABCELL_X85_Y9_N27  ; 33      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|op2[0]~0                   ; LABCELL_X85_Y7_N57  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|Equal2~0         ; LABCELL_X63_Y2_N48  ; 10      ; Sync. clear              ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|Equal3~2         ; LABCELL_X67_Y2_N54  ; 6       ; Async. clear             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|always6~1        ; LABCELL_X68_Y4_N12  ; 32      ; Clock enable, Sync. load ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]       ; FF_X67_Y2_N2        ; 60      ; Clock                    ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cur_state.listen ; FF_X68_Y2_N59       ; 36      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cur_state.trans  ; FF_X68_Y2_N53       ; 16      ; Sync. clear              ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|de~0             ; LABCELL_X67_Y2_N24  ; 2       ; Output enable            ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in       ; FF_X65_Y2_N29       ; 52      ; Clock                    ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch~0        ; LABCELL_X66_Y4_N39  ; 12      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|y_latch~0        ; LABCELL_X67_Y3_N42  ; 9       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|comb~3                                            ; LABCELL_X83_Y8_N15  ; 8       ; Write enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|hex_reg[0][0]~3                                   ; MLABCELL_X84_Y9_N12 ; 7       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|hex_reg[1][0]~4                                   ; MLABCELL_X84_Y9_N0  ; 7       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|hex_reg[2][0]~5                                   ; MLABCELL_X84_Y9_N33 ; 7       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|hex_reg[3][0]~7                                   ; MLABCELL_X84_Y9_N54 ; 7       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|hex_reg[4][0]~8                                   ; MLABCELL_X84_Y9_N57 ; 7       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|hex_reg[5][0]~9                                   ; MLABCELL_X84_Y9_N42 ; 7       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; avalon_bus:data_bus|ledr_reg[0]~0                                     ; MLABCELL_X84_Y7_N3  ; 10      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|next_status_value.negative~0                           ; LABCELL_X75_Y8_N9   ; 3       ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[0]~8                                 ; LABCELL_X74_Y5_N57  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[1]~6                                 ; LABCELL_X71_Y9_N45  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[2]~9                                 ; LABCELL_X74_Y5_N12  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[3]~7                                 ; LABCELL_X71_Y9_N48  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[4]~4                                 ; LABCELL_X71_Y9_N33  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[5]~3                                 ; LABCELL_X71_Y5_N15  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[6]~5                                 ; LABCELL_X70_Y7_N57  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|signals.write_reg[7]~1                                 ; LABCELL_X73_Y6_N42  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|stage_comb_values[0].out[15]~2                         ; LABCELL_X75_Y7_N24  ; 16      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|stage_comb_values[2].op1[15]~0                         ; MLABCELL_X82_Y7_N12 ; 135     ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|stage_comb_values[2].op1[15]~1                         ; LABCELL_X74_Y7_N51  ; 53      ; Clock enable             ; no     ; --                   ; --               ; --                        ;
+; processor:proc|stage_regs[3].link                                     ; FF_X71_Y7_N5        ; 17      ; Sync. load               ; no     ; --                   ; --               ; --                        ;
+; processor:proc|stage_regs[3].writeback                                ; FF_X79_Y8_N53       ; 96      ; Sync. load               ; no     ; --                   ; --               ; --                        ;
++-----------------------------------------------------------------------+---------------------+---------+--------------------------+--------+----------------------+------------------+---------------------------+
 
 
 +-----------------------------------------------------------------------------------------------------+
@@ -1952,19 +2005,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+----------+---------+----------------------+------------------+---------------------------+
 ; Name     ; Location ; Fan-Out ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------+----------+---------+----------------------+------------------+---------------------------+
-; CLOCK_50 ; PIN_AF14 ; 489     ; Global Clock         ; GCLK6            ; --                        ;
-; KEY[3]   ; PIN_Y16  ; 472     ; Global Clock         ; GCLK7            ; --                        ;
+; CLOCK_50 ; PIN_AF14 ; 520     ; Global Clock         ; GCLK6            ; --                        ;
+; KEY[3]   ; PIN_Y16  ; 515     ; Global Clock         ; GCLK7            ; --                        ;
 +----------+----------+---------+----------------------+------------------+---------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter RAM Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
-+----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+--------------+----------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+----------+------------------------+-----------------------+
-; Name                                                                                                           ; Type ; Mode        ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size  ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M10K blocks ; MLABs ; MIF          ; Location                                                                                                                               ; Mixed Width RDW Mode ; Port A RDW Mode ; Port B RDW Mode ; ECC Mode ; ECC Pipeline Registers ; Fits in MLABs         ;
-+----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+--------------+----------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+----------+------------------------+-----------------------+
-; avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; Single Clock ; 4096         ; 16           ; --           ; --           ; yes                    ; no                      ; --                     ; --                      ; 65536 ; 4096                        ; 16                          ; --                          ; --                          ; 65536               ; 8           ; 0     ; inst_mem.mif ; M10K_X69_Y10_N0, M10K_X76_Y12_N0, M10K_X69_Y12_N0, M10K_X76_Y11_N0, M10K_X76_Y14_N0, M10K_X69_Y11_N0, M10K_X76_Y10_N0, M10K_X76_Y13_N0 ; Don't care           ; New data        ; New data        ; Off      ; No                     ; No - Address Too Wide ;
-; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ALTSYNCRAM                    ; AUTO ; Single Port ; Single Clock ; 4096         ; 16           ; --           ; --           ; yes                    ; no                      ; --                     ; --                      ; 65536 ; 4096                        ; 16                          ; --                          ; --                          ; 65536               ; 8           ; 0     ; inst_mem.mif ; M10K_X76_Y7_N0, M10K_X76_Y6_N0, M10K_X69_Y6_N0, M10K_X76_Y5_N0, M10K_X69_Y5_N0, M10K_X69_Y8_N0, M10K_X76_Y8_N0, M10K_X69_Y7_N0         ; Don't care           ; New data        ; New data        ; Off      ; No                     ; No - Address Too Wide ;
-+----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+--------------+----------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+----------+------------------------+-----------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter RAM Summary                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ;
++----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+--------------+----------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+----------+------------------------+-----------------------+
+; Name                                                                                                           ; Type ; Mode        ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size  ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M10K blocks ; MLABs ; MIF          ; Location                                                                                                                         ; Mixed Width RDW Mode ; Port A RDW Mode ; Port B RDW Mode ; ECC Mode ; ECC Pipeline Registers ; Fits in MLABs         ;
++----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+--------------+----------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+----------+------------------------+-----------------------+
+; avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; Single Clock ; 4096         ; 16           ; --           ; --           ; yes                    ; no                      ; --                     ; --                      ; 65536 ; 4096                        ; 16                          ; --                          ; --                          ; 65536               ; 8           ; 0     ; inst_mem.mif ; M10K_X76_Y8_N0, M10K_X76_Y6_N0, M10K_X76_Y9_N0, M10K_X76_Y4_N0, M10K_X76_Y7_N0, M10K_X76_Y10_N0, M10K_X76_Y11_N0, M10K_X76_Y5_N0 ; Don't care           ; New data        ; New data        ; Off      ; No                     ; No - Address Too Wide ;
+; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ALTSYNCRAM                    ; AUTO ; Single Port ; Single Clock ; 4096         ; 16           ; --           ; --           ; yes                    ; no                      ; --                     ; --                      ; 65536 ; 4096                        ; 16                          ; --                          ; --                          ; 65536               ; 8           ; 0     ; inst_mem.mif ; M10K_X76_Y3_N0, M10K_X69_Y4_N0, M10K_X69_Y8_N0, M10K_X69_Y3_N0, M10K_X69_Y5_N0, M10K_X69_Y9_N0, M10K_X69_Y6_N0, M10K_X69_Y7_N0   ; Don't care           ; New data        ; New data        ; Off      ; No                     ; No - Address Too Wide ;
++----------------------------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+-------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+-------------+-------+--------------+----------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+----------+------------------------+-----------------------+
 Note: Fitter may spread logical memories into multiple blocks to improve timing. The actual required RAM blocks can be found in the Fitter Resource Usage section.
 
 
@@ -1980,13 +2033,13 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +---------------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; DSP Block Details                                                                                                                                                                                                                                                                                                                                                                                                                                         ;
-+---------------------------------------------------------------------+-----------------+----------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
-; Name                                                                ; Mode            ; Location       ; Sign Representation ; Data AX Input Register ; Data AY Input Register ; Data AZ Input Register ; Data BX Input Register ; Data BY Input Register ; Data BZ Input Register ; Output Register ; Dedicated Shift Register Chain ; Dedicated Pre-Adder ; Dedicated Coefficient Storage ; Dedicated Output Adder Chain ; Dedicated Output Accumulator ;
-+---------------------------------------------------------------------+-----------------+----------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm|Mult0~8 ; Independent 9x9 ; DSP_X86_Y10_N0 ; Unsigned            ; no                     ; no                     ; --                     ; --                     ; --                     ; --                     ; no              ; no                             ; no                  ; no                            ; no                           ; no                           ;
-+---------------------------------------------------------------------+-----------------+----------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; DSP Block Details                                                                                                                                                                                                                                                                                                                                                                                                                                        ;
++---------------------------------------------------------------------+-----------------+---------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
+; Name                                                                ; Mode            ; Location      ; Sign Representation ; Data AX Input Register ; Data AY Input Register ; Data AZ Input Register ; Data BX Input Register ; Data BY Input Register ; Data BZ Input Register ; Output Register ; Dedicated Shift Register Chain ; Dedicated Pre-Adder ; Dedicated Coefficient Storage ; Dedicated Output Adder Chain ; Dedicated Output Accumulator ;
++---------------------------------------------------------------------+-----------------+---------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm|Mult0~8 ; Independent 9x9 ; DSP_X86_Y6_N0 ; Unsigned            ; no                     ; no                     ; --                     ; --                     ; --                     ; --                     ; no              ; no                             ; no                  ; no                            ; no                           ; no                           ;
++---------------------------------------------------------------------+-----------------+---------------+---------------------+------------------------+------------------------+------------------------+------------------------+------------------------+------------------------+-----------------+--------------------------------+---------------------+-------------------------------+------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------------+
@@ -1994,14 +2047,14 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +---------------------------------------------+---------------------------+
 ; Routing Resource Type                       ; Usage                     ;
 +---------------------------------------------+---------------------------+
-; Block interconnects                         ; 3,094 / 289,320 ( 1 % )   ;
-; C12 interconnects                           ; 31 / 13,420 ( < 1 % )     ;
-; C2 interconnects                            ; 903 / 119,108 ( < 1 % )   ;
-; C4 interconnects                            ; 401 / 56,300 ( < 1 % )    ;
+; Block interconnects                         ; 3,296 / 289,320 ( 1 % )   ;
+; C12 interconnects                           ; 26 / 13,420 ( < 1 % )     ;
+; C2 interconnects                            ; 952 / 119,108 ( < 1 % )   ;
+; C4 interconnects                            ; 475 / 56,300 ( < 1 % )    ;
 ; DQS bus muxes                               ; 0 / 25 ( 0 % )            ;
 ; DQS-18 I/O buses                            ; 0 / 25 ( 0 % )            ;
 ; DQS-9 I/O buses                             ; 0 / 25 ( 0 % )            ;
-; Direct links                                ; 230 / 289,320 ( < 1 % )   ;
+; Direct links                                ; 336 / 289,320 ( < 1 % )   ;
 ; Global clocks                               ; 2 / 16 ( 13 % )           ;
 ; HPS SDRAM PLL inputs                        ; 0 / 1 ( 0 % )             ;
 ; HPS SDRAM PLL outputs                       ; 0 / 1 ( 0 % )             ;
@@ -2057,13 +2110,13 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 ; HPS_INTERFACE_TPIU_TRACE_INPUTs             ; 0 / 2 ( 0 % )             ;
 ; HPS_INTERFACE_TPIU_TRACE_OUTPUTs            ; 0 / 33 ( 0 % )            ;
 ; Horizontal periphery clocks                 ; 0 / 72 ( 0 % )            ;
-; Local interconnects                         ; 511 / 84,580 ( < 1 % )    ;
+; Local interconnects                         ; 620 / 84,580 ( < 1 % )    ;
 ; Quadrant clocks                             ; 0 / 66 ( 0 % )            ;
-; R14 interconnects                           ; 73 / 12,676 ( < 1 % )     ;
-; R14/C12 interconnect drivers                ; 89 / 20,720 ( < 1 % )     ;
-; R3 interconnects                            ; 1,097 / 130,992 ( < 1 % ) ;
-; R6 interconnects                            ; 1,739 / 266,960 ( < 1 % ) ;
-; Spine clocks                                ; 2 / 360 ( < 1 % )         ;
+; R14 interconnects                           ; 113 / 12,676 ( < 1 % )    ;
+; R14/C12 interconnect drivers                ; 124 / 20,720 ( < 1 % )    ;
+; R3 interconnects                            ; 1,235 / 130,992 ( < 1 % ) ;
+; R6 interconnects                            ; 1,947 / 266,960 ( < 1 % ) ;
+; Spine clocks                                ; 3 / 360 ( < 1 % )         ;
 ; Wire stub REs                               ; 0 / 15,858 ( 0 % )        ;
 +---------------------------------------------+---------------------------+
 
@@ -2074,10 +2127,10 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 ; I/O Rules Statistic              ; Total ;
 +----------------------------------+-------+
 ; Total I/O Rules                  ; 28    ;
-; Number of I/O Rules Passed       ; 6     ;
+; Number of I/O Rules Passed       ; 7     ;
 ; Number of I/O Rules Failed       ; 0     ;
 ; Number of I/O Rules Unchecked    ; 0     ;
-; Number of I/O Rules Inapplicable ; 22    ;
+; Number of I/O Rules Inapplicable ; 21    ;
 +----------------------------------+-------+
 
 
@@ -2106,7 +2159,7 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 ; Inapplicable ; IO_000020 ; I/O Properties Checks for One I/O ; The I/O standard should support the requested PCI Clamp Diode.                     ; Critical ; No Clamping Diode assignments found.                                     ; I/O  ;                   ;
 ; Inapplicable ; IO_000021 ; I/O Properties Checks for One I/O ; The I/O standard should support the requested Weak Pull Up value.                  ; Critical ; No Weak Pull-Up Resistor assignments found.                              ; I/O  ;                   ;
 ; Inapplicable ; IO_000022 ; I/O Properties Checks for One I/O ; The I/O standard should support the requested Bus Hold value.                      ; Critical ; No Enable Bus-Hold Circuitry assignments found.                          ; I/O  ;                   ;
-; Inapplicable ; IO_000023 ; I/O Properties Checks for One I/O ; The I/O standard should support the Open Drain value.                              ; Critical ; No open drain assignments found.                                         ; I/O  ;                   ;
+; Pass         ; IO_000023 ; I/O Properties Checks for One I/O ; The I/O standard should support the Open Drain value.                              ; Critical ; 0 such failures found.                                                   ; I/O  ;                   ;
 ; Inapplicable ; IO_000024 ; I/O Properties Checks for One I/O ; The I/O direction should support the On Chip Termination value.                    ; Critical ; No Termination assignments found.                                        ; I/O  ;                   ;
 ; Inapplicable ; IO_000026 ; I/O Properties Checks for One I/O ; On Chip Termination and Current Strength should not be used at the same time.      ; Critical ; No Current Strength or Termination assignments found.                    ; I/O  ;                   ;
 ; Inapplicable ; IO_000027 ; I/O Properties Checks for One I/O ; Weak Pull Up and Bus Hold should not be used at the same time.                     ; Critical ; No Enable Bus-Hold Circuitry or Weak Pull-Up Resistor assignments found. ; I/O  ;                   ;
@@ -2122,9 +2175,9 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
 ; Pin/Rules          ; IO_000001 ; IO_000002    ; IO_000003 ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007 ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012    ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019    ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000034    ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+
-; Total Pass         ; 69        ; 0            ; 69        ; 0            ; 0            ; 69        ; 69        ; 0            ; 69        ; 69        ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
+; Total Pass         ; 71        ; 0            ; 71        ; 0            ; 0            ; 71        ; 71        ; 0            ; 71        ; 71        ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
 ; Total Unchecked    ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
-; Total Inapplicable ; 0         ; 69           ; 0         ; 69           ; 69           ; 0         ; 0         ; 69           ; 0         ; 0         ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ; 69           ;
+; Total Inapplicable ; 0         ; 71           ; 0         ; 71           ; 71           ; 0         ; 0         ; 71           ; 0         ; 0         ; 71           ; 71           ; 71           ; 71           ; 71           ; 71           ; 71           ; 71           ; 71           ; 71           ; 70           ; 71           ; 71           ; 71           ; 71           ; 71           ; 71           ; 71           ;
 ; Total Fail         ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ;
 ; HEX0[0]            ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; HEX0[1]            ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
@@ -2180,6 +2233,8 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 ; LEDR[9]            ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; IRDA_RXD           ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; IRDA_TXD           ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; PS2_CLK            ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
+; PS2_DAT            ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; KEY[3]             ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; CLOCK_50           ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
 ; SW[0]              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ;
@@ -2246,90 +2301,120 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +-----------------+----------------------+-------------------+
 ; Source Clock(s) ; Destination Clock(s) ; Delay Added in ns ;
 +-----------------+----------------------+-------------------+
-; CLOCK_50        ; CLOCK_50             ; 14.0              ;
+; CLOCK_50        ; CLOCK_50             ; 40.0              ;
+; CLOCK_50,I/O    ; CLOCK_50             ; 10.2              ;
 +-----------------+----------------------+-------------------+
 Note: For more information on problematic transfers, consider running the Fitter again with the Optimize hold timing option (Settings Menu) turned off.
 This will disable optimization of problematic paths and expose them for further analysis using the Timing Analyzer.
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Estimated Delay Added for Hold Timing Details                                                                                                                                                                          ;
-+--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+-------------------+
-; Source Register                                              ; Destination Register                                                                                                                ; Delay Added in ns ;
-+--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+-------------------+
-; processor:proc|registers[7][7]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.326             ;
-; processor:proc|registers[7][8]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.324             ;
-; processor:proc|registers[7][1]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.318             ;
-; processor:proc|registers[7][10]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.318             ;
-; processor:proc|registers[7][4]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.318             ;
-; processor:proc|registers[7][5]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.318             ;
-; processor:proc|registers[7][2]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.317             ;
-; processor:proc|registers[7][11]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.308             ;
-; processor:proc|registers[7][9]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.308             ;
-; processor:proc|registers[7][3]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.303             ;
-; processor:proc|registers[7][6]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.303             ;
-; processor:proc|stage_regs[3].out[10]                         ; processor:proc|registers[5][10]                                                                                                     ; 0.251             ;
-; processor:proc|stage_regs[3].out[9]                          ; processor:proc|registers[6][9]                                                                                                      ; 0.251             ;
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[3] ; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[1]                                                                        ; 0.238             ;
-; processor:proc|stage_regs[3].out[1]                          ; processor:proc|registers[6][1]                                                                                                      ; 0.224             ;
-; processor:proc|stage_regs[1].next_pc[8]                      ; processor:proc|stage_regs[2].next_pc[8]                                                                                             ; 0.221             ;
-; processor:proc|stage_regs[2].next_pc[5]                      ; processor:proc|stage_regs[3].next_pc[5]                                                                                             ; 0.221             ;
-; processor:proc|stage_regs[1].next_pc[6]                      ; processor:proc|stage_regs[2].next_pc[6]                                                                                             ; 0.221             ;
-; processor:proc|stage_regs[1].next_pc[12]                     ; processor:proc|stage_regs[2].next_pc[12]                                                                                            ; 0.221             ;
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[1] ; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[2]                                                                        ; 0.217             ;
-; processor:proc|stage_regs[1].next_pc[14]                     ; processor:proc|stage_regs[2].next_pc[14]                                                                                            ; 0.213             ;
-; processor:proc|stage_regs[2].next_pc[4]                      ; processor:proc|stage_regs[3].next_pc[4]                                                                                             ; 0.213             ;
-; processor:proc|stage_regs[1].next_pc[1]                      ; processor:proc|stage_regs[2].next_pc[1]                                                                                             ; 0.213             ;
-; processor:proc|stage_regs[1].next_pc[2]                      ; processor:proc|stage_regs[2].next_pc[2]                                                                                             ; 0.213             ;
-; processor:proc|stage_regs[1].next_pc[13]                     ; processor:proc|stage_regs[2].next_pc[13]                                                                                            ; 0.213             ;
-; processor:proc|stage_regs[2].next_pc[6]                      ; processor:proc|stage_regs[3].next_pc[6]                                                                                             ; 0.213             ;
-; processor:proc|stage_regs[1].next_pc[0]                      ; processor:proc|stage_regs[2].next_pc[0]                                                                                             ; 0.213             ;
-; processor:proc|stage_regs[1].sp_incr                         ; processor:proc|stage_regs[2].sp_incr                                                                                                ; 0.213             ;
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[2] ; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[3]                                                                        ; 0.211             ;
-; processor:proc|stage_regs[1].next_pc[15]                     ; processor:proc|stage_regs[2].next_pc[15]                                                                                            ; 0.205             ;
-; processor:proc|stage_regs[1].next_pc[9]                      ; processor:proc|stage_regs[2].next_pc[9]                                                                                             ; 0.205             ;
-; processor:proc|stage_regs[2].next_pc[9]                      ; processor:proc|stage_regs[3].next_pc[9]                                                                                             ; 0.205             ;
-; processor:proc|stage_regs[1].modifies_reg[3]                 ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.204             ;
-; processor:proc|stage_regs[1].rX[1]                           ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.203             ;
-; processor:proc|stage_regs[1].modifies_reg[4]                 ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.202             ;
-; processor:proc|stage_regs[1].modifies_reg[7]                 ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.202             ;
-; processor:proc|stage_regs[1].modifies_reg[5]                 ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.201             ;
-; processor:proc|stage_regs[2].next_pc[15]                     ; processor:proc|stage_regs[3].next_pc[15]                                                                                            ; 0.197             ;
-; processor:proc|stage_regs[1].next_pc[7]                      ; processor:proc|stage_regs[2].next_pc[7]                                                                                             ; 0.197             ;
-; processor:proc|stage_regs[2].next_pc[14]                     ; processor:proc|stage_regs[3].next_pc[14]                                                                                            ; 0.197             ;
-; processor:proc|stage_regs[1].next_pc[4]                      ; processor:proc|stage_regs[2].next_pc[4]                                                                                             ; 0.197             ;
-; processor:proc|stage_regs[2].next_pc[13]                     ; processor:proc|stage_regs[3].next_pc[13]                                                                                            ; 0.197             ;
-; processor:proc|stage_regs[2].next_pc[12]                     ; processor:proc|stage_regs[3].next_pc[12]                                                                                            ; 0.197             ;
-; processor:proc|stage_regs[1].sp_decr                         ; processor:proc|stage_regs[2].sp_decr                                                                                                ; 0.197             ;
-; processor:proc|stage_regs[3].out[14]                         ; processor:proc|registers[1][14]                                                                                                     ; 0.196             ;
-; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[0] ; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[2]                                                                        ; 0.195             ;
-; processor:proc|stage_regs[1].rX[0]                           ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.192             ;
-; processor:proc|status_reg.zero                               ; processor:proc|stage_regs[2].next_pc[8]                                                                                             ; 0.182             ;
-; processor:proc|status_reg.negative                           ; processor:proc|stage_regs[2].next_pc[8]                                                                                             ; 0.179             ;
-; processor:proc|stage_regs[1].cond[2]                         ; processor:proc|stage_regs[2].next_pc[8]                                                                                             ; 0.166             ;
-; processor:proc|stage_regs[1].cond[0]                         ; processor:proc|stage_regs[2].next_pc[8]                                                                                             ; 0.166             ;
-; processor:proc|stage_regs[1].cond[1]                         ; processor:proc|stage_regs[2].next_pc[8]                                                                                             ; 0.166             ;
-; processor:proc|status_reg.carry                              ; processor:proc|stage_regs[2].next_pc[8]                                                                                             ; 0.166             ;
-; processor:proc|stage_regs[1].next_pc[11]                     ; processor:proc|stage_regs[2].next_pc[11]                                                                                            ; 0.131             ;
-; processor:proc|stage_regs[2].op2[13]                         ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.118             ;
-; processor:proc|stage_regs[2].op2[15]                         ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.118             ;
-; processor:proc|stage_regs[2].write                           ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.118             ;
-; processor:proc|stage_regs[2].read                            ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.118             ;
-; KEY[3]                                                       ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.118             ;
-; processor:proc|registers[7][0]                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a2~porta_address_reg0                    ; 0.118             ;
-; processor:proc|stage_regs[2].op2[14]                         ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.118             ;
-; processor:proc|stage_regs[1].link                            ; processor:proc|stage_regs[2].link                                                                                                   ; 0.115             ;
-; processor:proc|stage_regs[3].out[15]                         ; processor:proc|registers[3][15]                                                                                                     ; 0.110             ;
-; processor:proc|stage_regs[2].op2[12]                         ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.080             ;
-; avalon_bus:data_bus|mem_done                                 ; avalon_bus:data_bus|mem_done                                                                                                        ; 0.080             ;
-; processor:proc|stage_regs[2].op2[3]                          ; avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0 ; 0.073             ;
-; processor:proc|stage_regs[2].next_pc[0]                      ; processor:proc|stage_regs[3].next_pc[0]                                                                                             ; 0.067             ;
-; processor:proc|stage_regs[2].modifies_reg[1]                 ; processor:proc|stage_regs[3].modifies_reg[1]                                                                                        ; 0.066             ;
-; processor:proc|stage_regs[2].modifies_reg[0]                 ; processor:proc|stage_regs[3].modifies_reg[0]                                                                                        ; 0.059             ;
-; processor:proc|stage_regs[2].modifies_reg[2]                 ; processor:proc|stage_regs[3].modifies_reg[2]                                                                                        ; 0.055             ;
-; processor:proc|stage_regs[2].op2[4]                          ; avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0 ; 0.017             ;
-+--------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+-------------------+
-Note: This table only shows the top 71 path(s) that have the largest delay added for hold.
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Estimated Delay Added for Hold Timing Details                                                                                                                                                                             ;
++-----------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+-------------------+
+; Source Register                                                 ; Destination Register                                                                                                                ; Delay Added in ns ;
++-----------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+-------------------+
+; processor:proc|stage_regs[1].modifies_reg[7]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.868             ;
+; processor:proc|stage_regs[1].rX[2]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.736             ;
+; processor:proc|stage_regs[1].modifies_reg[6]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.727             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[0] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.650             ;
+; processor:proc|stage_regs[1].rX[0]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.619             ;
+; avalon_bus:data_bus|mem_done                                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.271             ;
+; processor:proc|stage_regs[1].cond[2]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.226             ;
+; processor:proc|stage_regs[2].modifies_reg[7]                    ; processor:proc|stage_regs[1].modifies_reg[4]                                                                                        ; 1.098             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[7] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[6] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[5] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[4] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[3] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[2] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[1] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] ; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]                                                                     ; 1.090             ;
+; processor:proc|stage_regs[1].cond[0]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.086             ;
+; processor:proc|stage_regs[1].modifies_reg[5]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.078             ;
+; processor:proc|stage_regs[4].modifies_reg[7]                    ; processor:proc|stage_regs[1].modifies_reg[4]                                                                                        ; 1.033             ;
+; processor:proc|stage_regs[2].op2[9]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 1.015             ;
+; processor:proc|status_reg.negative                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.966             ;
+; processor:proc|status_reg.zero                                  ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.966             ;
+; processor:proc|stage_regs[1].cond[1]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.966             ;
+; processor:proc|status_reg.carry                                 ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.966             ;
+; processor:proc|stage_regs[2].write                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.964             ;
+; processor:proc|stage_regs[2].read                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.940             ;
+; processor:proc|stage_regs[1].writeback                          ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.816             ;
+; processor:proc|stage_regs[1].rX[1]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.798             ;
+; processor:proc|registers[7][0]                                  ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.795             ;
+; processor:proc|stage_regs[2].op1[4]                             ; avalon_bus:data_bus|ledr_reg[4]                                                                                                     ; 0.782             ;
+; processor:proc|stage_regs[2].op1[9]                             ; avalon_bus:data_bus|ledr_reg[9]                                                                                                     ; 0.762             ;
+; processor:proc|stage_regs[3].modifies_reg[7]                    ; processor:proc|stage_regs[1].modifies_reg[4]                                                                                        ; 0.758             ;
+; processor:proc|stage_regs[2].op1[8]                             ; avalon_bus:data_bus|ledr_reg[8]                                                                                                     ; 0.755             ;
+; processor:proc|stage_regs[2].op1[11]                            ; avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a11~porta_datain_reg0 ; 0.738             ;
+; processor:proc|stage_regs[2].op1[7]                             ; avalon_bus:data_bus|ledr_reg[7]                                                                                                     ; 0.738             ;
+; processor:proc|stage_regs[2].op1[5]                             ; avalon_bus:data_bus|ledr_reg[5]                                                                                                     ; 0.721             ;
+; processor:proc|stage_regs[2].modifies_reg[6]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].modifies_reg[6]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[1].modifies_reg[4]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].modifies_reg[4]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].modifies_reg[4]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[1].modifies_reg[3]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].modifies_reg[3]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].modifies_reg[3]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[1].modifies_reg[2]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].modifies_reg[2]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].modifies_reg[2]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[1].modifies_reg[1]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].modifies_reg[1]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].modifies_reg[1]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[1].modifies_reg[0]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].modifies_reg[0]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].modifies_reg[0]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].modifies_reg[5]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].modifies_reg[5]                    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[3]    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[2]    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[8]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[13]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[12]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[10]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].out_ready                          ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[4]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[12]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[15]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[15]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[0]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[1].write                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[11]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[1]    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[2]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[3]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[1]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].out_ready                          ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[10]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[6]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[8]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[1]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[14]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[9]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].rX[0]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].rX[0]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[7]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[1].read                               ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].writeback                          ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].writeback                          ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; KEY[3]                                                          ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[11]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].rX[2]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].rX[2]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[0]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[13]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[5]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[0].out[2]                             ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].rX[1]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[3].rX[1]                              ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op2[14]                            ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[0]    ; inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated|ram_block1a4~porta_address_reg0                    ; 0.715             ;
+; processor:proc|stage_regs[2].op1[10]                            ; avalon_bus:data_bus|avalon_fp_mult:fp_mult|op2[10]                                                                                  ; 0.658             ;
+; processor:proc|stage_regs[2].op1[0]                             ; avalon_bus:data_bus|IR_emit_reg                                                                                                     ; 0.571             ;
++-----------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------+-------------------+
+Note: This table only shows the top 100 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -2349,8 +2434,8 @@ Warning (15714): Some pins have incomplete I/O assignments. Refer to the I/O Ass
 Info (176045): Design uses memory blocks. Violating setup or hold times of memory block address registers for either read or write operations could cause memory contents to be corrupted. Make sure that all memory block address registers meet the setup and hold time requirements.
 Info (184020): Starting Fitter periphery placement operations
 Info (11191): Automatically promoted 2 clocks (2 global)
-    Info (11162): CLOCK_50~inputCLKENA0 with 505 fanout uses global clock CLKCTRL_G6
-    Info (11162): KEY[3]~inputCLKENA0 with 472 fanout uses global clock CLKCTRL_G7
+    Info (11162): CLOCK_50~inputCLKENA0 with 534 fanout uses global clock CLKCTRL_G6
+    Info (11162): KEY[3]~inputCLKENA0 with 507 fanout uses global clock CLKCTRL_G7
 Info (184021): Fitter periphery placement operations ending: elapsed time is 00:00:00
 Info (176233): Starting register packing
 Warning (176250): Ignoring invalid fast I/O register assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
@@ -2388,6 +2473,10 @@ Warning (332049): Ignored set_output_delay at de1soc.sdc(69): Argument -clock is
 Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
     Info (332050): set_output_delay -min -clock clk_vga -1.485 [get_ports VGA_BLANK_N] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
 Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
+Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ct[4] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info (332129): Detected timing requirements -- optimizing circuit to achieve only the specified requirements
 Info (332111): Found 1 clocks
@@ -2405,7 +2494,7 @@ Info (128002): Starting physical synthesis algorithm register retiming
 Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 0 ps
 Info (128002): Starting physical synthesis algorithm combinational resynthesis using boolean division
 Info (128003): Physical synthesis algorithm combinational resynthesis using boolean division complete: estimated slack improvement of 0 ps
-Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:02
+Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:03
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
@@ -2537,9 +2626,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "GPIO_1[7]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "GPIO_1[8]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "GPIO_1[9]" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "PS2_CLK" is assigned to location or region, but does not exist in design
     Warning (15706): Node "PS2_CLK2" is assigned to location or region, but does not exist in design
-    Warning (15706): Node "PS2_DAT" is assigned to location or region, but does not exist in design
     Warning (15706): Node "PS2_DAT2" is assigned to location or region, but does not exist in design
     Warning (15706): Node "TD_CLK27" is assigned to location or region, but does not exist in design
     Warning (15706): Node "TD_DATA[0]" is assigned to location or region, but does not exist in design
@@ -2599,18 +2686,18 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "VGA_R[7]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_SYNC_N" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_VS" is assigned to location or region, but does not exist in design
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:17
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:24
 Info (170189): Fitter placement preparation operations beginning
 Info (14951): The Fitter is using Advanced Physical Optimization.
-Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:07
+Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:08
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:04
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 11% of the available device resources in the region that extends from location X67_Y0 to location X77_Y10
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:09
-Info (11888): Total time spent on timing analysis during the Fitter is 2.95 seconds.
+    Info (170196): Router estimated peak interconnect usage is 16% of the available device resources in the region that extends from location X67_Y0 to location X77_Y10
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:11
+Info (11888): Total time spent on timing analysis during the Fitter is 3.66 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
@@ -2619,10 +2706,10 @@ Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:08
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/out/de1soc.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 219 warnings
-    Info: Peak virtual memory: 6712 megabytes
-    Info: Processing ended: Thu Mar 03 19:08:37 2022
-    Info: Elapsed time: 00:01:11
-    Info: Total CPU time (on all processors): 00:02:35
+    Info: Peak virtual memory: 6715 megabytes
+    Info: Processing ended: Sun Mar 06 19:18:09 2022
+    Info: Elapsed time: 00:01:37
+    Info: Total CPU time (on all processors): 00:03:13
 
 
 +----------------------------+

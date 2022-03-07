@@ -1,5 +1,5 @@
 Flow report for de1soc
-Thu Mar 03 19:09:12 2022
+Sun Mar 06 19:18:37 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,16 +40,16 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Mar 03 19:08:47 2022       ;
+; Flow Status                     ; Successful - Sun Mar 06 19:18:20 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; de1soc                                      ;
 ; Top-level Entity Name           ; de1soc_top                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Device                          ; 5CSEMA5F31C6                                ;
 ; Timing Models                   ; Final                                       ;
-; Logic utilization (in ALMs)     ; 838 / 32,070 ( 3 % )                        ;
-; Total registers                 ; 473                                         ;
-; Total pins                      ; 69 / 457 ( 15 % )                           ;
+; Logic utilization (in ALMs)     ; 925 / 32,070 ( 3 % )                        ;
+; Total registers                 ; 615                                         ;
+; Total pins                      ; 71 / 457 ( 16 % )                           ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 131,072 / 4,065,280 ( 3 % )                 ;
 ; Total DSP Blocks                ; 1 / 87 ( 1 % )                              ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/03/2022 19:07:06 ;
+; Start date & time ; 03/06/2022 19:16:04 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; de1soc              ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +--------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID                ; 963354559296.164635242604112           ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                ; 91763772910.164661216321024            ; --            ; --          ; --         ;
 ; FITTER_EFFORT                        ; Standard Fit                           ; Auto Fit      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --          ; --         ;
@@ -104,11 +104,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:19     ; 1.0                     ; 4851 MB             ; 00:00:34                           ;
-; Fitter               ; 00:01:10     ; 1.1                     ; 6712 MB             ; 00:02:34                           ;
-; Assembler            ; 00:00:09     ; 1.0                     ; 4842 MB             ; 00:00:09                           ;
-; Timing Analyzer      ; 00:00:24     ; 1.8                     ; 5181 MB             ; 00:00:39                           ;
-; Total                ; 00:02:02     ; --                      ; --                  ; 00:03:56                           ;
+; Analysis & Synthesis ; 00:00:23     ; 1.0                     ; 4854 MB             ; 00:00:41                           ;
+; Fitter               ; 00:01:36     ; 1.1                     ; 6715 MB             ; 00:03:12                           ;
+; Assembler            ; 00:00:10     ; 1.0                     ; 4839 MB             ; 00:00:10                           ;
+; Timing Analyzer      ; 00:00:15     ; 1.8                     ; 5188 MB             ; 00:00:24                           ;
+; Total                ; 00:02:24     ; --                      ; --                  ; 00:04:27                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

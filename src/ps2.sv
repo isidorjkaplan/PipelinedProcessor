@@ -11,55 +11,31 @@ module avalon_ps2
 											//together with read.
 
 	output logic ps2_done, //Signal to stall the Avalon bus when the peripheral is busy.
-	input PS2_CLK,
-	input PS2_DATA
+	inout PS2_CLK,
+	inout PS2_DATA
 );
-	logic [8:0] buffer;
-	logic idle;
-	logic valid;
-	logic pairity_bit;
-	integer bits_read = 0;
+	logic [2:0] data;
+	logic [3:0] x;
+	logic [3:0] y;
+	assign out = {4'b0, x, y, data};
+	assign ps2_done = 1;
 	
-	parameter NUM_BYTES=3;
-	logic [8:0] bytes[NUM_BYTES];
-
-	
-	always_ff@(posedge PS2_CLK, posedge reset) begin
-		if (reset) begin
-			bits_read <= 0;
-			idle <= 1;
-			valid <= 0;
-			buffer <= 0;
-			for (integer i =0 ; i < NUM_BYTES; i++) begin
-				bytes[i] <= 0;
-			end
-		end
-		else if (idle) begin //this is the start of a new transmission
-			idle <= 0;
-			bits_read <= 0;
-		end
-		else if (bits_read <= 8) begin //goes equal to 8 since we have a pairity bit as the 9th bit
-			buffer[bits_read] <= PS2_DATA;//read data into buffer
-			bits_read <= (bits_read + 1); //increment bits read
-		end
-		else begin //this is the stop command
-			idle <= 0;
-			bits_read <= 0;
-			valid <= ^buffer; //XOR reduction. Must have even pairity to be valid
-			//update the "bytes" with the latest data
-			for (integer i = 0; i < NUM_BYTES-1; i++) begin
-				bytes[i] <= bytes[i+1];
-			end
-			bytes[NUM_BYTES-1] <= buffer;
-		end
-	end
-	
-	assign ps2_done = idle; //only valid if currently idle
-	always_comb begin
-		out = 0;
-		if (address < NUM_BYTES) begin
-			out = bytes[address];
-		end	
-	end
+	ps2_mouse #(
+			.WIDTH(10),
+			.HEIGHT(10),
+			.BIN(100),
+			.HYSTERESIS(30))
+	U1(
+			.start(reset),  
+			.reset(reset),  
+			.CLOCK_50(clk),  
+			.PS2_CLK(PS2_CLK), 
+			.PS2_DAT(PS2_DATA), 
+			.button_left(data[0]),  
+			.button_right(data[1]),  
+			.button_middle(data[2]),  
+			.bin_x(x),
+			.bin_y(y)
+			);
 	 
 endmodule 

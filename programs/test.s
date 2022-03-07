@@ -5,6 +5,7 @@
 .define LEDR_ADDRESS 0x2200
 .define KEY_ADDRESS 0x2300
 .define IR_ADDRESS 0x2400
+.define PS2_ADDRESS 0x2500
 
 
 START:
@@ -17,7 +18,8 @@ START:
     mv r4, #16
 
 MAIN:
-    bl IO_TEST
+    //bl IO_TEST
+    bl PS2_TEST
     bl LOGIC_TEST
     bl COUNT_TEST
     bl NO_RAW_TEST
@@ -26,6 +28,24 @@ MAIN:
 
 MAX_IR_VAL:
     .word 0x0
+
+PS2_TEST:
+    push r0
+    push r1
+    push r2
+    push r3
+    push r4
+    mvt r4, #PS2_ADDRESS
+    mvt r3, #LEDR_ADDRESS
+    ld r0, [r4]
+    st r0, [r3]
+    pop r4
+    pop r3
+    pop r2
+    pop r1
+    pop r0
+    mv pc, lr //done, return from test
+
 
 IO_TEST:
     push r0

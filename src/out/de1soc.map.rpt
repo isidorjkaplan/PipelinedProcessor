@@ -1,5 +1,5 @@
 Analysis & Synthesis report for de1soc
-Thu Mar 03 19:07:25 2022
+Sun Mar 06 19:16:28 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -15,26 +15,28 @@ Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis DSP Block Usage Summary
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (No Restructuring Performed)
- 14. Source assignments for inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated
- 15. Source assignments for avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated
- 16. Parameter Settings for User Entity Instance: inst_mem:InstrMem|altsyncram:altsyncram_component
- 17. Parameter Settings for User Entity Instance: avalon_bus:data_bus
- 18. Parameter Settings for User Entity Instance: avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component
- 19. Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult
- 20. Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm
- 21. Parameter Settings for User Entity Instance: processor:proc
- 22. altsyncram Parameter Settings by Entity Instance
- 23. Port Connectivity Checks: "processor:proc"
- 24. Port Connectivity Checks: "avalon_bus:data_bus"
- 25. Port Connectivity Checks: "inst_mem:InstrMem"
- 26. Post-Synthesis Netlist Statistics for Top Partition
- 27. Elapsed Time Per Partition
- 28. Analysis & Synthesis Messages
- 29. Analysis & Synthesis Suppressed Messages
+ 10. State Machine - |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cur_state
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (No Restructuring Performed)
+ 15. Source assignments for inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated
+ 16. Source assignments for avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated
+ 17. Parameter Settings for User Entity Instance: inst_mem:InstrMem|altsyncram:altsyncram_component
+ 18. Parameter Settings for User Entity Instance: avalon_bus:data_bus
+ 19. Parameter Settings for User Entity Instance: avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component
+ 20. Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1
+ 21. Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult
+ 22. Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm
+ 23. Parameter Settings for User Entity Instance: processor:proc
+ 24. altsyncram Parameter Settings by Entity Instance
+ 25. Port Connectivity Checks: "processor:proc"
+ 26. Port Connectivity Checks: "avalon_bus:data_bus"
+ 27. Port Connectivity Checks: "inst_mem:InstrMem"
+ 28. Post-Synthesis Netlist Statistics for Top Partition
+ 29. Elapsed Time Per Partition
+ 30. Analysis & Synthesis Messages
+ 31. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -60,14 +62,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Mar 03 19:07:25 2022       ;
+; Analysis & Synthesis Status     ; Successful - Sun Mar 06 19:16:28 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; de1soc                                      ;
 ; Top-level Entity Name           ; de1soc_top                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 473                                         ;
-; Total pins                      ; 69                                          ;
+; Total registers                 ; 605                                         ;
+; Total pins                      ; 71                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 131,072                                     ;
 ; Total DSP Blocks                ; 1                                           ;
@@ -197,6 +199,8 @@ refer to the applicable agreement for further details.
 ; inst_mem.v                       ; yes             ; User Wizard-Generated File       ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v             ;         ;
 ; data_bus.sv                      ; yes             ; User SystemVerilog HDL File      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv            ;         ;
 ; de1soc_top.sv                    ; yes             ; User SystemVerilog HDL File      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv          ;         ;
+; ps2.sv                           ; yes             ; User SystemVerilog HDL File      ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2.sv                 ;         ;
+; ps2_mouse.v                      ; yes             ; User Verilog HDL File            ; C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v            ;         ;
 ; altsyncram.tdf                   ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf                                        ;         ;
 ; stratix_ram_block.inc            ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                 ;         ;
 ; lpm_mux.inc                      ; yes             ; Megafunction                     ; c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/lpm_mux.inc                                           ;         ;
@@ -215,27 +219,27 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+--------------+
 ; Resource                                    ; Usage        ;
 +---------------------------------------------+--------------+
-; Estimate of Logic utilization (ALMs needed) ; 872          ;
+; Estimate of Logic utilization (ALMs needed) ; 956          ;
 ;                                             ;              ;
-; Combinational ALUT usage for logic          ; 1305         ;
-;     -- 7 input functions                    ; 79           ;
-;     -- 6 input functions                    ; 347          ;
-;     -- 5 input functions                    ; 181          ;
-;     -- 4 input functions                    ; 250          ;
-;     -- <=3 input functions                  ; 448          ;
+; Combinational ALUT usage for logic          ; 1450         ;
+;     -- 7 input functions                    ; 75           ;
+;     -- 6 input functions                    ; 369          ;
+;     -- 5 input functions                    ; 199          ;
+;     -- 4 input functions                    ; 261          ;
+;     -- <=3 input functions                  ; 546          ;
 ;                                             ;              ;
-; Dedicated logic registers                   ; 473          ;
+; Dedicated logic registers                   ; 605          ;
 ;                                             ;              ;
-; I/O pins                                    ; 69           ;
+; I/O pins                                    ; 71           ;
 ; Total MLAB memory bits                      ; 0            ;
 ; Total block memory bits                     ; 131072       ;
 ;                                             ;              ;
 ; Total DSP Blocks                            ; 1            ;
 ;                                             ;              ;
 ; Maximum fan-out node                        ; KEY[3]~input ;
-; Maximum fan-out                             ; 537          ;
-; Total fan-out                               ; 8239         ;
-; Average fan-out                             ; 4.23         ;
+; Maximum fan-out                             ; 584          ;
+; Total fan-out                               ; 9134         ;
+; Average fan-out                             ; 4.09         ;
 +---------------------------------------------+--------------+
 
 
@@ -244,17 +248,19 @@ refer to the applicable agreement for further details.
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                             ; Entity Name     ; Library Name ;
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
-; |de1soc_top                                  ; 1305 (1)            ; 473 (0)                   ; 131072            ; 1          ; 69   ; 0            ; |de1soc_top                                                                                                     ; de1soc_top      ; work         ;
-;    |avalon_bus:data_bus|                     ; 138 (49)            ; 122 (54)                  ; 65536             ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus                                                                                 ; avalon_bus      ; work         ;
-;       |avalon_fp_mult:fp_mult|               ; 89 (45)             ; 68 (68)                   ; 0                 ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult                                                          ; avalon_fp_mult  ; work         ;
-;          |fp_mult_lab4:fpm|                  ; 44 (44)             ; 0 (0)                     ; 0                 ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm                                         ; fp_mult_lab4    ; work         ;
+; |de1soc_top                                  ; 1450 (1)            ; 605 (0)                   ; 131072            ; 1          ; 71   ; 0            ; |de1soc_top                                                                                                     ; de1soc_top      ; work         ;
+;    |avalon_bus:data_bus|                     ; 280 (44)            ; 254 (54)                  ; 65536             ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus                                                                                 ; avalon_bus      ; work         ;
+;       |avalon_fp_mult:fp_mult|               ; 89 (43)             ; 68 (68)                   ; 0                 ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult                                                          ; avalon_fp_mult  ; work         ;
+;          |fp_mult_lab4:fpm|                  ; 46 (46)             ; 0 (0)                     ; 0                 ; 1          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|fp_mult_lab4:fpm                                         ; fp_mult_lab4    ; work         ;
+;       |avalon_ps2:ps2_cont|                  ; 147 (12)            ; 132 (0)                   ; 0                 ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont                                                             ; avalon_ps2      ; work         ;
+;          |ps2_mouse:U1|                      ; 135 (135)           ; 132 (132)                 ; 0                 ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1                                                ; ps2_mouse       ; work         ;
 ;       |inst_mem:DataMem|                     ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem                                                                ; inst_mem        ; work         ;
 ;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component                                ; altsyncram      ; work         ;
 ;             |altsyncram_1po1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|avalon_bus:data_bus|inst_mem:DataMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated ; altsyncram_1po1 ; work         ;
 ;    |inst_mem:InstrMem|                       ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem                                                                                   ; inst_mem        ; work         ;
 ;       |altsyncram:altsyncram_component|      ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem|altsyncram:altsyncram_component                                                   ; altsyncram      ; work         ;
 ;          |altsyncram_1po1:auto_generated|    ; 0 (0)               ; 0 (0)                     ; 65536             ; 0          ; 0    ; 0            ; |de1soc_top|inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated                    ; altsyncram_1po1 ; work         ;
-;    |processor:proc|                          ; 1166 (1166)         ; 351 (351)                 ; 0                 ; 0          ; 0    ; 0            ; |de1soc_top|processor:proc                                                                                      ; processor       ; work         ;
+;    |processor:proc|                          ; 1169 (1169)         ; 351 (351)                 ; 0                 ; 0          ; 0    ; 0            ; |de1soc_top|processor:proc                                                                                      ; processor       ; work         ;
 +----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------+-----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -281,18 +287,34 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------+-------------+
 
 
-+--------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                     ;
-+--------------------------------------------------+-----------------------------------------------------+
-; Register name                                    ; Reason for Removal                                  ;
-+--------------------------------------------------+-----------------------------------------------------+
-; processor:proc|stage_regs[1].alu_op[4..9,11..31] ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
-; processor:proc|stage_regs[1].cond[3..31]         ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
-; processor:proc|stage_regs[1].out[0..15]          ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
-; processor:proc|stage_regs[1].out_ready           ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
-; processor:proc|stage_regs[1].alu_op[10]          ; Stuck at GND due to stuck port data_in              ;
-; Total Number of Removed Registers = 74           ;                                                     ;
-+--------------------------------------------------+-----------------------------------------------------+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------+
+; State Machine - |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cur_state     ;
++-------------------+-----------------+-------------------+-------------------+------------------+
+; Name              ; cur_state.trans ; cur_state.pulldat ; cur_state.pullclk ; cur_state.listen ;
++-------------------+-----------------+-------------------+-------------------+------------------+
+; cur_state.listen  ; 0               ; 0                 ; 0                 ; 0                ;
+; cur_state.pullclk ; 0               ; 0                 ; 1                 ; 1                ;
+; cur_state.pulldat ; 0               ; 1                 ; 0                 ; 1                ;
+; cur_state.trans   ; 1               ; 0                 ; 0                 ; 1                ;
++-------------------+-----------------+-------------------+-------------------+------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                     ;
++------------------------------------------------------------------+-----------------------------------------------------+
+; Register name                                                    ; Reason for Removal                                  ;
++------------------------------------------------------------------+-----------------------------------------------------+
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|dout_reg[9] ; Stuck at GND due to stuck port data_in              ;
+; processor:proc|stage_regs[1].alu_op[4..9,11..31]                 ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].cond[3..31]                         ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].out[0..15]                          ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].out_ready                           ; Merged with processor:proc|stage_regs[1].alu_op[10] ;
+; processor:proc|stage_regs[1].alu_op[10]                          ; Stuck at GND due to stuck port data_in              ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cur_state~4 ; Lost fanout                                         ;
+; avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cur_state~5 ; Lost fanout                                         ;
+; Total Number of Removed Registers = 77                           ;                                                     ;
++------------------------------------------------------------------+-----------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -300,12 +322,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 473   ;
-; Number of registers using Synchronous Clear  ; 1     ;
-; Number of registers using Synchronous Load   ; 96    ;
-; Number of registers using Asynchronous Clear ; 472   ;
+; Total registers                              ; 605   ;
+; Number of registers using Synchronous Clear  ; 21    ;
+; Number of registers using Synchronous Load   ; 113   ;
+; Number of registers using Asynchronous Clear ; 513   ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 388   ;
+; Number of registers using Clock Enable       ; 443   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -335,59 +357,65 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------------------------+---------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (No Restructuring Performed)                                                                                                                      ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                               ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
-; 3:1                ; 19 bits   ; 38 LEs        ; 0 LEs                ; 38 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[3].sp_incr                         ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |de1soc_top|processor:proc|status_reg.zero                               ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[3] ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[4][3]                               ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[3][1]                               ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[2][3]                               ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[1][15]                              ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[0][15]                              ;
-; 4:1                ; 53 bits   ; 106 LEs       ; 0 LEs                ; 106 LEs                ; Yes        ; |de1soc_top|processor:proc|stage_regs[2].op2[7]                          ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[0].out[15]                         ;
-; 5:1                ; 16 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[6][0]                               ;
-; 6:1                ; 16 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[5][13]                              ;
-; 9:1                ; 24 bits   ; 144 LEs       ; 0 LEs                ; 144 LEs                ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].write                           ;
-; 10:1               ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].modifies_reg[2]                 ;
-; 11:1               ; 8 bits    ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[1]                          ;
-; 17:1               ; 3 bits    ; 33 LEs        ; 30 LEs               ; 3 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].cond[1]                         ;
-; 17:1               ; 16 bits   ; 176 LEs       ; 96 LEs               ; 80 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op1[7]                          ;
-; 20:1               ; 2 bits    ; 26 LEs        ; 20 LEs               ; 6 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].alu_op[2]                       ;
-; 23:1               ; 4 bits    ; 60 LEs        ; 56 LEs               ; 4 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[11]                         ;
-; 23:1               ; 4 bits    ; 60 LEs        ; 56 LEs               ; 4 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[15]                         ;
-; 5:1                ; 16 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|processor:proc|registers[7][7]                               ;
-; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|DataAddr[5]                                   ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftRight0                                   ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftLeft0                                    ;
-; 4:1                ; 18 bits   ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftLeft0                                    ;
-; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|signals.write_reg[3]                          ;
-; 3:1                ; 28 bits   ; 56 LEs        ; 56 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|immediate                                     ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|InstrAddr[4]                                  ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|DataOut[6]                                    ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|immediate                                     ;
-; 9:1                ; 8 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
-; 32:1               ; 5 bits    ; 105 LEs       ; 55 LEs               ; 50 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
-; 33:1               ; 3 bits    ; 66 LEs        ; 36 LEs               ; 30 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
-; 19:1               ; 4 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector6                                     ;
-; 19:1               ; 4 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector10                                    ;
-; 20:1               ; 3 bits    ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector13                                    ;
-; 20:1               ; 4 bits    ; 52 LEs        ; 52 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector4                                     ;
-; 55:1               ; 3 bits    ; 108 LEs       ; 57 LEs               ; 51 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                             ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (No Restructuring Performed)                                                                                                                            ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
+; 3:1                ; 9 bits    ; 18 LEs        ; 0 LEs                ; 18 LEs                 ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|starttimer[5] ;
+; 3:1                ; 19 bits   ; 38 LEs        ; 0 LEs                ; 38 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[3].next_pc[0]                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |de1soc_top|processor:proc|status_reg.zero                                     ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_fp_mult:fp_mult|waiting_cycles[2]       ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[2]     ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oY_BIN[3]     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[4][6]                                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[3][6]                                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[2][7]                                     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[1][10]                                    ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[0][15]                                    ;
+; 4:1                ; 53 bits   ; 106 LEs       ; 0 LEs                ; 106 LEs                ; Yes        ; |de1soc_top|processor:proc|stage_regs[2].op1[13]                               ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[0].out[5]                                ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|x_latch[8]    ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|y_latch[3]    ;
+; 5:1                ; 16 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[6][12]                                    ;
+; 6:1                ; 16 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |de1soc_top|processor:proc|registers[5][4]                                     ;
+; 9:1                ; 24 bits   ; 144 LEs       ; 0 LEs                ; 144 LEs                ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].next_pc[14]                           ;
+; 10:1               ; 6 bits    ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].modifies_reg[7]                       ;
+; 11:1               ; 8 bits    ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[7]                                ;
+; 17:1               ; 3 bits    ; 33 LEs        ; 30 LEs               ; 3 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].cond[0]                               ;
+; 17:1               ; 16 bits   ; 176 LEs       ; 96 LEs               ; 80 LEs                 ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op1[11]                               ;
+; 20:1               ; 2 bits    ; 26 LEs        ; 20 LEs               ; 6 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].alu_op[1]                             ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 56 LEs               ; 4 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[11]                               ;
+; 23:1               ; 4 bits    ; 60 LEs        ; 56 LEs               ; 4 LEs                  ; Yes        ; |de1soc_top|processor:proc|stage_regs[1].op2[12]                               ;
+; 5:1                ; 16 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; Yes        ; |de1soc_top|processor:proc|registers[7][9]                                     ;
+; 3:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|DataAddr[9]                                         ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftLeft0                                          ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftRight0                                         ;
+; 4:1                ; 18 bits   ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|ShiftLeft0                                          ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|signals.write_reg[4]                                ;
+; 3:1                ; 28 bits   ; 56 LEs        ; 56 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|stage_comb_values                                   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|immediate                                           ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|InstrAddr[1]                                        ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|DataOut[8]                                          ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|read_registers                                      ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|immediate                                           ;
+; 9:1                ; 8 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|stage_comb_values                                   ;
+; 32:1               ; 3 bits    ; 63 LEs        ; 33 LEs               ; 30 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                                   ;
+; 33:1               ; 2 bits    ; 44 LEs        ; 24 LEs               ; 20 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                                   ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector8                                           ;
+; 19:1               ; 4 bits    ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector9                                           ;
+; 20:1               ; 3 bits    ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector15                                          ;
+; 20:1               ; 4 bits    ; 52 LEs        ; 52 LEs               ; 0 LEs                  ; No         ; |de1soc_top|processor:proc|Selector2                                           ;
+; 47:1               ; 3 bits    ; 93 LEs        ; 42 LEs               ; 51 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                                   ;
+; 55:1               ; 3 bits    ; 108 LEs       ; 60 LEs               ; 48 LEs                 ; No         ; |de1soc_top|processor:proc|stage_comb_values                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------+
@@ -482,6 +510,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; S_DEV_LEDR     ; 0010  ; Unsigned Binary                         ;
 ; S_DEV_KEY      ; 0011  ; Unsigned Binary                         ;
 ; S_DEV_IR       ; 0100  ; Unsigned Binary                         ;
+; S_DEV_PS2      ; 0101  ; Unsigned Binary                         ;
 ; S_DEV_FP       ; 0000  ; Unsigned Binary                         ;
 +----------------+-------+-----------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
@@ -545,6 +574,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                               ;
 ; CBXI_PARAMETER                     ; altsyncram_1po1      ; Untyped                                               ;
 +------------------------------------+----------------------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1 ;
++----------------+-------+--------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                     ;
++----------------+-------+--------------------------------------------------------------------------+
+; WIDTH          ; 10    ; Signed Integer                                                           ;
+; HEIGHT         ; 10    ; Signed Integer                                                           ;
+; BIN            ; 100   ; Signed Integer                                                           ;
+; HYSTERESIS     ; 30    ; Signed Integer                                                           ;
++----------------+-------+--------------------------------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -661,36 +703,42 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 473                         ;
-;     CLR               ; 84                          ;
-;     ENA CLR           ; 292                         ;
-;     ENA CLR SLD       ; 96                          ;
-;     SCLR              ; 1                           ;
-; arriav_lcell_comb     ; 1347                        ;
-;     arith             ; 102                         ;
-;         0 data inputs ; 4                           ;
-;         1 data inputs ; 58                          ;
-;         2 data inputs ; 24                          ;
+; arriav_ff             ; 605                         ;
+;     CLR               ; 102                         ;
+;     ENA               ; 32                          ;
+;     ENA CLR           ; 299                         ;
+;     ENA CLR SLD       ; 112                         ;
+;     SCLR              ; 21                          ;
+;     SLD               ; 1                           ;
+;     plain             ; 38                          ;
+; arriav_io_obuf        ; 2                           ;
+; arriav_lcell_comb     ; 1492                        ;
+;     arith             ; 176                         ;
+;         0 data inputs ; 5                           ;
+;         1 data inputs ; 96                          ;
+;         2 data inputs ; 45                          ;
 ;         3 data inputs ; 16                          ;
-;     extend            ; 79                          ;
-;         7 data inputs ; 79                          ;
-;     normal            ; 1149                        ;
+;         4 data inputs ; 6                           ;
+;         5 data inputs ; 8                           ;
+;     extend            ; 75                          ;
+;         7 data inputs ; 75                          ;
+;     normal            ; 1224                        ;
 ;         0 data inputs ; 1                           ;
-;         1 data inputs ; 42                          ;
-;         2 data inputs ; 167                         ;
-;         3 data inputs ; 161                         ;
-;         4 data inputs ; 250                         ;
-;         5 data inputs ; 181                         ;
-;         6 data inputs ; 347                         ;
+;         1 data inputs ; 45                          ;
+;         2 data inputs ; 184                         ;
+;         3 data inputs ; 179                         ;
+;         4 data inputs ; 255                         ;
+;         5 data inputs ; 191                         ;
+;         6 data inputs ; 369                         ;
 ;     shared            ; 17                          ;
 ;         0 data inputs ; 1                           ;
 ;         2 data inputs ; 16                          ;
 ; arriav_mac            ; 1                           ;
-; boundary_port         ; 69                          ;
+; boundary_port         ; 71                          ;
 ; stratixv_ram_block    ; 32                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 12.00                       ;
-; Average LUT depth     ; 6.95                        ;
+; Max LUT depth         ; 12.50                       ;
+; Average LUT depth     ; 6.30                        ;
 +-----------------------+-----------------------------+
 
 
@@ -699,7 +747,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:06     ;
+; Top            ; 00:00:08     ;
 +----------------+--------------+
 
 
@@ -709,7 +757,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Thu Mar 03 19:07:05 2022
+    Info: Processing started: Sun Mar 06 19:16:02 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de1soc -c de1soc
 Info (16303): Aggressive Performance optimization mode selected -- timing performance will be prioritized at the potential cost of increased logic area and compilation time
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -725,11 +773,20 @@ Info (12021): Found 1 design units, including 1 entities, in source file data_bu
     Info (12023): Found entity 1: avalon_bus File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file de1soc_top.sv
     Info (12023): Found entity 1: de1soc_top File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file ps2.sv
+    Info (12023): Found entity 1: avalon_ps2 File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file ps2_mouse.v
+    Info (12023): Found entity 1: ps2_mouse File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 41
 Warning (10236): Verilog HDL Implicit Net warning at lab4_mult.sv(20): created implicit net for "fp_en" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 20
-Warning (10236): Verilog HDL Implicit Net warning at de1soc_top.sv(42): created implicit net for "IDRA_RXD" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 42
+Warning (10236): Verilog HDL Implicit Net warning at de1soc_top.sv(44): created implicit net for "IDRA_RXD" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 44
+Warning (10222): Verilog HDL Parameter Declaration warning at ps2_mouse.v(64): Parameter Declaration in module "ps2_mouse" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 64
+Warning (10222): Verilog HDL Parameter Declaration warning at ps2_mouse.v(65): Parameter Declaration in module "ps2_mouse" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 65
+Warning (10222): Verilog HDL Parameter Declaration warning at ps2_mouse.v(66): Parameter Declaration in module "ps2_mouse" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 66
+Warning (10222): Verilog HDL Parameter Declaration warning at ps2_mouse.v(88): Parameter Declaration in module "ps2_mouse" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 88
+Warning (10222): Verilog HDL Parameter Declaration warning at ps2_mouse.v(117): Parameter Declaration in module "ps2_mouse" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 117
 Info (12127): Elaborating entity "de1soc_top" for the top level hierarchy
-Warning (10030): Net "IDRA_RXD" at de1soc_top.sv(42) has no driver or initial value, using a default initial value '0' File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 42
-Info (12128): Elaborating entity "inst_mem" for hierarchy "inst_mem:InstrMem" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 32
+Warning (10030): Net "IDRA_RXD" at de1soc_top.sv(44) has no driver or initial value, using a default initial value '0' File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 44
+Info (12128): Elaborating entity "inst_mem" for hierarchy "inst_mem:InstrMem" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 34
 Info (12128): Elaborating entity "altsyncram" for hierarchy "inst_mem:InstrMem|altsyncram:altsyncram_component" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v Line: 86
 Info (12130): Elaborated megafunction instantiation "inst_mem:InstrMem|altsyncram:altsyncram_component" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v Line: 86
 Info (12133): Instantiated megafunction "inst_mem:InstrMem|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/inst_mem.v Line: 86
@@ -751,10 +808,23 @@ Info (12133): Instantiated megafunction "inst_mem:InstrMem|altsyncram:altsyncram
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_1po1.tdf
     Info (12023): Found entity 1: altsyncram_1po1 File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/db/altsyncram_1po1.tdf Line: 27
 Info (12128): Elaborating entity "altsyncram_1po1" for hierarchy "inst_mem:InstrMem|altsyncram:altsyncram_component|altsyncram_1po1:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 791
-Info (12128): Elaborating entity "avalon_bus" for hierarchy "avalon_bus:data_bus" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 42
-Warning (10230): Verilog HDL assignment warning at data_bus.sv(57): truncated value with size 8 to match size of target (7) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 57
-Critical Warning (10237): Verilog HDL warning at data_bus.sv(66): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 66
-Info (12128): Elaborating entity "avalon_fp_mult" for hierarchy "avalon_bus:data_bus|avalon_fp_mult:fp_mult" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 106
+Info (12128): Elaborating entity "avalon_bus" for hierarchy "avalon_bus:data_bus" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 44
+Warning (10230): Verilog HDL assignment warning at data_bus.sv(64): truncated value with size 8 to match size of target (7) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 64
+Critical Warning (10237): Verilog HDL warning at data_bus.sv(73): can't infer register for assignment in edge-triggered always construct because the clock isn't obvious. Generated combinational logic instead File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 73
+Info (12128): Elaborating entity "avalon_ps2" for hierarchy "avalon_bus:data_bus|avalon_ps2:ps2_cont" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 51
+Warning (10230): Verilog HDL assignment warning at ps2.sv(20): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2.sv Line: 20
+Info (12128): Elaborating entity "ps2_mouse" for hierarchy "avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2.sv Line: 39
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(126): truncated value with size 32 to match size of target (9) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 126
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(198): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 198
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(205): truncated value with size 32 to match size of target (1) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 205
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(211): truncated value with size 32 to match size of target (6) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 211
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(239): truncated value with size 32 to match size of target (10) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 239
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(247): truncated value with size 32 to match size of target (10) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 247
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(256): truncated value with size 32 to match size of target (10) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 256
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(264): truncated value with size 32 to match size of target (10) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 264
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(278): truncated value with size 32 to match size of target (4) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 278
+Warning (10230): Verilog HDL assignment warning at ps2_mouse.v(294): truncated value with size 32 to match size of target (4) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 294
+Info (12128): Elaborating entity "avalon_fp_mult" for hierarchy "avalon_bus:data_bus|avalon_fp_mult:fp_mult" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/data_bus.sv Line: 117
 Warning (10270): Verilog HDL Case Statement warning at lab4_mult.sv(51): incomplete case statement has no default case item File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 51
 Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(96): truncated value with size 32 to match size of target (4) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 96
 Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(105): truncated value with size 32 to match size of target (4) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 105
@@ -763,7 +833,7 @@ Info (12128): Elaborating entity "fp_mult_lab4" for hierarchy "avalon_bus:data_b
 Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(207): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 207
 Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(218): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 218
 Warning (10230): Verilog HDL assignment warning at lab4_mult.sv(248): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 248
-Info (12128): Elaborating entity "processor" for hierarchy "processor:proc" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 44
+Info (12128): Elaborating entity "processor" for hierarchy "processor:proc" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 46
 Warning (10036): Verilog HDL or VHDL warning at processor.sv(44): object "debug_stall_type" assigned a value but never read File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 44
 Warning (10230): Verilog HDL assignment warning at processor.sv(74): truncated value with size 32 to match size of target (8) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 74
 Warning (10230): Verilog HDL assignment warning at processor.sv(94): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 94
@@ -778,22 +848,24 @@ Warning (10230): Verilog HDL assignment warning at processor.sv(411): truncated 
 Warning (10230): Verilog HDL assignment warning at processor.sv(432): truncated value with size 32 to match size of target (16) File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/processor.sv Line: 432
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (286030): Timing-Driven Synthesis is running
+Info (17049): 2 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/out/de1soc.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "IRDA_RXD" File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc_top.sv Line: 14
-Info (21057): Implemented 1561 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1755 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
     Info (21059): Implemented 53 output pins
-    Info (21061): Implemented 1459 logic cells
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 1651 logic cells
     Info (21064): Implemented 32 RAM segments
     Info (21062): Implemented 1 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 28 warnings
-    Info: Peak virtual memory: 4851 megabytes
-    Info: Processing ended: Thu Mar 03 19:07:25 2022
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:35
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 44 warnings
+    Info: Peak virtual memory: 4854 megabytes
+    Info: Processing ended: Sun Mar 06 19:16:28 2022
+    Info: Elapsed time: 00:00:26
+    Info: Total CPU time (on all processors): 00:00:44
 
 
 +------------------------------------------+

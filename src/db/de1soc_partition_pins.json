@@ -216,6 +216,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "PS2_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "PS2_DAT",
+					"strict" : false
+				},
+				{
 					"name" : "KEY[3]",
 					"strict" : false
 				},

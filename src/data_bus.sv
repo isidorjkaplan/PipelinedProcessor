@@ -12,8 +12,8 @@ module avalon_bus
     input logic [3:0] KEY,
 	 input wire IRDA_RXD, //IR reciever wire
 	 output wire IRDA_TXD, //IR emitter wire
-	 input wire PS2_CLK,
-	 input wire PS2_DATA
+	 inout PS2_CLK,
+	 inout PS2_DATA
 );  
     parameter DEV_MEM = 4'h0, DEV_ONCHIP=4'h1, DEV_IO=4'h2;
 
