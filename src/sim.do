@@ -3,7 +3,7 @@ vlib work
 vlog *.v
 vlog *.sv
 
-vsim -L altera_mf_ver tb
+vsim -L altera_mf_ver sim
 
 
 log dut/proc/registers

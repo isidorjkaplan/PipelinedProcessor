@@ -1,6 +1,6 @@
 
 `timescale 1ns/1ns
-module tb();
+module sim();
     logic ResetN, Clock;
     //Initilize the DUT
     logic [6:0] HEX[6];
