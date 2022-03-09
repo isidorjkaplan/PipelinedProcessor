@@ -15,15 +15,16 @@ module avalon_dct #(
 	output logic done //Signal to stall the Avalon bus when the peripheral is busy.
 );
     //IDLE, can accept requests, COS=Calculating cosine terms for this N, DCT=doing DCT
-    parameter ADDR_SETUP = 4'h0, ADDR_DATA = 4'h1;
+    parameter ADDR_START = 4'h0, ADDR_DATA = 4'h1, ADDR_SETQ=4'h3;
     
     integer size;    //goes up to max size for N, stores 
     integer term_num;
     integer M = 5;
-    integer N = NBITS-1-M;
+    integer N;
+    assign N = NBITS-1-M;
     logic cos_start;
     logic data_ready;
-    integer PI = $rtoi(3.14159265*(1<<N));
+    integer PI;
 
  
     logic [NBITS-1:0] signal[MAX_SIZE];
@@ -36,7 +37,7 @@ module avalon_dct #(
     genvar i;
     generate
         for (i = 0; i < MAX_SIZE; i++) begin
-            cos func(clk, reset, cos_in[i], M, cos_start, cos_done[i], cos_out[i]);
+            cos func(clk, reset, cos_in[i], M, cos_start && (i < size), cos_done[i], cos_out[i]);
         end
     endgenerate
 
@@ -46,9 +47,15 @@ module avalon_dct #(
     always_comb begin
         dct_term = 0;
         all_cos_done = 1;
+        for (integer i = 0; i < MAX_SIZE; i++) begin
+            cos_in[i] = 0;
+        end
         for (integer i = 0; i < size; i++) begin
-            cos_in[i] = (((PI/size)*(2*i + 1)*K) >> 1) % PI; //mod by PI in Qmn format
-            dct_term = dct_term + cos_out[i]*cos_done[i]*signal[i] >> N; //0 until done and then signal*cos
+            cos_in[i] = (((PI/size)*(2*i + 1)*K) >> 1) % (2*PI); //mod by PI in Qmn format
+            if (cos_in[i] > PI) begin
+                cos_in[i] = cos_in[i] - PI;
+            end
+            dct_term = dct_term + ((cos_out[i]*cos_done[i]*signal[i]) >> N); //0 until done and then signal*cos
             all_cos_done = cos_done[i] & all_cos_done;
         end
     end
@@ -64,8 +71,12 @@ module avalon_dct #(
             data_ready <= 0;
             cos_state <= IDLE;
             result_valid <= 0;
+            $display("DCT Reset");
         end
-        else if (write && address == ADDR_SETUP) begin //initilize
+        else if (write && address == ADDR_SETQ) begin
+            M <= writedata;
+        end
+        else if (write && address == ADDR_START) begin //initilize
             size <= writedata;
             term_num <= 0;
             K <= 0;
@@ -73,8 +84,13 @@ module avalon_dct #(
             data_ready <= 0;
             cos_state <= IDLE;
             result_valid <= 0;
+            $display("DCT: Size <= %d", writedata);
+
+            PI <= $rtoi(3.14159265*(1<<N));
+            $display("DCT: Q FORMAT M<=%d", writedata);
         end
         else if (write && address == ADDR_DATA && !data_ready) begin
+            $display("DCT Write [%d] <= %f", K, $itor(writedata)/(1<<N));
             signal[K] <= writedata;
             K <= (K+1);
             //If this is the last item then the data is now ready
@@ -87,6 +103,8 @@ module avalon_dct #(
         else if (data_ready && K < size) begin
             if (cos_state == READY) begin
                 cos_start <= 1;
+                cos_state <= WORKING;
+                //$display("DCT[%d]: Starting", K);
             end
             else if (cos_state == WORKING) begin
                 cos_start <= 0;
@@ -95,10 +113,14 @@ module avalon_dct #(
                 end
             end
             else if (cos_state == DONE) begin
+                $display("DCT[%d] = %f", K,  $itor(dct_term)/(1<<N));
                 K <= (K+1);
                 result_valid[K] <= 1;
                 result[K] <= dct_term;
                 cos_state <= READY;
+                for (integer i = 0; i < size; i++) begin
+                    $display("Sin(%f)=%f", $itor($signed(cos_in[i]))/(1<<N), $itor($signed(cos_out[i]))/(1<<N));
+                end
             end
         end
         //TODO: Upload data over N cycles
