@@ -12,16 +12,26 @@ module testbench_dct();
     real real_input;
 
     cos dut_cos(Clock, ~ResetN, x, M, start, done, result);
+
+
+    logic [7:0] addr;
+    logic read, write, dct_done;
+    logic [NBITS-1:0] dct_out;
+    avalon_dct dut_dct(Clock, ~ResetN, addr,  read, write, x, dct_out, dct_done);
     
     assign #10 Clock = (~Clock & ResetN);
 
     initial begin
+        read = 0;
+        write = 0;
+        addr = 0;
         ResetN = 0;
         #15
         ResetN = 1;
         start = 0;
         #15
         M = 6;
+        $display("Cosine Unit Test");
         for (integer i = 0; i < 10; i++) begin
             start = 1;
             real_input = 3.14159265 * i/10;
@@ -33,6 +43,12 @@ module testbench_dct();
             end
             $display("Sin(%f)=%f", real_input, $itor($signed(result))/(1<<N));
         end
+
+        @(posedge Clock);
+        
+
+
+
         $stop();
     end
 endmodule
