@@ -110,11 +110,29 @@ module avalon_bus
     
 
     /*Controllers for onchip secondary devices*/
-	 parameter S_DEV_FP = 4'h0;
+	parameter S_DEV_FP = 4'h0, S_DEV_DCT=4'h1;
 	 
-    logic [15:0] FpOut;    
-    logic fp_waitreq;
+    logic [15:0] FpOut, DctOut, out_onchip;    
+    logic done_onchip, fp_waitreq, dct_done;
     avalon_fp_mult fp_mult(Clock, Reset, DataAddr[2:0], ReadData & (device==DEV_ONCHIP && secondary_device==S_DEV_FP), WriteData & (device == DEV_ONCHIP && secondary_device==S_DEV_FP), BusIn, FpOut, fp_waitreq);
+    avalon_dct dct(Clock, Reset, DataAddr[7:0], ReadData & (device==DEV_ONCHIP && secondary_device==S_DEV_DCT), WriteData & (device == DEV_ONCHIP && secondary_device==S_DEV_DCT), BusIn, DctOut, dct_done);
+
+    always_comb begin
+        case (secondary_device)
+            S_DEV_FP:begin
+                out_onchip = FpOut;
+                done_onchip = ~fp_waitreq;
+			end
+            S_DEV_DCT:begin
+                out_onchip = DctOut;
+                done_onchip = dct_done;
+			end
+            default:begin
+                out_onchip = 0;
+                done_onchip = 1;
+            end
+        endcase
+    end
 
     /*Multiplexer for the output logic*/
     always_comb begin
@@ -124,16 +142,16 @@ module avalon_bus
                 BusOut=MemOut;
             end
             DEV_ONCHIP:begin
-                DataDone=~fp_waitreq;
-                BusOut=FpOut;
+                DataDone=done_onchip;
+                BusOut=out_onchip;
             end
-				DEV_IO:begin
-					DataDone = done_io;
-					BusOut = out_io;
-				end
-				default:begin
-                DataDone=1;
-                BusOut=0;
+            DEV_IO:begin
+                DataDone = done_io;
+                BusOut = out_io;
+            end
+            default:begin
+            DataDone=1;
+            BusOut=0;
             end
         endcase
     end

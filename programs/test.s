@@ -212,13 +212,6 @@ NO_RAW_TEST:
 
 //Terminate the program
 KILL:
-    //insert NOP to ensure instructions finish before KILL terminates processor
-    mv r0, r0
-    mv r0, r0
-    mv r0, r0
-    mv r0, r0
-    mv r0, r0
-    mv r0, r0
     //Kill processor
     mvt r0, #0xff00
     add r0, #0xff

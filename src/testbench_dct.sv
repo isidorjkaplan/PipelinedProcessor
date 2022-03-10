@@ -13,7 +13,6 @@ module testbench_dct();
 
     cos dut_cos(Clock, ~ResetN, x, M, start, done, result);
 
-
     logic [7:0] addr;
     logic read, write, dct_done;
     logic [NBITS-1:0] dct_out;
@@ -48,7 +47,7 @@ module testbench_dct();
         @(posedge Clock);
 
         x = M;
-        addr = 3;
+        addr = 2;
         write = 1;
         @(posedge Clock)
         test_size = 20;

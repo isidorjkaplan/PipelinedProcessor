@@ -16,7 +16,7 @@ module avalon_dct #(
 	output logic done //Signal to stall the Avalon bus when the peripheral is busy.
 );
     //IDLE, can accept requests, COS=Calculating cosine terms for this N, DCT=doing DCT
-    parameter ADDR_START = 4'h0, ADDR_DATA = 4'h1, ADDR_SETQ=4'h3;
+    parameter ADDR_START = 4'h0, ADDR_DATA = 4'h1, ADDR_SETQ=4'h2;
     
     integer size;
     integer M;
@@ -83,7 +83,7 @@ module avalon_dct #(
             $display("DCT: Size <= %d", writedata);            
         end
         else if (write && address == ADDR_DATA && !data_ready) begin
-            //$display("DCT Write [%d] <= %f", K, $itor(writedata)/(1<<N));
+            $display("DCT Write [%d] <= %f", K, $itor(writedata)/(1<<N));
             signal[K] <= writedata;
             K <= (K+1);
             //If this is the last item then the data is now ready
@@ -93,7 +93,7 @@ module avalon_dct #(
             end
         end
         else if (data_ready && K < size) begin
-            //$display("DCT[%d] <= %f", K, $itor(dct_term)/(1<<N));
+            $display("DCT[%d] <= %f", K, $itor(dct_term)/(1<<N));
             result[K] <= dct_term;
             result_valid[K] <= 1;
             K <= (K+1);
