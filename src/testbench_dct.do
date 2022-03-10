@@ -7,16 +7,16 @@ vsim -L altera_mf_ver testbench_dct
 
 log *
 log dut_dct/*
-log dut_dct/cos_in
-log dut_dct/cos_out
-log dut_dct/cos_done
+log dut_dct/cos_q15
+log dut_dct/result
+log dut_dct/dct_terms
 log dut_dct/signal
 
 add wave *
 add wave dut_dct/*
-add wave dut_dct/cos_in
-add wave dut_dct/cos_out
-add wave dut_dct/cos_done
+add wave dut_dct/cos_q15
+add wave dut_dct/result
+add wave dut_dct/dct_terms
 add wave dut_dct/signal
 
 run -all

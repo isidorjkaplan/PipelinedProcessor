@@ -17,6 +17,7 @@ module testbench_dct();
     logic [7:0] addr;
     logic read, write, dct_done;
     logic [NBITS-1:0] dct_out;
+    integer test_size ;
     avalon_dct dut_dct(Clock, ~ResetN, addr,  read, write, x, dct_out, dct_done);
     
     assign #10 Clock = (~Clock & ResetN);
@@ -50,13 +51,16 @@ module testbench_dct();
         addr = 3;
         write = 1;
         @(posedge Clock)
-        x = 10;
+        test_size = 20;
+        x = test_size;
         addr = 0;
         @(posedge Clock);
         addr = 1;
 
-        for (integer i = 0; i < 10; i++) begin
-            real_input = 12;//3.14159265 * i/10;
+        for (integer i = 0; i < test_size; i++) begin
+            real_input = $cos(3.14159265 * i/test_size);
+            //real_input = 1;
+
             x = $rtoi(   (real_input*(1<<N)   )); //Gets it as an integer
             $display("TB Writing %f", real_input);
             @(posedge Clock);
@@ -64,12 +68,12 @@ module testbench_dct();
         write = 0;
         addr = 0;
         read = 1;
+        @(posedge Clock);
         for (integer i = 0; i < 10; i++) begin
             while (!dct_done) begin
                 @(posedge Clock);
             end
-            //$display("TB DCT[%d] = %f", addr, $itor($signed(dct_out))/(1<<N));
-            @(posedge Clock);
+            $display("TB DCT[%d] = %f", addr, $itor($signed(dct_out))/(1<<N));
             addr = addr + 1;
             @(posedge Clock);
         end

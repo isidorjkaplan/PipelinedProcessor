@@ -1,6 +1,7 @@
 module avalon_dct #(
     parameter MAX_SIZE=(1<<8), //the maximum size of an array that we can DCT
-    parameter NBITS=16
+    parameter NBITS=16,
+    parameter PREC=64
 )
 (
 	input clk, //Common clock shared by the entire system.
@@ -17,121 +18,90 @@ module avalon_dct #(
     //IDLE, can accept requests, COS=Calculating cosine terms for this N, DCT=doing DCT
     parameter ADDR_START = 4'h0, ADDR_DATA = 4'h1, ADDR_SETQ=4'h3;
     
-    integer size;    //goes up to max size for N, stores 
-    integer term_num;
-    integer M = 5;
+    integer size;
+    integer M;
     integer N;
     assign N = NBITS-1-M;
-    logic cos_start;
     logic data_ready;
-    integer PI;
 
  
-    logic [NBITS-1:0] signal[MAX_SIZE];
-    logic [NBITS-1:0] result[MAX_SIZE];
+    logic signed [NBITS-1:0] signal[MAX_SIZE];
+    logic signed [NBITS-1:0] result[MAX_SIZE];
     logic [MAX_SIZE-1:0] result_valid;
 
-    logic [NBITS-1:0] cos_in[MAX_SIZE];
-    logic [NBITS-1:0] cos_out[MAX_SIZE];
-    logic cos_done[MAX_SIZE];
-    genvar i;
+    parameter COS_TERMS=2*MAX_SIZE;
+    logic signed [NBITS-1:0] cos_q15[COS_TERMS];
+
+    genvar i; 
     generate
-        for (i = 0; i < MAX_SIZE; i++) begin
-            cos func(clk, reset, cos_in[i], M, cos_start && (i < size), cos_done[i], cos_out[i]);
+        assign cos_q15[0] = 16'b0111111111111111; //have to hard code this to avoid overflow
+        for (i = 1; i < COS_TERMS; i++) begin
+            real real_cos_in = $cos(3.14159265*i/MAX_SIZE);
+            assign cos_q15[i] = $rtoi(real_cos_in*(1<<(NBITS-1)));
         end
     endgenerate
 
-    logic [NBITS-1:0] dct_term;
+    integer signed dct_term;
+    integer signed dct_terms[MAX_SIZE];
     integer K;
-    logic all_cos_done;
+    integer cos_index;
     always_comb begin
         dct_term = 0;
-        all_cos_done = 1;
-        for (integer i = 0; i < MAX_SIZE; i++) begin
-            cos_in[i] = 0;
+        for (integer n = 0; n < MAX_SIZE; n++) begin
+            dct_terms[n] = 0;
         end
-        for (integer i = 0; i < size; i++) begin
-            cos_in[i] = (((PI/size)*(2*i + 1)*K) >> 1) % (2*PI); //mod by PI in Qmn format
-            if (cos_in[i] > PI) begin
-                cos_in[i] = cos_in[i] - PI;
-            end
-            dct_term = dct_term + ((cos_out[i]*cos_done[i]*signal[i]) >> N); //0 until done and then signal*cos
-            all_cos_done = cos_done[i] & all_cos_done;
+        for (integer n = 1; n <= size-2; n++) begin
+            dct_terms[n] = signal[n]*cos_q15[(n * K * MAX_SIZE / (size-1)) % COS_TERMS];
+            dct_term += dct_terms[n];
+            //$display("Index: %d, Term: %d", (n * K * MAX_SIZE / (size-1)) % COS_TERMS, dct_terms[n]);
         end
+        dct_term /= (1<<(NBITS-1));
+        dct_term += signal[0]/2;
+        if (K % 2 == 0)
+            dct_term += signal[size-1]/2;
+        else 
+            dct_term -= signal[size-1]/2;
     end
-
-    typedef enum { IDLE, READY, WORKING, DONE } CosState;
-    CosState cos_state;
 
     always_ff@(posedge clk, reset) begin
         if (reset) begin
             size <= 0;
-            cos_start <= 0;
             K <= 0;
             data_ready <= 0;
-            cos_state <= IDLE;
             result_valid <= 0;
             $display("DCT Reset");
         end
         else if (write && address == ADDR_SETQ) begin
             M <= writedata;
+            $display("DCT: Q FORMAT M<=%d", writedata);
         end
         else if (write && address == ADDR_START) begin //initilize
             size <= writedata;
-            term_num <= 0;
             K <= 0;
-            cos_start <= 0;
             data_ready <= 0;
-            cos_state <= IDLE;
             result_valid <= 0;
-            $display("DCT: Size <= %d", writedata);
-
-            PI <= $rtoi(3.14159265*(1<<N));
-            $display("DCT: Q FORMAT M<=%d", writedata);
+            $display("DCT: Size <= %d", writedata);            
         end
         else if (write && address == ADDR_DATA && !data_ready) begin
-            $display("DCT Write [%d] <= %f", K, $itor(writedata)/(1<<N));
+            //$display("DCT Write [%d] <= %f", K, $itor(writedata)/(1<<N));
             signal[K] <= writedata;
             K <= (K+1);
             //If this is the last item then the data is now ready
             if (K == size-1) begin
                 data_ready <= 1;
                 K <= 0;
-                cos_state <= READY;
             end
         end
         else if (data_ready && K < size) begin
-            if (cos_state == READY) begin
-                cos_start <= 1;
-                cos_state <= WORKING;
-                //$display("DCT[%d]: Starting", K);
-            end
-            else if (cos_state == WORKING) begin
-                cos_start <= 0;
-                if (all_cos_done) begin
-                    cos_state <= DONE;
-                end
-            end
-            else if (cos_state == DONE) begin
-                $display("DCT[%d] = %f", K,  $itor(dct_term)/(1<<N));
-                K <= (K+1);
-                result_valid[K] <= 1;
-                result[K] <= dct_term;
-                cos_state <= READY;
-                for (integer i = 0; i < size; i++) begin
-                    $display("Sin(%f)=%f", $itor($signed(cos_in[i]))/(1<<N), $itor($signed(cos_out[i]))/(1<<N));
-                end
-            end
-        end
-        //TODO: Upload data over N cycles
-        //TODO: Once data is uploaded, itterate over size to get K terms one by one
-        else begin
-            
+            //$display("DCT[%d] <= %f", K, $itor(dct_term)/(1<<N));
+            result[K] <= dct_term;
+            result_valid[K] <= 1;
+            K <= (K+1);
         end
     end
 
     assign out = read && (address < size) ? (result[address]) : 16'b0 ;
-    assign done = !read || (address < size && result_valid[address]);
+    assign done = !read || address >= size || result_valid[address];
 endmodule
 
 
