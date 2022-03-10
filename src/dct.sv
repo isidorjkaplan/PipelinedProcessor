@@ -1,7 +1,6 @@
 module avalon_dct #(
-    parameter MAX_SIZE=(1<<8), //the maximum size of an array that we can DCT
-    parameter NBITS=16,
-    parameter PREC=64
+    parameter MAX_SIZE=(1<<7), //the maximum size of an array that we can DCT
+    parameter NBITS=16
 )
 (
 	input clk, //Common clock shared by the entire system.
@@ -35,9 +34,8 @@ module avalon_dct #(
     genvar i; 
     generate
         assign cos_q15[0] = 16'b0111111111111111; //have to hard code this to avoid overflow
-        for (i = 1; i < COS_TERMS; i++) begin
-            real real_cos_in = $cos(3.14159265*i/MAX_SIZE);
-            assign cos_q15[i] = $rtoi(real_cos_in*(1<<(NBITS-1)));
+        for (i = 1; i < COS_TERMS; i++) begin : cos_terms_gen
+            assign cos_q15[i] = $rtoi($cos(3.14159265*i/MAX_SIZE)*(1<<(NBITS-1)));
         end
     endgenerate
 
@@ -50,7 +48,7 @@ module avalon_dct #(
         for (integer n = 0; n < MAX_SIZE; n++) begin
             dct_terms[n] = 0;
         end
-        for (integer n = 1; n <= size-2; n++) begin
+        for (integer n = 1; n <= size-2 && n < MAX_SIZE; n++) begin
             dct_terms[n] = signal[n]*cos_q15[(n * K * MAX_SIZE / (size-1)) % COS_TERMS];
             dct_term += dct_terms[n];
             //$display("Index: %d, Term: %d", (n * K * MAX_SIZE / (size-1)) % COS_TERMS, dct_terms[n]);
@@ -63,7 +61,7 @@ module avalon_dct #(
             dct_term -= signal[size-1]/2;
     end
 
-    always_ff@(posedge clk, reset) begin
+    always_ff@(posedge clk, posedge reset) begin
         if (reset) begin
             size <= 0;
             K <= 0;
