@@ -1,5 +1,5 @@
 module avalon_dct #(
-    parameter MAX_SIZE=(1<<7), //the maximum size of an array that we can DCT
+    parameter MAX_SIZE=32, //the maximum size of an array that we can DCT
     parameter NBITS=16
 )
 (
@@ -31,13 +31,7 @@ module avalon_dct #(
     parameter COS_TERMS=2*MAX_SIZE;
     logic signed [NBITS-1:0] cos_q15[COS_TERMS];
 
-    genvar i; 
-    generate
-        assign cos_q15[0] = 16'b0111111111111111; //have to hard code this to avoid overflow
-        for (i = 1; i < COS_TERMS; i++) begin : cos_terms_gen
-            assign cos_q15[i] = $rtoi($cos(3.14159265*i/MAX_SIZE)*(1<<(NBITS-1)));
-        end
-    endgenerate
+    dct_rom cos_terms_rom(cos_q15);
 
     integer signed dct_term;
     integer signed dct_terms[MAX_SIZE];
