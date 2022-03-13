@@ -58,7 +58,7 @@ module testbench_dct();
         addr = 1;
 
         for (integer i = 0; i < 2**test_size; i++) begin
-            real_input = 2*$cos(3.14159265 * i/(2**test_size));
+            real_input = $cos(3.14159265 * i/(2**test_size));
             //real_input = 1;
 
             x = $rtoi(   (real_input*(1<<N)   )); //Gets it as an integer
