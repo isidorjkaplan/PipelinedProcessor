@@ -1,0 +1,230 @@
+with size-1
+
+DCT: Q FORMAT M<=    6
+# TB Writing          16 for size when test size is          4
+# DCT: Size <=          16
+# TB Writing 1.000000
+# DCT Write [          0] <= 1.000000
+# TB Writing 0.980785
+# DCT Write [          1] <= 0.980469
+# TB Writing 0.923880
+# DCT Write [          2] <= 0.923828
+# TB Writing 0.831470
+# DCT Write [          3] <= 0.830078
+# TB Writing 0.707107
+# DCT Write [          4] <= 0.707031
+# TB Writing 0.555570
+# DCT Write [          5] <= 0.554688
+# TB Writing 0.382683
+# DCT Write [          6] <= 0.380859
+# TB Writing 0.195090
+# DCT Write [          7] <= 0.193359
+# TB Writing 0.000000
+# DCT Write [          8] <= 0.000000
+# TB Writing -0.195090
+# DCT Write [          9] <= 127.806641
+# TB Writing -0.382683
+# DCT Write [         10] <= 127.619141
+# TB Writing -0.555570
+# DCT Write [         11] <= 127.445313
+# TB Writing -0.707107
+# DCT Write [         12] <= 127.292969
+# TB Writing -0.831470
+# DCT Write [         13] <= 127.169922
+# TB Writing -0.923880
+# DCT Write [         14] <= 127.076172
+# TB Writing -0.980785
+# DCT Write [         15] <= 127.019531
+# DCT[          0] <= 0.988281
+# DCT[          1] <= 7.236328
+# TB DCT[  0] = 0.988281
+# DCT[          2] <= 0.009766
+# TB DCT[  1] = 7.236328
+# DCT[          3] <= 0.119141
+# TB DCT[  2] = 0.009766
+# DCT[          4] <= 0.048828
+# TB DCT[  3] = 0.119141
+# DCT[          5] <= 0.039063
+# TB DCT[  4] = 0.048828
+# DCT[          6] <= 0.054688
+# TB DCT[  5] = 0.039063
+# DCT[          7] <= 0.083984
+# TB DCT[  6] = 0.054688
+# DCT[          8] <= 0.021484
+# TB DCT[  7] = 0.083984
+# DCT[          9] <= 0.013672
+# TB DCT[  8] = 0.021484
+# DCT[         10] <= 0.005859
+# TB DCT[  9] = 0.013672
+# DCT[         11] <= -0.033203
+# ** Note: $stop    : testbench_dct.sv(83)
+#    Time: 1845 ns  Iteration: 0  Instance: /testbench_dct
+
+with Size
+
+DCT: Q FORMAT M<=    6
+# TB Writing          16 for size when test size is          4
+# DCT: Size <=          16
+# TB Writing 1.000000
+# DCT Write [          0] <= 1.000000
+# TB Writing 0.980785
+# DCT Write [          1] <= 0.980469
+# TB Writing 0.923880
+# DCT Write [          2] <= 0.923828
+# TB Writing 0.831470
+# DCT Write [          3] <= 0.830078
+# TB Writing 0.707107
+# DCT Write [          4] <= 0.707031
+# TB Writing 0.555570
+# DCT Write [          5] <= 0.554688
+# TB Writing 0.382683
+# DCT Write [          6] <= 0.380859
+# TB Writing 0.195090
+# DCT Write [          7] <= 0.193359
+# TB Writing 0.000000
+# DCT Write [          8] <= 0.000000
+# TB Writing -0.195090
+# DCT Write [          9] <= 127.806641
+# TB Writing -0.382683
+# DCT Write [         10] <= 127.619141
+# TB Writing -0.555570
+# DCT Write [         11] <= 127.445313
+# TB Writing -0.707107
+# DCT Write [         12] <= 127.292969
+# TB Writing -0.831470
+# DCT Write [         13] <= 127.169922
+# TB Writing -0.923880
+# DCT Write [         14] <= 127.076172
+# TB Writing -0.980785
+# DCT Write [         15] <= 127.019531
+# DCT[          0] <= 0.988281
+# DCT[          1] <= 7.021484
+# TB DCT[  0] = 0.988281
+# DCT[          2] <= 0.914063
+# TB DCT[  1] = 7.021484
+# DCT[          3] <= -0.816406
+# TB DCT[  2] = 0.914063
+# DCT[          4] <= 0.701172
+# TB DCT[  3] = -0.816406
+# DCT[          5] <= -0.556641
+# TB DCT[  4] = 0.701172
+# DCT[          6] <= 0.384766
+# TB DCT[  5] = -0.556641
+# DCT[          7] <= -0.195313
+# TB DCT[  6] = 0.384766
+# DCT[          8] <= 0.009766
+# TB DCT[  7] = -0.195313
+# DCT[          9] <= 0.179688
+# TB DCT[  8] = 0.009766
+# DCT[         10] <= -0.365234
+# TB DCT[  9] = 0.179688
+# DCT[         11] <= 0.533203
+# ** Note: $stop    : testbench_dct.sv(83)
+#    Time: 1845 ns  Iteration: 0  Instance: /testbench_dct
+
+before removing all divides and made rom half
+DCT: Q FORMAT M<=    6
+# TB Writing          16 for size when test size is          4
+# DCT: Size <=          16
+# TB Writing 1.000000
+# DCT Write [          0] <= 1.000000
+# TB Writing 0.980785
+# DCT Write [          1] <= 0.980469
+# TB Writing 0.923880
+# DCT Write [          2] <= 0.923828
+# TB Writing 0.831470
+# DCT Write [          3] <= 0.830078
+# TB Writing 0.707107
+# DCT Write [          4] <= 0.707031
+# TB Writing 0.555570
+# DCT Write [          5] <= 0.554688
+# TB Writing 0.382683
+# DCT Write [          6] <= 0.380859
+# TB Writing 0.195090
+# DCT Write [          7] <= 0.193359
+# TB Writing 0.000000
+# DCT Write [          8] <= 0.000000
+# TB Writing -0.195090
+# DCT Write [          9] <= 127.806641
+# TB Writing -0.382683
+# DCT Write [         10] <= 127.619141
+# TB Writing -0.555570
+# DCT Write [         11] <= 127.445313
+# TB Writing -0.707107
+# DCT Write [         12] <= 127.292969
+# TB Writing -0.831470
+# DCT Write [         13] <= 127.169922
+# TB Writing -0.923880
+# DCT Write [         14] <= 127.076172
+# TB Writing -0.980785
+# DCT Write [         15] <= 127.019531
+# DCT[          0] <= 0.988281
+# DCT[          1] <= 7.021484
+# TB DCT[  0] = 0.988281
+# DCT[          2] <= 0.914063
+# TB DCT[  1] = 7.021484
+# DCT[          3] <= -0.818359
+# TB DCT[  2] = 0.914063
+# DCT[          4] <= 0.701172
+# TB DCT[  3] = -0.818359
+# DCT[          5] <= -0.558594
+# TB DCT[  4] = 0.701172
+# DCT[          6] <= 0.384766
+# TB DCT[  5] = -0.558594
+# DCT[          7] <= -0.197266
+# TB DCT[  6] = 0.384766
+# DCT[          8] <= 0.009766
+# TB DCT[  7] = -0.197266
+# DCT[          9] <= 0.177734
+# TB DCT[  8] = 0.009766
+# DCT[         10] <= -0.367188
+# TB DCT[  9] = 0.177734
+# DCT[         11] <= 0.531250
+# ** Note: $stop    : testbench_dct.sv(83)
+#    Time: 1845 ns  Iteration: 0  Instance: /testbench_dct
+
+128 TERMS
+DCT[          0] <= 0.996094
+# DCT[          1] <= 62.921875
+# TB DCT[  0] = 0.996094
+# DCT[          2] <= 0.996094
+# TB DCT[  1] = 62.921875
+# DCT[          3] <= -0.960938
+# TB DCT[  2] = 0.996094
+# DCT[          4] <= 0.992188
+# TB DCT[  3] = -0.960938
+# DCT[          5] <= -1.005859
+# TB DCT[  4] = 0.992188
+# DCT[          6] <= 0.986328
+# TB DCT[  5] = -1.005859
+# DCT[          7] <= -0.980469
+# TB DCT[  6] = 0.986328
+# DCT[          8] <= 0.978516
+# TB DCT[  7] = -0.980469
+# DCT[          9] <= -0.984375
+# TB DCT[  8] = 0.978516
+# DCT[         10] <= 0.966797
+# TB DCT[  9] = -0.984375
+# DCT[         11] <= -0.955078
+# TB DCT[ 10] = 0.966797
+# DCT[         12] <= 0.953125
+# TB DCT[ 11] = -0.955078
+# DCT[         13] <= -0.955078
+# TB DCT[ 12] = 0.953125
+# DCT[         14] <= 0.939453
+# TB DCT[ 13] = -0.955078
+# DCT[         15] <= -0.927734
+# TB DCT[ 14] = 0.939453
+# DCT[         16] <= 0.921875
+# TB DCT[ 15] = -0.927734
+# DCT[         17] <= -0.908203
+# TB DCT[ 16] = 0.921875
+# DCT[         18] <= 0.900391
+# TB DCT[ 17] = -0.908203
+# DCT[         19] <= -0.894531
+# TB DCT[ 18] = 0.900391
+# DCT[         20] <= 0.878906
+# TB DCT[ 19] = -0.894531
+# DCT[         21] <= -0.882813
+# ** Note: $stop    : testbench_dct.sv(83)
+#    Time: 4285 ns  Iteration: 0  Instance: /testbench_dct

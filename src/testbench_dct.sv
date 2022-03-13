@@ -18,7 +18,7 @@ module testbench_dct();
     logic [NBITS-1:0] dct_out;
     integer test_size ;
     avalon_dct dut_dct(Clock, ~ResetN, addr,  read, write, x, dct_out, dct_done);
-    
+
     assign #10 Clock = (~Clock & ResetN);
 
     initial begin
@@ -41,7 +41,7 @@ module testbench_dct();
             while (!done) begin
                 @(posedge Clock);
             end
-            $display("Sin(%f)=%f", real_input, $itor($signed(result))/(1<<N));
+            $display("Cos(%f)=%f", real_input, $itor($signed(result))/(1<<N));
         end
 
         @(posedge Clock);
@@ -50,14 +50,15 @@ module testbench_dct();
         addr = 2;
         write = 1;
         @(posedge Clock)
-        test_size = 20;
+        test_size = 7;
         x = test_size;
         addr = 0;
+        $display("TB Writing %d for size when test size is%d", 2**test_size, test_size);
         @(posedge Clock);
         addr = 1;
 
-        for (integer i = 0; i < test_size; i++) begin
-            real_input = $cos(3.14159265 * i/test_size);
+        for (integer i = 0; i < 2**test_size; i++) begin
+            real_input = $cos(3.14159265 * i/(2**test_size));
             //real_input = 1;
 
             x = $rtoi(   (real_input*(1<<N)   )); //Gets it as an integer
@@ -68,7 +69,7 @@ module testbench_dct();
         addr = 0;
         read = 1;
         @(posedge Clock);
-        for (integer i = 0; i < 10; i++) begin
+        for (integer i = 0; i < 20; i++) begin
             while (!dct_done) begin
                 @(posedge Clock);
             end
