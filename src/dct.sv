@@ -1,5 +1,5 @@
 module avalon_dct #(
-    parameter MAX_SIZE=128, //the maximum size of an array that we can DCT
+    parameter MAX_SIZE=64, //the maximum size of an array that we can DCT
     parameter HEIGHT = $clog2(MAX_SIZE),
     parameter NBITS=16
 )
@@ -30,14 +30,14 @@ module avalon_dct #(
     logic signed [NBITS-1:0] result[MAX_SIZE];
     logic [MAX_SIZE-1:0] result_valid;
 
-    parameter COS_TERMS=2*MAX_SIZE;
+    parameter COS_TERMS=MAX_SIZE << 1;
     logic signed [NBITS-1:0] cos_q15[COS_TERMS];
 
-    dct_rom cos_terms_rom(cos_q15[0:128]);
+    dct_rom cos_terms_rom(cos_q15[0:MAX_SIZE]);
     // set rest of the cosing terms
     genvar cos_position;
     generate
-        for(cos_position = 129; cos_position < COS_TERMS; cos_position++) begin : set_cos_q15
+        for(cos_position = MAX_SIZE+1; cos_position < COS_TERMS; cos_position++) begin : set_cos_q15
             assign cos_q15[cos_position] = cos_q15[COS_TERMS-cos_position];
         end
     endgenerate

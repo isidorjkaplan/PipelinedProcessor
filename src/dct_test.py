@@ -3,7 +3,7 @@ import scipy.fftpack
 import math
 
 
-def dct_generate(MAX_SIZE=128, NBITS=16):
+def dct_generate(MAX_SIZE=64, NBITS=16):
     f = open("dct_rom.sv", 'w')
 
     COS_TERMS = 2*MAX_SIZE
@@ -16,10 +16,10 @@ def dct_generate(MAX_SIZE=128, NBITS=16):
     pass
 
 def main():
-    N = 128
+    N = 64
     print("N=%d" % N)
     print("y=1: => " +  str(0.5*scipy.fftpack.dct([1 for x in range(N)])))
-    print("y=cos(i/PI): => " +  str(0.5*scipy.fftpack.dct([math.cos(3.14159265*x/N) for x in range(N)])))
+    print("y=cos(i/PI): => " +  str(0.5*scipy.fftpack.dct([2*math.cos(3.14159265*x/N) for x in range(N)])))
 
 if __name__ == "__main__":
     # dct_generate()

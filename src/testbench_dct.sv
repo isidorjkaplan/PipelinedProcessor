@@ -50,7 +50,7 @@ module testbench_dct();
         addr = 2;
         write = 1;
         @(posedge Clock)
-        test_size = 7;
+        test_size = 6;
         x = test_size;
         addr = 0;
         $display("TB Writing %d for size when test size is%d", 2**test_size, test_size);
@@ -58,7 +58,7 @@ module testbench_dct();
         addr = 1;
 
         for (integer i = 0; i < 2**test_size; i++) begin
-            real_input = $cos(3.14159265 * i/(2**test_size));
+            real_input = 2*$cos(3.14159265 * i/(2**test_size));
             //real_input = 1;
 
             x = $rtoi(   (real_input*(1<<N)   )); //Gets it as an integer
