@@ -2,7 +2,7 @@
 parameter NBITS=16;
 module testbench_dct();
     logic ResetN, Clock;
-    logic [NBITS-1:0] x;
+    logic signed [NBITS-1:0] x;
     integer M; //the integer part of the number, fixed point
     integer N;
     assign N = NBITS-1-M;
@@ -31,6 +31,7 @@ module testbench_dct();
         start = 0;
         #15
         M = 6;
+        /*
         $display("Cosine Unit Test");
         for (integer i = 0; i < 10; i++) begin
             start = 1;
@@ -42,7 +43,7 @@ module testbench_dct();
                 @(posedge Clock);
             end
             $display("Cos(%f)=%f", real_input, $itor($signed(result))/(1<<N));
-        end
+        end*/
 
         @(posedge Clock);
 
@@ -50,7 +51,7 @@ module testbench_dct();
         addr = 2;
         write = 1;
         @(posedge Clock)
-        test_size = 6;
+        test_size = 5;
         x = test_size;
         addr = 0;
         $display("TB Writing %d for size when test size is%d", 2**test_size, test_size);
@@ -58,22 +59,22 @@ module testbench_dct();
         addr = 1;
 
         for (integer i = 0; i < 2**test_size; i++) begin
-            real_input = $cos(3.14159265 * i/(2**test_size));
+            real_input = 8*$cos(3.14159265 * i/(2**test_size));
             //real_input = 1;
 
             x = $rtoi(   (real_input*(1<<N)   )); //Gets it as an integer
-            $display("TB Writing %f", real_input);
+            //$display("TB Writing %f", real_input);
             @(posedge Clock);
         end
         write = 0;
         addr = 0;
         read = 1;
         @(posedge Clock);
-        for (integer i = 0; i < 20; i++) begin
+        for (integer i = 0; i < 2**test_size; i++) begin
             while (!dct_done) begin
                 @(posedge Clock);
             end
-            $display("TB DCT[%d] = %f", addr, $itor($signed(dct_out))/(1<<N));
+            //$display("TB DCT[%d] = %f", addr, $itor($signed(dct_out))/(1<<N));
             addr = addr + 1;
             @(posedge Clock);
         end

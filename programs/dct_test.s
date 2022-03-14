@@ -35,8 +35,25 @@ SIGNAL:
     .word 0x0400
     .word 0x0400
     .word 0x0400
-    .word 0x0400
     .word 0x0 //NULL TERMINATED
+
+//Works on INTEGERS. Will round if not exactly power of two
+//Input: r0 = number
+//Output: r0 = log2(number)
+LOG2:
+    push r1
+    mv r1, #0
+LOG2_LOOP:
+    add r1, #1  //count one more power of two
+    lsl r0, #1 //divide number by two
+    cmp r0, #0 //check if number is zero yet
+    bne LOG2_LOOP //repeat
+
+    mv r0, r1
+    pop r1
+    mv pc, lr
+    
+    
 
 //r0 is pointer to null terminated array, counts size of array and returns in r0
 COUNT_SIZE:
@@ -79,6 +96,7 @@ DCT:
     add r4, #DCT_SETUP_OFFSET
     mv r3, r0 //save signal pointr
     bl COUNT_SIZE
+    //bl LOG2 //we want to write the power of two instead of just the nmber
     st r0, [r4]
     //start writing data to the DCT
     mvt r4, #DCT_ADDRESS

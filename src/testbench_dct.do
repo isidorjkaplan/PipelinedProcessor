@@ -9,14 +9,14 @@ log *
 log dut_dct/*
 log dut_dct/cos_q15
 log dut_dct/result
-log dut_dct/dct_terms
+log dut_dct/dct_term_latch
 log dut_dct/signal
 
 add wave *
 add wave dut_dct/*
 add wave dut_dct/cos_q15
 add wave dut_dct/result
-add wave dut_dct/dct_terms
+add wave dut_dct/dct_term_latch
 add wave dut_dct/signal
 
 run -all

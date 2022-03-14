@@ -1,7 +1,8 @@
 module avalon_dct #(
     parameter MAX_SIZE=64, //the maximum size of an array that we can DCT
     parameter HEIGHT = $clog2(MAX_SIZE),
-    parameter NBITS=16
+    parameter NBITS=16,
+    parameter NUM_TERMS_PER_CYCLE=8//number of multiply-accumulates per cycle
 )
 (
 	input clk, //Common clock shared by the entire system.
@@ -9,7 +10,7 @@ module avalon_dct #(
 	input [7:0] address, //Address lines from the Avalon bus.
 	input read, //Read request signal from the CPU. Used together with readdata
 	input write,//Wrote request signal from the CPU. Used together with writedata
-	input [NBITS-1:0] writedata, //Data lines for the CPU to send data to the peripheral.
+	input signed [NBITS-1:0] writedata, //Data lines for the CPU to send data to the peripheral.
 									//Used together with write.
 	output logic [NBITS-1:0] out, //Data lines for the peripheral to return data to the CPU. Used
 											//together with read.
@@ -42,45 +43,41 @@ module avalon_dct #(
         end
     endgenerate
 
-    integer signed dct_term;
-    integer signed dct_term_intermediate[HEIGHT:0][MAX_SIZE-1:0];
-    integer signed dct_terms[MAX_SIZE];
+    integer signed dct_term_latch;
+    integer signed dct_term_comb;
+    integer signed dct_term_const;
     integer K;
-    integer cos_index;
+    integer cos_pos_start;
+    integer signed cos_term_value;
+    integer n;
     always_comb begin
-        // dct_term = 0;
-        for (integer n = 0; n < MAX_SIZE; n++) begin
-            dct_terms[n] = 0;
-        end
-        for (integer n = 1; n <= size-2 && n < MAX_SIZE; n++) begin
-            dct_terms[n] = signal[n]*cos_q15[((n * K * MAX_SIZE) >> power) & (COS_TERMS - 1)];
-            // dct_term += dct_terms[n];
-            //$display("Index: %d, Term: %d", (n * K * MAX_SIZE / (size-1)) % COS_TERMS, dct_terms[n]);
-        end
-        dct_term = dct_term_intermediate[0][0];
-        dct_term = dct_term >>> (NBITS-1);
-        dct_term += signal[0]>>>1;
-
-        if(K & 1)
-            dct_term -= signal[size-1]>>>1;
-        else
-            dct_term += signal[size-1]>>>1;
-    end
-
-    genvar row;
-    genvar column;
-    // adder tree for dct_term (the sum of all dct_terms)
-    generate
-        for(column = 0; column < MAX_SIZE; column++)begin : initiate_tree
-            assign dct_term_intermediate[HEIGHT][column] = dct_terms[column];
-        end
-        for(row = HEIGHT-1; row >= 0; row--)begin : c
-            parameter width = 1<<row;
-            for(column = 0; column < width; column++)begin : r
-                assign dct_term_intermediate[row][column] = dct_term_intermediate[row+1][column<<1] + dct_term_intermediate[row+1][(column<<1)+1];
+        dct_term_comb = 0;
+        cos_term_value = 0;
+        dct_term_const = 0;
+        n = 0;
+        if (data_ready) begin
+            //calculate the actual sum of dct terms to add
+            for (integer pos = 0; pos < NUM_TERMS_PER_CYCLE; pos++) begin
+                n = cos_pos_start + pos;
+                //calculate the term to add
+                if (n <= size-1 && n < MAX_SIZE && n >= 1) begin
+                    cos_term_value = signal[n]*cos_q15[((n * K * MAX_SIZE) >> power) & (COS_TERMS - 1)] >>> (NBITS-1);
+                    //$display("DCT_COMB: Adding n=%d = sig[n]*cos[%d] = %f", n, ((n * K * MAX_SIZE) >> power) & (COS_TERMS - 1), $itor(cos_term_value)/(1<<N));
+                end else 
+                    cos_term_value = 0;
+                //add it to the comb
+                dct_term_comb += cos_term_value;
             end
+            dct_term_comb += dct_term_latch;
+            /*Calculating the constant DCT term*/
+            dct_term_const = signal[0]>>>1;
+            if(K & 1)
+                dct_term_const -= signal[size-1]>>>1;
+            else
+                dct_term_const += signal[size-1]>>>1;
         end
-    endgenerate
+    
+    end
 
     always_ff@(posedge clk, posedge reset) begin
         if (reset) begin
@@ -88,6 +85,8 @@ module avalon_dct #(
             K <= 0;
             data_ready <= 0;
             result_valid <= 0;
+            cos_pos_start <= 0;
+            dct_term_latch <= 0;
             $display("DCT Reset");
         end
         else if (write && address == ADDR_SETQ) begin
@@ -110,14 +109,27 @@ module avalon_dct #(
             if (K == size-1) begin
                 data_ready <= 1;
                 K <= 0;
+                cos_pos_start <= 0;//we start from beginning of signal
+                dct_term_latch <= 0;//no calculated DCT term so far
             end
         end
         else if (data_ready && K < size) begin
-            $display("DCT[%d] <= %f", K, $itor(dct_term)/(1<<N));
-            result[K] <= dct_term;
-            result_valid[K] <= 1;
-            K <= (K+1);
+            //still calculatnig the current set of terms
+            if (cos_pos_start < size) begin
+                dct_term_latch <= dct_term_comb;
+                cos_pos_start <= (cos_pos_start + NUM_TERMS_PER_CYCLE);//advance start
+            end
+            //we have fully calculated the dct_term_latch
+            else begin
+                $display("DCT[%d] <= %f", K, $itor(dct_term_latch + dct_term_const)/(1<<N));
+                result[K] <= (dct_term_latch + dct_term_const);
+                result_valid[K] <= 1;
+                K <= (K+1);
+                cos_pos_start <= 0;
+                dct_term_latch <= 0;
+            end
         end
+        
     end
 
     assign out = read && (address < size) ? (result[address]) : 16'b0 ;
