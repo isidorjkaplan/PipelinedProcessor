@@ -506,11 +506,15 @@ int main(void) {
 
     post_measurement();
 
+ughgui
+
     printf("Mean Fixed Cycles: %d\n", get_runtime(1)/num_fixed - overhead_cycles);
 
     printf("Mean Float Cycles %d\n\n", get_runtime(2)/num_float - overhead_cycles);
 
     printf("Mean Unit Cycles %d\n\n", get_runtime(3)/num_unit - overhead_cycles);
+
+
 
     return 0;
 

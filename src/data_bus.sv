@@ -10,17 +10,17 @@ module avalon_bus
     input logic [9:0] SW,
     output logic [9:0] LEDR,
     input logic [3:0] KEY,
-	 input wire IRDA_RXD, //IR reciever wire
-	 output wire IRDA_TXD, //IR emitter wire
-	 inout PS2_CLK,
-	 inout PS2_DATA
+    input wire IRDA_RXD, //IR reciever wire
+    output wire IRDA_TXD, //IR emitter wire
+    inout PS2_CLK,
+    inout PS2_DATA
 );  
     parameter DEV_MEM = 4'h0, DEV_ONCHIP=4'h1, DEV_IO=4'h2;
 
     logic [3:0] device, secondary_device;
-	 assign device = DataAddr[15:12];
-	 assign secondary_device = DataAddr[11:8];//some devices have a secondary device, like DEV_IO has all the different IO units
-	 
+    assign device = DataAddr[15:12];
+    assign secondary_device = DataAddr[11:8];//some devices have a secondary device, like DEV_IO has all the different IO units
+    
 
     /*Memory Controller*///data_bus.sv
     logic [15:0] MemOut;
@@ -38,17 +38,17 @@ module avalon_bus
     end
 
     /*Controllers for HEX/SW/LEDR/KEY/IR/PS2*/
-	 parameter S_DEV_HEX=4'h0, S_DEV_SW=4'h1, S_DEV_LEDR=4'h2, S_DEV_KEY=4'h3, S_DEV_IR=4'h4, S_DEV_PS2=4'h5;
+    parameter S_DEV_HEX=4'h0, S_DEV_SW=4'h1, S_DEV_LEDR=4'h2, S_DEV_KEY=4'h3, S_DEV_IR=4'h4, S_DEV_PS2=4'h5;
     logic [6:0] hex_reg[6];
     logic [9:0] ledr_reg;
-	 logic IR_recv_reg; //IR reciever register
-	 logic IR_emit_reg; //IR emitter register
-	 logic [15:0] out_io;
-	 logic done_io;
-	 
-	 logic [15:0] ps2_out;
-	 logic ps2_done;
-	 avalon_ps2 ps2_cont(Clock, Reset, DataAddr[3:0], ReadData & (device==DEV_IO && secondary_device==S_DEV_PS2), WriteData & (device==DEV_IO && secondary_device==S_DEV_PS2), BusIn, ps2_out, ps2_done, PS2_CLK, PS2_DATA);
+    logic IR_recv_reg; //IR reciever register
+    logic IR_emit_reg; //IR emitter register
+    logic [15:0] out_io;
+    logic done_io;
+    
+    logic [15:0] ps2_out;
+    logic ps2_done;
+    avalon_ps2 ps2_cont(Clock, Reset, DataAddr[3:0], ReadData & (device==DEV_IO && secondary_device==S_DEV_PS2), WriteData & (device==DEV_IO && secondary_device==S_DEV_PS2), BusIn, ps2_out, ps2_done, PS2_CLK, PS2_DATA);
 
  
     always_ff@(posedge Clock, posedge Reset) begin
@@ -155,5 +155,16 @@ module avalon_bus
             end
         endcase
     end
+
+    /*always_ff@(posedge Clock) begin
+        if (DataDone) begin
+            if (ReadData) begin
+                $display("BUS: Load [0x%x] = 0x%x", DataAddr, BusOut);
+            end
+            else if (WriteData) begin
+                $display("BUS: Store [0x%x] = 0x%x", DataAddr, BusIn);
+            end
+        end
+    end*/
 
 endmodule

@@ -683,7 +683,7 @@ Disassembly of section .entry:
    40014:	08409114 	ori	at,at,580
     jmp r1
    40018:	0800683a 	jmp	at
-   4001c:	00000000 	call	0 <__reset-0x40000>
+   4001c:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x40000>
 
 Disassembly of section .exceptions:
 
@@ -3063,8 +3063,6 @@ int main(void) {
 
     post_measurement();
    4172c:	00402f00 	call	402f0 <post_measurement>
-
-
 
     printf("Mean Fixed Cycles: %d\n", get_runtime(1)/num_fixed - overhead_cycles);
    41730:	01000044 	movi	r4,1
@@ -13083,7 +13081,7 @@ int main(void) {
    4b124:	0004b150 	cmplti	zero,zero,4805
    4b128:	0004b150 	cmplti	zero,zero,4805
    4b12c:	0004b150 	cmplti	zero,zero,4805
-   4b130:	0004b600 	call	4b60 <__reset-0x3b4a0>
+   4b130:	0004b600 	call	4b60 <__alt_mem_onchip_memory2_0-0x3b4a0>
    4b134:	2404b03a 	or	r2,r4,r16
    4b138:	1000661e 	bne	r2,zero,4b2d4 <__divdf3+0x2d4>
    4b13c:	04c00204 	movi	r19,8
@@ -13796,7 +13794,7 @@ int main(void) {
    4bc28:	20c9883a 	add	r4,r4,r3
    4bc2c:	20c00017 	ldw	r3,0(r4)
    4bc30:	1800683a 	jmp	r3
-   4bc34:	0004be80 	call	4be8 <__reset-0x3b418>
+   4bc34:	0004be80 	call	4be8 <__alt_mem_onchip_memory2_0-0x3b418>
    4bc38:	0004bc94 	movui	zero,4850
    4bc3c:	0004bc94 	movui	zero,4850
    4bc40:	0004bc90 	cmplti	zero,zero,4850
@@ -15294,15 +15292,15 @@ int main(void) {
    4d318:	0004d5b4 	movhi	zero,4950
    4d31c:	0004ded8 	cmpnei	zero,zero,4987
    4d320:	0004d5f4 	movhi	zero,4951
-   4d324:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d328:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d32c:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d330:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d334:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d338:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d33c:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d340:	0004d600 	call	4d60 <__reset-0x3b2a0>
-   4d344:	0004d600 	call	4d60 <__reset-0x3b2a0>
+   4d324:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d328:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d32c:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d330:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d334:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d338:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d33c:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d340:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
+   4d344:	0004d600 	call	4d60 <__alt_mem_onchip_memory2_0-0x3b2a0>
    4d348:	0004ded8 	cmpnei	zero,zero,4987
    4d34c:	0004ded8 	cmpnei	zero,zero,4987
    4d350:	0004ded8 	cmpnei	zero,zero,4987
@@ -15353,7 +15351,7 @@ int main(void) {
    4d404:	0004de24 	muli	zero,zero,4984
    4d408:	0004ded8 	cmpnei	zero,zero,4987
    4d40c:	0004ded8 	cmpnei	zero,zero,4987
-   4d410:	0004de40 	call	4de4 <__reset-0x3b21c>
+   4d410:	0004de40 	call	4de4 <__alt_mem_onchip_memory2_0-0x3b21c>
    4d414:	0004ded8 	cmpnei	zero,zero,4987
    4d418:	0004de50 	cmplti	zero,zero,4985
    4d41c:	0004dd24 	muli	zero,zero,4980
@@ -30534,7 +30532,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
    59bfc:	d9400015 	stw	r5,0(sp)
    59c00:	d9800115 	stw	r6,4(sp)
    59c04:	d9c00215 	stw	r7,8(sp)
-   59c08:	00000000 	call	0 <__reset-0x40000>
+   59c08:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x40000>
    59c0c:	d9400017 	ldw	r5,0(sp)
    59c10:	d9800117 	ldw	r6,4(sp)
    59c14:	d9c00217 	ldw	r7,8(sp)
@@ -30618,7 +30616,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
    59d44:	10003226 	beq	r2,zero,59e10 <__call_exitprocs+0x178>
    59d48:	a009883a 	mov	r4,r20
    59d4c:	98800015 	stw	r2,0(r19)
-   59d50:	00000000 	call	0 <__reset-0x40000>
+   59d50:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x40000>
    59d54:	9d000017 	ldw	r20,0(r19)
    59d58:	a03fe41e 	bne	r20,zero,59cec <__alt_data_end+0xfffd9cec>
    59d5c:	dfc00a17 	ldw	ra,40(sp)
