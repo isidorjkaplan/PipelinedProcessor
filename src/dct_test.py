@@ -14,11 +14,11 @@ def dct_generate(MAX_SIZE=64, NBITS=16):
     pass
 
 def main():
-    N = 64
+    N = 32
     print("N=%d" % N)
     print("y=1: => " +  str(0.5*scipy.fftpack.dct([1 for x in range(N)])))
-    print("y=cos(i/PI): => " +  str(0.5*scipy.fftpack.dct([math.cos(3.14159265*x/N) for x in range(N)])))
+    print("y=8*cos(i/PI): => " +  str(0.5*scipy.fftpack.dct([8*math.cos(3.14159265*x/N) for x in range(N)])))
 
 if __name__ == "__main__":
-    dct_generate()
-    #main()
+    #dct_generate()
+    main()

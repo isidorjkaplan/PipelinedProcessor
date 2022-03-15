@@ -86,7 +86,7 @@ module avalon_dct #(
             $display("DCT: Q FORMAT M<=%d", writedata);
         end
         else if (write && address == ADDR_START) begin //initilize
-            size <= 2**writedata;
+            size <= 1<<writedata;
             power <= writedata;
             K <= 0;
             data_ready <= 0;
