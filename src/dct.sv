@@ -45,7 +45,6 @@ module avalon_dct #(
 
     integer signed dct_term_latch;
     integer signed dct_term_comb;
-    integer signed dct_term_const;
     integer K;
     integer cos_pos_start;
     integer signed cos_term_value;
@@ -53,15 +52,14 @@ module avalon_dct #(
     always_comb begin
         dct_term_comb = 0;
         cos_term_value = 0;
-        dct_term_const = 0;
         n = 0;
         if (data_ready) begin
             //calculate the actual sum of dct terms to add
             for (integer pos = 0; pos < NUM_TERMS_PER_CYCLE; pos++) begin
                 n = cos_pos_start + pos;
                 //calculate the term to add
-                if (n <= size-1 && n < MAX_SIZE && n >= 1) begin
-                    cos_term_value = signal[n]*cos_q15[((n * K * MAX_SIZE) >> power) & (COS_TERMS - 1)] >>> (NBITS-1);
+                if (n <= size-1 && n < MAX_SIZE && n >= 0) begin
+                    cos_term_value = signal[n]*cos_q15[(((2*n+1) * K * MAX_SIZE) >> (power+1)) & (COS_TERMS - 1)] >>> (NBITS-1);
                     //$display("DCT_COMB: Adding n=%d = sig[n]*cos[%d] = %f", n, ((n * K * MAX_SIZE) >> power) & (COS_TERMS - 1), $itor(cos_term_value)/(1<<N));
                 end else 
                     cos_term_value = 0;
@@ -69,12 +67,6 @@ module avalon_dct #(
                 dct_term_comb += cos_term_value;
             end
             dct_term_comb += dct_term_latch;
-            /*Calculating the constant DCT term*/
-            dct_term_const = signal[0]>>>1;
-            if(K & 1)
-                dct_term_const -= signal[size-1]>>>1;
-            else
-                dct_term_const += signal[size-1]>>>1;
         end
     
     end
@@ -121,8 +113,8 @@ module avalon_dct #(
             end
             //we have fully calculated the dct_term_latch
             else begin
-                $display("DCT[%d] <= %f", K, $itor(dct_term_latch + dct_term_const)/(1<<N));
-                result[K] <= (dct_term_latch + dct_term_const);
+                $display("DCT[%d] <= %f", K, $itor(dct_term_latch)/(1<<N));
+                result[K] <= dct_term_latch;
                 result_valid[K] <= 1;
                 K <= (K+1);
                 cos_pos_start <= 0;
