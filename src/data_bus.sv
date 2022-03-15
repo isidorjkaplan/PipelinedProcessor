@@ -25,17 +25,18 @@ module avalon_bus
     /*Memory Controller*///data_bus.sv
     logic [15:0] MemOut;
     inst_mem DataMem (DataAddr[11:0], Clock, BusIn, WriteData & (device==DEV_MEM), MemOut);
-    logic mem_done;
+    logic mem_done, read_done;
     always_ff@(posedge Clock) begin
         if (Reset)
-            mem_done <= 0;//not done
-        else if (device==DEV_MEM && (ReadData || WriteData)) begin
-            mem_done <= ~mem_done;//on the clock edge it becomes done
+            read_done <= 0;//not done
+        else if (device==DEV_MEM && ReadData) begin
+            read_done <= ~read_done;//on the clock edge it becomes done
         end
         else begin
-            mem_done <= 0;//if not attempting to write then not done
+            read_done <= 0;//if not attempting to write then not done
         end
     end
+    assign mem_done = WriteData || read_done; //write is actually only one cycle, no need to wait
 
     /*Controllers for HEX/SW/LEDR/KEY/IR/PS2*/
     parameter S_DEV_HEX=4'h0, S_DEV_SW=4'h1, S_DEV_LEDR=4'h2, S_DEV_KEY=4'h3, S_DEV_IR=4'h4, S_DEV_PS2=4'h5;
