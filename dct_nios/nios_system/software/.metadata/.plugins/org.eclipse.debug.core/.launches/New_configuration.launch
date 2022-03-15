@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<launchConfiguration type="com.altera.sbtgui.launch.modelsim.Nios2ModelsimLaunchConfiguration">
-<stringAttribute key="elfFile" value="C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project\DCT_Nios_Project.elf"/>
-<stringAttribute key="modelSimPath" value="C:\intelFPGA_lite\18.1\modelsim_ase\win32aloem"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROGRAM_NAME" value="DCT_Nios_Project.elf"/>
-<stringAttribute key="org.eclipse.cdt.launch.PROJECT_ATTR" value="DCT_Nios_Project"/>
-<stringAttribute key="spdPath" value="C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\dct_nios_tb.spd"/>
-</launchConfiguration>

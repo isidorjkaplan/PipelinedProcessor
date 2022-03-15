@@ -369,3 +369,1575 @@ nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.el
 12:10:49 **** Incremental Build of configuration Nios II for project DCT_Nios_Project_bsp ****
 make all 
 [BSP build complete]
+18:17:32 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:469:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:18:57 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:469:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:20:03 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:465:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:20:33 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 111 KBytes program size (code + initialized data).
+Info:                        137 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:21:52 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:23:43 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:471:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:23:53 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:25:05 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:25:18 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:25:33 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:25:34 **** Incremental Build of configuration Nios II for project DCT_Nios_Project_bsp ****
+make all 
+[BSP build complete]
+18:27:34 **** Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:28:35 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:28:47 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:29:13 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:29:33 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:29:56 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:30:10 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:30:11 **** Build of configuration Nios II for project DCT_Nios_Project_bsp ****
+make all 
+[BSP build complete]
+18:30:18 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:30:30 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 111 KBytes program size (code + initialized data).
+Info:                        137 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:31:48 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:32:05 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:32:17 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:32:25 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:32:56 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:33:04 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:33:23 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:33:44 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:34:08 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:34:29 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:479:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:36:22 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:471:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:36:30 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:37:21 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:37:39 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_float':
+hello_world.c:179:5: warning: implicit declaration of function 'assert' [-Wimplicit-function-declaration]
+     assert(powl(2,power) == N);//must be power of 2 for the optimized version
+     ^
+hello_world.c: In function 'main':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+obj/default/hello_world.o: In function `dct_float':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:179: undefined reference to `assert'
+obj/default/hello_world.o: In function `dct_fixed':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:209: undefined reference to `assert'
+collect2.exe: error: ld returned 1 exit status
+make: *** [DCT_Nios_Project.elf] Error 1
+18:37:57 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+obj/default/hello_world.o: In function `dct_float':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:179: undefined reference to `assert'
+obj/default/hello_world.o: In function `dct_fixed':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:209: undefined reference to `assert'
+collect2.exe: error: ld returned 1 exit status
+make: *** [DCT_Nios_Project.elf] Error 1
+18:38:12 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+obj/default/hello_world.o: In function `dct_float':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:179: undefined reference to `assert'
+obj/default/hello_world.o: In function `dct_fixed':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:209: undefined reference to `assert'
+collect2.exe: error: ld returned 1 exit status
+make: *** [DCT_Nios_Project.elf] Error 1
+18:38:13 **** Incremental Build of configuration Nios II for project DCT_Nios_Project_bsp ****
+make all 
+[BSP build complete]
+18:38:17 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+obj/default/hello_world.o: In function `dct_float':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:179: undefined reference to `assert'
+obj/default/hello_world.o: In function `dct_fixed':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:209: undefined reference to `assert'
+collect2.exe: error: ld returned 1 exit status
+make: *** [DCT_Nios_Project.elf] Error 1
+18:39:27 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+obj/default/hello_world.o: In function `dct_float':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:179: undefined reference to `assert'
+obj/default/hello_world.o: In function `dct_fixed':
+C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project/hello_world.c:209: undefined reference to `assert'
+collect2.exe: error: ld returned 1 exit status
+make: *** [DCT_Nios_Project.elf] Error 1
+18:39:29 **** Incremental Build of configuration Nios II for project DCT_Nios_Project_bsp ****
+make all 
+[BSP build complete]
+18:40:27 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:459:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:40:33 **** Incremental Build of configuration Nios II for project DCT_Nios_Project_bsp ****
+make all 
+[BSP build complete]
+18:40:39 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:41:15 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:459:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:42:47 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'main':
+hello_world.c:212:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 81 KBytes program size (code + initialized data).
+Info:                        167 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:46:19 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:46:53 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+hello_world.c: In function 'main':
+hello_world.c:509:66: error: 'overhead_cycles' undeclared (first use in this function)
+     printf("Mean Fixed Cycles: %d\n", get_runtime(1)/num_fixed - overhead_cycles);
+                                                                  ^
+hello_world.c:509:66: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [obj/default/hello_world.o] Error 1
+18:47:01 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+hello_world.c: In function 'main':
+hello_world.c:509:66: error: 'overhead_cycles' undeclared (first use in this function)
+     printf("Mean Fixed Cycles: %d\n", get_runtime(1)/num_fixed - overhead_cycles);
+                                                                  ^
+hello_world.c:509:66: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [obj/default/hello_world.o] Error 1
+18:47:17 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:47:57 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:48:07 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:48:28 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+hello_world.c: In function 'main':
+hello_world.c:495:9: warning: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]
+  printf("Mean Overhead Per PERF: %f\n", overhead_cycles);
+         ^
+hello_world.c:495:9: warning: format '%f' expects argument of type 'double', but argument 2 has type 'int' [-Wformat=]
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:48:37 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:48:52 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:49:29 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:49:56 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:53:22 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:53:44 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:54:23 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:54:31 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:55:43 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 111 KBytes program size (code + initialized data).
+Info:                        137 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:56:55 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:57:54 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:57:58 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+[DCT_Nios_Project build complete]
+18:58:19 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:58:55 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:455:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+18:59:19 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:309:11: warning: unused variable 'error_float' [-Wunused-variable]
+     float error_float;
+           ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:455:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:00:35 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:371:91: error: expected expression before '/' token
+     printf("\n\nMean Float Error: %f\nMean Fixed Error: %f\n", error_float, error_fixed);*/
+                                                                                           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:453:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+make: *** [obj/default/hello_world.o] Error 1
+19:00:56 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:455:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:01:33 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:455:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:02:03 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:327:5: warning: "/*" within comment [-Wcomment]
+     /*
+     ^
+hello_world.c:309:11: warning: unused variable 'error_float' [-Wunused-variable]
+     float error_float = 0;
+           ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:02:26 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:327:5: warning: "/*" within comment [-Wcomment]
+     /*
+     ^
+hello_world.c:309:11: warning: unused variable 'error_float' [-Wunused-variable]
+     float error_float = 0;
+           ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:03:10 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:329:5: warning: "/*" within comment [-Wcomment]
+     /*
+     ^
+hello_world.c:309:11: warning: unused variable 'error_float' [-Wunused-variable]
+     float error_float = 0;
+           ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:459:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:03:36 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:329:5: warning: "/*" within comment [-Wcomment]
+     /*
+     ^
+hello_world.c:309:11: warning: unused variable 'error_float' [-Wunused-variable]
+     float error_float = 0;
+           ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:459:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:04:33 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:331:5: warning: "/*" within comment [-Wcomment]
+     /*
+     ^
+hello_world.c:309:11: warning: unused variable 'error_float' [-Wunused-variable]
+     float error_float = 0;
+           ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:461:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:05:14 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:333:5: warning: "/*" within comment [-Wcomment]
+     /*
+     ^
+hello_world.c:309:11: warning: unused variable 'error_float' [-Wunused-variable]
+     float error_float = 0;
+           ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:463:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:06:04 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:331:5: warning: "/*" within comment [-Wcomment]
+     /*
+     ^
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:461:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:06:38 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:285:11: warning: variable 'fixed_signal' set but not used [-Wunused-but-set-variable]
+     fixed fixed_signal[MAX_SIZE];
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:459:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:07:05 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:333:11: warning: unused variable 'error_fixed' [-Wunused-variable]
+     float error_fixed = 0;
+           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:459:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 112 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:07:45 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:375:91: error: expected expression before '/' token
+     printf("\n\nMean Float Error: %f\nMean Fixed Error: %f\n", error_float, error_fixed);*/
+                                                                                           ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+make: *** [obj/default/hello_world.o] Error 1
+19:07:59 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:08:48 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:09:49 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_test_signal':
+hello_world.c:375:12: warning: too many arguments for format [-Wformat-extra-args]
+     printf("\nMean Float Error: %f\nMean Fixed Error: %f\nMean Unit Error: \n\n", error_float, error_fixed, error_unit);//*/
+            ^
+hello_world.c:375:12: warning: too many arguments for format [-Wformat-extra-args]
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:10:12 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:10:43 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:11:36 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:13:50 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:14:37 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:463:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:15:29 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:17:40 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:461:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:18:55 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:19:20 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:459:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:20:06 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:23:39 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:25:07 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'dct_fixed_unit':
+hello_world.c:261:34: warning: initialization from incompatible pointer type [-Wincompatible-pointer-types]
+     volatile int* dct_read_ptr = dct_read_base;
+                                  ^
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:26:17 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        136 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:26:55 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]
+19:30:04 **** Incremental Build of configuration Nios II for project DCT_Nios_Project ****
+make all 
+Info: Building ../DCT_Nios_Project_bsp/
+C:/intelFPGA_lite/18.1/nios2eds/bin/gnu/H-x86_64-mingw32/bin/make --no-print-directory -C ../DCT_Nios_Project_bsp/
+[BSP build complete]
+Info: Compiling hello_world.c to obj/default/hello_world.o
+nios2-elf-gcc -xc -MP -MMD -c -I../DCT_Nios_Project_bsp//newlib/nios2-elf/include -I../DCT_Nios_Project_bsp//HAL/inc -I../DCT_Nios_Project_bsp/ -I../DCT_Nios_Project_bsp//drivers/inc  -pipe -D__hal__ -DALT_NO_INSTRUCTION_EMULATION -DALT_SINGLE_THREADED    -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o obj/default/hello_world.o hello_world.c
+hello_world.c: In function 'get_overhead':
+hello_world.c:457:15: warning: variable 'result' set but not used [-Wunused-but-set-variable]
+  volatile int result;
+               ^
+Info: Linking DCT_Nios_Project.elf
+nios2-elf-g++  -T'../DCT_Nios_Project_bsp//linker.x' -msys-crt0='../DCT_Nios_Project_bsp//obj/HAL/src/crt0.o' -msys-lib=hal_bsp -L../DCT_Nios_Project_bsp/ -L../DCT_Nios_Project_bsp//newlib/nios2-elf/lib   -Wl,-Map=DCT_Nios_Project.map   -O0 -g -Wall   -mno-hw-div -mhw-mul -mno-hw-mulx -mgpopt=global -fno-math-errno -mcustom-fabss=224 -mcustom-fadds=253 -mcustom-fcmpeqs=227 -mcustom-fcmpges=228 -mcustom-fcmpgts=229 -mcustom-fcmples=230 -mcustom-fcmplts=231 -mcustom-fcmpnes=226 -mcustom-fdivs=255 -mcustom-fixsi=249 -mcustom-floatis=250 -mcustom-fmuls=252 -mcustom-fnegs=225 -mcustom-fsubs=254  -o DCT_Nios_Project.elf obj/default/hello_world.o -lm -msys-lib=m
+nios2-elf-insert DCT_Nios_Project.elf --thread_model hal --cpu_name nios2_gen2_0 --qsys true --simulation_enabled false --stderr_dev jtag_uart_0 --stdin_dev jtag_uart_0 --stdout_dev jtag_uart_0 --sopc_system_name dct_nios --quartus_project_dir "C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system" --sopcinfo C:/Users/isido/Documents/Local/PipelinedProcessor/dct_nios/nios_system/software/DCT_Nios_Project_bsp/../../dct_nios.sopcinfo
+Info: (DCT_Nios_Project.elf) 113 KBytes program size (code + initialized data).
+Info:                        135 KBytes free for stack + heap.
+Info: Creating DCT_Nios_Project.objdump
+nios2-elf-objdump --disassemble --syms --all-header --source DCT_Nios_Project.elf >DCT_Nios_Project.objdump
+[DCT_Nios_Project build complete]

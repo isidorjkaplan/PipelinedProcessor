@@ -4,6 +4,7 @@
 #include <float.h>
 #include "altera_avalon_performance_counter.h"
 #include <sys/alt_irq.h>
+#include <assert.h>
 
 static alt_irq_context context; /* Use when disabling interrupts. */
 
@@ -21,13 +22,6 @@ static void post_measurement(void){
 static inline int get_runtime(int sec) {
 	return (int)perf_get_section_time ((void*)PERFORMANCE_COUNTER_0_BASE, sec);
 }
-
-
-
-
-#include <math.h>
-#include <stdio.h>
-#include <assert.h>
 
 /*Boilerplate fixed-point code*/
 
@@ -126,16 +120,17 @@ volatile int* dct_write_size = (int*) (AVALON_DCT_NIOS_0_BASE);
 volatile int* dct_write_data = (int*) (AVALON_DCT_NIOS_0_BASE + 4);
 volatile int* dct_read_base = (int*) (AVALON_DCT_NIOS_0_BASE);
 void dct_fixed_unit(fixed* signal, fixed* result, int N) {
+    
     num_unit++;
     *dct_write_q = Q_M;
     PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 3);
-    *dct_write_size = N;
+    *dct_write_size = (int)log(N);
     for (int i = 0; i < N; i++) {
         *dct_write_data = signal[i];
     }
     volatile int* dct_read_ptr = dct_read_base;
     for (int i = 0; i < N; i++) {
-        result[i] = *dct_read_ptr;
+        result[i] = *((volatile short*)dct_read_ptr);
         dct_read_ptr += 1; //shift over to next int
     }
     PERF_END (PERFORMANCE_COUNTER_0_BASE, 3);
@@ -150,36 +145,39 @@ void dct_test_signal(float* signal, int N) {
     //calculate the expected true result
     float result_raw[MAX_SIZE];
     dct_float_raw(signal, result_raw, N);
-    printf("\n\n\nTrue Result: ");
+    /*printf("\n\n\nTrue Result: ");
     for (int i = 0; i < N; i++) {
         printf("%f, ", result_raw[i]);
     }
+    fflush(stdout);*/
+
     //Calculate the floating point optimized version
     float result_float[MAX_SIZE];
-    float error_float;
+    float error_float = 0;
     dct_float(signal, result_float, N);
-    printf("\n\nFloat Result: ");
+    //printf("\n\nFloat Result: ");
+    //printf("N=%d\n", N);
     for (int i = 0; i < N; i++) {
-        printf("%f, ", result_float[i]);
+        //printf("%f, ", result_float[i]);
         error_float += float_abs(result_float[i]-result_raw[i]);
     }
     error_float /= N;
     //calculate the fixed result just like our unit would
     fixed result_fixed[MAX_SIZE];
-    float error_fixed;
+    float error_fixed = 0;
     dct_fixed(fixed_signal, result_fixed, N);
-    printf("\n\nFixed Result: ");
+    //printf("\n\nFixed Result: ");
     for (int i = 0; i < N; i++) {
         float value = FIXED_TO_FLOAT(result_fixed[i]);
         error_fixed += float_abs(value-result_raw[i]);
-        printf("%f, ", value);
+        //printf("%f, ", value);
     }
     error_fixed /= N;
     //unit
     fixed result_unit[MAX_SIZE];
-    float error_unit;
-    dct_fixed(fixed_signal, result_unit, N);
-    printf("\n\nFixed Result: ");
+    float error_unit = 0;
+    dct_fixed_unit(fixed_signal, result_unit, N);
+    //printf("\n\nFixed Result: ");
     for (int i = 0; i < N; i++) {
         float value = FIXED_TO_FLOAT(result_unit[i]);
         error_unit += float_abs(value-result_raw[i]);
@@ -187,8 +185,7 @@ void dct_test_signal(float* signal, int N) {
     }
     error_unit /= N;
 
-
-    printf("\n\nMean Float Error: %f\nMean Fixed Error: %f\n", error_float, error_fixed);
+    printf("\nMean Float Error: %f\nMean Fixed Error: %f\nMean Unit Error: %f\n\n", error_float, error_fixed, error_unit);//*/
 }
 
 
@@ -206,7 +203,7 @@ float test1(int i, int N) {
     return 8;
 } 
 float test_cos(int i, int N, int freq) {
-    return cos(freq*FLOAT_PI*i/N);
+    return 8*cos(freq*FLOAT_PI*i/N);
 }
 float test2(int i, int N) {
     return test_cos(i, N, 1);
@@ -226,11 +223,8 @@ void dct_testbench(int N) {
     dct_test_func(test4, N);
 }
 
-#define NUM_ITEMS 100
-int main(void) {
-    ALLOC_DCT_PRECOMP_ARRAY();
-    SET_Q_FORMAT(8, 8);
-
+int get_overhead() {
+    const int NUM_ITEMS= 100;
     volatile int a = 234;
 	volatile int result;
 
@@ -245,16 +239,23 @@ int main(void) {
 	post_measurement();
 
 	int overhead_cycles = get_runtime(1)/NUM_ITEMS;
+    return overhead_cycles;
+}
 
+int main(void) {
+    ALLOC_DCT_PRECOMP_ARRAY();
+    SET_Q_FORMAT(8, 8);
+
+    int overhead_cycles = get_overhead();
 	printf("Mean Overhead Per PERF: %f\n", (float)overhead_cycles);
-
+    
     num_fixed = num_float = num_unit = 0;
     pre_measurement();
     dct_testbench(32);
     post_measurement();
 
     printf("Mean Fixed Cycles: %d\n", get_runtime(1)/num_fixed - overhead_cycles);
-    printf("Mean Float Cycles %d\n\n", get_runtime(2)/num_float - overhead_cycles);
+    printf("Mean Float Cycles %d\n", get_runtime(2)/num_float - overhead_cycles);
     printf("Mean Unit Cycles %d\n\n", get_runtime(3)/num_unit - overhead_cycles);
 
     return 0;
