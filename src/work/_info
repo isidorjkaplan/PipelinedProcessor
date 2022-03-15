@@ -10,7 +10,7 @@ cModel Technology
 Z0 dC:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src
 vavalon_bus
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1647308946
+Z2 !s110 1647357082
 !i10b 1
 !s100 J<EkEIoYSXDC@PMCzXF:c0
 I`bSk]47<WjZlag93M@0bO0
@@ -26,7 +26,7 @@ Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z5 !s108 1647308946.000000
+Z5 !s108 1647357081.000000
 Z6 !s107 testbench_dct.sv|sim.sv|ps2.sv|processor.sv|lab4_mult.sv|fp_adder.sv|de1soc_top.sv|dct_rom.sv|dct.sv|data_bus.sv|
 Z7 !s90 -reportprogress|300|data_bus.sv|dct.sv|dct_rom.sv|de1soc_top.sv|fp_adder.sv|lab4_mult.sv|processor.sv|ps2.sv|sim.sv|testbench_dct.sv|
 !i113 1
@@ -35,16 +35,39 @@ vavalon_dct
 R1
 R2
 !i10b 1
-!s100 <S6oJPjdWOXBH^K6]k`:G2
-I<NSO;=V3>g8XD:4dAM>H=2
+!s100 8b1=U04Bo1V9PaMT0lQHi2
+I9Rc90GTb_7Md6zG[TBfTh3
 R3
 Z9 !s105 dct_sv_unit
 S1
 R0
-Z10 w1647308651
+Z10 w1647357078
 Z11 8dct.sv
 Z12 Fdct.sv
-L0 1
+L0 20
+R4
+r1
+!s85 0
+31
+R5
+R6
+R7
+!i113 1
+R8
+vavalon_dct_nios
+R1
+R2
+!i10b 1
+!s100 S_UU?`?ODBMC;b;be;]B01
+IP7165;e:ZgOW9UbMF]BLZ0
+R3
+R9
+S1
+R0
+R10
+R11
+R12
+L0 2
 R4
 r1
 !s85 0
@@ -104,8 +127,8 @@ vcos
 R1
 R2
 !i10b 1
-!s100 Id[9kK`^MHREaL[@nEQlf0
-IIg<jQNiln;@;kYG?KaSiH0
+!s100 h8k7MUXmUCQR?=HbboYfa2
+IJWkhKH]=f>X3AgNgKBTni0
 R3
 R9
 S1
@@ -113,7 +136,7 @@ R0
 R10
 R11
 R12
-L0 134
+L0 153
 R4
 r1
 !s85 0
@@ -238,7 +261,7 @@ R7
 !i113 1
 R8
 vinst_mem
-R2
+Z21 !s110 1647357081
 !i10b 1
 !s100 WdbW0YeGa1OC`UM?_3:?X3
 IB04Rnoo`mB_K9og?DkgI_2
@@ -253,8 +276,8 @@ r1
 !s85 0
 31
 R5
-Z21 !s107 ps2_mouse.v|inst_mem.v|
-Z22 !s90 -reportprogress|300|inst_mem.v|ps2_mouse.v|
+Z22 !s107 ps2_mouse.v|inst_mem.v|
+Z23 !s90 -reportprogress|300|inst_mem.v|ps2_mouse.v|
 !i113 1
 R8
 vprocessor
@@ -270,9 +293,9 @@ I_XbWlg5h=1zBbgLiHio]J0
 !s105 processor_sv_unit
 S1
 R0
-Z23 w1646193384
-Z24 8processor.sv
-Z25 Fprocessor.sv
+Z24 w1646193384
+Z25 8processor.sv
+Z26 Fprocessor.sv
 L0 18
 R4
 R5
@@ -292,9 +315,9 @@ Iz:h1bco90G?4^SR>h1=M52
 !i103 1
 S1
 R0
-R23
 R24
 R25
+R26
 L0 2
 R4
 R5
@@ -303,7 +326,7 @@ R7
 !i113 1
 R8
 vps2_mouse
-R2
+R21
 !i10b 1
 !s100 mJLSa1fS[WRa0_bTUbfJ02
 I[?oIe<TZ_XPJ3aT>m2XVe2
@@ -318,8 +341,8 @@ r1
 !s85 0
 31
 R5
-R21
 R22
+R23
 !i113 1
 R8
 vsim
@@ -381,9 +404,9 @@ IhO39dzZ7YaiUMLo>FC4cd2
 !s105 testbench_dct_sv_unit
 S1
 R0
-Z26 w1647287686
-Z27 8testbench_dct.sv
-Z28 Ftestbench_dct.sv
+Z27 w1647287686
+Z28 8testbench_dct.sv
+Z29 Ftestbench_dct.sv
 L0 3
 R4
 R5
@@ -403,9 +426,9 @@ IUZ[QFeFo?3^:j?3f:V4eG1
 !i103 1
 S1
 R0
-R26
 R27
 R28
+R29
 L0 2
 R4
 R5

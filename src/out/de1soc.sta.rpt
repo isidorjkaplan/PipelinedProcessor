@@ -1,5 +1,5 @@
 Timing Analyzer report for de1soc
-Sun Mar 06 19:18:37 2022
+Mon Mar 14 22:00:22 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -100,14 +100,14 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.81        ;
+; Average used               ; 2.48        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  27.3%      ;
-;     Processor 3            ;  27.0%      ;
-;     Processor 4            ;  26.9%      ;
+;     Processor 2            ;  49.7%      ;
+;     Processor 3            ;  49.1%      ;
+;     Processor 4            ;  49.0%      ;
 +----------------------------+-------------+
 
 
@@ -116,7 +116,7 @@ refer to the applicable agreement for further details.
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; de1soc.sdc    ; OK     ; Sun Mar 06 19:18:25 2022 ;
+; de1soc.sdc    ; OK     ; Mon Mar 14 22:00:02 2022 ;
 +---------------+--------+--------------------------+
 
 
@@ -134,7 +134,7 @@ refer to the applicable agreement for further details.
 +-----------+-----------------+------------+------+
 ; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
 +-----------+-----------------+------------+------+
-; 80.72 MHz ; 80.72 MHz       ; CLOCK_50   ;      ;
+; 50.56 MHz ; 50.56 MHz       ; CLOCK_50   ;      ;
 +-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -150,7 +150,7 @@ HTML report is unavailable in plain text report export.
 +----------+-------+------------------+
 ; Clock    ; Slack ; End Point TNS    ;
 +----------+-------+------------------+
-; CLOCK_50 ; 7.612 ; 0.000            ;
+; CLOCK_50 ; 0.223 ; 0.000            ;
 +----------+-------+------------------+
 
 
@@ -159,7 +159,7 @@ HTML report is unavailable in plain text report export.
 +----------+-------+-----------------+
 ; Clock    ; Slack ; End Point TNS   ;
 +----------+-------+-----------------+
-; CLOCK_50 ; 0.378 ; 0.000           ;
+; CLOCK_50 ; 0.354 ; 0.000           ;
 +----------+-------+-----------------+
 
 
@@ -180,7 +180,7 @@ No paths to report.
 +----------+-------+--------------------------------+
 ; Clock    ; Slack ; End Point TNS                  ;
 +----------+-------+--------------------------------+
-; CLOCK_50 ; 8.846 ; 0.000                          ;
+; CLOCK_50 ; 8.953 ; 0.000                          ;
 +----------+-------+--------------------------------+
 
 
@@ -195,7 +195,7 @@ No synchronizer chains to report.
 +-----------+-----------------+------------+------+
 ; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
 +-----------+-----------------+------------+------+
-; 80.53 MHz ; 80.53 MHz       ; CLOCK_50   ;      ;
+; 50.21 MHz ; 50.21 MHz       ; CLOCK_50   ;      ;
 +-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -205,7 +205,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------+-------+-----------------+
 ; Clock    ; Slack ; End Point TNS   ;
 +----------+-------+-----------------+
-; CLOCK_50 ; 7.582 ; 0.000           ;
+; CLOCK_50 ; 0.085 ; 0.000           ;
 +----------+-------+-----------------+
 
 
@@ -214,7 +214,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------+-------+----------------+
 ; Clock    ; Slack ; End Point TNS  ;
 +----------+-------+----------------+
-; CLOCK_50 ; 0.396 ; 0.000          ;
+; CLOCK_50 ; 0.332 ; 0.000          ;
 +----------+-------+----------------+
 
 
@@ -235,7 +235,7 @@ No paths to report.
 +----------+-------+-------------------------------+
 ; Clock    ; Slack ; End Point TNS                 ;
 +----------+-------+-------------------------------+
-; CLOCK_50 ; 8.810 ; 0.000                         ;
+; CLOCK_50 ; 8.982 ; 0.000                         ;
 +----------+-------+-------------------------------+
 
 
@@ -247,11 +247,11 @@ No synchronizer chains to report.
 
 +-------------------------------------+
 ; Fast 1100mV 85C Model Setup Summary ;
-+----------+--------+-----------------+
-; Clock    ; Slack  ; End Point TNS   ;
-+----------+--------+-----------------+
-; CLOCK_50 ; 12.978 ; 0.000           ;
-+----------+--------+-----------------+
++----------+-------+------------------+
+; Clock    ; Slack ; End Point TNS    ;
++----------+-------+------------------+
+; CLOCK_50 ; 8.577 ; 0.000            ;
++----------+-------+------------------+
 
 
 +------------------------------------+
@@ -259,7 +259,7 @@ No synchronizer chains to report.
 +----------+-------+-----------------+
 ; Clock    ; Slack ; End Point TNS   ;
 +----------+-------+-----------------+
-; CLOCK_50 ; 0.182 ; 0.000           ;
+; CLOCK_50 ; 0.180 ; 0.000           ;
 +----------+-------+-----------------+
 
 
@@ -280,7 +280,7 @@ No paths to report.
 +----------+-------+--------------------------------+
 ; Clock    ; Slack ; End Point TNS                  ;
 +----------+-------+--------------------------------+
-; CLOCK_50 ; 8.530 ; 0.000                          ;
+; CLOCK_50 ; 8.526 ; 0.000                          ;
 +----------+-------+--------------------------------+
 
 
@@ -292,11 +292,11 @@ No synchronizer chains to report.
 
 +------------------------------------+
 ; Fast 1100mV 0C Model Setup Summary ;
-+----------+--------+----------------+
-; Clock    ; Slack  ; End Point TNS  ;
-+----------+--------+----------------+
-; CLOCK_50 ; 13.459 ; 0.000          ;
-+----------+--------+----------------+
++----------+-------+-----------------+
+; Clock    ; Slack ; End Point TNS   ;
++----------+-------+-----------------+
+; CLOCK_50 ; 9.494 ; 0.000           ;
++----------+-------+-----------------+
 
 
 +-----------------------------------+
@@ -304,7 +304,7 @@ No synchronizer chains to report.
 +----------+-------+----------------+
 ; Clock    ; Slack ; End Point TNS  ;
 +----------+-------+----------------+
-; CLOCK_50 ; 0.175 ; 0.000          ;
+; CLOCK_50 ; 0.169 ; 0.000          ;
 +----------+-------+----------------+
 
 
@@ -325,7 +325,7 @@ No paths to report.
 +----------+-------+-------------------------------+
 ; Clock    ; Slack ; End Point TNS                 ;
 +----------+-------+-------------------------------+
-; CLOCK_50 ; 8.481 ; 0.000                         ;
+; CLOCK_50 ; 8.478 ; 0.000                         ;
 +----------+-------+-------------------------------+
 
 
@@ -340,8 +340,8 @@ No synchronizer chains to report.
 +------------------+-------+-------+----------+---------+---------------------+
 ; Clock            ; Setup ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +------------------+-------+-------+----------+---------+---------------------+
-; Worst-case Slack ; 7.582 ; 0.175 ; N/A      ; N/A     ; 8.481               ;
-;  CLOCK_50        ; 7.582 ; 0.175 ; N/A      ; N/A     ; 8.481               ;
+; Worst-case Slack ; 0.085 ; 0.169 ; N/A      ; N/A     ; 8.478               ;
+;  CLOCK_50        ; 0.085 ; 0.169 ; N/A      ; N/A     ; 8.478               ;
 ; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
 ;  CLOCK_50        ; 0.000 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
 +------------------+-------+-------+----------+---------+---------------------+
@@ -422,12 +422,12 @@ No synchronizer chains to report.
 ; CLOCK_50 ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[0]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; KEY[0]   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[9]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[1]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; KEY[1]   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[2]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; KEY[2]   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[3]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[9]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[8]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[5]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[4]    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
@@ -688,23 +688,23 @@ No synchronizer chains to report.
 +----------+--------------+---------------------+---------------------+------------------------------+------------------------------+---------------------+---------------------+--------------------------------------+--------------------------------------+-----------------------------+-----------------------------+----------------------------+----------------------------+-----------------------------+-----------------------------+--------------------+--------------------+-------------------------------------+-------------------------------------+----------------------------+----------------------------+---------------------------+---------------------------+
 
 
-+-------------------------------------------------------------------+
-; Setup Transfers                                                   ;
-+------------+----------+----------+----------+----------+----------+
-; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------+----------+----------+----------+----------+----------+
-; CLOCK_50   ; CLOCK_50 ; 2639245  ; 0        ; 0        ; 0        ;
-+------------+----------+----------+----------+----------+----------+
++--------------------------------------------------------------------+
+; Setup Transfers                                                    ;
++------------+----------+-----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths  ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+-----------+----------+----------+----------+
+; CLOCK_50   ; CLOCK_50 ; 976711806 ; 0        ; 0        ; 0        ;
++------------+----------+-----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
-+-------------------------------------------------------------------+
-; Hold Transfers                                                    ;
-+------------+----------+----------+----------+----------+----------+
-; From Clock ; To Clock ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------+----------+----------+----------+----------+----------+
-; CLOCK_50   ; CLOCK_50 ; 2639245  ; 0        ; 0        ; 0        ;
-+------------+----------+----------+----------+----------+----------+
++--------------------------------------------------------------------+
+; Hold Transfers                                                     ;
++------------+----------+-----------+----------+----------+----------+
+; From Clock ; To Clock ; RR Paths  ; FR Paths ; RF Paths ; FF Paths ;
++------------+----------+-----------+----------+----------+----------+
+; CLOCK_50   ; CLOCK_50 ; 976711806 ; 0        ; 0        ; 0        ;
++------------+----------+-----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -728,7 +728,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 2     ; 2    ;
 ; Unconstrained Input Ports       ; 16    ; 16   ;
-; Unconstrained Input Port Paths  ; 1042  ; 1042 ;
+; Unconstrained Input Port Paths  ; 3420  ; 3420 ;
 ; Unconstrained Output Ports      ; 55    ; 55   ;
 ; Unconstrained Output Port Paths ; 58    ; 58   ;
 +---------------------------------+-------+------+
@@ -925,7 +925,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Sun Mar 06 19:18:22 2022
+    Info: Processing started: Mon Mar 14 21:59:58 2022
 Info: Command: quartus_sta de1soc -c de1soc
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -967,96 +967,96 @@ Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument <targets>
     Info (332050): set_output_delay -min -clock clk_vga -1.485 [get_ports VGA_BLANK_N] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
 Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
-Info (332146): Worst-case setup slack is 7.612
+Info (332146): Worst-case setup slack is 0.223
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     7.612               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.378
+    Info (332119):     0.223               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.354
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.378               0.000 CLOCK_50 
+    Info (332119):     0.354               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.846
+Info (332146): Worst-case minimum pulse width slack is 8.953
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.846               0.000 CLOCK_50 
+    Info (332119):     8.953               0.000 CLOCK_50 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 7.582
+Info (332146): Worst-case setup slack is 0.085
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     7.582               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.396
+    Info (332119):     0.085               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.332
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.396               0.000 CLOCK_50 
+    Info (332119):     0.332               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.810
+Info (332146): Worst-case minimum pulse width slack is 8.982
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.810               0.000 CLOCK_50 
+    Info (332119):     8.982               0.000 CLOCK_50 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 12.978
+Info (332146): Worst-case setup slack is 8.577
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    12.978               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.182
+    Info (332119):     8.577               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.180
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.182               0.000 CLOCK_50 
+    Info (332119):     0.180               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.530
+Info (332146): Worst-case minimum pulse width slack is 8.526
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.530               0.000 CLOCK_50 
+    Info (332119):     8.526               0.000 CLOCK_50 
 Info: Analyzing Fast 1100mV 0C Model
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
     Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 13.459
+Info (332146): Worst-case setup slack is 9.494
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    13.459               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.175
+    Info (332119):     9.494               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.169
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.175               0.000 CLOCK_50 
+    Info (332119):     0.169               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.481
+Info (332146): Worst-case minimum pulse width slack is 8.478
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.481               0.000 CLOCK_50 
+    Info (332119):     8.478               0.000 CLOCK_50 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 5188 megabytes
-    Info: Processing ended: Sun Mar 06 19:18:37 2022
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:24
+    Info: Peak virtual memory: 5249 megabytes
+    Info: Processing ended: Mon Mar 14 22:00:22 2022
+    Info: Elapsed time: 00:00:24
+    Info: Total CPU time (on all processors): 00:00:49
 
 

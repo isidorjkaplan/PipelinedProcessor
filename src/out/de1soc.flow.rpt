@@ -1,5 +1,5 @@
 Flow report for de1soc
-Mon Mar 14 21:59:34 2022
+Mon Mar 14 22:10:43 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Mon Mar 14 21:59:34 2022       ;
+; Flow Status                     ; Successful - Mon Mar 14 22:10:43 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; de1soc                                      ;
 ; Top-level Entity Name           ; de1soc_top                                  ;
@@ -106,7 +106,11 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Analysis & Synthesis ; 00:01:11     ; 1.0                     ; 4899 MB             ; 00:01:51                           ;
 ; Fitter               ; 00:03:51     ; 1.2                     ; 6636 MB             ; 00:07:52                           ;
-; Total                ; 00:05:02     ; --                      ; --                  ; 00:09:43                           ;
+; Assembler            ; 00:00:17     ; 1.0                     ; 4881 MB             ; 00:00:14                           ;
+; Timing Analyzer      ; 00:00:24     ; 2.5                     ; 5249 MB             ; 00:00:49                           ;
+; MIF/HEX Update       ; 00:00:33     ; 1.0                     ; 4932 MB             ; 00:00:32                           ;
+; Assembler            ; 00:00:22     ; 1.0                     ; 4878 MB             ; 00:00:21                           ;
+; Total                ; 00:06:38     ; --                      ; --                  ; 00:11:39                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -117,6 +121,10 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Fitter               ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -125,6 +133,10 @@ refer to the applicable agreement for further details.
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off de1soc -c de1soc
 quartus_fit --read_settings_files=off --write_settings_files=off de1soc -c de1soc
+quartus_asm --read_settings_files=off --write_settings_files=off de1soc -c de1soc
+quartus_sta de1soc -c de1soc
+quartus_cdb de1soc -c de1soc --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
 
 
 

@@ -1,3 +1,22 @@
+
+module avalon_dct_nios
+(
+	input clk, //Common clock shared by the entire system.
+	input reset, //Common reset shared by the entire system.
+	input [7:0] avs_s1_address, //Address lines from the Avalon bus.
+	input avs_s1_read, //Read request signal from the CPU. Used together with readdata
+	input avs_s1_write,//Wrote request signal from the CPU. Used together with writedata
+	input [31:0] avs_s1_writedata, //Data lines for the CPU to send data to the peripheral. 
+									//Used together with write.
+	output logic [31:0] avs_s1_readdata, //Data lines for the peripheral to return data to the CPU. Used
+											//together with read.
+
+	output logic avs_s1_waitrequest //Signal to stall the Avalon bus when the peripheral is busy.
+);
+    avalon_dct (clk, reset, avs_s1_address, avs_s1_read, avs_s1_write, avs_s1_writedata, avs_s1_readdata, ~avs_s1_waitrequest);
+endmodule
+
+
 module avalon_dct #(
     parameter MAX_SIZE=64, //the maximum size of an array that we can DCT
     parameter HEIGHT = $clog2(MAX_SIZE),
