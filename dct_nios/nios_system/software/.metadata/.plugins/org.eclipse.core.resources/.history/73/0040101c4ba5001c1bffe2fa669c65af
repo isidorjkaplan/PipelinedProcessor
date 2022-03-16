@@ -1,0 +1,368 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include <math.h>
+
+#include <float.h>
+
+#include "altera_avalon_performance_counter.h"
+
+#include <sys/alt_irq.h>
+
+
+
+static alt_irq_context context; /* Use when disabling interrupts. */
+
+
+
+static void pre_measurement(void){
+
+  PERF_RESET (PERFORMANCE_COUNTER_0_BASE);
+
+  context = alt_irq_disable_all();
+
+  PERF_START_MEASURING (PERFORMANCE_COUNTER_0_BASE);
+
+}
+
+
+
+static void post_measurement(void){
+
+	alt_irq_enable_all(context);
+
+	PERF_STOP_MEASURING (PERFORMANCE_COUNTER_0_BASE);
+
+}
+
+
+
+static inline int get_runtime(int sec) {
+
+	return (int)perf_get_section_time ((void*)PERFORMANCE_COUNTER_0_BASE, sec);
+
+}
+
+
+
+// Un-comment these options to disable the use of the floating-point hardware
+
+// for the respective operation.
+
+/*
+
+#pragma GCC target("no-custom-fadds")
+
+#pragma GCC target("no-custom-fsubs")
+
+#pragma GCC target("no-custom-fmuls")
+
+#pragma GCC target("no-custom-fdivs")*/
+
+
+
+#define NUM_ITEMS 100
+
+
+
+typedef int fixed;
+
+
+
+int Q_M = 0;
+
+int Q_N = 0;
+
+int F_ONE = 0;
+
+
+
+void SET_Q_FORMAT(int M, int N){
+
+    Q_M = M;
+
+    Q_N = N;
+
+    F_ONE = 1 << N;
+
+}
+
+
+
+static inline int FLOAT_TO_FIXED(float f){
+
+    return (fixed)(f * F_ONE);
+
+}
+
+
+
+static inline float FIXED_TO_FLOAT(fixed f){
+
+    return (float)(f)/F_ONE;
+
+}
+
+
+
+fixed FIXED_MULT(fixed op1, fixed op2){
+
+    //(op1 / 2^N) * (op2 / 2^N) = (op1*op2/2^N) / 2^N
+
+    return (fixed)  ((((long long)op1)*((long long)op2)) >> Q_N);
+
+    //return (fixed) op1*op2 >> Q_N;
+
+}
+
+
+
+#define K 10
+
+#define NUM_DATASETS 4
+
+float datasets[NUM_DATASETS][K] = {{660.0281868412517, 1232.5613476709339, 1529.245890520003, 1725.166156503568, 448.3609974749139, 739.759982849486, 591.9902513121583, 647.4746878100794, 31.185205177253238, 1871.0937639385377},
+
+                         {35.123381785594965, 38.74648544420697, 36.59865857516015, 32.05382526523317, 18.629052861057946, 48.19753513664228, 10.608143241639784, 50.466913345404784, 40.967234238126245, 23.839227567356115},
+
+                         {3.844203036151277, 0.1664194249276001, 4.7094928096683315, 1.34325212053895, 6.857565397705689, 4.8577305991882875, 6.401882286157623, 5.833901848376997, 0.6188143803307783, 4.01162930302117},
+
+                          {793798.5498211391, 96103.87086434351, 1164371.7138754118, 1901899.952275097, 1274546.6911111288, 941511.7797620023, 1685653.62344634, 1577939.193413593, 1255012.3904668214, 472295.302631499}};
+
+
+
+float float_abs(float x) {
+
+    if (x >= 0) return x;
+
+    else return -x;
+
+}
+
+
+
+float error(float set1[], float set2[]) {
+
+    float error_sum = 0;
+
+    for (int i = 0; i < K; i++) {
+
+        error_sum += float_abs(set1[i] - set2[i]);
+
+    }
+
+    return error_sum/K;
+
+}
+
+
+
+int num_ewma_float;
+
+int num_ewma_fixed;
+
+
+
+void ewma_filter_float(float set[], float out[], float alpha) {
+
+    num_ewma_float++;
+
+	PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 2);
+
+	out[0] = set[0];
+
+    for (int i = 1; i < K; i++) {
+
+        out[i] = set[i]*alpha + out[i-1]*(1-alpha);
+
+    }
+
+    PERF_END (PERFORMANCE_COUNTER_0_BASE, 2);
+
+}
+
+void ewma_filter_fixed(fixed set[K], fixed out[K], fixed alpha) {
+
+    num_ewma_fixed++;
+
+    fixed one = FLOAT_TO_FIXED(1.0);
+
+    PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 1);
+
+    out[0] = set[0];
+
+    for (int i = 1; i < K; i++) {
+
+        out[i] = FIXED_MULT(set[i],alpha) + FIXED_MULT(out[i-1],one-alpha);
+
+    }
+
+    PERF_END (PERFORMANCE_COUNTER_0_BASE, 1);
+
+}
+
+
+
+void float_to_fixed(float set[K], fixed out[K]) {
+
+    for (int i = 0; i < K; i++) {
+
+        out[i] = FLOAT_TO_FIXED(set[i]);
+
+    }
+
+}
+
+void fixed_to_float(fixed set[K], float out[K]) {
+
+    for (int i = 0; i < K; i++) {
+
+        out[i] = FIXED_TO_FLOAT(set[i]);
+
+    }
+
+}
+
+
+
+void print_set(float set[K]) {
+
+    for (int i = 0; i < K; i++) {
+
+        printf("%f, ", set[i]);
+
+    }
+
+    printf("\n");
+
+}
+
+
+
+float ewma_compare(float set[K], float alpha) {
+
+    float out_float1[K];
+
+    ewma_filter_float(set, out_float1, alpha);
+
+
+
+    fixed in_fixed[K];
+
+    fixed out_fixed[K];
+
+    float_to_fixed(set, in_fixed);
+
+    ewma_filter_fixed(in_fixed, out_fixed, FLOAT_TO_FIXED(alpha));
+
+    float out_float2[K];
+
+    fixed_to_float(out_fixed, out_float2);
+
+
+
+    printf("Float: ");
+
+    print_set(out_float1);
+
+    printf("Fixed: ");
+
+    print_set(out_float2);
+
+
+
+
+
+    return error(out_float1, out_float2);
+
+}
+
+
+
+
+
+int main(void){
+
+
+
+	volatile int a = 234;
+
+	volatile int result;
+
+
+
+	pre_measurement();
+
+
+
+	for (int i=0; i<NUM_ITEMS; i++){
+
+		PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 1);
+
+		result = a^a;
+
+		PERF_END (PERFORMANCE_COUNTER_0_BASE, 1);
+
+	}
+
+
+
+	post_measurement();
+
+
+
+	int overhead_cycles = get_runtime(1)/NUM_ITEMS;
+
+
+
+	printf("Mean Overhead Per PERF: %f\n", (float)overhead_cycles);
+
+
+
+	/*Inserting my code*/
+
+	pre_measurement();
+
+    num_ewma_float = 0;
+
+    num_ewma_fixed = 0;
+
+
+
+
+
+
+
+	SET_Q_FORMAT(24, 31-24);
+
+	float alpha = 0.1;
+
+	for (int dataset = 0; dataset < NUM_DATASETS; dataset++) {
+
+		printf("Starting %i\n", dataset);
+
+		printf("Input: ");
+
+		print_set(datasets[dataset]);
+
+		printf("Set %i: %f\n\n", dataset, ewma_compare(datasets[dataset], alpha));
+
+	}
+
+
+
+
+
+	post_measurement();
+
+	printf("Mean Fixed EWMA Cycles: %d\n", get_runtime(1)/num_ewma_fixed - overhead_cycles);
+
+	printf("Mean Float EWMA Cycles: %d\n", get_runtime(2)/num_ewma_float - overhead_cycles);
+
+
+
+	while(1);
+
+}
+

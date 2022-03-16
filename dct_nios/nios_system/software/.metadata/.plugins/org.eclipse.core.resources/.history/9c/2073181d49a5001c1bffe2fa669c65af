@@ -50,7 +50,7 @@ static inline int get_runtime(int sec) {
 
 // for the respective operation.
 
-
+/*
 
 #pragma GCC target("no-custom-fadds")
 
@@ -230,7 +230,7 @@ fixed optimized_fixed_sin(register fixed x) {
 
     powx = (powx * x2) >> q_val;            //x^5
 
-    result += (powx * 17) >> 11;          //1/5!
+    result += powx >> 7;          //1/5!
 
 
 

@@ -50,7 +50,7 @@ static inline int get_runtime(int sec) {
 
 // for the respective operation.
 
-
+/*
 
 #pragma GCC target("no-custom-fadds")
 

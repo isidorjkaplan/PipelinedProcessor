@@ -50,7 +50,7 @@ static inline int get_runtime(int sec) {
 
 // for the respective operation.
 
-
+/*
 
 #pragma GCC target("no-custom-fadds")
 
@@ -84,7 +84,7 @@ void SET_Q_FORMAT(int M, int N) {
 
 
 
-static inline fixed FLOAT_TO_FIXED(register float f) {
+static inline fixed FLOAT_TO_FIXED(float f) {
 
     return (fixed)(f * F_ONE);
 
@@ -92,7 +92,7 @@ static inline fixed FLOAT_TO_FIXED(register float f) {
 
 
 
-static inline float FIXED_TO_FLOAT(register fixed f){
+static inline float FIXED_TO_FLOAT(fixed f){
 
     return (float)(f)/F_ONE;
 
@@ -100,7 +100,7 @@ static inline float FIXED_TO_FLOAT(register fixed f){
 
 
 
-static inline fixed FIXED_MULT(register fixed op1, register fixed op2) {
+static inline fixed FIXED_MULT(fixed op1, fixed op2) {
 
     return (fixed)op1*op2 >> Q_N;
 
@@ -108,7 +108,7 @@ static inline fixed FIXED_MULT(register fixed op1, register fixed op2) {
 
 
 
-static inline float float_abs(register float x) {
+float float_abs(float x) {
 
     if (x >= 0) return x;
 
@@ -122,21 +122,21 @@ int num_float;
 
 int num_fixed;
 
-float float_sin(register float x, register int terms) {
+float float_sin(float x, int terms) {
 
     num_float++;
 
     PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 2);
 
-    register float result = x;
+    float result = x;
 
-    register float x2 = x*x;
+    float x2 = x*x;
 
-    register float num = x;
+    float num = x;
 
-    register int den = 1;
+    int den = 1;
 
-    register int neg = 1;
+    int neg = 1;
 
     for (int i = 1; i < terms; i++) {
 
@@ -252,23 +252,23 @@ fixed optimized_fixed_sin(register fixed x) {
 
 
 
-fixed fixed_sin(register fixed x, register int terms) {
+fixed fixed_sin(fixed x, int terms) {
 
     num_fixed++;
 
     PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 1);
 
-    register fixed result = x;
+    fixed result = x;
 
-    register fixed x2 = FIXED_MULT(x,x);
+    fixed x2 = FIXED_MULT(x,x);
 
-    register fixed num = x;
+    fixed num = x;
 
-    register int den = 1;
+    int den = 1;
 
-    register int neg = 1;
+    int neg = 1;
 
-    register fixed term;
+    fixed term;
 
     for (int i = 1; i < terms; i++) {
 
@@ -400,7 +400,7 @@ int tune_QM_sin(int terms) {
 
             bestM = M;
 
-            printf("New Best (M,N)=(%d,%d): Error = %f\n", M, N, best_err);
+            printf("New Best (Q,M)=(%d,%d): Error = %f\n", M, N, best_err);
 
         }
 
