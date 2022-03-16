@@ -14,28 +14,7 @@ module avalon_ps2
 	inout PS2_CLK,
 	inout PS2_DATA
 );
-	logic [2:0] data;
-	logic [3:0] x;
-	logic [3:0] y;
-	assign out = {4'b0, x, y, data};
+	//TODO <UNIMPL>
 	assign ps2_done = 1;
-	
-	ps2_mouse #(
-			.WIDTH(10),
-			.HEIGHT(10),
-			.BIN(100),
-			.HYSTERESIS(30))
-	U1(
-			.start(reset),  
-			.reset(reset),  
-			.CLOCK_50(clk),  
-			.PS2_CLK(PS2_CLK), 
-			.PS2_DAT(PS2_DATA), 
-			.button_left(data[0]),  
-			.button_right(data[1]),  
-			.button_middle(data[2]),  
-			.bin_x(x),
-			.bin_y(y)
-			);
-	 
+	assign out = 0; 
 endmodule 

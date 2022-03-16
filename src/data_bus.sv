@@ -42,8 +42,6 @@ module avalon_bus
     parameter S_DEV_HEX=4'h0, S_DEV_SW=4'h1, S_DEV_LEDR=4'h2, S_DEV_KEY=4'h3, S_DEV_IR=4'h4, S_DEV_PS2=4'h5;
     logic [6:0] hex_reg[6];
     logic [9:0] ledr_reg;
-    logic IR_recv_reg; //IR reciever register
-    logic IR_emit_reg; //IR emitter register
     logic [15:0] out_io;
     logic done_io;
     
@@ -56,9 +54,7 @@ module avalon_bus
         if (Reset) begin
             for (integer i = 0; i < 6; i++)
                 hex_reg[i] <= 0;
-            ledr_reg <= 0;
-				IR_recv_reg <= 0;
-				IR_emit_reg <= 0;
+                ledr_reg <= 0;
         end
 		  else if (device == DEV_IO) begin
 			  if (secondary_device==S_DEV_HEX && DataAddr[2:0] < 6) begin
@@ -67,15 +63,16 @@ module avalon_bus
 			  else if (secondary_device==S_DEV_LEDR) begin
 					ledr_reg <= BusIn[9:0];
 			  end
+              /*
 			  else if (secondary_device==S_DEV_IR) begin
 					IR_emit_reg <= BusIn[0];
 			  end
+              IR_recv_reg <= IRDA_RXD;//update no matter what*/
 		  end
-		  IR_recv_reg <= IRDA_RXD;//update no matter what
     end
     assign HEX = hex_reg;
     assign LEDR = ledr_reg;
-	 assign IRDA_TXD = IR_emit_reg;
+	 //assign IRDA_TXD = IR_emit_reg;
 	 always_comb begin
 			case (secondary_device) 
 				S_DEV_SW:begin
@@ -86,26 +83,26 @@ module avalon_bus
                 done_io=1;//data is done immediately
                 out_io={11'h0, KEY};
             end
-				S_DEV_IR:begin
-					 done_io=1;//single cycle
-					 out_io={14'h0, IR_recv_reg};
-				end
-				S_DEV_HEX:begin
-					 done_io=1;
-					 out_io = 0;
-					 if (DataAddr[2:0] < 6) begin
-							out_io = {9'h0, hex_reg[DataAddr[2:0]]};
-					 end
-				end
-				S_DEV_PS2:begin
-					out_io = ps2_out;
-					done_io = ps2_done;
-				end
-				default:begin
-					 done_io=1;
-					 out_io=0;
-				end
-			endcase
+            /*S_DEV_IR:begin
+                    done_io=1;//single cycle
+                    out_io={14'h0, IR_recv_reg};
+            end*/
+            S_DEV_HEX:begin
+                    done_io=1;
+                    out_io = 0;
+                    if (DataAddr[2:0] < 6) begin
+                        out_io = {9'h0, hex_reg[DataAddr[2:0]]};
+                    end
+            end
+            S_DEV_PS2:begin
+                out_io = ps2_out;
+                done_io = ps2_done;
+            end
+            default:begin
+                    done_io=1;
+                    out_io=0;
+            end
+        endcase
 	 end
 	 
     

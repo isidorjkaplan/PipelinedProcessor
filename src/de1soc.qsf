@@ -445,7 +445,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE data_bus.sv
 set_global_assignment -name SYSTEMVERILOG_FILE de1soc_top.sv
 set_global_assignment -name SDC_FILE de1soc.sdc
 set_global_assignment -name SYSTEMVERILOG_FILE ps2.sv
-set_global_assignment -name VERILOG_FILE ps2_mouse.v
 set_global_assignment -name SYSTEMVERILOG_FILE dct_rom.sv
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name SMART_RECOMPILE ON

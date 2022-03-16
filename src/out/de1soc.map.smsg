@@ -1,3 +1,2 @@
-Info (10281): Verilog HDL Declaration information at dct.sv(25): object "N" differs only in case from object "n" in the same scope File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/dct.sv Line: 25
-Warning (10268): Verilog HDL information at lab4_mult.sv(85): always construct contains both blocking and non-blocking assignments File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/lab4_mult.sv Line: 85
-Warning (10268): Verilog HDL information at ps2_mouse.v(139): always construct contains both blocking and non-blocking assignments File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/ps2_mouse.v Line: 139
+Info (10281): Verilog HDL Declaration information at dct.sv(46): object "N" differs only in case from object "n" in the same scope File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/dct.sv Line: 46
+Warning (10268): Verilog HDL information at lab4_mult.sv(85): always construct contains both blocking and non-blocking assignments File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/lab4_mult.sv Line: 85

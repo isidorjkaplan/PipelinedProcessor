@@ -1,5 +1,5 @@
 Timing Analyzer report for de1soc
-Mon Mar 14 22:00:22 2022
+Wed Mar 16 15:54:01 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -100,14 +100,14 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 2.48        ;
+; Average used               ; 2.50        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  49.7%      ;
-;     Processor 3            ;  49.1%      ;
-;     Processor 4            ;  49.0%      ;
+;     Processor 2            ;  50.4%      ;
+;     Processor 3            ;  49.6%      ;
+;     Processor 4            ;  49.5%      ;
 +----------------------------+-------------+
 
 
@@ -116,7 +116,7 @@ refer to the applicable agreement for further details.
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; de1soc.sdc    ; OK     ; Mon Mar 14 22:00:02 2022 ;
+; de1soc.sdc    ; OK     ; Wed Mar 16 15:53:41 2022 ;
 +---------------+--------+--------------------------+
 
 
@@ -134,7 +134,7 @@ refer to the applicable agreement for further details.
 +-----------+-----------------+------------+------+
 ; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
 +-----------+-----------------+------------+------+
-; 50.56 MHz ; 50.56 MHz       ; CLOCK_50   ;      ;
+; 50.81 MHz ; 50.81 MHz       ; CLOCK_50   ;      ;
 +-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -150,7 +150,7 @@ HTML report is unavailable in plain text report export.
 +----------+-------+------------------+
 ; Clock    ; Slack ; End Point TNS    ;
 +----------+-------+------------------+
-; CLOCK_50 ; 0.223 ; 0.000            ;
+; CLOCK_50 ; 0.320 ; 0.000            ;
 +----------+-------+------------------+
 
 
@@ -159,7 +159,7 @@ HTML report is unavailable in plain text report export.
 +----------+-------+-----------------+
 ; Clock    ; Slack ; End Point TNS   ;
 +----------+-------+-----------------+
-; CLOCK_50 ; 0.354 ; 0.000           ;
+; CLOCK_50 ; 0.339 ; 0.000           ;
 +----------+-------+-----------------+
 
 
@@ -180,7 +180,7 @@ No paths to report.
 +----------+-------+--------------------------------+
 ; Clock    ; Slack ; End Point TNS                  ;
 +----------+-------+--------------------------------+
-; CLOCK_50 ; 8.953 ; 0.000                          ;
+; CLOCK_50 ; 8.956 ; 0.000                          ;
 +----------+-------+--------------------------------+
 
 
@@ -195,7 +195,7 @@ No synchronizer chains to report.
 +-----------+-----------------+------------+------+
 ; Fmax      ; Restricted Fmax ; Clock Name ; Note ;
 +-----------+-----------------+------------+------+
-; 50.21 MHz ; 50.21 MHz       ; CLOCK_50   ;      ;
+; 51.05 MHz ; 51.05 MHz       ; CLOCK_50   ;      ;
 +-----------+-----------------+------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -205,7 +205,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------+-------+-----------------+
 ; Clock    ; Slack ; End Point TNS   ;
 +----------+-------+-----------------+
-; CLOCK_50 ; 0.085 ; 0.000           ;
+; CLOCK_50 ; 0.413 ; 0.000           ;
 +----------+-------+-----------------+
 
 
@@ -214,7 +214,7 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------+-------+----------------+
 ; Clock    ; Slack ; End Point TNS  ;
 +----------+-------+----------------+
-; CLOCK_50 ; 0.332 ; 0.000          ;
+; CLOCK_50 ; 0.298 ; 0.000          ;
 +----------+-------+----------------+
 
 
@@ -235,7 +235,7 @@ No paths to report.
 +----------+-------+-------------------------------+
 ; Clock    ; Slack ; End Point TNS                 ;
 +----------+-------+-------------------------------+
-; CLOCK_50 ; 8.982 ; 0.000                         ;
+; CLOCK_50 ; 8.988 ; 0.000                         ;
 +----------+-------+-------------------------------+
 
 
@@ -250,7 +250,7 @@ No synchronizer chains to report.
 +----------+-------+------------------+
 ; Clock    ; Slack ; End Point TNS    ;
 +----------+-------+------------------+
-; CLOCK_50 ; 8.577 ; 0.000            ;
+; CLOCK_50 ; 8.537 ; 0.000            ;
 +----------+-------+------------------+
 
 
@@ -259,7 +259,7 @@ No synchronizer chains to report.
 +----------+-------+-----------------+
 ; Clock    ; Slack ; End Point TNS   ;
 +----------+-------+-----------------+
-; CLOCK_50 ; 0.180 ; 0.000           ;
+; CLOCK_50 ; 0.176 ; 0.000           ;
 +----------+-------+-----------------+
 
 
@@ -280,7 +280,7 @@ No paths to report.
 +----------+-------+--------------------------------+
 ; Clock    ; Slack ; End Point TNS                  ;
 +----------+-------+--------------------------------+
-; CLOCK_50 ; 8.526 ; 0.000                          ;
+; CLOCK_50 ; 8.527 ; 0.000                          ;
 +----------+-------+--------------------------------+
 
 
@@ -295,7 +295,7 @@ No synchronizer chains to report.
 +----------+-------+-----------------+
 ; Clock    ; Slack ; End Point TNS   ;
 +----------+-------+-----------------+
-; CLOCK_50 ; 9.494 ; 0.000           ;
+; CLOCK_50 ; 9.457 ; 0.000           ;
 +----------+-------+-----------------+
 
 
@@ -304,7 +304,7 @@ No synchronizer chains to report.
 +----------+-------+----------------+
 ; Clock    ; Slack ; End Point TNS  ;
 +----------+-------+----------------+
-; CLOCK_50 ; 0.169 ; 0.000          ;
+; CLOCK_50 ; 0.157 ; 0.000          ;
 +----------+-------+----------------+
 
 
@@ -325,7 +325,7 @@ No paths to report.
 +----------+-------+-------------------------------+
 ; Clock    ; Slack ; End Point TNS                 ;
 +----------+-------+-------------------------------+
-; CLOCK_50 ; 8.478 ; 0.000                         ;
+; CLOCK_50 ; 8.479 ; 0.000                         ;
 +----------+-------+-------------------------------+
 
 
@@ -340,8 +340,8 @@ No synchronizer chains to report.
 +------------------+-------+-------+----------+---------+---------------------+
 ; Clock            ; Setup ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +------------------+-------+-------+----------+---------+---------------------+
-; Worst-case Slack ; 0.085 ; 0.169 ; N/A      ; N/A     ; 8.478               ;
-;  CLOCK_50        ; 0.085 ; 0.169 ; N/A      ; N/A     ; 8.478               ;
+; Worst-case Slack ; 0.320 ; 0.157 ; N/A      ; N/A     ; 8.479               ;
+;  CLOCK_50        ; 0.320 ; 0.157 ; N/A      ; N/A     ; 8.479               ;
 ; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
 ;  CLOCK_50        ; 0.000 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
 +------------------+-------+-------+----------+---------+---------------------+
@@ -693,7 +693,7 @@ No synchronizer chains to report.
 +------------+----------+-----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths  ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+-----------+----------+----------+----------+
-; CLOCK_50   ; CLOCK_50 ; 976711806 ; 0        ; 0        ; 0        ;
+; CLOCK_50   ; CLOCK_50 ; 981206401 ; 0        ; 0        ; 0        ;
 +------------+----------+-----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -703,7 +703,7 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +------------+----------+-----------+----------+----------+----------+
 ; From Clock ; To Clock ; RR Paths  ; FR Paths ; RF Paths ; FF Paths ;
 +------------+----------+-----------+----------+----------+----------+
-; CLOCK_50   ; CLOCK_50 ; 976711806 ; 0        ; 0        ; 0        ;
+; CLOCK_50   ; CLOCK_50 ; 981206401 ; 0        ; 0        ; 0        ;
 +------------+----------+-----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -728,7 +728,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 2     ; 2    ;
 ; Unconstrained Input Ports       ; 16    ; 16   ;
-; Unconstrained Input Port Paths  ; 3420  ; 3420 ;
+; Unconstrained Input Port Paths  ; 3417  ; 3417 ;
 ; Unconstrained Output Ports      ; 55    ; 55   ;
 ; Unconstrained Output Port Paths ; 58    ; 58   ;
 +---------------------------------+-------+------+
@@ -925,7 +925,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
-    Info: Processing started: Mon Mar 14 21:59:58 2022
+    Info: Processing started: Wed Mar 16 15:53:36 2022
 Info: Command: quartus_sta de1soc -c de1soc
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -933,130 +933,130 @@ Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
 Info (332104): Reading SDC File: 'de1soc.sdc'
-Warning (332174): Ignored filter at de1soc.sdc(17): VGA_CLK could not be matched with a port File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 17
-Warning (332049): Ignored create_clock at de1soc.sdc(17): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 17
-    Info (332050): create_clock -period "25.18 MHz" -name clk_vga [get_ports VGA_CLK] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 17
+Warning (332174): Ignored filter at de1soc.sdc(17): VGA_CLK could not be matched with a port File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 17
+Warning (332049): Ignored create_clock at de1soc.sdc(17): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 17
+    Info (332050): create_clock -period "25.18 MHz" -name clk_vga [get_ports VGA_CLK] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 17
 Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
-Warning (332174): Ignored filter at de1soc.sdc(63): VGA_R* could not be matched with a port File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 63
-Warning (332174): Ignored filter at de1soc.sdc(63): clk_vga could not be matched with a clock File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 63
-Warning (332049): Ignored set_output_delay at de1soc.sdc(63): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 63
-    Info (332050): set_output_delay -max -clock clk_vga 0.220 [get_ports VGA_R*] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 63
-Warning (332049): Ignored set_output_delay at de1soc.sdc(63): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 63
-Warning (332049): Ignored set_output_delay at de1soc.sdc(64): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 64
-    Info (332050): set_output_delay -min -clock clk_vga -1.506 [get_ports VGA_R*] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 64
-Warning (332049): Ignored set_output_delay at de1soc.sdc(64): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 64
-Warning (332174): Ignored filter at de1soc.sdc(65): VGA_G* could not be matched with a port File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 65
-Warning (332049): Ignored set_output_delay at de1soc.sdc(65): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 65
-    Info (332050): set_output_delay -max -clock clk_vga 0.212 [get_ports VGA_G*] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 65
-Warning (332049): Ignored set_output_delay at de1soc.sdc(65): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 65
-Warning (332049): Ignored set_output_delay at de1soc.sdc(66): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 66
-    Info (332050): set_output_delay -min -clock clk_vga -1.519 [get_ports VGA_G*] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 66
-Warning (332049): Ignored set_output_delay at de1soc.sdc(66): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 66
-Warning (332174): Ignored filter at de1soc.sdc(67): VGA_B[* could not be matched with a port File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 67
-Warning (332049): Ignored set_output_delay at de1soc.sdc(67): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 67
-    Info (332050): set_output_delay -max -clock clk_vga 0.264 [get_ports {VGA_B[*}] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 67
-Warning (332049): Ignored set_output_delay at de1soc.sdc(67): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 67
-Warning (332049): Ignored set_output_delay at de1soc.sdc(68): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 68
-    Info (332050): set_output_delay -min -clock clk_vga -1.519 [get_ports {VGA_B[*}] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 68
-Warning (332049): Ignored set_output_delay at de1soc.sdc(68): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 68
-Warning (332174): Ignored filter at de1soc.sdc(69): VGA_BLANK_N could not be matched with a port File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 69
-Warning (332049): Ignored set_output_delay at de1soc.sdc(69): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 69
-    Info (332050): set_output_delay -max -clock clk_vga 0.215 [get_ports VGA_BLANK_N] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 69
-Warning (332049): Ignored set_output_delay at de1soc.sdc(69): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 69
-Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument <targets> is an empty collection File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
-    Info (332050): set_output_delay -min -clock clk_vga -1.485 [get_ports VGA_BLANK_N] File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
-Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument -clock is not an object ID File: C:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src/de1soc.sdc Line: 70
+Warning (332174): Ignored filter at de1soc.sdc(63): VGA_R* could not be matched with a port File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 63
+Warning (332174): Ignored filter at de1soc.sdc(63): clk_vga could not be matched with a clock File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 63
+Warning (332049): Ignored set_output_delay at de1soc.sdc(63): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 63
+    Info (332050): set_output_delay -max -clock clk_vga 0.220 [get_ports VGA_R*] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 63
+Warning (332049): Ignored set_output_delay at de1soc.sdc(63): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 63
+Warning (332049): Ignored set_output_delay at de1soc.sdc(64): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 64
+    Info (332050): set_output_delay -min -clock clk_vga -1.506 [get_ports VGA_R*] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 64
+Warning (332049): Ignored set_output_delay at de1soc.sdc(64): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 64
+Warning (332174): Ignored filter at de1soc.sdc(65): VGA_G* could not be matched with a port File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 65
+Warning (332049): Ignored set_output_delay at de1soc.sdc(65): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 65
+    Info (332050): set_output_delay -max -clock clk_vga 0.212 [get_ports VGA_G*] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 65
+Warning (332049): Ignored set_output_delay at de1soc.sdc(65): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 65
+Warning (332049): Ignored set_output_delay at de1soc.sdc(66): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 66
+    Info (332050): set_output_delay -min -clock clk_vga -1.519 [get_ports VGA_G*] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 66
+Warning (332049): Ignored set_output_delay at de1soc.sdc(66): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 66
+Warning (332174): Ignored filter at de1soc.sdc(67): VGA_B[* could not be matched with a port File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 67
+Warning (332049): Ignored set_output_delay at de1soc.sdc(67): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 67
+    Info (332050): set_output_delay -max -clock clk_vga 0.264 [get_ports {VGA_B[*}] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 67
+Warning (332049): Ignored set_output_delay at de1soc.sdc(67): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 67
+Warning (332049): Ignored set_output_delay at de1soc.sdc(68): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 68
+    Info (332050): set_output_delay -min -clock clk_vga -1.519 [get_ports {VGA_B[*}] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 68
+Warning (332049): Ignored set_output_delay at de1soc.sdc(68): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 68
+Warning (332174): Ignored filter at de1soc.sdc(69): VGA_BLANK_N could not be matched with a port File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 69
+Warning (332049): Ignored set_output_delay at de1soc.sdc(69): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 69
+    Info (332050): set_output_delay -max -clock clk_vga 0.215 [get_ports VGA_BLANK_N] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 69
+Warning (332049): Ignored set_output_delay at de1soc.sdc(69): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 69
+Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument <targets> is an empty collection File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 70
+    Info (332050): set_output_delay -min -clock clk_vga -1.485 [get_ports VGA_BLANK_N] File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 70
+Warning (332049): Ignored set_output_delay at de1soc.sdc(70): Argument -clock is not an object ID File: C:/Users/isido/Documents/Local/PipelinedProcessor/src/de1soc.sdc Line: 70
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[1]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ct[4]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
-Info (332146): Worst-case setup slack is 0.223
+Info (332146): Worst-case setup slack is 0.320
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.223               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.354
+    Info (332119):     0.320               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.339
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.354               0.000 CLOCK_50 
+    Info (332119):     0.339               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.953
+Info (332146): Worst-case minimum pulse width slack is 8.956
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.953               0.000 CLOCK_50 
+    Info (332119):     8.956               0.000 CLOCK_50 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[1]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ct[4]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 0.085
+Info (332146): Worst-case setup slack is 0.413
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.085               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.332
+    Info (332119):     0.413               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.298
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.332               0.000 CLOCK_50 
+    Info (332119):     0.298               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.982
+Info (332146): Worst-case minimum pulse width slack is 8.988
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.982               0.000 CLOCK_50 
+    Info (332119):     8.988               0.000 CLOCK_50 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[1]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ct[4]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 8.577
+Info (332146): Worst-case setup slack is 8.537
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.577               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.180
+    Info (332119):     8.537               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.176
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.180               0.000 CLOCK_50 
+    Info (332119):     0.176               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.526
+Info (332146): Worst-case minimum pulse width slack is 8.527
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.526               0.000 CLOCK_50 
+    Info (332119):     8.527               0.000 CLOCK_50 
 Info: Analyzing Fast 1100mV 0C Model
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8] was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|leflatch is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|oX_BIN[1]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|clk_div[8]
 Warning (332060): Node: avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in was determined to be a clock but was found without an associated clock assignment.
-    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|byte_cnt[3] is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
+    Info (13166): Register avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ct[4]~DUPLICATE is being clocked by avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|ps2_clk_in
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
-Info (332146): Worst-case setup slack is 9.494
+Info (332146): Worst-case setup slack is 9.457
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     9.494               0.000 CLOCK_50 
-Info (332146): Worst-case hold slack is 0.169
+    Info (332119):     9.457               0.000 CLOCK_50 
+Info (332146): Worst-case hold slack is 0.157
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.169               0.000 CLOCK_50 
+    Info (332119):     0.157               0.000 CLOCK_50 
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
-Info (332146): Worst-case minimum pulse width slack is 8.478
+Info (332146): Worst-case minimum pulse width slack is 8.479
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     8.478               0.000 CLOCK_50 
+    Info (332119):     8.479               0.000 CLOCK_50 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 5249 megabytes
-    Info: Processing ended: Mon Mar 14 22:00:22 2022
+    Info: Peak virtual memory: 5247 megabytes
+    Info: Processing ended: Wed Mar 16 15:54:00 2022
     Info: Elapsed time: 00:00:24
-    Info: Total CPU time (on all processors): 00:00:49
+    Info: Total CPU time (on all processors): 00:00:52
 
 
