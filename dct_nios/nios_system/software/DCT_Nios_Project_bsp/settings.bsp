@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>15-Mar-2022 11:49:29 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1647359369576</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>16-Mar-2022 8:17:48 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1647433068687</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\dct_nios.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_gen2_0</Cpu>

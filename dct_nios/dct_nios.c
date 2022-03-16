@@ -115,23 +115,20 @@ void dct_fixed(fixed* signal, fixed* result, int N) {
     PERF_END (PERFORMANCE_COUNTER_0_BASE, 1);
 }
 
-volatile int* dct_write_q = (int*) (AVALON_DCT_NIOS_0_BASE + 8);
-volatile int* dct_write_size = (int*) (AVALON_DCT_NIOS_0_BASE);
-volatile int* dct_write_data = (int*) (AVALON_DCT_NIOS_0_BASE + 4);
-volatile int* dct_read_base = (int*) (AVALON_DCT_NIOS_0_BASE);
+
 void dct_fixed_unit(fixed* signal, fixed* result, int N) {
     
     num_unit++;
-    *dct_write_q = Q_M;
+    int power = (int)log2(N);
+    //IOWR_32DIRECT(AVALON_DCT_NIOS_0_BASE, 8, Q_M);
     PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 3);
-    *dct_write_size = (int)log(N);
+    IOWR_32DIRECT(AVALON_DCT_NIOS_0_BASE, 0, power);
     for (int i = 0; i < N; i++) {
-        *dct_write_data = signal[i];
+        IOWR_32DIRECT(AVALON_DCT_NIOS_0_BASE, 4, signal[i]);
     }
-    volatile int* dct_read_ptr = dct_read_base;
     for (int i = 0; i < N; i++) {
-        result[i] = *((volatile short*)dct_read_ptr);
-        dct_read_ptr += 1; //shift over to next int
+        result[i] = (short)IORD_32DIRECT(AVALON_DCT_NIOS_0_BASE, 4*i);
+        //*((volatile short*)dct_read_ptr);
     }
     PERF_END (PERFORMANCE_COUNTER_0_BASE, 3);
 }
@@ -145,20 +142,17 @@ void dct_test_signal(float* signal, int N) {
     //calculate the expected true result
     float result_raw[MAX_SIZE];
     dct_float_raw(signal, result_raw, N);
-    /*printf("\n\n\nTrue Result: ");
+    printf("\n\n\nTrue Result: ");
     for (int i = 0; i < N; i++) {
         printf("%f, ", result_raw[i]);
     }
-    fflush(stdout);*/
-
     //Calculate the floating point optimized version
     float result_float[MAX_SIZE];
     float error_float = 0;
     dct_float(signal, result_float, N);
-    //printf("\n\nFloat Result: ");
-    //printf("N=%d\n", N);
+    printf("\n\nFloat Result: ");
     for (int i = 0; i < N; i++) {
-        //printf("%f, ", result_float[i]);
+        printf("%f, ", result_float[i]);
         error_float += float_abs(result_float[i]-result_raw[i]);
     }
     error_float /= N;
@@ -166,18 +160,18 @@ void dct_test_signal(float* signal, int N) {
     fixed result_fixed[MAX_SIZE];
     float error_fixed = 0;
     dct_fixed(fixed_signal, result_fixed, N);
-    //printf("\n\nFixed Result: ");
+    printf("\n\nFixed Result: ");
     for (int i = 0; i < N; i++) {
         float value = FIXED_TO_FLOAT(result_fixed[i]);
         error_fixed += float_abs(value-result_raw[i]);
-        //printf("%f, ", value);
+        printf("%f, ", value);
     }
     error_fixed /= N;
     //unit
     fixed result_unit[MAX_SIZE];
     float error_unit = 0;
     dct_fixed_unit(fixed_signal, result_unit, N);
-    //printf("\n\nFixed Result: ");
+    printf("\n\nFixed Result: ");
     for (int i = 0; i < N; i++) {
         float value = FIXED_TO_FLOAT(result_unit[i]);
         error_unit += float_abs(value-result_raw[i]);
@@ -200,10 +194,10 @@ void dct_test_func(float(*func)(int, int), int N) {
 /*The testbench*/
 
 float test1(int i, int N) {
-    return 8;
+    return 3;
 } 
 float test_cos(int i, int N, int freq) {
-    return 8*cos(freq*FLOAT_PI*i/N);
+    return 3*cos(freq*FLOAT_PI*i/N);
 }
 float test2(int i, int N) {
     return test_cos(i, N, 1);
@@ -212,14 +206,14 @@ float test3(int i, int N) {
     return test_cos(i, N, 2);
 } 
 float test4(int i, int N) {
-    return test_cos(i, N, 2) + test_cos(i, N, 5) + test_cos(i, N, 7);
+    return test1(i, N) + test_cos(i, N, 2) + test_cos(i, N, 5) + test_cos(i, N, 7);
 } 
 
 
 void dct_testbench(int N) {
-    dct_test_func(test1, N);
-    dct_test_func(test2, N);
-    dct_test_func(test3, N);
+    //dct_test_func(test1, N);
+    //dct_test_func(test2, N);
+    //dct_test_func(test3, N);
     dct_test_func(test4, N);
 }
 
@@ -244,7 +238,7 @@ int get_overhead() {
 
 int main(void) {
     ALLOC_DCT_PRECOMP_ARRAY();
-    SET_Q_FORMAT(8, 8);
+    SET_Q_FORMAT(8, 7);
 
     int overhead_cycles = get_overhead();
 	printf("Mean Overhead Per PERF: %f\n", (float)overhead_cycles);
@@ -257,6 +251,8 @@ int main(void) {
     printf("Mean Fixed Cycles: %d\n", get_runtime(1)/num_fixed - overhead_cycles);
     printf("Mean Float Cycles %d\n", get_runtime(2)/num_float - overhead_cycles);
     printf("Mean Unit Cycles %d\n\n", get_runtime(3)/num_unit - overhead_cycles);
+
+    while(1) {};
 
     return 0;
 }

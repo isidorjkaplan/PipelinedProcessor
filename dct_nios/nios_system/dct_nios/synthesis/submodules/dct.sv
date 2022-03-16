@@ -13,7 +13,9 @@ module avalon_dct_nios
 
 	output logic avs_s1_waitrequest //Signal to stall the Avalon bus when the peripheral is busy.
 );
-    avalon_dct (clk, reset, avs_s1_address, avs_s1_read, avs_s1_write, avs_s1_writedata, avs_s1_readdata, ~avs_s1_waitrequest);
+    logic done;
+    avalon_dct dct(clk, reset, avs_s1_address, avs_s1_read, avs_s1_write, avs_s1_writedata, avs_s1_readdata, done);
+    assign avs_s1_waitrequest = ~done;
 endmodule
 
 
