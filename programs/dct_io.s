@@ -80,13 +80,20 @@ READ_ARRAY:
     push r4
     push r6//lr
     mv r4, r0 //r4 = array
+    mv r3, r1
 
     mv r0, #0 //1 for print
     bl DISPLAY_HEX5_DIGIT 
 READ_ARRAY_LOOP:
+    
     bl GET_SW
     mv r1, #2
     bl DISPLAY_HEX_BYTE
+    mv r0, r3
+    mv r1, #0
+    bl DISPLAY_HEX_DIGIT
+
+    
     //logic for polling
     mv r0, #KEY_READ
     bl GET_KEY_VALUE
@@ -99,11 +106,12 @@ READ_ARRAY_LOOP:
     bl GET_SW
     st r0, [r4] //ARRAY[i] = SW
     //increment counter
-    sub r1, #1 //decrement counter
+    sub r3, #1 //decrement counter
     add r4, #1 //next position in the array
     //break condition
-    cmp r1, #0
+    cmp r3, #0
     bne READ_ARRAY_LOOP
+    bl CLEAR_HEX
 
     pop r6 //lr
     pop r4
@@ -127,16 +135,23 @@ PRINT_ARRAY:
     bl DISPLAY_HEX5_DIGIT 
     mv r0, r4 //restore r0
 
+    mv r3, r1
+
 PRINT_ARRAY_LOOP:
     bl GET_SW //r0 = index of array
     //make sure array in bounds
-    cmp r1, r0 //check if out of bounds
+    cmp r3, r0 //check if out of bounds
     bcs PRINT_ARRAY_OUT_OF_BOUNDS
     beq PRINT_ARRAY_OUT_OF_BOUNDS
+    mv r1, #3 //specify where to display index
+    bl DISPLAY_HEX_DIGIT //display index on HEX[3]
     //access the data
     add r0, r4 //r0 = &array[SW]
     ld r0, [r0] //r0 = array[SW]
     bl DISPLAY_LEDR //LEDR = array[SW]
+    //display the value from the array on HEX[1:0]
+    mv r1, #0
+    bl DISPLAY_HEX_BYTE
     //Check if the end-print has been placed and if so terminate
 PRINT_ARRAY_LOOP_END_COND:
     mv r0, #KEY_END_PRINT
@@ -155,6 +170,7 @@ PRINT_ARRAY_OUT_OF_BOUNDS:
 PRINT_ARRAY_LOOP_DONE:
     mv r0, #0
     bl DISPLAY_LEDR
+    bl CLEAR_HEX
     //return
     pop r6 //lr
     pop r4
@@ -184,6 +200,7 @@ DISPLAY_HEX5_DIGIT:
     bl DISPLAY_HEX_DIGIT
     pop r6//lr
     pop r1
+    mv pc, lr
 
 CLEAR_HEX:
     push r0
