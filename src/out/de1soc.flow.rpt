@@ -1,5 +1,5 @@
 Flow report for de1soc
-Thu Mar 17 19:18:37 2022
+Thu Mar 17 19:52:08 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Thu Mar 17 19:18:37 2022       ;
+; Flow Status                     ; Successful - Thu Mar 17 19:52:08 2022       ;
 ; Quartus Prime Version           ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                   ; de1soc                                      ;
 ; Top-level Entity Name           ; de1soc_top                                  ;
@@ -181,7 +181,17 @@ refer to the applicable agreement for further details.
 ; Assembler            ; 00:00:15     ; 1.0                     ; 4957 MB             ; 00:00:15                           ;
 ; MIF/HEX Update       ; 00:00:14     ; 1.0                     ; 4986 MB             ; 00:00:13                           ;
 ; Assembler            ; 00:00:14     ; 1.0                     ; 4956 MB             ; 00:00:14                           ;
-; Total                ; 00:20:32     ; --                      ; --                  ; 00:24:50                           ;
+; MIF/HEX Update       ; 00:00:13     ; 1.0                     ; 4989 MB             ; 00:00:14                           ;
+; Assembler            ; 00:00:14     ; 1.0                     ; 4958 MB             ; 00:00:14                           ;
+; MIF/HEX Update       ; 00:00:13     ; 1.0                     ; 4994 MB             ; 00:00:13                           ;
+; Assembler            ; 00:00:14     ; 1.0                     ; 4963 MB             ; 00:00:14                           ;
+; MIF/HEX Update       ; 00:00:13     ; 1.0                     ; 4994 MB             ; 00:00:13                           ;
+; Assembler            ; 00:00:21     ; 1.0                     ; 4964 MB             ; 00:00:20                           ;
+; MIF/HEX Update       ; 00:00:12     ; 1.0                     ; 4998 MB             ; 00:00:12                           ;
+; Assembler            ; 00:00:13     ; 1.0                     ; 4965 MB             ; 00:00:12                           ;
+; MIF/HEX Update       ; 00:00:12     ; 1.0                     ; 5001 MB             ; 00:00:12                           ;
+; Assembler            ; 00:00:13     ; 1.0                     ; 4969 MB             ; 00:00:13                           ;
+; Total                ; 00:22:50     ; --                      ; --                  ; 00:27:07                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -266,6 +276,16 @@ refer to the applicable agreement for further details.
 ; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
 ; MIF/HEX Update       ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
 ; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; DESKTOP-J8ORS70  ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -344,6 +364,16 @@ quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
 quartus_cdb de1soc -c de1soc --update_mif
 quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
 quartus_cdb de1soc -c de1soc --update_mif
+quartus_cdb de1soc -c de1soc --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
+quartus_cdb de1soc -c de1soc --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
+quartus_cdb de1soc -c de1soc --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
+quartus_cdb de1soc -c de1soc --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
+quartus_cdb de1soc -c de1soc --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
 quartus_cdb de1soc -c de1soc --update_mif
 quartus_asm --read_settings_files=on --write_settings_files=off de1soc -c de1soc
 quartus_cdb de1soc -c de1soc --update_mif

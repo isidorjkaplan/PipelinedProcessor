@@ -57,19 +57,50 @@ DCT_IO_MAIN_LOOP:
     mv r1, #SIGNAL_SIZE
     //put signal at r0
     mv r0, r5 //SP head is the signal
-    //display we are in program section 1
-    mv r0, #1 //1 for print
-    bl DISPLAY_HEX5_DIGIT 
-    mv r0, r5 //signal in SP
     bl READ_ARRAY //read
-    //display we are in program section 2
-
-    mv r0, #2 //1 for print
-    bl DISPLAY_HEX5_DIGIT 
-    mv r0, r5 //signal in SP
+    bl DCT //dct on the signal
+    bl ABS_ARRAY
     bl PRINT_ARRAY //print
     //restart 
     b DCT_IO_MAIN_LOOP //restart the branch forever
+
+//Input: r0=ptr, r1=num elements
+ABS_ARRAY:
+    push r0
+    push r1
+    push r2
+    push r3
+    push r4
+    push r6//lr
+
+    mvt r3, #0x8000
+    mv r4, r0
+ABS_ARRAY_LOOP:
+    //loop condition
+    cmp r1, #0
+    beq ABS_ARRAY_LOOP_DONE
+    sub r1, #1
+    //get the value from the array
+    ld r0, [r4]
+    //check if it is negative
+    cmp r3, r0 
+    bcc ABS_ARRAY_LOOP_INCR //it is already positive, do nothing
+    mv r2, #0
+    sub r2, r0 //-r0 is the twos compliment version
+    st r2, [r4]
+ABS_ARRAY_LOOP_INCR:
+    add r4, #1
+    b ABS_ARRAY_LOOP
+ABS_ARRAY_LOOP_DONE:
+    pop r6 //lr
+    pop r4
+    pop r3
+    pop r2
+    pop r1
+    pop r0
+    mv pc, lr
+
+    
 
 //Input: r0=ptr, r1=num elements
 READ_ARRAY:
@@ -136,7 +167,7 @@ PRINT_ARRAY_LOOP:
     cmp r3, r0 //check if out of bounds
     bcs PRINT_ARRAY_OUT_OF_BOUNDS
     beq PRINT_ARRAY_OUT_OF_BOUNDS
-    mv r1, #2 //specify where to display index
+    mv r1, #4 //specify where to display index
     bl DISPLAY_HEX_BYTE //display index on HEX[3:2]
     //access the data
     add r0, r4 //r0 = &array[SW]
@@ -144,7 +175,7 @@ PRINT_ARRAY_LOOP:
     bl DISPLAY_LEDR //LEDR = array[SW]
     //display the value from the array on HEX[1:0]
     mv r1, #0
-    bl DISPLAY_HEX_BYTE
+    bl DISPLAY_HEX_WORD
     //Check if the end-print has been placed and if so terminate
 PRINT_ARRAY_LOOP_END_COND:
     mv r0, #KEY_END_PRINT
@@ -228,6 +259,23 @@ DISPLAY_HEX_BYTE:
     and r0, #0xF
     add r1, #1 //next hex digit
     bl DISPLAY_HEX_DIGIT
+
+    pop r6//lr
+    pop r1
+    pop r0
+    mv pc, lr
+
+//Inout: r0=1 byte (2 hex digits), r1=display number
+//Output: nothing
+DISPLAY_HEX_WORD:
+    push r0
+    push r1
+    push r6//lr
+    
+    bl DISPLAY_HEX_BYTE
+    lsr r0, #8
+    add r1, #2
+    bl DISPLAY_HEX_BYTE
 
     pop r6//lr
     pop r1
