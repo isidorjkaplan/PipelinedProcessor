@@ -20,8 +20,14 @@ START:
     mv r2, #0
     mv r3, #0
 
-MAIN:
-MAIN_LOOP:
+MAIN: 
+    b DCT_IO_MAIN //later replace this with choose program based on keys
+
+
+.define KEY_POLL 0
+.define KEY_END_PRINT 1
+
+DCT_IO_MAIN:
     //get length of signal in r1
     mv r0, #SIGNAL
     bl COUNT_SIZE 
@@ -30,13 +36,10 @@ MAIN_LOOP:
     mv r0, #SIGNAL 
     //load next N values into array
     bl READ_ARRAY
-
-    ld r1, [r0] //get first aray value
-    mvt r2, #LEDR_ADDRESS
-    st r1, [r2]
-
+    //display values on LEDR
+    bl PRINT_ARRAY
     //restart 
-    b MAIN_LOOP //restart the branch forever
+    b DCT_IO_MAIN //restart the branch forever
 
 //Input: r0=ptr, r1=num elements
 READ_ARRAY:
@@ -49,11 +52,10 @@ READ_ARRAY:
     mv r4, r0 //r4 = array
 READ_ARRAY_LOOP:
     //wait for next key press
-    mv r0, #0 //use KEY[0]
+    mv r0, #KEY_POLL
     bl POLL
     //sample the values
-    mvt r0, #SW_ADDRESS
-    ld r0, [r0] //r0 = BYTES
+    bl GET_SW
     st r0, [r4] //ARRAY[i] = SW
     //increment counter
     sub r1, #1 //decrement counter
@@ -70,17 +72,82 @@ READ_ARRAY_LOOP:
     pop r0
     mv pc, lr
 
-
-
-
-
-//Output: Next SW byte in r0
-GET_NEXT_BYTE:
+//Input: r0=ptr, r1=size
+PRINT_ARRAY:
+    push r0
+    push r1
+    push r2
+    push r3
     push r4
-    mvt r4, #SW_ADDRESS
-    ld r0, [r4]
+    push r6//lr
+    mv r4, r0 //r4 = array
+PRINT_ARRAY_LOOP:
+    bl GET_SW //r0 = index of array
+    //make sure array in bounds
+    cmp r1, r0 //check if out of bounds
+    bcc PRINT_ARRAY_OUT_OF_BOUNDS
+    //access the data
+    add r0, r4 //r0 = &array[SW]
+    ld r0, [r0] //r0 = array[SW]
+    bl DISPLAY_LEDR //LEDR = array[SW]
+    //Check if the end-print has been placed and if so terminate
+PRINT_ARRAY_LOOP_END_COND:
+    mv r0, #KEY_END_PRINT
+    bl GET_KEY_VALUE
+    cmp r0, #1
+    bne PRINT_ARRAY_LOOP
+    b PRINT_ARRAY_LOOP_DONE
+//branches to here if out of bounds
+PRINT_ARRAY_OUT_OF_BOUNDS:
+    //clear LEDR
+    mv r0, #0xFF
+    bl DISPLAY_LEDR
+    b PRINT_ARRAY_LOOP_END_COND
+PRINT_ARRAY_LOOP_DONE:
+    //return
+    pop r6 //lr
+    pop r4
+    pop r3
+    pop r2
+    pop r1
+    pop r0
+    mv pc, lr
+
+
+
+//Input: r0
+//Output: Nothing, value is put on LEDR
+DISPLAY_LEDR:
+    push r4
+    mvt r4, #LEDR_ADDRESS
+    st r0, [r4]
     pop r4
     mv pc, lr
+
+
+//Input: nothing
+//Output: r0 = SW
+GET_SW:
+    mvt r0, #SW_ADDRESS
+    ld r0, [r0]
+    mv pc, lr
+
+//Input: r0=key number
+//Output: r0=0/1
+GET_KEY_VALUE:
+    push r1
+    push r4
+
+    mvt r4, #KEY_ADDRESS
+    mv r1, #1
+    lsl r1, r0 //r1 now holds the bitmask for the switch we care about
+    ld r0, [r4] //get the switches
+    and r0, r1 //extract bit we care about
+
+    pop r4
+    pop r1
+    mv pc, lr
+
 
 //Input: r0 is the address of the KEY [0, 1, 2, 3]
 //Output: None. Polls until the negedge (release) of SW[r0]
