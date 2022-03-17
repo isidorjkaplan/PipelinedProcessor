@@ -64,10 +64,18 @@ DCT_IO_MAIN:
     mv r1, r0
     //put signal at r0
     mv r0, #SIGNAL 
-    //load next N values into array
-    bl READ_ARRAY
-    //display values on LEDR
-    bl PRINT_ARRAY
+    //display we are in program section 1
+    push r0
+    mv r0, #1 //1 for print
+    bl DISPLAY_HEX5_DIGIT 
+    pop r0
+    bl READ_ARRAY //read
+    //display we are in program section 2
+    push r0
+    mv r0, #2 //1 for print
+    bl DISPLAY_HEX5_DIGIT 
+    pop r0
+    bl PRINT_ARRAY //print
     //restart 
     b DCT_IO_MAIN //restart the branch forever
 
@@ -82,8 +90,6 @@ READ_ARRAY:
     mv r4, r0 //r4 = array
     mv r3, r1
 
-    mv r0, #0 //1 for print
-    bl DISPLAY_HEX5_DIGIT 
 READ_ARRAY_LOOP:
     
     bl GET_SW
@@ -130,11 +136,6 @@ PRINT_ARRAY:
     push r4
     push r6//lr
     mv r4, r0 //r4 = &array
-
-    mv r0, #1 //1 for print
-    bl DISPLAY_HEX5_DIGIT 
-    mv r0, r4 //restore r0
-
     mv r3, r1
 
 PRINT_ARRAY_LOOP:
@@ -143,8 +144,8 @@ PRINT_ARRAY_LOOP:
     cmp r3, r0 //check if out of bounds
     bcs PRINT_ARRAY_OUT_OF_BOUNDS
     beq PRINT_ARRAY_OUT_OF_BOUNDS
-    mv r1, #3 //specify where to display index
-    bl DISPLAY_HEX_DIGIT //display index on HEX[3]
+    mv r1, #2 //specify where to display index
+    bl DISPLAY_HEX_BYTE //display index on HEX[3:2]
     //access the data
     add r0, r4 //r0 = &array[SW]
     ld r0, [r0] //r0 = array[SW]
