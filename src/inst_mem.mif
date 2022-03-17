@@ -10,7 +10,7 @@ BEGIN
 2		: 1200;		% mv   r1, #0x0000 %
 3		: 1400;		% mv   r2, #0x0000 %
 4		: 1600;		% mv   r3, #0x0000 %
-5		: 2019;		% b    0x1f %
+5		: 2010;		% b    0x16 %
 6		: 003f;		% data %
 7		: 0006;		% data %
 8		: 005b;		% data %
@@ -27,279 +27,270 @@ f		: 0067;		% data %
 13		: 005e;		% data %
 14		: 0079;		% data %
 15		: 0071;		% data %
-16		: 0400;		% data %
-17		: 0400;		% data %
-18		: 0400;		% data %
-19		: 0400;		% data %
-1a		: 0400;		% data %
-1b		: 0400;		% data %
-1c		: 0400;		% data %
-1d		: 0400;		% data %
-1e		: 0000;		% data %
-1f		: 1016;		% mv   r0, #0x0016 %
-20		: 2ecb;		% bl   0xec %
-21		: 0200;		% mv   r1, r0 %
-22		: 1016;		% mv   r0, #0x0016 %
-23		: b005;		% push r0 %
-24		: 1001;		% mv   r0, #0x0001 %
-25		: 2e56;		% bl   0x7c %
-26		: 9005;		% pop  r0 %
-27		: 2e06;		% bl   0x2e %
-28		: b005;		% push r0 %
-29		: 1002;		% mv   r0, #0x0002 %
-2a		: 2e51;		% bl   0x7c %
-2b		: 9005;		% pop  r0 %
-2c		: 2e23;		% bl   0x50 %
-2d		: 21f1;		% b    0x1f %
-2e		: b005;		% push r0 %
-2f		: b205;		% push r1 %
-30		: b405;		% push r2 %
-31		: b605;		% push r3 %
-32		: b805;		% push r4 %
-33		: bc05;		% push r6 %
-34		: 0800;		% mv   r4, r0 %
-35		: 0601;		% mv   r3, r1 %
-36		: 2e75;		% bl   0xac %
-37		: 1202;		% mv   r1, #0x0002 %
-38		: 2e59;		% bl   0x92 %
-39		: 0003;		% mv   r0, r3 %
-3a		: 1200;		% mv   r1, #0x0000 %
-3b		: 2e65;		% bl   0xa1 %
-3c		: 1000;		% mv   r0, #0x0000 %
-3d		: 2e71;		% bl   0xaf %
-3e		: f000;		% cmp  r0, #0x0000 %
-3f		: 23f6;		% beq  0x36 %
-40		: 1000;		% mv   r0, #0x0000 %
-41		: 2e7a;		% bl   0xbc %
-42		: 2e69;		% bl   0xac %
-43		: a004;		% st   r0, [r4] %
-44		: 7601;		% sub  r3, #0x0001 %
-45		: 5801;		% add  r4, #0x0001 %
-46		: f600;		% cmp  r3, #0x0000 %
-47		: 25ee;		% bne  0x36 %
-48		: 2e3a;		% bl   0x83 %
-49		: 9c05;		% pop  r6 %
-4a		: 9805;		% pop  r4 %
-4b		: 9605;		% pop  r3 %
-4c		: 9405;		% pop  r2 %
-4d		: 9205;		% pop  r1 %
-4e		: 9005;		% pop  r0 %
-4f		: 0e06;		% mv   r7, r6 %
-50		: b005;		% push r0 %
-51		: b205;		% push r1 %
-52		: b405;		% push r2 %
-53		: b605;		% push r3 %
-54		: b805;		% push r4 %
-55		: bc05;		% push r6 %
-56		: 0800;		% mv   r4, r0 %
-57		: 0601;		% mv   r3, r1 %
-58		: 2e53;		% bl   0xac %
-59		: e600;		% cmp  r3, r0 %
-5a		: 280f;		% bcs  0x6a %
-5b		: 220e;		% beq  0x6a %
-5c		: 1202;		% mv   r1, #0x0002 %
-5d		: 2e34;		% bl   0x92 %
-5e		: 4004;		% add  r0, r4 %
-5f		: 8000;		% ld   r0, [r0] %
-60		: 2e16;		% bl   0x77 %
-61		: 1200;		% mv   r1, #0x0000 %
-62		: 2e2f;		% bl   0x92 %
-63		: 1001;		% mv   r0, #0x0001 %
-64		: 2e4a;		% bl   0xaf %
-65		: f000;		% cmp  r0, #0x0000 %
-66		: 23f1;		% beq  0x58 %
-67		: 1001;		% mv   r0, #0x0001 %
-68		: 2e53;		% bl   0xbc %
-69		: 2003;		% b    0x6d %
-6a		: 1000;		% mv   r0, #0x0000 %
-6b		: 2e0b;		% bl   0x77 %
-6c		: 21f6;		% b    0x63 %
-6d		: 1000;		% mv   r0, #0x0000 %
-6e		: 2e08;		% bl   0x77 %
-6f		: 2e13;		% bl   0x83 %
-70		: 9c05;		% pop  r6 %
+16		: 1000;		% mv   r0, #0x0000 %
+17		: b005;		% push r0 %
+18		: 7a08;		% sub  r5, #0x0008 %
+19		: 0005;		% mv   r0, r5 %
+1a		: 1208;		% mv   r1, #0x0008 %
+1b		: 0005;		% mv   r0, r5 %
+1c		: 1001;		% mv   r0, #0x0001 %
+1d		: 2e55;		% bl   0x73 %
+1e		: 0005;		% mv   r0, r5 %
+1f		: 2e05;		% bl   0x25 %
+20		: 1002;		% mv   r0, #0x0002 %
+21		: 2e51;		% bl   0x73 %
+22		: 0005;		% mv   r0, r5 %
+23		: 2e23;		% bl   0x47 %
+24		: 21f5;		% b    0x1a %
+25		: b005;		% push r0 %
+26		: b205;		% push r1 %
+27		: b405;		% push r2 %
+28		: b605;		% push r3 %
+29		: b805;		% push r4 %
+2a		: bc05;		% push r6 %
+2b		: 0800;		% mv   r4, r0 %
+2c		: 0601;		% mv   r3, r1 %
+2d		: 2e75;		% bl   0xa3 %
+2e		: 1202;		% mv   r1, #0x0002 %
+2f		: 2e59;		% bl   0x89 %
+30		: 0003;		% mv   r0, r3 %
+31		: 1200;		% mv   r1, #0x0000 %
+32		: 2e65;		% bl   0x98 %
+33		: 1000;		% mv   r0, #0x0000 %
+34		: 2e71;		% bl   0xa6 %
+35		: f000;		% cmp  r0, #0x0000 %
+36		: 23f6;		% beq  0x2d %
+37		: 1000;		% mv   r0, #0x0000 %
+38		: 2e7a;		% bl   0xb3 %
+39		: 2e69;		% bl   0xa3 %
+3a		: a004;		% st   r0, [r4] %
+3b		: 7601;		% sub  r3, #0x0001 %
+3c		: 5801;		% add  r4, #0x0001 %
+3d		: f600;		% cmp  r3, #0x0000 %
+3e		: 25ee;		% bne  0x2d %
+3f		: 2e3a;		% bl   0x7a %
+40		: 9c05;		% pop  r6 %
+41		: 9805;		% pop  r4 %
+42		: 9605;		% pop  r3 %
+43		: 9405;		% pop  r2 %
+44		: 9205;		% pop  r1 %
+45		: 9005;		% pop  r0 %
+46		: 0e06;		% mv   r7, r6 %
+47		: b005;		% push r0 %
+48		: b205;		% push r1 %
+49		: b405;		% push r2 %
+4a		: b605;		% push r3 %
+4b		: b805;		% push r4 %
+4c		: bc05;		% push r6 %
+4d		: 0800;		% mv   r4, r0 %
+4e		: 0601;		% mv   r3, r1 %
+4f		: 2e53;		% bl   0xa3 %
+50		: e600;		% cmp  r3, r0 %
+51		: 280f;		% bcs  0x61 %
+52		: 220e;		% beq  0x61 %
+53		: 1202;		% mv   r1, #0x0002 %
+54		: 2e34;		% bl   0x89 %
+55		: 4004;		% add  r0, r4 %
+56		: 8000;		% ld   r0, [r0] %
+57		: 2e16;		% bl   0x6e %
+58		: 1200;		% mv   r1, #0x0000 %
+59		: 2e2f;		% bl   0x89 %
+5a		: 1001;		% mv   r0, #0x0001 %
+5b		: 2e4a;		% bl   0xa6 %
+5c		: f000;		% cmp  r0, #0x0000 %
+5d		: 23f1;		% beq  0x4f %
+5e		: 1001;		% mv   r0, #0x0001 %
+5f		: 2e53;		% bl   0xb3 %
+60		: 2003;		% b    0x64 %
+61		: 1000;		% mv   r0, #0x0000 %
+62		: 2e0b;		% bl   0x6e %
+63		: 21f6;		% b    0x5a %
+64		: 1000;		% mv   r0, #0x0000 %
+65		: 2e08;		% bl   0x6e %
+66		: 2e13;		% bl   0x7a %
+67		: 9c05;		% pop  r6 %
+68		: 9805;		% pop  r4 %
+69		: 9605;		% pop  r3 %
+6a		: 9405;		% pop  r2 %
+6b		: 9205;		% pop  r1 %
+6c		: 9005;		% pop  r0 %
+6d		: 0e06;		% mv   r7, r6 %
+6e		: b805;		% push r4 %
+6f		: 3822;		% mvt  r4, #0x2200 %
+70		: a004;		% st   r0, [r4] %
 71		: 9805;		% pop  r4 %
-72		: 9605;		% pop  r3 %
-73		: 9405;		% pop  r2 %
-74		: 9205;		% pop  r1 %
-75		: 9005;		% pop  r0 %
-76		: 0e06;		% mv   r7, r6 %
-77		: b805;		% push r4 %
-78		: 3822;		% mvt  r4, #0x2200 %
-79		: a004;		% st   r0, [r4] %
-7a		: 9805;		% pop  r4 %
-7b		: 0e06;		% mv   r7, r6 %
-7c		: b205;		% push r1 %
-7d		: bc05;		% push r6 %
-7e		: 1205;		% mv   r1, #0x0005 %
-7f		: 2e21;		% bl   0xa1 %
-80		: 9c05;		% pop  r6 %
-81		: 9205;		% pop  r1 %
-82		: 0e06;		% mv   r7, r6 %
-83		: b005;		% push r0 %
-84		: b605;		% push r3 %
-85		: b805;		% push r4 %
-86		: 1605;		% mv   r3, #0x0005 %
-87		: 3820;		% mvt  r4, #0x2000 %
-88		: 1000;		% mv   r0, #0x0000 %
-89		: a004;		% st   r0, [r4] %
-8a		: 7601;		% sub  r3, #0x0001 %
-8b		: 5801;		% add  r4, #0x0001 %
-8c		: f600;		% cmp  r3, #0x0000 %
-8d		: 25fb;		% bne  0x89 %
-8e		: 9805;		% pop  r4 %
-8f		: 9605;		% pop  r3 %
-90		: 9005;		% pop  r0 %
-91		: 0e06;		% mv   r7, r6 %
-92		: b005;		% push r0 %
-93		: b205;		% push r1 %
-94		: bc05;		% push r6 %
-95		: b005;		% push r0 %
-96		: d00f;		% and  r0, #0x000f %
-97		: 2e09;		% bl   0xa1 %
-98		: 9005;		% pop  r0 %
-99		: e1a4;		% lsr  r0, #0x4 %
-9a		: d00f;		% and  r0, #0x000f %
-9b		: 5201;		% add  r1, #0x0001 %
-9c		: 2e04;		% bl   0xa1 %
-9d		: 9c05;		% pop  r6 %
-9e		: 9205;		% pop  r1 %
-9f		: 9005;		% pop  r0 %
-a0		: 0e06;		% mv   r7, r6 %
-a1		: b005;		% push r0 %
-a2		: b805;		% push r4 %
-a3		: bc05;		% push r6 %
-a4		: 3820;		% mvt  r4, #0x2000 %
-a5		: 4801;		% add  r4, r1 %
-a6		: 2e36;		% bl   0xdd %
-a7		: a004;		% st   r0, [r4] %
-a8		: 9c05;		% pop  r6 %
-a9		: 9805;		% pop  r4 %
-aa		: 9005;		% pop  r0 %
-ab		: 0e06;		% mv   r7, r6 %
-ac		: 3021;		% mvt  r0, #0x2100 %
-ad		: 8000;		% ld   r0, [r0] %
-ae		: 0e06;		% mv   r7, r6 %
-af		: b205;		% push r1 %
-b0		: b805;		% push r4 %
-b1		: 3823;		% mvt  r4, #0x2300 %
-b2		: 1201;		% mv   r1, #0x0001 %
-b3		: e300;		% lsl  r1, r0 %
-b4		: 8004;		% ld   r0, [r4] %
-b5		: c001;		% and  r0, r1 %
-b6		: f000;		% cmp  r0, #0x0000 %
-b7		: 2201;		% beq  0xb9 %
-b8		: 1001;		% mv   r0, #0x0001 %
-b9		: 9805;		% pop  r4 %
-ba		: 9205;		% pop  r1 %
-bb		: 0e06;		% mv   r7, r6 %
-bc		: b005;		% push r0 %
-bd		: b205;		% push r1 %
-be		: b805;		% push r4 %
-bf		: 3823;		% mvt  r4, #0x2300 %
-c0		: 1201;		% mv   r1, #0x0001 %
-c1		: e300;		% lsl  r1, r0 %
-c2		: 8004;		% ld   r0, [r4] %
-c3		: c001;		% and  r0, r1 %
-c4		: f000;		% cmp  r0, #0x0000 %
-c5		: 25fc;		% bne  0xc2 %
-c6		: 9805;		% pop  r4 %
-c7		: 9205;		% pop  r1 %
-c8		: 9005;		% pop  r0 %
-c9		: 0e06;		% mv   r7, r6 %
-ca		: b005;		% push r0 %
-cb		: b205;		% push r1 %
-cc		: b805;		% push r4 %
-cd		: 3823;		% mvt  r4, #0x2300 %
-ce		: 1201;		% mv   r1, #0x0001 %
-cf		: e300;		% lsl  r1, r0 %
-d0		: 8004;		% ld   r0, [r4] %
-d1		: c001;		% and  r0, r1 %
-d2		: f000;		% cmp  r0, #0x0000 %
-d3		: 23fc;		% beq  0xd0 %
-d4		: 9805;		% pop  r4 %
-d5		: 9205;		% pop  r1 %
-d6		: 9005;		% pop  r0 %
-d7		: 0e06;		% mv   r7, r6 %
+72		: 0e06;		% mv   r7, r6 %
+73		: b205;		% push r1 %
+74		: bc05;		% push r6 %
+75		: 1205;		% mv   r1, #0x0005 %
+76		: 2e21;		% bl   0x98 %
+77		: 9c05;		% pop  r6 %
+78		: 9205;		% pop  r1 %
+79		: 0e06;		% mv   r7, r6 %
+7a		: b005;		% push r0 %
+7b		: b605;		% push r3 %
+7c		: b805;		% push r4 %
+7d		: 1605;		% mv   r3, #0x0005 %
+7e		: 3820;		% mvt  r4, #0x2000 %
+7f		: 1000;		% mv   r0, #0x0000 %
+80		: a004;		% st   r0, [r4] %
+81		: 7601;		% sub  r3, #0x0001 %
+82		: 5801;		% add  r4, #0x0001 %
+83		: f600;		% cmp  r3, #0x0000 %
+84		: 25fb;		% bne  0x80 %
+85		: 9805;		% pop  r4 %
+86		: 9605;		% pop  r3 %
+87		: 9005;		% pop  r0 %
+88		: 0e06;		% mv   r7, r6 %
+89		: b005;		% push r0 %
+8a		: b205;		% push r1 %
+8b		: bc05;		% push r6 %
+8c		: b005;		% push r0 %
+8d		: d00f;		% and  r0, #0x000f %
+8e		: 2e09;		% bl   0x98 %
+8f		: 9005;		% pop  r0 %
+90		: e1a4;		% lsr  r0, #0x4 %
+91		: d00f;		% and  r0, #0x000f %
+92		: 5201;		% add  r1, #0x0001 %
+93		: 2e04;		% bl   0x98 %
+94		: 9c05;		% pop  r6 %
+95		: 9205;		% pop  r1 %
+96		: 9005;		% pop  r0 %
+97		: 0e06;		% mv   r7, r6 %
+98		: b005;		% push r0 %
+99		: b805;		% push r4 %
+9a		: bc05;		% push r6 %
+9b		: 3820;		% mvt  r4, #0x2000 %
+9c		: 4801;		% add  r4, r1 %
+9d		: 2e36;		% bl   0xd4 %
+9e		: a004;		% st   r0, [r4] %
+9f		: 9c05;		% pop  r6 %
+a0		: 9805;		% pop  r4 %
+a1		: 9005;		% pop  r0 %
+a2		: 0e06;		% mv   r7, r6 %
+a3		: 3021;		% mvt  r0, #0x2100 %
+a4		: 8000;		% ld   r0, [r0] %
+a5		: 0e06;		% mv   r7, r6 %
+a6		: b205;		% push r1 %
+a7		: b805;		% push r4 %
+a8		: 3823;		% mvt  r4, #0x2300 %
+a9		: 1201;		% mv   r1, #0x0001 %
+aa		: e300;		% lsl  r1, r0 %
+ab		: 8004;		% ld   r0, [r4] %
+ac		: c001;		% and  r0, r1 %
+ad		: f000;		% cmp  r0, #0x0000 %
+ae		: 2201;		% beq  0xb0 %
+af		: 1001;		% mv   r0, #0x0001 %
+b0		: 9805;		% pop  r4 %
+b1		: 9205;		% pop  r1 %
+b2		: 0e06;		% mv   r7, r6 %
+b3		: b005;		% push r0 %
+b4		: b205;		% push r1 %
+b5		: b805;		% push r4 %
+b6		: 3823;		% mvt  r4, #0x2300 %
+b7		: 1201;		% mv   r1, #0x0001 %
+b8		: e300;		% lsl  r1, r0 %
+b9		: 8004;		% ld   r0, [r4] %
+ba		: c001;		% and  r0, r1 %
+bb		: f000;		% cmp  r0, #0x0000 %
+bc		: 25fc;		% bne  0xb9 %
+bd		: 9805;		% pop  r4 %
+be		: 9205;		% pop  r1 %
+bf		: 9005;		% pop  r0 %
+c0		: 0e06;		% mv   r7, r6 %
+c1		: b005;		% push r0 %
+c2		: b205;		% push r1 %
+c3		: b805;		% push r4 %
+c4		: 3823;		% mvt  r4, #0x2300 %
+c5		: 1201;		% mv   r1, #0x0001 %
+c6		: e300;		% lsl  r1, r0 %
+c7		: 8004;		% ld   r0, [r4] %
+c8		: c001;		% and  r0, r1 %
+c9		: f000;		% cmp  r0, #0x0000 %
+ca		: 23fc;		% beq  0xc7 %
+cb		: 9805;		% pop  r4 %
+cc		: 9205;		% pop  r1 %
+cd		: 9005;		% pop  r0 %
+ce		: 0e06;		% mv   r7, r6 %
+cf		: bc05;		% push r6 %
+d0		: 2fe2;		% bl   0xb3 %
+d1		: 2fef;		% bl   0xc1 %
+d2		: 9c05;		% pop  r6 %
+d3		: 0e06;		% mv   r7, r6 %
+d4		: 5006;		% add  r0, #0x0006 %
+d5		: 8000;		% ld   r0, [r0] %
+d6		: 0e06;		% mv   r7, r6 %
+d7		: b205;		% push r1 %
 d8		: bc05;		% push r6 %
-d9		: 2fe2;		% bl   0xbc %
-da		: 2fef;		% bl   0xca %
-db		: 9c05;		% pop  r6 %
-dc		: 0e06;		% mv   r7, r6 %
-dd		: 5006;		% add  r0, #0x0006 %
-de		: 8000;		% ld   r0, [r0] %
-df		: 0e06;		% mv   r7, r6 %
-e0		: b205;		% push r1 %
-e1		: bc05;		% push r6 %
-e2		: 1200;		% mv   r1, #0x0000 %
-e3		: 5201;		% add  r1, #0x0001 %
-e4		: e1a1;		% lsr  r0, #0x1 %
-e5		: f000;		% cmp  r0, #0x0000 %
-e6		: 25fc;		% bne  0xe3 %
-e7		: 7201;		% sub  r1, #0x0001 %
-e8		: 0001;		% mv   r0, r1 %
-e9		: 9c05;		% pop  r6 %
-ea		: 9205;		% pop  r1 %
-eb		: 0e06;		% mv   r7, r6 %
-ec		: b205;		% push r1 %
-ed		: b405;		% push r2 %
-ee		: b605;		% push r3 %
-ef		: b805;		% push r4 %
-f0		: bc05;		% push r6 %
-f1		: 1200;		% mv   r1, #0x0000 %
-f2		: 8400;		% ld   r2, [r0] %
-f3		: f400;		% cmp  r2, #0x0000 %
-f4		: 2203;		% beq  0xf8 %
-f5		: 5201;		% add  r1, #0x0001 %
-f6		: 5001;		% add  r0, #0x0001 %
-f7		: 21fa;		% b    0xf2 %
-f8		: 0001;		% mv   r0, r1 %
-f9		: 9c05;		% pop  r6 %
-fa		: 9805;		% pop  r4 %
-fb		: 9605;		% pop  r3 %
-fc		: 9405;		% pop  r2 %
-fd		: 9205;		% pop  r1 %
-fe		: 0e06;		% mv   r7, r6 %
-ff		: b005;		% push r0 %
-100		: b205;		% push r1 %
-101		: b405;		% push r2 %
-102		: b605;		% push r3 %
-103		: b805;		% push r4 %
-104		: bc05;		% push r6 %
-105		: 3811;		% mvt  r4, #0x1100 %
-106		: 5802;		% add  r4, #0x0002 %
-107		: 1205;		% mv   r1, #0x0005 %
-108		: a204;		% st   r1, [r4] %
-109		: 3811;		% mvt  r4, #0x1100 %
-10a		: 5800;		% add  r4, #0x0000 %
-10b		: 0600;		% mv   r3, r0 %
-10c		: 2fdf;		% bl   0xec %
-10d		: 2fd2;		% bl   0xe0 %
-10e		: a004;		% st   r0, [r4] %
-10f		: 3811;		% mvt  r4, #0x1100 %
-110		: 5801;		% add  r4, #0x0001 %
-111		: 0403;		% mv   r2, r3 %
-112		: 8002;		% ld   r0, [r2] %
-113		: f000;		% cmp  r0, #0x0000 %
-114		: 2203;		% beq  0x118 %
-115		: a004;		% st   r0, [r4] %
-116		: 5401;		% add  r2, #0x0001 %
-117		: 21fa;		% b    0x112 %
-118		: 0403;		% mv   r2, r3 %
-119		: 3811;		% mvt  r4, #0x1100 %
-11a		: 8002;		% ld   r0, [r2] %
-11b		: f000;		% cmp  r0, #0x0000 %
-11c		: 2205;		% beq  0x122 %
-11d		: 8004;		% ld   r0, [r4] %
-11e		: a002;		% st   r0, [r2] %
-11f		: 5801;		% add  r4, #0x0001 %
-120		: 5401;		% add  r2, #0x0001 %
-121		: 21f8;		% b    0x11a %
-122		: 9c05;		% pop  r6 %
-123		: 9805;		% pop  r4 %
-124		: 9605;		% pop  r3 %
-125		: 9405;		% pop  r2 %
-126		: 9205;		% pop  r1 %
-127		: 9005;		% pop  r0 %
-128		: 0e06;		% mv   r7, r6 %
+d9		: 1200;		% mv   r1, #0x0000 %
+da		: 5201;		% add  r1, #0x0001 %
+db		: e1a1;		% lsr  r0, #0x1 %
+dc		: f000;		% cmp  r0, #0x0000 %
+dd		: 25fc;		% bne  0xda %
+de		: 7201;		% sub  r1, #0x0001 %
+df		: 0001;		% mv   r0, r1 %
+e0		: 9c05;		% pop  r6 %
+e1		: 9205;		% pop  r1 %
+e2		: 0e06;		% mv   r7, r6 %
+e3		: b205;		% push r1 %
+e4		: b405;		% push r2 %
+e5		: b605;		% push r3 %
+e6		: b805;		% push r4 %
+e7		: bc05;		% push r6 %
+e8		: 1200;		% mv   r1, #0x0000 %
+e9		: 8400;		% ld   r2, [r0] %
+ea		: f400;		% cmp  r2, #0x0000 %
+eb		: 2203;		% beq  0xef %
+ec		: 5201;		% add  r1, #0x0001 %
+ed		: 5001;		% add  r0, #0x0001 %
+ee		: 21fa;		% b    0xe9 %
+ef		: 0001;		% mv   r0, r1 %
+f0		: 9c05;		% pop  r6 %
+f1		: 9805;		% pop  r4 %
+f2		: 9605;		% pop  r3 %
+f3		: 9405;		% pop  r2 %
+f4		: 9205;		% pop  r1 %
+f5		: 0e06;		% mv   r7, r6 %
+f6		: b005;		% push r0 %
+f7		: b205;		% push r1 %
+f8		: b405;		% push r2 %
+f9		: b605;		% push r3 %
+fa		: b805;		% push r4 %
+fb		: bc05;		% push r6 %
+fc		: 3811;		% mvt  r4, #0x1100 %
+fd		: 5802;		% add  r4, #0x0002 %
+fe		: 1205;		% mv   r1, #0x0005 %
+ff		: a204;		% st   r1, [r4] %
+100		: 3811;		% mvt  r4, #0x1100 %
+101		: 5800;		% add  r4, #0x0000 %
+102		: 0600;		% mv   r3, r0 %
+103		: 2fdf;		% bl   0xe3 %
+104		: 2fd2;		% bl   0xd7 %
+105		: a004;		% st   r0, [r4] %
+106		: 3811;		% mvt  r4, #0x1100 %
+107		: 5801;		% add  r4, #0x0001 %
+108		: 0403;		% mv   r2, r3 %
+109		: 8002;		% ld   r0, [r2] %
+10a		: f000;		% cmp  r0, #0x0000 %
+10b		: 2203;		% beq  0x10f %
+10c		: a004;		% st   r0, [r4] %
+10d		: 5401;		% add  r2, #0x0001 %
+10e		: 21fa;		% b    0x109 %
+10f		: 0403;		% mv   r2, r3 %
+110		: 3811;		% mvt  r4, #0x1100 %
+111		: 8002;		% ld   r0, [r2] %
+112		: f000;		% cmp  r0, #0x0000 %
+113		: 2205;		% beq  0x119 %
+114		: 8004;		% ld   r0, [r4] %
+115		: a002;		% st   r0, [r2] %
+116		: 5801;		% add  r4, #0x0001 %
+117		: 5401;		% add  r2, #0x0001 %
+118		: 21f8;		% b    0x111 %
+119		: 9c05;		% pop  r6 %
+11a		: 9805;		% pop  r4 %
+11b		: 9605;		% pop  r3 %
+11c		: 9405;		% pop  r2 %
+11d		: 9205;		% pop  r1 %
+11e		: 9005;		% pop  r0 %
+11f		: 0e06;		% mv   r7, r6 %
 END;

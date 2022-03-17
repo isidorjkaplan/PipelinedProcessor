@@ -43,41 +43,33 @@ SEG7_ARRAY:
     .word 0b01111001       // 'E' 1111001
     .word 0b01110001       // 'F' 1110001
 
-SIGNAL:
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0 //NULL TERMINATED
-
 .define KEY_READ 0
 .define KEY_END_PRINT 1
+.define SIGNAL_SIZE 8
 
 DCT_IO_MAIN:
+    mv r0, #0
+    push r0 //null terminated end to the signal
+    sub r5, #SIGNAL_SIZE //allocate space on the stack
+    mv r0, r5 //signal is at the current stack pointer
+DCT_IO_MAIN_LOOP:
     //get length of signal in r1
-    mv r0, #SIGNAL
-    bl COUNT_SIZE 
-    mv r1, r0
+    mv r1, #SIGNAL_SIZE
     //put signal at r0
-    mv r0, #SIGNAL 
+    mv r0, r5 //SP head is the signal
     //display we are in program section 1
-    push r0
     mv r0, #1 //1 for print
     bl DISPLAY_HEX5_DIGIT 
-    pop r0
+    mv r0, r5 //signal in SP
     bl READ_ARRAY //read
     //display we are in program section 2
-    push r0
+
     mv r0, #2 //1 for print
     bl DISPLAY_HEX5_DIGIT 
-    pop r0
+    mv r0, r5 //signal in SP
     bl PRINT_ARRAY //print
     //restart 
-    b DCT_IO_MAIN //restart the branch forever
+    b DCT_IO_MAIN_LOOP //restart the branch forever
 
 //Input: r0=ptr, r1=num elements
 READ_ARRAY:
