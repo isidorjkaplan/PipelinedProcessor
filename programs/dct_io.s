@@ -85,7 +85,7 @@ PRINT_ARRAY_LOOP:
     bl GET_SW //r0 = index of array
     //make sure array in bounds
     cmp r1, r0 //check if out of bounds
-    bcc PRINT_ARRAY_OUT_OF_BOUNDS
+    bpl PRINT_ARRAY_OUT_OF_BOUNDS
     //access the data
     add r0, r4 //r0 = &array[SW]
     ld r0, [r0] //r0 = array[SW]
@@ -99,8 +99,8 @@ PRINT_ARRAY_LOOP_END_COND:
     b PRINT_ARRAY_LOOP_DONE
 //branches to here if out of bounds
 PRINT_ARRAY_OUT_OF_BOUNDS:
-    //clear LEDR
-    mv r0, #0xFF
+    //clear LEDRs
+    mv r0, #0
     bl DISPLAY_LEDR
     b PRINT_ARRAY_LOOP_END_COND
 PRINT_ARRAY_LOOP_DONE:
@@ -181,6 +181,32 @@ POLL_WAIT_POS: //wait until it is negative
     pop r1
     pop r0
     mv pc, lr
+
+//Input: r0=hex digit
+//Output: r0=bitcode for hex digit
+SEG7_CODE:
+    add r0, #SEG7_ARRAY
+    ld r0, [r0]
+    mv pc, lr
+
+
+SEG7_ARRAY:  
+    .word 0b00111111       // '0'
+    .word 0b00000110       // '1'
+    .word 0b01011011       // '2'
+    .word 0b01001111       // '3'
+    .word 0b01100110       // '4'
+    .word 0b01101101       // '5'
+    .word 0b01111101       // '6'
+    .word 0b00000111       // '7'
+    .word 0b01111111       // '8'
+    .word 0b01100111       // '9'
+    .word 0b01110111       // 'A' 1110111
+    .word 0b01111100       // 'b' 1111100
+    .word 0b00111001       // 'C' 0111001
+    .word 0b01011110       // 'd' 1011110
+    .word 0b01111001       // 'E' 1111001
+    .word 0b01110001       // 'F' 1110001
 
 
 
