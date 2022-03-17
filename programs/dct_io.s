@@ -23,6 +23,36 @@ START:
 MAIN: 
     b DCT_IO_MAIN //later replace this with choose program based on keys
 
+//CONSTANTS AND DATA
+
+SEG7_ARRAY:  
+    .word 0b00111111       // '0'
+    .word 0b00000110       // '1'
+    .word 0b01011011       // '2'
+    .word 0b01001111       // '3'
+    .word 0b01100110       // '4'
+    .word 0b01101101       // '5'
+    .word 0b01111101       // '6'
+    .word 0b00000111       // '7'
+    .word 0b01111111       // '8'
+    .word 0b01100111       // '9'
+    .word 0b01110111       // 'A' 1110111
+    .word 0b01111100       // 'b' 1111100
+    .word 0b00111001       // 'C' 0111001
+    .word 0b01011110       // 'd' 1011110
+    .word 0b01111001       // 'E' 1111001
+    .word 0b01110001       // 'F' 1110001
+
+SIGNAL:
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0 //NULL TERMINATED
 
 .define KEY_READ 0
 .define KEY_END_PRINT 1
@@ -54,9 +84,17 @@ READ_ARRAY:
     mv r0, #0 //1 for print
     bl DISPLAY_HEX5_DIGIT 
 READ_ARRAY_LOOP:
+    bl GET_SW
+    mv r1, #2
+    bl DISPLAY_HEX_BYTE
+    //logic for polling
+    mv r0, #KEY_READ
+    bl GET_KEY_VALUE
+    cmp r0, #0
+    beq READ_ARRAY_LOOP
     //wait for next key press
     mv r0, #KEY_READ
-    bl POLL  //ensure they release
+    bl POLL_RELEASE  //ensure they release
     //sample the values
     bl GET_SW
     st r0, [r4] //ARRAY[i] = SW
@@ -105,6 +143,7 @@ PRINT_ARRAY_LOOP_END_COND:
     bl GET_KEY_VALUE
     cmp r0, #0
     beq PRINT_ARRAY_LOOP
+    mv r0, #KEY_END_PRINT
     bl POLL_RELEASE //wait for user to release the button
     b PRINT_ARRAY_LOOP_DONE
 //branches to here if out of bounds
@@ -164,6 +203,27 @@ CLEAR_HEX_LOOP:
     pop r0
     mv pc, lr
 
+//Inout: r0=1 byte (2 hex digits), r1=display number
+//Output: nothing
+DISPLAY_HEX_BYTE:
+    push r0
+    push r1
+    push r6//lr
+
+    push r0
+    and r0, #0xF
+    bl DISPLAY_HEX_DIGIT //display lower bits
+    pop r0
+    lsr r0, #4 //zero out lower hex digit
+    and r0, #0xF
+    add r1, #1 //next hex digit
+    bl DISPLAY_HEX_DIGIT
+
+    pop r6//lr
+    pop r1
+    pop r0
+    mv pc, lr
+    
 
 //Inout: r0=hex value, r1=display number
 //Output: nothing
@@ -374,35 +434,3 @@ LOOP_READ_DCT_DONE:
     pop r1
     pop r0
     mv pc, lr
-
-
-//CONSTANTS AND DATA
-
-SEG7_ARRAY:  
-    .word 0b00111111       // '0'
-    .word 0b00000110       // '1'
-    .word 0b01011011       // '2'
-    .word 0b01001111       // '3'
-    .word 0b01100110       // '4'
-    .word 0b01101101       // '5'
-    .word 0b01111101       // '6'
-    .word 0b00000111       // '7'
-    .word 0b01111111       // '8'
-    .word 0b01100111       // '9'
-    .word 0b01110111       // 'A' 1110111
-    .word 0b01111100       // 'b' 1111100
-    .word 0b00111001       // 'C' 0111001
-    .word 0b01011110       // 'd' 1011110
-    .word 0b01111001       // 'E' 1111001
-    .word 0b01110001       // 'F' 1110001
-
-SIGNAL:
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0 //NULL TERMINATED
