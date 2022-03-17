@@ -240,7 +240,7 @@ class Assembler(object):
         self.width_bits = 16
 
         # Depth - should correspond to the total number of words in memory
-        self.depth_words = 256
+        self.depth_words = 4096
 
         # Tracks current line number of the input file
         self.line = 0

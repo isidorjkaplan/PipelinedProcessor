@@ -24,7 +24,7 @@ MAIN:
     b DCT_IO_MAIN //later replace this with choose program based on keys
 
 
-.define KEY_POLL 0
+.define KEY_READ 0
 .define KEY_END_PRINT 1
 
 DCT_IO_MAIN:
@@ -50,10 +50,13 @@ READ_ARRAY:
     push r4
     push r6//lr
     mv r4, r0 //r4 = array
+
+    mv r0, #0 //1 for print
+    bl DISPLAY_HEX5_DIGIT 
 READ_ARRAY_LOOP:
     //wait for next key press
-    mv r0, #KEY_POLL
-    bl POLL
+    mv r0, #KEY_READ
+    bl POLL  //ensure they release
     //sample the values
     bl GET_SW
     st r0, [r4] //ARRAY[i] = SW
@@ -80,12 +83,18 @@ PRINT_ARRAY:
     push r3
     push r4
     push r6//lr
-    mv r4, r0 //r4 = array
+    mv r4, r0 //r4 = &array
+
+    mv r0, #1 //1 for print
+    bl DISPLAY_HEX5_DIGIT 
+    mv r0, r4 //restore r0
+
 PRINT_ARRAY_LOOP:
     bl GET_SW //r0 = index of array
     //make sure array in bounds
     cmp r1, r0 //check if out of bounds
-    bpl PRINT_ARRAY_OUT_OF_BOUNDS
+    bcs PRINT_ARRAY_OUT_OF_BOUNDS
+    beq PRINT_ARRAY_OUT_OF_BOUNDS
     //access the data
     add r0, r4 //r0 = &array[SW]
     ld r0, [r0] //r0 = array[SW]
@@ -94,8 +103,9 @@ PRINT_ARRAY_LOOP:
 PRINT_ARRAY_LOOP_END_COND:
     mv r0, #KEY_END_PRINT
     bl GET_KEY_VALUE
-    cmp r0, #1
-    bne PRINT_ARRAY_LOOP
+    cmp r0, #0
+    beq PRINT_ARRAY_LOOP
+    bl POLL_RELEASE //wait for user to release the button
     b PRINT_ARRAY_LOOP_DONE
 //branches to here if out of bounds
 PRINT_ARRAY_OUT_OF_BOUNDS:
@@ -104,6 +114,8 @@ PRINT_ARRAY_OUT_OF_BOUNDS:
     bl DISPLAY_LEDR
     b PRINT_ARRAY_LOOP_END_COND
 PRINT_ARRAY_LOOP_DONE:
+    mv r0, #0
+    bl DISPLAY_LEDR
     //return
     pop r6 //lr
     pop r4
@@ -124,6 +136,50 @@ DISPLAY_LEDR:
     pop r4
     mv pc, lr
 
+//Input: r0
+//Output: display r0 on HEX5
+DISPLAY_HEX5_DIGIT:
+    push r1
+    push r6//lr
+    mv r1, #5
+    bl DISPLAY_HEX_DIGIT
+    pop r6//lr
+    pop r1
+
+CLEAR_HEX:
+    push r0
+    push r3
+    push r4
+    mv r3, #5
+    mvt r4, #HEX_ADDRESS
+    mv r0, #0
+CLEAR_HEX_LOOP:
+    st r0, [r4]
+    sub r3, #1
+    add r4, #1
+    cmp r3, #0
+    bne CLEAR_HEX_LOOP
+    pop r4
+    pop r3
+    pop r0
+    mv pc, lr
+
+
+//Inout: r0=hex value, r1=display number
+//Output: nothing
+DISPLAY_HEX_DIGIT:
+    push r0
+    push r4
+    push r6//lr
+    mvt r4, #HEX_ADDRESS
+    add r4, r1 //r4 = one we want to display on
+    bl SEG7_CODE //r0 = hex code to display
+    st r0, [r4]
+    pop r6//lr
+    pop r4
+    pop r0
+    mv pc, lr
+
 
 //Input: nothing
 //Output: r0 = SW
@@ -133,7 +189,7 @@ GET_SW:
     mv pc, lr
 
 //Input: r0=key number
-//Output: r0=0/1
+//Output: r0= 0 or 1
 GET_KEY_VALUE:
     push r1
     push r4
@@ -143,21 +199,21 @@ GET_KEY_VALUE:
     lsl r1, r0 //r1 now holds the bitmask for the switch we care about
     ld r0, [r4] //get the switches
     and r0, r1 //extract bit we care about
+    cmp r0, #0
+    beq GET_KEY_VALUE_DONE //if it is equal to zero we are done
+    mv r0, #1 //if it is not equal to zero, set it to 1
+GET_KEY_VALUE_DONE:
 
     pop r4
     pop r1
     mv pc, lr
 
-
-//Input: r0 is the address of the KEY [0, 1, 2, 3]
-//Output: None. Polls until the negedge (release) of SW[r0]
-POLL: //verified
+//Input: r0
+//Output: Waits until r0 is released (0)
+POLL_RELEASE:
     push r0
     push r1
-    push r2
-    push r3
     push r4
-    push r6//lr
 
     mvt r4, #KEY_ADDRESS
 
@@ -168,18 +224,45 @@ POLL_WAIT_NEG: //wait until it is negative
     and r0, r1 //extract bit we care about
     cmp r0, #0
     bne POLL_WAIT_NEG //it is current pressed, try again
+    
+    pop r4
+    pop r1
+    pop r0
+    mv pc, lr
+
+
+
+//Input: r0
+//Output: wait until r0 is pressed
+POLL_PRESS:
+    push r0
+    push r1
+    push r4
+
+    mvt r4, #KEY_ADDRESS
+
+    mv r1, #1
+    lsl r1, r0 //r1 now holds the bitmask for the switch we care about
 POLL_WAIT_POS: //wait until it is negative
     ld r0, [r4] //get the switches
     and r0, r1 //extract bit we care about
     cmp r0, #0
     beq POLL_WAIT_POS //it is current pressed, try again
-
-    pop r6 //lr
+    
     pop r4
-    pop r3
-    pop r2
     pop r1
     pop r0
+    mv pc, lr
+
+
+
+//Input: r0 is the address of the KEY [0, 1, 2, 3]
+//Output: None. Polls until the negedge (release) of SW[r0]
+POLL: //verified
+    push r6//lr
+    bl POLL_RELEASE
+    bl POLL_PRESS
+    pop r6
     mv pc, lr
 
 //Input: r0=hex digit
@@ -188,39 +271,6 @@ SEG7_CODE:
     add r0, #SEG7_ARRAY
     ld r0, [r0]
     mv pc, lr
-
-
-SEG7_ARRAY:  
-    .word 0b00111111       // '0'
-    .word 0b00000110       // '1'
-    .word 0b01011011       // '2'
-    .word 0b01001111       // '3'
-    .word 0b01100110       // '4'
-    .word 0b01101101       // '5'
-    .word 0b01111101       // '6'
-    .word 0b00000111       // '7'
-    .word 0b01111111       // '8'
-    .word 0b01100111       // '9'
-    .word 0b01110111       // 'A' 1110111
-    .word 0b01111100       // 'b' 1111100
-    .word 0b00111001       // 'C' 0111001
-    .word 0b01011110       // 'd' 1011110
-    .word 0b01111001       // 'E' 1111001
-    .word 0b01110001       // 'F' 1110001
-
-
-
-
-SIGNAL:
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0400
-    .word 0x0 //NULL TERMINATED
 
 //Works on INTEGERS. Will round if not exactly power of two
 //Input: r0 = number
@@ -326,12 +376,33 @@ LOOP_READ_DCT_DONE:
     mv pc, lr
 
 
-KILL:
-    //Kill processor
-    mvt r0, #0xff00
-    add r0, #0xff
-    st r0, [r0] //this signifies to kill processor if in simulator mode
-    //if not in simulator then we must spin
-    b KILL
+//CONSTANTS AND DATA
 
-    
+SEG7_ARRAY:  
+    .word 0b00111111       // '0'
+    .word 0b00000110       // '1'
+    .word 0b01011011       // '2'
+    .word 0b01001111       // '3'
+    .word 0b01100110       // '4'
+    .word 0b01101101       // '5'
+    .word 0b01111101       // '6'
+    .word 0b00000111       // '7'
+    .word 0b01111111       // '8'
+    .word 0b01100111       // '9'
+    .word 0b01110111       // 'A' 1110111
+    .word 0b01111100       // 'b' 1111100
+    .word 0b00111001       // 'C' 0111001
+    .word 0b01011110       // 'd' 1011110
+    .word 0b01111001       // 'E' 1111001
+    .word 0b01110001       // 'F' 1110001
+
+SIGNAL:
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0400
+    .word 0x0 //NULL TERMINATED
