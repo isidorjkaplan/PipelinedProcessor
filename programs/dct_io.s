@@ -163,6 +163,7 @@ PRINT_ARRAY:
 
 PRINT_ARRAY_LOOP:
     bl GET_SW //r0 = index of array
+    bl DISPLAY_LEDR //LEDR = array[SW]
     //make sure array in bounds
     cmp r3, r0 //check if out of bounds
     bcs PRINT_ARRAY_OUT_OF_BOUNDS
@@ -172,7 +173,6 @@ PRINT_ARRAY_LOOP:
     //access the data
     add r0, r4 //r0 = &array[SW]
     ld r0, [r0] //r0 = array[SW]
-    bl DISPLAY_LEDR //LEDR = array[SW]
     //display the value from the array on HEX[1:0]
     mv r1, #0
     bl DISPLAY_HEX_WORD
@@ -188,7 +188,7 @@ PRINT_ARRAY_LOOP_END_COND:
 //branches to here if out of bounds
 PRINT_ARRAY_OUT_OF_BOUNDS:
     //clear LEDRs
-    mv r0, #0
+    mv r0, #0xFF
     bl DISPLAY_LEDR
     b PRINT_ARRAY_LOOP_END_COND
 PRINT_ARRAY_LOOP_DONE:
