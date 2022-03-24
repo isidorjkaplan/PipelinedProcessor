@@ -15,6 +15,8 @@ module avalon_bus
     inout PS2_CLK,
     inout PS2_DATA
 );  
+    //0xABCD -> A selects primary device., B selects secondary device if applicable
+
     parameter DEV_MEM = 4'h0, DEV_ONCHIP=4'h1, DEV_IO=4'h2;
 
     logic [3:0] device, secondary_device;
@@ -56,19 +58,19 @@ module avalon_bus
                 hex_reg[i] <= 0;
                 ledr_reg <= 0;
         end
-		  else if (device == DEV_IO) begin
-			  if (secondary_device==S_DEV_HEX && DataAddr[2:0] < 6) begin
-					hex_reg[DataAddr[2:0]] <= BusIn[7:0];
-			  end
-			  else if (secondary_device==S_DEV_LEDR) begin
-					ledr_reg <= BusIn[9:0];
-			  end
-              /*
-			  else if (secondary_device==S_DEV_IR) begin
-					IR_emit_reg <= BusIn[0];
-			  end
-              IR_recv_reg <= IRDA_RXD;//update no matter what*/
-		  end
+        else if (device == DEV_IO) begin
+            if (secondary_device==S_DEV_HEX && DataAddr[2:0] < 6) begin
+                hex_reg[DataAddr[2:0]] <= BusIn[7:0];
+            end
+            else if (secondary_device==S_DEV_LEDR) begin
+                ledr_reg <= BusIn[9:0];
+            end
+            /*
+            else if (secondary_device==S_DEV_IR) begin
+                IR_emit_reg <= BusIn[0];
+            end
+            IR_recv_reg <= IRDA_RXD;//update no matter what*/
+        end
     end
     assign HEX = hex_reg;
     assign LEDR = ledr_reg;
@@ -88,11 +90,11 @@ module avalon_bus
                     out_io={14'h0, IR_recv_reg};
             end*/
             S_DEV_HEX:begin
-                    done_io=1;
-                    out_io = 0;
-                    if (DataAddr[2:0] < 6) begin
-                        out_io = {9'h0, hex_reg[DataAddr[2:0]]};
-                    end
+                done_io=1;
+                out_io = 0;
+                if (DataAddr[2:0] < 6) begin
+                    out_io = {9'h0, hex_reg[DataAddr[2:0]]};
+                end
             end
             S_DEV_PS2:begin
                 out_io = ps2_out;

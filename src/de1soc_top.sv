@@ -11,10 +11,10 @@ module de1soc_top (
     input [3:0] KEY,
     output [9:0] LEDR,
     input [9:0] SW,
-	 input IRDA_RXD, //IR reciever wire
-	 output IRDA_TXD, //IR emitter wire
-	 inout PS2_CLK,
-	 inout PS2_DAT
+    input IRDA_RXD, //IR reciever wire
+    output IRDA_TXD, //IR emitter wire
+    inout PS2_CLK,
+    inout PS2_DAT
 	 );
     
     /*Defining the wires to interface with the processor*/

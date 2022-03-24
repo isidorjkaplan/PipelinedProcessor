@@ -125,7 +125,7 @@ module processor (
                     end
                 end
             end
-            else if (!flush)
+            else if (!flush) //i am stalling
                 stage_comb_values[Memory] = stage_regs[Memory];
 
              /*Execute Stage*/
@@ -340,13 +340,11 @@ module processor (
                         stage_comb_values[Decode].alu_op = ADD;
                         stage_comb_values[Decode].rX = PC;
                         stage_comb_values[Decode].op1 = registers[PC];
-                        
                     end
                     else if (stage_comb_values[Decode].instr == Mvt) begin
                         stage_comb_values[Decode].alu_op = MOV;
                         stage_comb_values[Decode].op2 = stage_comb_values[Decode].op2 << 8;//this comes for free, reindexing
                     end
-
           
                     //Writeback for all instructions except a store
                     if (stage_comb_values[Decode].instr == Store) begin
@@ -436,8 +434,8 @@ module processor (
         end
         else begin
             //keep track of number of cycles and number of instructions for debugging
-            num_cycles <= num_cycles+1;
-            num_instr <= num_instr + (stage_regs[Writeback].instr != NOP);
+            num_cycles <= num_cycles+1;//debugging only
+            num_instr <= num_instr + (stage_regs[Writeback].instr != NOP); //debugging only
 
             status_reg <= next_status_value;
             /*On the clock write all the combinational output values to the state regs*/
@@ -479,13 +477,7 @@ typedef struct packed{
 typedef struct {
     logic write_reg [NUM_REGS]; //should we write to each register
     logic [WORD_SIZE-1:0] write_values[NUM_REGS]; //if write_reg is true, what should we write
-    //logic [NUM_STAGES-1:0] stall; //if true then that stage will stall
     logic flush[NUM_STAGES];
-
-
-    //logic [WORD_SIZE-1:0] DataOut; //Output Data Port for Writes
-    //logic [WORD_SIZE-1:0] /*DataAddr, */InstrAddr; //Address ports for data and instructions
-    //logic WriteData, ReadData; //Instr always assumed read=1
 } control_signals;
 
 /*This struct is setup during the decode stage*/
@@ -515,8 +507,8 @@ typedef struct {
     logic link;//if true then we link the next PC into LR
     logic sp_incr, sp_decr; //increment and decrement the stack pointer
 
-    logic [OPCODE_BITS-1:0] opcode;
-    Instr instr;
+    logic [OPCODE_BITS-1:0] opcode;//not used after decode
+    Instr instr; 
 
     ALU_OP alu_op;
     logic update_flags;//should we update ALU flags on result
