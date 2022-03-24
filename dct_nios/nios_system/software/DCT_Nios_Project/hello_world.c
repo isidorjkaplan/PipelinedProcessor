@@ -1,524 +1,258 @@
 #include <stdio.h>
-
 #include <stdlib.h>
-
 #include <math.h>
-
 #include <float.h>
-
 #include "altera_avalon_performance_counter.h"
-
 #include <sys/alt_irq.h>
-
-
+#include <assert.h>
 
 static alt_irq_context context; /* Use when disabling interrupts. */
 
-
-
 static void pre_measurement(void){
-
   PERF_RESET (PERFORMANCE_COUNTER_0_BASE);
-
   context = alt_irq_disable_all();
-
   PERF_START_MEASURING (PERFORMANCE_COUNTER_0_BASE);
-
 }
-
-
 
 static void post_measurement(void){
-
 	alt_irq_enable_all(context);
-
 	PERF_STOP_MEASURING (PERFORMANCE_COUNTER_0_BASE);
-
 }
-
-
 
 static inline int get_runtime(int sec) {
-
 	return (int)perf_get_section_time ((void*)PERFORMANCE_COUNTER_0_BASE, sec);
-
 }
 
-
-
-// Un-comment these options to disable the use of the floating-point hardware
-
-// for the respective operation.
-
-
-
-#pragma GCC target("no-custom-fadds")
-
-#pragma GCC target("no-custom-fsubs")
-
-#pragma GCC target("no-custom-fmuls")
-
-#pragma GCC target("no-custom-fdivs")//*/
+/*Boilerplate fixed-point code*/
 
 typedef int fixed;
 
-
-
 int Q_M = 0;
-
 int Q_N = 0;
-
 int F_ONE = 0;
 
-
-
 void SET_Q_FORMAT(int M, int N) {
-
     Q_M = M;
-
     Q_N = N;
-
     F_ONE = 1 << N;
-
 }
 
-
-
-static inline fixed FLOAT_TO_FIXED(register float f) {
-
+fixed FLOAT_TO_FIXED(float f) {
     return (fixed)(f * F_ONE);
-
 }
 
-
-
-static inline float FIXED_TO_FLOAT(register fixed f){
-
+float FIXED_TO_FLOAT(fixed f){
     return (float)(f)/F_ONE;
-
 }
 
-
-
-static inline fixed FIXED_MULT(register fixed op1, register fixed op2) {
-
+fixed FIXED_MULT(fixed op1, fixed op2) {
     return (fixed)op1*op2 >> Q_N;
-
 }
 
-
-
-static inline float float_abs(register float x) {
-
+float float_abs(float x) {
     if (x >= 0) return x;
-
     else return -x;
-
 }
 
 
+/*DCT code - FLOATING*/
+#define MAX_SIZE 64
+#define COS_TERMS 2*MAX_SIZE
+#define FLOAT_PI 3.14159265
+#define NBITS 16
+float cos_terms[COS_TERMS];
+fixed cos_q15[COS_TERMS];
 
-int num_float;
+void ALLOC_DCT_PRECOMP_ARRAY() {
+    int i;
+    //for ((i,int(math.cos(math.pi*float(i)/MAX_SIZE)*(1<<(NBITS-1)))))
+    for (i = 0; i < COS_TERMS; i++) {
+        cos_terms[i] = cos(FLOAT_PI * i / MAX_SIZE);
+        cos_q15[i] = (int)(cos_terms[i]*(1<<(NBITS-1)));
+    }
+}
+
+void dct_float_raw(float* signal, float* result, int N) {
+    for (int K = 0; K < N; K++) {
+        result[K] = 0;
+        for (int n = 0; n < N; n++) {
+            result[K] += signal[n] * cos((FLOAT_PI/N)*(n+0.5)*K);
+        }
+    }
+}
 
 int num_fixed;
+int num_float;
+int num_unit;
 
-float float_sin(register float x, register int terms) {
-
+void dct_float(float* signal, float* result, int N) {
     num_float++;
-
+    int power = (int)log2(N);
+    assert(powl(2,power) == N);//must be power of 2 for the optimized version
     PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 2);
-
-    register float result = x;
-
-    register float x2 = x*x;
-
-    register float num = x;
-
-    register int den = 1;
-
-    register int neg = 1;
-
-    for (int i = 1; i < terms; i++) {
-
-        num *= x2;
-
-        den *= (2*i+1)*(2*i);
-
-        if (!neg)
-
-            result += num/den;
-
-        else
-
-            result -= num/den;
-
-        neg = !neg;
-
-    }
-
-    PERF_END (PERFORMANCE_COUNTER_0_BASE, 2);
-
-    return result;
-
-}
-
-
-
-float optimized_float_sin(register float x) {
-
-    num_float++;
-
-    PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 2);
-
-    register float result = x;
-
-    register float x2 = x*x;
-
-
-
-    register float powx = x2*x; //x^3
-
-    result -= powx * (0.166666f);//1/3!
-
-
-
-    powx *= x2; //x^5
-
-    result += powx * (0.0083333f);//1/5!
-
-
-
-    powx *= x2; //x^7
-
-    result -= powx * (0.0001984126f); //1/7!
-
-
-
-    powx *= x2; //x^9
-
-    result += powx * (0.000002755731f);//1/9!
-
-    PERF_END (PERFORMANCE_COUNTER_0_BASE, 2);
-
-    return result;
-
-}
-
-
-
-fixed optimized_fixed_sin(register fixed x) {
-
-    num_fixed++;
-
-    register q_val = Q_N;
-
-    PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 1);
-
-
-
-    register fixed result = x;
-
-    register fixed x2 = (x * x) >> q_val;
-
-
-
-    register fixed powx = (x2*x) >> q_val;          //x^3
-
-    result -= (powx * 10923) >> 16 ;     //1/3!
-
-
-
-    powx = (powx * x2) >> q_val;            //x^5
-
-    result += (powx * 17) >> 11;          //1/5!
-
-
-
-    powx = (powx * x2) >> q_val;            //x^5
-
-    result -= (powx * 13) >>16;          //1/7!
-
-
-
-    powx = (powx * x2) >> q_val;           //x^5
-
-    result += (powx * 23) >> 23;         //1/9!
-
-    PERF_END (PERFORMANCE_COUNTER_0_BASE, 1);
-
-    return result;
-
-}
-
-
-
-fixed fixed_sin(register fixed x, register int terms) {
-
-    num_fixed++;
-
-    PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 1);
-
-    register fixed result = x;
-
-    register fixed x2 = FIXED_MULT(x,x);
-
-    register fixed num = x;
-
-    register int den = 1;
-
-    register int neg = 1;
-
-    register fixed term;
-
-    for (int i = 1; i < terms; i++) {
-
-        num = FIXED_MULT(num, x2);
-
-        den *= (2*i+1)*(2*i);
-
-        term = num / den; //fixed / int can just use direct integer divide. No need to shift at all.
-
-        if (!neg)
-
-            result += term;
-
-        else
-
-            result -= term;
-
-        neg = !neg;
-
-    }
-
-    PERF_END (PERFORMANCE_COUNTER_0_BASE, 1);
-
-    return result;
-
-}
-
-
-
-#define PI 3.14159265f
-
-#define SAMPLES 20
-
-void test_sin_float(int terms) {
-
-    float dx = 2*PI/SAMPLES;
-
-    float x = -PI;
-
-    float err = 0;
-
-    for (int i = 0; i < SAMPLES; i++) {
-
-        x += dx;
-
-        float result;
-
-        if (terms >= 0)
-
-            result = float_sin(x, terms);
-
-        else
-
-            result = optimized_float_sin(x);
-
-        float math_res = sin(x);
-
-        err += float_abs(result - math_res);
-
-        //printf("sin(%f) = %f\n", x, result);
-
-    }
-
-    err /= SAMPLES;
-
-    printf("SIN_FLOAT (N=%d, Terms=%d) Mean Error: %f\n", SAMPLES, terms, err);
-
-}
-
-
-
-float test_sin_fixed(int terms) {
-
-    float dx = 2*PI/SAMPLES;
-
-    float x = -PI;
-
-    float err = 0;
-
-    for (int i = 0; i < SAMPLES; i++) {
-
-        x += dx;
-
-        float result;
-
-        if (terms >= 0)
-
-            result = FIXED_TO_FLOAT(fixed_sin(FLOAT_TO_FIXED(x), terms));
-
-        else
-
-            result = FIXED_TO_FLOAT(optimized_fixed_sin(FLOAT_TO_FIXED(x)));
-
-        float math_res = sin(x);
-
-        err += float_abs(result - math_res);
-
-        //printf("sin(%f) = %f\n", x, result);
-
-    }
-
-    err /= SAMPLES;
-
-    return err;
-
-}
-
-
-
-/*Returns best M value*/
-
-int tune_QM_sin(int terms) {
-
-    float best_err = 1000000; //very large initial number
-
-    int bestM = 0;
-
-    for (int M = 1; M <= 31; M++) {
-
-        int N = 31-M;
-
-        SET_Q_FORMAT(M, N);
-
-        float err = test_sin_fixed(terms);
-
-        if (err < best_err) {
-
-            best_err = err;
-
-            bestM = M;
-
-            printf("New Best (M,N)=(%d,%d): Error = %f\n", M, N, best_err);
-
+    for (int K = 0; K < N; K++) {
+        result[K] = 0;
+        for (int n = 0; n < N; n++) {
+            // signal[n]*cos_q15[(((2*n+1) * K * MAX_SIZE) >> (power+1)) & (COS_TERMS - 1)] >>> (NBITS-1);
+            result[K] += signal[n] * cos_terms[(((int)((n+0.5)*K*MAX_SIZE))>>power) & (COS_TERMS-1)];
         }
-
     }
+    PERF_END (PERFORMANCE_COUNTER_0_BASE, 2);
+}
 
-    return bestM;
-
+void dct_fixed(fixed* signal, fixed* result, int N) {
+    num_fixed++;
+    int power = (int)log2(N);
+    assert(powl(2,power) == N);//must be power of 2 for the optimized version
+    PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 1);
+    for (int K = 0; K < N; K++) {
+        result[K] = 0;
+        for (int n = 0; n < N; n++) {
+            // signal[n]*cos_q15[(((2*n+1) * K * MAX_SIZE) >> (power+1)) & (COS_TERMS - 1)] >>> (NBITS-1);
+            result[K] += (signal[n] * cos_q15[(((int)((n+0.5)*K*MAX_SIZE))>>power) & (COS_TERMS-1)]) >> (NBITS-1);
+        }
+    }
+    PERF_END (PERFORMANCE_COUNTER_0_BASE, 1);
 }
 
 
+void dct_fixed_unit(fixed* signal, fixed* result, int N) {
 
-#define NUM_ITEMS 100
+    num_unit++;
+    int power = (int)log2(N);
+    //IOWR_32DIRECT(AVALON_DCT_NIOS_0_BASE, 8, Q_M);
+    PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 3);
+    IOWR_32DIRECT(AVALON_DCT_NIOS_0_BASE, 0, power);
+    for (int i = 0; i < N; i++) {
+        IOWR_32DIRECT(AVALON_DCT_NIOS_0_BASE, 4, signal[i]);
+    }
+    for (int i = 0; i < N; i++) {
+        result[i] = (short)IORD_32DIRECT(AVALON_DCT_NIOS_0_BASE, 4*i);
+        //*((volatile short*)dct_read_ptr);
+    }
+    PERF_END (PERFORMANCE_COUNTER_0_BASE, 3);
+}
+
+/*TESTBENCH FUNCTIONS*/
+//Test both fixed and float and compare error against raw
+void dct_test_signal(float* signal, int N) {
+    //construct the fixed signal
+    fixed fixed_signal[MAX_SIZE];
+    for (int i = 0; i < N; i++) { fixed_signal[i] = FLOAT_TO_FIXED(signal[i]); }
+    //calculate the expected true result
+    float result_raw[MAX_SIZE];
+    dct_float_raw(signal, result_raw, N);
+    printf("\n\n\nTrue Result: ");
+    for (int i = 0; i < N; i++) {
+        printf("%f, ", result_raw[i]);
+    }
+    //Calculate the floating point optimized version
+    float result_float[MAX_SIZE];
+    float error_float = 0;
+    dct_float(signal, result_float, N);
+    printf("\n\nFloat Result: ");
+    for (int i = 0; i < N; i++) {
+        printf("%f, ", result_float[i]);
+        error_float += float_abs(result_float[i]-result_raw[i]);
+    }
+    error_float /= N;
+    //calculate the fixed result just like our unit would
+    fixed result_fixed[MAX_SIZE];
+    float error_fixed = 0;
+    dct_fixed(fixed_signal, result_fixed, N);
+    printf("\n\nFixed Result: ");
+    for (int i = 0; i < N; i++) {
+        float value = FIXED_TO_FLOAT(result_fixed[i]);
+        error_fixed += float_abs(value-result_raw[i]);
+        printf("%f, ", value);
+    }
+    error_fixed /= N;
+    //unit
+    fixed result_unit[MAX_SIZE];
+    float error_unit = 0;
+    dct_fixed_unit(fixed_signal, result_unit, N);
+    printf("\n\nFixed Result: ");
+    for (int i = 0; i < N; i++) {
+        float value = FIXED_TO_FLOAT(result_unit[i]);
+        error_unit += float_abs(value-result_raw[i]);
+        printf("%f, ", value);
+    }
+    error_unit /= N;
+
+    printf("\nMean Float Error: %f\nMean Fixed Error: %f\nMean Unit Error: %f\n\n", error_float, error_fixed, error_unit);//*/
+}
 
 
+void dct_test_func(float(*func)(int, int), int N) {
+    float signal[MAX_SIZE];
+    for (int i = 0; i < N; i++) {
+        signal[i] = func(i, N);
+    }
+    dct_test_signal(signal, N);
+}
 
-int main(void){
+/*The testbench*/
+
+float test1(int i, int N) {
+    return 3;
+}
+float test_cos(int i, int N, int freq) {
+    return 3*cos(freq*FLOAT_PI*i/N);
+}
+float test2(int i, int N) {
+    return test_cos(i, N, 1);
+}
+float test3(int i, int N) {
+    return test_cos(i, N, 2);
+}
+float test4(int i, int N) {
+    return test1(i, N) + test_cos(i, N, 2) + test_cos(i, N, 5) + test_cos(i, N, 7);
+}
 
 
+void dct_testbench(int N) {
+    //dct_test_func(test1, N);
+    //dct_test_func(test2, N);
+    //dct_test_func(test3, N);
+    dct_test_func(test4, N);
+}
 
-	volatile int a = 234;
-
+int get_overhead() {
+    const int NUM_ITEMS= 100;
+    volatile int a = 234;
 	volatile int result;
-
-
 
 	pre_measurement();
 
-
-
 	for (int i=0; i<NUM_ITEMS; i++){
-
 		PERF_BEGIN (PERFORMANCE_COUNTER_0_BASE, 1);
-
 		result = a^a;
-
 		PERF_END (PERFORMANCE_COUNTER_0_BASE, 1);
-
 	}
-
-
 
 	post_measurement();
 
-
-
 	int overhead_cycles = get_runtime(1)/NUM_ITEMS;
-
-
-
-	printf("Mean Overhead Per PERF: %f\n", (float)overhead_cycles);
-
-
-
-	/*Inserting my code*/
-
-
-
-    SET_Q_FORMAT(15, 14);
-
-    //fixed_div_test(12, 24);
-
-    //fixed_div_test(12, 2.5);
-
-    //test_sin_float(5);
-
-    //test_sin_fixed(20);
-
-    int M = tune_QM_sin(5);
-
-    SET_Q_FORMAT(M, 31-M); //this is what we use from now on
-
-
-
-    for (int terms = 1; terms < 7; terms++) {
-
-        pre_measurement();
-
-        num_float = 0;
-
-        num_fixed = 0;
-
-        test_sin_float(terms);
-
-        printf("SIN_FIXED (Terms=%d, Samples=%d, M=%d, N=%d) Mean Error: %f\n", terms, SAMPLES, M, 31-M, test_sin_fixed(terms));
-
-        post_measurement();
-
-        printf("Mean Fixed Sin Cycles (terms=%d): %d\n", terms, get_runtime(1)/num_fixed - overhead_cycles);
-
-        printf("Mean Float Sin Cycles (terms=%d): %d\n\n", terms, get_runtime(2)/num_float - overhead_cycles);
-
-    }
-
-
-
-    /*For the optimized stuff*/
-
-    pre_measurement();
-
-    printf("Optimized Sine Test\n");
-
-    test_sin_float(-1); //-1 is flag for optimized test
-
-    printf("SIN_FIXED (Optimized, Samples=%d, M=%d, N=%d) Mean Error: %f\n", SAMPLES, M, 31-M, test_sin_fixed(-1));
-
-    printf("Mean Fixed Sin Cycles (optimized): %d\n", get_runtime(1)/num_fixed - overhead_cycles);
-
-    printf("Mean Float Sin Cycles (optimized): %d\n\n", get_runtime(2)/num_float - overhead_cycles);
-
-    post_measurement();
-
-
-
-
-
-
-
-	while(1);
-
+    return overhead_cycles;
 }
 
+int main(void) {
+    ALLOC_DCT_PRECOMP_ARRAY();
+    SET_Q_FORMAT(8, 7);
+
+    int overhead_cycles = get_overhead();
+	printf("Mean Overhead Per PERF: %f\n", (float)overhead_cycles);
+
+    num_fixed = num_float = num_unit = 0;
+    pre_measurement();
+    dct_testbench(32);
+    post_measurement();
+
+    printf("Mean Fixed Cycles: %d\n", get_runtime(1)/num_fixed - overhead_cycles);
+    printf("Mean Float Cycles %d\n", get_runtime(2)/num_float - overhead_cycles);
+    printf("Mean Unit Cycles %d\n\n", get_runtime(3)/num_unit - overhead_cycles);
+
+    while(1) {};
+
+    return 0;
+}
