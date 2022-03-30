@@ -75,6 +75,13 @@ processor/work/
 processor/work/*
 processor/incremental_db
 processor/incremental_db/*
+dct_nios/nios_system/incremental_db/
+dct_nios/nios_system/db/
+dct_nios/nios_system/out/
+dct_nios/nios_system/work/
+dct_nios/nios_system/work/*
+dct_nios/nios_system/incremental_db
+dct_nios/nios_system/incremental_db/*
 *.db
 *.out
 *.work.*
