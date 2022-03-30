@@ -72,8 +72,11 @@ processor/incremental_db/
 processor/db/
 processor/out/
 processor/work/
+processor/work/*
+processor/incremental_db
+processor/incremental_db/*
 *.db
 *.out
-*.work
+*.work.*
 _output_files/
 PLLJ_PLLSPE_INFO.txt
