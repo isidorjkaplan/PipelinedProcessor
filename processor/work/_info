@@ -10,15 +10,15 @@ cModel Technology
 Z0 dC:/Users/isido/OneDrive/Files/School/Year 3/Winter 2022/ECE342/PipelinedProcessor/src
 vavalon_bus
 Z1 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
-Z2 !s110 1647363964
+Z2 !s110 1648680847
 !i10b 1
-!s100 fm]8d]94>Sgm5UNhP9[M01
-In<;<=M]Th?:5bYlNc2Y?O1
+!s100 G>HL;^Q]h3S_jGf?_fPmG0
+IZb1M6@jQS;IFCHbz<[n3b1
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 !s105 data_bus_sv_unit
 S1
-Z4 dC:/Users/isido/Documents/Local/PipelinedProcessor/src
-w1647363960
+Z4 dC:/Users/isido/Documents/Local/PipelinedProcessor/processor
+w1647977378
 8data_bus.sv
 Fdata_bus.sv
 L0 1
@@ -26,25 +26,25 @@ Z5 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z6 !s108 1647363964.000000
-Z7 !s107 testbench_dct.sv|sim.sv|ps2.sv|processor.sv|lab4_mult.sv|fp_adder.sv|de1soc_top.sv|dct_rom.sv|dct.sv|data_bus.sv|
-Z8 !s90 -reportprogress|300|data_bus.sv|dct.sv|dct_rom.sv|de1soc_top.sv|fp_adder.sv|lab4_mult.sv|processor.sv|ps2.sv|sim.sv|testbench_dct.sv|
+Z6 !s108 1648680847.000000
+Z7 !s107 testbench_dct.sv|sim.sv|ps2.sv|processor.sv|lab4_mult.sv|de1soc_top.sv|dct_rom.sv|dct.sv|data_bus.sv|
+Z8 !s90 -reportprogress|300|data_bus.sv|dct.sv|dct_rom.sv|de1soc_top.sv|lab4_mult.sv|processor.sv|ps2.sv|sim.sv|testbench_dct.sv|
 !i113 1
 Z9 tCvgOpt 0
 vavalon_dct
 R1
 R2
 !i10b 1
-!s100 8b1=U04Bo1V9PaMT0lQHi2
-I9Rc90GTb_7Md6zG[TBfTh3
+!s100 I>NDl5gd>:`0F?Eo``@0N2
+IVS[>=2Q`W>eWbCmGbGDR01
 R3
 Z10 !s105 dct_sv_unit
 S1
 R4
-Z11 w1647357078
+Z11 w1647433875
 Z12 8dct.sv
 Z13 Fdct.sv
-L0 20
+L0 22
 R5
 r1
 !s85 0
@@ -58,8 +58,8 @@ vavalon_dct_nios
 R1
 R2
 !i10b 1
-!s100 S_UU?`?ODBMC;b;be;]B01
-IP7165;e:ZgOW9UbMF]BLZ0
+!s100 S9VA:ZXGXKTgjBoH<?80:2
+IDZXLjkD=d^MRbnY`Z>OON1
 R3
 R10
 S1
@@ -102,15 +102,15 @@ R8
 R9
 vavalon_ps2
 R1
-R2
+Z18 !s110 1648680848
 !i10b 1
-!s100 d50_9b;d84b4D]l74`DgK0
-If4f2[9@^Fk;Ua8O9GNWKY2
+!s100 ^H9fHnY:RV7`_X@76Q]A=1
+IQA=nR7lVzbn44VbfFBZNd3
 R3
 !s105 ps2_sv_unit
 S1
 R4
-w1646612427
+w1647460457
 8ps2.sv
 Fps2.sv
 L0 1
@@ -127,8 +127,8 @@ vcos
 R1
 R2
 !i10b 1
-!s100 h8k7MUXmUCQR?=HbboYfa2
-IJWkhKH]=f>X3AgNgKBTni0
+!s100 58R8z@kfNB]KBnWlSoWec2
+I:`AmO2<28AdicKGI`1oG22
 R3
 R10
 S1
@@ -136,7 +136,7 @@ R4
 R11
 R12
 R13
-L0 153
+L0 155
 R5
 r1
 !s85 0
@@ -179,9 +179,9 @@ R3
 !s105 de1soc_top_sv_unit
 S1
 R4
-w1646668214
-Z18 8de1soc_top.sv
-Z19 Fde1soc_top.sv
+w1647976658
+Z19 8de1soc_top.sv
+Z20 Fde1soc_top.sv
 L0 3
 R5
 r1
@@ -205,25 +205,25 @@ IIf9S2VTVHmLYPeNTi]PCN1
 S1
 R0
 w1646167844
-R18
 R19
+R20
 L0 4
 R5
 !s108 1646167883.000000
-Z20 !s107 testbench.sv|processor.sv|lab4_mult.sv|de1soc_top.sv|data_bus.sv|
-Z21 !s90 -reportprogress|300|data_bus.sv|de1soc_top.sv|lab4_mult.sv|processor.sv|testbench.sv|
+Z21 !s107 testbench.sv|processor.sv|lab4_mult.sv|de1soc_top.sv|data_bus.sv|
+Z22 !s90 -reportprogress|300|data_bus.sv|de1soc_top.sv|lab4_mult.sv|processor.sv|testbench.sv|
 !i113 1
 R9
 vfp_adder
 R1
-R2
+Z23 !s110 1647363964
 !i10b 1
 !s100 CLOMS^bS3@Z?bWBSUnOLH0
 IA;X?hFY:c[cneWVjIBf0C2
 R3
 !s105 fp_adder_sv_unit
 S1
-R4
+Z24 dC:/Users/isido/Documents/Local/PipelinedProcessor/src
 w1646668159
 8fp_adder.sv
 Ffp_adder.sv
@@ -232,9 +232,9 @@ R5
 r1
 !s85 0
 31
-R6
-R7
-R8
+!s108 1647363964.000000
+!s107 testbench_dct.sv|sim.sv|ps2.sv|processor.sv|lab4_mult.sv|fp_adder.sv|de1soc_top.sv|dct_rom.sv|dct.sv|data_bus.sv|
+!s90 -reportprogress|300|data_bus.sv|dct.sv|dct_rom.sv|de1soc_top.sv|fp_adder.sv|lab4_mult.sv|processor.sv|ps2.sv|sim.sv|testbench_dct.sv|
 !i113 1
 R9
 vfp_mult_lab4
@@ -275,25 +275,25 @@ R5
 r1
 !s85 0
 31
-Z22 !s108 1647363963.000000
-Z23 !s107 ps2_mouse.v|inst_mem.v|
-Z24 !s90 -reportprogress|300|inst_mem.v|ps2_mouse.v|
+R6
+!s107 inst_mem.v|
+!s90 -reportprogress|300|inst_mem.v|
 !i113 1
 R9
 vprocessor
 R1
-DXx4 work 17 processor_sv_unit 0 22 z:h1bco90G?4^SR>h1=M52
+DXx4 work 17 processor_sv_unit 0 22 NSSgmJn<RNEe70S]]X2K31
 R3
 r1
 !s85 0
 31
 !i10b 1
-!s100 ^@CC0RT563ZLP4UT<Bm6l3
-I_XbWlg5h=1zBbgLiHio]J0
+!s100 BTMI6;QWn1XM^]>?kL5FD0
+IH4QGJzTTi=k>AQX?8fOAz2
 !s105 processor_sv_unit
 S1
 R4
-Z25 w1646193384
+Z25 w1648680846
 Z26 8processor.sv
 Z27 Fprocessor.sv
 L0 18
@@ -305,13 +305,13 @@ R8
 R9
 Xprocessor_sv_unit
 R1
-Vz:h1bco90G?4^SR>h1=M52
+VNSSgmJn<RNEe70S]]X2K31
 r1
 !s85 0
 31
 !i10b 1
-!s100 6P[SZHMXdjM<F:[5VVYg:1
-Iz:h1bco90G?4^SR>h1=M52
+!s100 63TEN<_T>Xehjo[A:`dgD3
+INSSgmJn<RNEe70S]]X2K31
 !i103 1
 S1
 R4
@@ -326,12 +326,12 @@ R8
 !i113 1
 R9
 vps2_mouse
-R2
+R23
 !i10b 1
 !s100 mJLSa1fS[WRa0_bTUbfJ02
 I[?oIe<TZ_XPJ3aT>m2XVe2
 R3
-R4
+R24
 w1646609997
 8ps2_mouse.v
 Fps2_mouse.v
@@ -340,14 +340,14 @@ R5
 r1
 !s85 0
 31
-R22
-R23
-R24
+!s108 1647363963.000000
+!s107 ps2_mouse.v|inst_mem.v|
+!s90 -reportprogress|300|inst_mem.v|ps2_mouse.v|
 !i113 1
 R9
 vsim
 R1
-R2
+R18
 !i10b 1
 !s100 3^X8NlU5BE>kFJc::8:M`2
 ILNPzUE606^O^dzN?LnmzE0
@@ -387,8 +387,8 @@ r1
 !s85 0
 31
 !s108 1646349912.000000
-R20
 R21
+R22
 !i113 1
 R9
 vtestbench_dct

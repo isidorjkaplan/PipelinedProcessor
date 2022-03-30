@@ -435,7 +435,7 @@ module processor (
         else begin
             //keep track of number of cycles and number of instructions for debugging
             num_cycles <= num_cycles+1;//debugging only
-            num_instr <= num_instr + (stage_regs[Writeback].instr != NOP); //debugging only
+            num_instr <= num_instr + (!stall && !flush); //debugging only, keep track if it was a useful cycle
 
             status_reg <= next_status_value;
             /*On the clock write all the combinational output values to the state regs*/
