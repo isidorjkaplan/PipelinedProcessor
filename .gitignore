@@ -50,6 +50,7 @@
 *.sopc_builder
 *.summary
 *.tcl
+*.wlf
 *.txt # Explicitly add any text files used
 *~
 *example*
