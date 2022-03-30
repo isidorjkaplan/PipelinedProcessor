@@ -1,7 +1,0 @@
-
-State Machine - |de1soc_top|avalon_bus:data_bus|avalon_ps2:ps2_cont|ps2_mouse:U1|cur_state
-Name cur_state.trans cur_state.pulldat cur_state.pullclk cur_state.listen 
-cur_state.listen 0 0 0 0 
-cur_state.pullclk 0 0 1 1 
-cur_state.pulldat 0 1 0 1 
-cur_state.trans 1 0 0 1 
