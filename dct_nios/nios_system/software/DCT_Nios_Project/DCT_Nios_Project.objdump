@@ -69,7 +69,7 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  25 .quartus_project_dir 00000046  00000000  00000000  00099353  2**0
                   CONTENTS, READONLY
- 26 .sopcinfo     0003c731  00000000  00000000  00099399  2**0
+ 26 .sopcinfo     0003e760  00000000  00000000  00099399  2**0
                   CONTENTS, READONLY
 SYMBOL TABLE:
 00040000 l    d  .entry	00000000 .entry
@@ -680,7 +680,7 @@ Disassembly of section .entry:
    40014:	08409114 	ori	at,at,580
     jmp r1
    40018:	0800683a 	jmp	at
-   4001c:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x40000>
+   4001c:	00000000 	call	0 <__reset-0x40000>
 
 Disassembly of section .exceptions:
 
@@ -12934,15 +12934,15 @@ int main(void) {
    4b1c0:	20800017 	ldw	r2,0(r4)
    4b1c4:	1000683a 	jmp	r2
    4b1c8:	0004b3f0 	cmpltui	zero,zero,4815
-   4b1cc:	0004b240 	call	4b24 <__alt_mem_onchip_memory2_0-0x3b4dc>
+   4b1cc:	0004b240 	call	4b24 <__reset-0x3b4dc>
    4b1d0:	0004b3e0 	cmpeqi	zero,zero,4815
    4b1d4:	0004b234 	movhi	zero,4808
    4b1d8:	0004b3e0 	cmpeqi	zero,zero,4815
    4b1dc:	0004b3b4 	movhi	zero,4814
    4b1e0:	0004b3e0 	cmpeqi	zero,zero,4815
    4b1e4:	0004b234 	movhi	zero,4808
-   4b1e8:	0004b240 	call	4b24 <__alt_mem_onchip_memory2_0-0x3b4dc>
-   4b1ec:	0004b240 	call	4b24 <__alt_mem_onchip_memory2_0-0x3b4dc>
+   4b1e8:	0004b240 	call	4b24 <__reset-0x3b4dc>
+   4b1ec:	0004b240 	call	4b24 <__reset-0x3b4dc>
    4b1f0:	0004b3b4 	movhi	zero,4814
    4b1f4:	0004b234 	movhi	zero,4808
    4b1f8:	0004b224 	muli	zero,zero,4808
@@ -13673,9 +13673,9 @@ int main(void) {
    4bd2c:	0004bf18 	cmpnei	zero,zero,4860
    4bd30:	0004bf30 	cmpltui	zero,zero,4860
    4bd34:	0004bd64 	muli	zero,zero,4853
-   4bd38:	0004bf40 	call	4bf4 <__alt_mem_onchip_memory2_0-0x3b40c>
-   4bd3c:	0004bf40 	call	4bf4 <__alt_mem_onchip_memory2_0-0x3b40c>
-   4bd40:	0004bf40 	call	4bf4 <__alt_mem_onchip_memory2_0-0x3b40c>
+   4bd38:	0004bf40 	call	4bf4 <__reset-0x3b40c>
+   4bd3c:	0004bf40 	call	4bf4 <__reset-0x3b40c>
+   4bd40:	0004bf40 	call	4bf4 <__reset-0x3b40c>
    4bd44:	0004c15c 	xori	zero,zero,4869
    4bd48:	2404b03a 	or	r2,r4,r16
    4bd4c:	10006f1e 	bne	r2,zero,4bf0c <__muldf3+0x2f8>
@@ -15227,7 +15227,7 @@ int main(void) {
    4d4fc:	0004dfac 	andhi	zero,zero,4990
    4d500:	0004de24 	muli	zero,zero,4984
    4d504:	0004dfac 	andhi	zero,zero,4990
-   4d508:	0004de80 	call	4de8 <__alt_mem_onchip_memory2_0-0x3b218>
+   4d508:	0004de80 	call	4de8 <__reset-0x3b218>
    4d50c:	0004dfac 	andhi	zero,zero,4990
    4d510:	0004dfac 	andhi	zero,zero,4990
    4d514:	0004de90 	cmplti	zero,zero,4986
@@ -26159,19 +26159,19 @@ int ALT_KILL (int pid, int sig)
    57900:	000579a8 	cmpgeui	zero,zero,5606
    57904:	00057988 	cmpgei	zero,zero,5606
    57908:	00057988 	cmpgei	zero,zero,5606
-   5790c:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57910:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57914:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57918:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
+   5790c:	00057980 	call	5798 <__reset-0x3a868>
+   57910:	00057980 	call	5798 <__reset-0x3a868>
+   57914:	00057980 	call	5798 <__reset-0x3a868>
+   57918:	00057980 	call	5798 <__reset-0x3a868>
    5791c:	00057988 	cmpgei	zero,zero,5606
-   57920:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57924:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57928:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   5792c:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57930:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57934:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57938:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   5793c:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
+   57920:	00057980 	call	5798 <__reset-0x3a868>
+   57924:	00057980 	call	5798 <__reset-0x3a868>
+   57928:	00057980 	call	5798 <__reset-0x3a868>
+   5792c:	00057980 	call	5798 <__reset-0x3a868>
+   57930:	00057980 	call	5798 <__reset-0x3a868>
+   57934:	00057980 	call	5798 <__reset-0x3a868>
+   57938:	00057980 	call	5798 <__reset-0x3a868>
+   5793c:	00057980 	call	5798 <__reset-0x3a868>
    57940:	000579a8 	cmpgeui	zero,zero,5606
    57944:	00057988 	cmpgei	zero,zero,5606
    57948:	00057988 	cmpgei	zero,zero,5606
@@ -26179,15 +26179,15 @@ int ALT_KILL (int pid, int sig)
    57950:	000579a8 	cmpgeui	zero,zero,5606
    57954:	00057988 	cmpgei	zero,zero,5606
    57958:	00057988 	cmpgei	zero,zero,5606
-   5795c:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57960:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57964:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   57968:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   5796c:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
+   5795c:	00057980 	call	5798 <__reset-0x3a868>
+   57960:	00057980 	call	5798 <__reset-0x3a868>
+   57964:	00057980 	call	5798 <__reset-0x3a868>
+   57968:	00057980 	call	5798 <__reset-0x3a868>
+   5796c:	00057980 	call	5798 <__reset-0x3a868>
    57970:	00057988 	cmpgei	zero,zero,5606
    57974:	00057988 	cmpgei	zero,zero,5606
-   57978:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
-   5797c:	00057980 	call	5798 <__alt_mem_onchip_memory2_0-0x3a868>
+   57978:	00057980 	call	5798 <__reset-0x3a868>
+   5797c:	00057980 	call	5798 <__reset-0x3a868>
        * The Posix standard defines the default behaviour for all these signals 
        * as being eqivalent to a call to _exit(). No mechanism is provided to 
        * change this behaviour.
@@ -30399,7 +30399,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
    59cd0:	d9400015 	stw	r5,0(sp)
    59cd4:	d9800115 	stw	r6,4(sp)
    59cd8:	d9c00215 	stw	r7,8(sp)
-   59cdc:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x40000>
+   59cdc:	00000000 	call	0 <__reset-0x40000>
    59ce0:	d9400017 	ldw	r5,0(sp)
    59ce4:	d9800117 	ldw	r6,4(sp)
    59ce8:	d9c00217 	ldw	r7,8(sp)
@@ -30483,7 +30483,7 @@ alt_exception_cause_generated_bad_addr(alt_exception_cause cause)
    59e18:	10003226 	beq	r2,zero,59ee4 <__call_exitprocs+0x178>
    59e1c:	a009883a 	mov	r4,r20
    59e20:	98800015 	stw	r2,0(r19)
-   59e24:	00000000 	call	0 <__alt_mem_onchip_memory2_0-0x40000>
+   59e24:	00000000 	call	0 <__reset-0x40000>
    59e28:	9d000017 	ldw	r20,0(r19)
    59e2c:	a03fe41e 	bne	r20,zero,59dc0 <__alt_data_end+0xfffd9dc0>
    59e30:	dfc00a17 	ldw	ra,40(sp)

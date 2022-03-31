@@ -6,6 +6,7 @@
 <stringAttribute key="byteStreamDeviceDeviceID" value="2"/>
 <stringAttribute key="byteStreamDeviceInstanceID" value="0"/>
 <stringAttribute key="com.altera.sbtgui.launch.REMOTE_PORT" value="64861"/>
+<booleanAttribute key="disableNios2ConsoleView" value="false"/>
 <booleanAttribute key="downloadProgram" value="true"/>
 <stringAttribute key="elfFile" value="C:\Users\isido\Documents\Local\PipelinedProcessor\dct_nios\nios_system\software\DCT_Nios_Project\DCT_Nios_Project.elf"/>
 <stringAttribute key="org.eclipse.cdt.debug.mi.core.GDB_INIT" value=""/>
