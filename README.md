@@ -27,6 +27,5 @@ I wrote a number of programs to run on the processor, which are listed below:
 
 
 # DCT Unit
-I dont even want to write this. I was forced to make the DCT unit against my will. I just wanted to submit the processor but was told this is not a processor course and had to add something extra so here it is. Let the record permanently show my objection. 
 
 Inside the "dct_nios" folder the DCT unit is connected to a nios processor. There is a benchmark which analyzes its comparative performance against software implemented DCT's in fixed-point and in floating-point using and not using a hardware accellerated floating point unit. 
