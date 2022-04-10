@@ -3,6 +3,9 @@ This is my final project for ECE342. It has two primary components
 1. Implements a fully pipelined 5-stage processor with forwarding and primitive (not-taken) branch prediction. 
 2. Implement a memory-mappped verilog unit that performs the Discrete-Cosine-Transform (DCT) in hardware achieving 500x improvement versus software version. 
 
+## Previous Processor Project
+This processor implements the same assembly language of an earlier processor I designed. That project, and all of it's demos, can be found https://github.com/isidorjkaplan/ProcessorPublic 
+
 ## Repository Structure
 Inside the dct_nios folder is a system with a NIOS II/f processor connected to the DCT unit. 
 There are some benchmarks that demonstrate the empirical performance of the DCT unit as compared to a software implementation. 
